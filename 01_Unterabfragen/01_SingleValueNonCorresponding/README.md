@@ -1,5 +1,11 @@
 # Nicht korrespondierende Unterabfragen, die einen Wert liefern.
 
+## Übungen
+
+Bearbeiten Sie die folgenden Abfragen. Die korrekte Lösung ist in der Tabelle darunter, die erste
+Spalte (#) ist allerdings nur die Datensatznummer und kommt im Abfrageergebnis nicht vor. Die
+Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt übereinstimmen.
+
 **(1)** Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.
 
 | #   | Klasse | KlassenGesamt | SchuelerGesamt |
