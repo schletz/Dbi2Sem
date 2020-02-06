@@ -1,6 +1,7 @@
 # Nicht korrespondierende Unterabfragen, die einen Wert liefern.
 
 **(1)** Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.
+
 | #   | Klasse | KlassenGesamt | SchuelerGesamt |
 | ---:| ------ | -------------:| --------------:|
 |   1 | 2AAIF  | 61            | 1138           |
@@ -17,6 +18,7 @@
 |  12 | 6CAIF  | 61            | 1138           |
 
 **(2)** Geben Sie allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt aus.
+
 | #   | LNr | LName     | LVorname  | LEintrittsjahr | LGehalt | AvgGehalt |
 | ---:| --- | --------- | --------- | --------------:| -------:| ---------:|
 |   1 | AH  | Auinger   | Harald    | 2018           | 2083    | 3126.67   |
@@ -32,6 +34,7 @@
 
 **(3)** Als Ergänzung geben Sie nun bei diesen Lehrern die Abweichung vom Durchschnittsgehalt
 aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschnittswert verdienen.
+
 | #   | LNr | LName   | LVorname | LEintrittsjahr | LGehalt | AvgGehalt | Abweichung |
 | ---:| --- | ------- | -------- | --------------:| -------:| ---------:| ----------:|
 |   1 | AH  | Auinger | Harald   | 2018           | 2083    | 3126.67   | -1043.67   |
@@ -39,6 +42,7 @@ aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschni
 |   3 | SE  | Schmid  | Erhard   | 2018           | 2064    | 3126.67   | -1062.67   |
 
 **(4)** Geben Sie die Prüfungen aus, die maximal 3 Tage vor der letzten Prüfung stattfanden.
+
 | #   | PDatumZeit          | PPruefer | PNote | Zuname    | Vorname |
 | ---:| ------------------- | -------- | -----:| --------- | ------- |
 |   1 | 31.05.2020 17:10:00 | SWA      | 2     | Abernathy | Jeanne  |
@@ -47,12 +51,14 @@ aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschni
 
 **(5)** Geben Sie die Räume mit der meisten Kapazität (Spalte *R_Plaetze*) aus. Hinweis: Das können auch
 mehrere Räume sein.
+
 | #   | RId   | RPlaetze | RArt                         |
 | ---:| ----- | --------:| ---------------------------- |
 |   1 | AH.32 | 36       | Naturwissenschaftlicher Raum |
 |   2 | B5.09 | 36       | Klassenraum                  |
 
 **(6)** Gibt es Räume, die unter einem Viertel der Plätze als der größte Raum haben?
+
 | #   | RId     | RPlaetze | RArt                                      |
 | ---:| ------- | --------:| ----------------------------------------- |
 |   1 | A3.04   | 3        | Multifunktionsraum Medien                 |
@@ -75,6 +81,7 @@ mehrere Räume sein.
 
 **(7)** Welche Klasse hat mehr weibliche Schüler (S_Geschlecht ist 2) als die 5BAIF? Hinweis: Gruppieren Sie
 die Schülertabelle und vergleichen die Anzahl mit dem ermittelten Wert aus der 5BAIF.
+
 | #   | Klasse | AnzWeibl |
 | ---:| ------ | --------:|
 |   1 | 5BBIF  | 17       |
@@ -84,6 +91,7 @@ die Schülertabelle und vergleichen die Anzahl mit dem ermittelten Wert aus der 
 Hinweis: Verwenden Sie GROUP BY, um die Schüleranzahl pro Klasse zu ermitteln. Achten Sie auch
 darauf, dass Klassen mit 0 Schülern auch angezeigt werden. Danach schreiben Sie 
 eine Unterabfrage, die die Schüler der BIF Abteilung zählt.
+
 | #   | Klasse | SchuelerKlasse | SchuelerBIF |
 | ---:| ------ | --------------:| -----------:|
 |   1 | 2ABIF  | 0              | 110         |
