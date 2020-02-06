@@ -1,0 +1,74 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.Json;
+using System.Threading.Tasks;
+using CsvHelper;
+
+namespace SchulDb.Untis
+{
+    /// <summary>
+    /// Lädt die CSV Dateien des Untistools in den Speicher.
+    /// </summary>
+    public class Untisdata
+    {
+        public static string[] Wochentage { get; } = new string[] { "MO", "DI", "MI", "DO", "FR", "SA", "SO" };
+        public Adresse Adressen { get; private set; }
+        public List<Fach> Faecher { get; private set; }
+        public List<Klasse> Klassen { get; private set; }
+        public List<Lehrer> Lehrer { get; private set; }
+        public List<Raum> Raeume { get; private set; }
+        public List<Unterricht> Stundenplan { get; private set; }
+        private Untisdata() { }
+        public static async Task<Untisdata> Load(string path, string suffix)
+        {
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
+            Untisdata untisdata = new Untisdata();
+            untisdata.Adressen = await ReadJsonFile<Adresse>($"{path}/adressen.json");
+            untisdata.Faecher = ReadUntisFile<Fach>($"{path}/Faecher_{suffix}.csv");
+            untisdata.Klassen = ReadUntisFile<Klasse>($"{path}/Klassen_{suffix}.csv");
+            untisdata.Lehrer = ReadUntisFile<Lehrer>($"{path}/Lehrer_{suffix}.csv");
+            untisdata.Raeume = ReadUntisFile<Raum>($"{path}/Raeume_{suffix}.csv");
+            untisdata.Stundenplan = ReadUntisFile<Unterricht>($"{path}/Stundenplan_{suffix}.csv");
+            return untisdata;
+        }
+        private static List<T> ReadUntisFile<T>(string filename)
+        {
+            try
+            {
+                using (var reader = new StreamReader(filename, Encoding.GetEncoding(1252)))
+                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                {
+                    csv.Configuration.HasHeaderRecord = false;
+                    csv.Configuration.Delimiter = ";";
+                    return csv.GetRecords<T>().ToList();
+                }
+            }
+            catch (Exception e)
+            {
+                throw new SchulDbException("Fehler beim Lesen der Untisdateien. ist der Pfad und das Suffix richtig?", e.InnerException);
+            }
+
+        }
+        private static async Task<T> ReadJsonFile<T>(string filename)
+        {
+            try
+            {
+                using (var reader = File.OpenRead(filename))
+                {
+                    var data = await JsonSerializer.DeserializeAsync<T>(reader);
+                    return data;
+                }
+            }
+            catch (Exception e)
+            {
+                throw new SchulDbException("Fehler beim Lesen der JSON Adressdaten. Fehlt die Datei adressen.json?", e.InnerException);
+            }
+        }
+    }
+
+}

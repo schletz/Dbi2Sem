@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
-using SchulDbGenerator.Model;
+using SchulDb.Model;
 
 namespace SingleValueNonCorresponding
 {
@@ -9,7 +9,10 @@ namespace SingleValueNonCorresponding
     {
         static void Main(string[] args)
         {
-            using var db = new SchuleContext();
+            var options = new DbContextOptionsBuilder<SchuleContext>()
+                .UseSqlite("DataSource=../Schule.db")
+                .Options;
+            using var db = new SchuleContext(options);
 
             @"
 Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.".WriteItem();
