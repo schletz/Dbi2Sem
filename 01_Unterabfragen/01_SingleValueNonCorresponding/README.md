@@ -1,4 +1,4 @@
-# Nicht korrespondierende Unterabfragen, die einen Wert liefern.
+# Nicht korrespondierende Unterabfragen, die einen Wert liefern
 
 ## Übungen
 
