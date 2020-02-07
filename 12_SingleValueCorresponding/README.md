@@ -80,9 +80,9 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 |  10 | 7BBIF  | 28        | 13        | 15       |
 |  11 | 7CBIF  | 28        | 11        | 17       |
 
-**(3)** Wie viele Stunden pro Woche sehen die Klassen der AIF ihren Klassenvorstand? Lösen Sie
+**(3)** Wie viele Stunden pro Woche sehen die Klassen der Abteilung AIF ihren Klassenvorstand? Lösen Sie
 das Beispiel zuerst mit einem klassischen JOIN in Kombination mit einer Gruppierung. Danach lösen Sie
-das Beispiel mit einer Unterabfrage ohne JOIN.
+das Beispiel mit einer Unterabfrage ohne JOIN. Betrachten Sie nur Klassen mit eingetragenem Klassenvorstand.
 | #   | KNr   | AnzKvStunden |
 | ---:| ----- | ------------:|
 |   1 | 3BAIF | 7            |
@@ -90,7 +90,7 @@ das Beispiel mit einer Unterabfrage ohne JOIN.
 |   3 | 5BAIF | 5            |
 |   4 | 5CAIF | 2            |
 
-**(4)** Wie viele Wochenstunden haben die Klassen der AIF? Achtung: Es gibt Stunden, in denen
+**(4)** Wie viele Wochenstunden haben die Klassen der Abteilung AIF? Achtung: Es gibt Stunden, in denen
 2 Lehrer in der Klasse sind. Pro Tag und Stunde ist jeder Datensatz nur 1x zu zählen. Könnten Sie
 das Beispiel auch mit einem JOIN und einer Gruppierung lösen? Begründen Sie, wenn nicht.
 Anmerkung, die nichts mit der Abfrage zu tun hat: Durch Stundenverlegungen können unterschiedliche
@@ -110,7 +110,8 @@ Werte bei Parallelklassen entstehen.
 |  11 | 6BAIF | 46             | 33         |
 |  12 | 6CAIF | 46             | 33         |
 
-Wie viel Prozent der Stunden verbringen die Schüler in ihrem Stammraum?
+Wie viel Prozent der Stunden verbringen die Schüler in ihrem Stammraum? Für diese Anzahl werden einfach
+die Anzahl der Datensätze in der Stundentabelle gezählt.
 | #   | KNr   | KStammraum | AnzStundenGesamt | AnzStundenStammraum | ProzentImStammraum |
 | ---:| ----- | ---------- | ----------------:| -------------------:| ------------------:|
 |   1 | 1AHIF | C5.09      | 59               | 12                  | 20                 |
@@ -138,7 +139,7 @@ Wie viel Prozent der Stunden verbringen die Schüler in ihrem Stammraum?
 |  23 | 5EHIF | C3.11      | 59               | 17                  | 29                 |
 
 **(5)** Welche Lehrer verdienen 50% mehr als der Durchschnitt von den Lehrern, die vorher in
-die Schule eingetreten sind (Eintrittsjahr < Eintrittsjahr des Lehrers?
+die Schule eingetreten sind (Eintrittsjahr < Eintrittsjahr des Lehrers)?
 | #   | LNr | LName            | LVorname   | LGehalt | LEintrittsjahr | AvgGehaltAeltere |
 | ---:| --- | ---------------- | ---------- | -------:| --------------:| ----------------:|
 |   1 | MEA | Metz             | Andreas    | 5570    | 1984           | 3100.34          |
@@ -188,7 +189,7 @@ haben schlechtere Noten als der Prüfer im Mittel für diesen Gegenstand vergibt
 |   6 | 1351 | Monahan   | Barbara  | 1AHIF   | NIJ      | 4     | SOPK        | 2.67          |
 
 **(8)** Geben Sie die letzte Stunde der 3BAIF für jeden Wochentag aus. Beachten Sie, dass
-auch mehrere Datensätze für die letzte Stunde geliefert werden können (wenn 2 Lehrer dort unterrichten)
+auch mehrere Datensätze für die letzte Stunde geliefert werden können (wenn 2 Lehrer dort unterrichten).
 | #   | StKlasse | StTag | StStunde | StGegenstand | StLehrer |
 | ---:| -------- | -----:| --------:| ------------ | -------- |
 |   1 | 3BAIF    | 1     | 14       | DBI1         | MIP      |
