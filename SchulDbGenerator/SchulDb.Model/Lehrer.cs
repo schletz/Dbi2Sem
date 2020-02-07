@@ -20,27 +20,27 @@ namespace SchulDb.Model
 
         [Key]
         [Column("L_Nr")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string LNr { get; set; }
         [Required]
         [Column("L_Name")]
-        [StringLength(15)]
+        [StringLength(255)]
         public string LName { get; set; }
         [Required]
         [Column("L_Vorname")]
-        [StringLength(10)]
+        [StringLength(255)]
         public string LVorname { get; set; }
         [Column("L_Gebdat", TypeName = "datetime")]
         public DateTime? LGebdat { get; set; }
         [Column("L_Gehalt", TypeName = "money")]
         public decimal? LGehalt { get; set; }
         [Column("L_Chef")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string LChef { get; set; }
         [Column("L_Eintrittsjahr")]
         public int? LEintrittsjahr { get; set; }
         [Column("L_Sprechstunde")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string LSprechstunde { get; set; }
 
         [ForeignKey(nameof(LChef))]

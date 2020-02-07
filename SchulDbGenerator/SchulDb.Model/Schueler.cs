@@ -18,18 +18,19 @@ namespace SchulDb.Model
 
         [Key]
         [Column("S_Nr")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]  // Für SQL Server, sonst glaubt EF Core es ist ein Autowert.
         public int SNr { get; set; }
         [Required]
         [Column("S_Klasse")]
-        [StringLength(6)]
+        [StringLength(8)]
         public string SKlasse { get; set; }
         [Required]
         [Column("S_Zuname")]
-        [StringLength(15)]
+        [StringLength(255)]
         public string SZuname { get; set; }
         [Required]
         [Column("S_Vorname")]
-        [StringLength(10)]
+        [StringLength(255)]
         public string SVorname { get; set; }
         [Column("S_Geschlecht")]
         public int SGeschlecht { get; set; }
@@ -47,7 +48,7 @@ namespace SchulDb.Model
         [StringLength(255)]
         public string SOrt { get; set; }
         [Column("S_Staatsb")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string SStaatsb { get; set; }
         [Column("S_Religion")]
         public int? SReligion { get; set; }

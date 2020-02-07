@@ -16,14 +16,14 @@ namespace SchulDb.Model
 
         [Key]
         [Column("Abt_Nr")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string AbtNr { get; set; }
         [Column("Abt_Name")]
-        [Required]
         [StringLength(255)]
+        [Required]
         public string AbtName { get; set; }
         [Column("Abt_Leiter")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string AbtLeiter { get; set; }
         [ForeignKey(nameof(AbtLeiter))]
         [InverseProperty(nameof(Lehrer.Abteilungens))]

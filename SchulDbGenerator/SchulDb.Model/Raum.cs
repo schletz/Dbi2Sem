@@ -21,6 +21,7 @@ namespace SchulDb.Model
         [Column("R_Plaetze")]
         public int? RPlaetze { get; set; }
         [Column("R_Art")]
+        [StringLength(255)]
         public string RArt { get; set; }
         [InverseProperty(nameof(Stunde.StRaumNavigation))]
         public virtual ICollection<Stunde> Stundens { get; set; }

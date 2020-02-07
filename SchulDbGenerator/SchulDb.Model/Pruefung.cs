@@ -14,7 +14,7 @@ namespace SchulDb.Model
         public DateTime PDatumZeit { get; set; }
         [Key]
         [Column("P_Pruefer")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string PPruefer { get; set; }
         [Key]
         [Column("P_Gegenstand")]

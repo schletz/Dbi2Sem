@@ -16,6 +16,7 @@ namespace SchulDb.Model
 
         [Key]
         [Column("Rel_ID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]  // Für SQL Server, sonst glaubt EF Core es ist ein Autowert.
         public int RelId { get; set; }
         [Required]
         [Column("Rel_Nr")]

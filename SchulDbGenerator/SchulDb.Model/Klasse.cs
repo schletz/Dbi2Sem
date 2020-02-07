@@ -17,22 +17,22 @@ namespace SchulDb.Model
 
         [Key]
         [Column("K_Nr")]
-        [StringLength(6)]
+        [StringLength(8)]
         public string KNr { get; set; }
         [Column("K_Schuljahr")]
         public int KSchuljahr { get; set; }
         [Column("K_Bez")]
-        [StringLength(15)]
+        [StringLength(255)]
         public string KBez { get; set; }
         [Column("K_Vorstand")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string KVorstand { get; set; }
         [Column("K_Klaspr")]
         public int? KKlaspr { get; set; }
         [Column("K_Klasprstv")]
         public int? KKlasprstv { get; set; }
         [Column("K_Abteilung")]
-        [StringLength(3)]
+        [StringLength(8)]
         [Required]
         public string KAbteilung { get; set; }
 

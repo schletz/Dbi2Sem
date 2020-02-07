@@ -11,6 +11,7 @@ namespace SchulDb.Model
     {
         [Key]
         [Column("Sja_Nr")]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]  // Für SQL Server, sonst glaubt EF Core es ist ein Autowert.
         public int SjaNr { get; set; }
         [Required]
         [Column("Sja_Bezeichnung")]

@@ -16,13 +16,11 @@ dieser Applikation. Der String *2019-2020* kann im Programm noch angepasst werde
 
 ### Anpassen der Ausgabedatenbank
 
-Der DB Context wird im Hauptprogramm sehr allgemein konfiguriert. Es ist - nach dem Laden der
-entsprechenden Provider - natürlich auch möglich, *UseSqlServer()*, ... zu verwenden.
+Der DB Context wird im Hauptprogramm durch die Variablen *_dbtype* und *_dbName* konfiguriert:
 
 ```c#
-var options = new DbContextOptionsBuilder<SchuleContext>()
-    .UseSqlite("DataSource=Schule.db")
-    .Options;
+static readonly DbType _dbtype = DbType.Localdb;
+static readonly string _dbName = "Schule";
 ```
 
 ### Anpassen des Schuljahres
@@ -44,9 +42,9 @@ using (SchuleContext db = new SchuleContext(options))
 ## Starten des Programmes
 
 In der Konsole wird mit folgendem Befehl das Skript gestartet. Je nach verwendeter Datenbankkonfiguration
-wird die SQLite Datenbank in dieses Verzeichnis geschrieben.
+wird die Datenbank in dieses Verzeichnis geschrieben.
 
 ```text
-dotnet run
+cd SchulDbGenerator
+dotnet run -c Release
 ```
-

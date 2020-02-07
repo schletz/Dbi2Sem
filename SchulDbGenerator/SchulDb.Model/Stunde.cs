@@ -17,11 +17,11 @@ namespace SchulDb.Model
         public int StTag { get; set; }
         [Key]
         [Column("ST_Lehrer")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string StLehrer { get; set; }
         [Required]
         [Column("ST_Klasse")]
-        [StringLength(6)]
+        [StringLength(8)]
         public string StKlasse { get; set; }
         [Required]
         [Column("ST_Gegenstand")]

@@ -16,7 +16,7 @@ namespace SchulDb.Model
 
         [Key]
         [Column("Sta_Nr")]
-        [StringLength(3)]
+        [StringLength(8)]
         public string StaNr { get; set; }
         [Required]
         [Column("Sta_Name")]

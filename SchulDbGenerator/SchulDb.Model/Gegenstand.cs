@@ -19,9 +19,10 @@ namespace SchulDb.Model
         [Column("G_Nr")]
         [StringLength(8)]
         public string GNr { get; set; }
+
         [Required]
         [Column("G_Bez")]
-        [StringLength(20)]
+        [StringLength(255)]
         public string GBez { get; set; }
 
         [InverseProperty(nameof(Pruefung.PGegenstandNavigation))]
