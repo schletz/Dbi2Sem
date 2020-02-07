@@ -49,7 +49,7 @@ FROM Schueler s;
 
 ## Verwendung mehrerer Unterabfragen
 
-Natürlich können auch mehrere Unterabfragen vewendet werden. Somit kann z. B. das Geburtsdatum
+Natürlich können auch mehrere Unterabfragen verwendet werden. Somit kann z. B. das Geburtsdatum
 des ältesten und jüngsten Schülers ermittelt werden:
 
 ```sql
