@@ -1,6 +1,36 @@
 # Korrespondierende Unterabfragen, die einen Wert liefern
 
-## Unterschied nicht korrespondierend zu korrespondierend
+Bis jetzt haben unsere Unterabfragen keinen Wert von der äußeren Abfrage bezogen. Es gibt allerdings
+Situationen, in denen das notwendig ist. Wir betrachten die folgende Abfrage, bei der wir ermitteln,
+wie vielen Abteilungen ein Abteilungsvorstand leitet:
+
+![](corresponding_query.png)
+
+Da hier die Abteilungstabelle 2x verwendet wird, ist der Alias *a* und *a2* notwendig. Für das
+Verständnis ist es hilfreich, sich die äußere Abfrage als Schleife vorzustellen, die durch die
+einzelnen Werte geht. Für jeden Wert wird dann eine Funktion (hier *MySubQuery*) aufgerufen.
+
+```c#
+foreach (Abteilung a in db.Abteilungen)
+{
+    var value = MySubQuery(a.AbtLeiter);
+    Console.WriteLine($"{a.AbtNr} {a.AbtLeiter} {value}")
+}
+```
+
+Im vorigen Kapitel stand der Aufruf von *MySubQuery()* *vor* der Schleife. Nun ist er in der Schleife.
+Das erklärt schon einige Nachteile der korrespondierenden Unterabfragen:
+
+- Das Ergebnis kann nicht zwischengespeichert werden, da es sich bei jedem Durchlauf ändert.
+- Unsere Unterabfrage - also hier die Funktion *MySubQuery()* - kann nicht unabhängig ausgeführt
+  und getestet werden, da sie Parameter der äußeren Abfrage braucht.
+
+Wenn Problemstellungen sich als nicht korrespondierende Unterabfragen umsetzen lassen, sollte also
+immer dieser Weg gegangen werden.
+
+Es gelten alle Regeln die im vorigen Kapitel behandelt wurden, da sich die Art der Unterabfrage
+nicht geändert hat. Sie können daher an Stellen verwendet werden, wo Spalten oder Werte in SQL
+stehen können.
 
 ## Übungen
 

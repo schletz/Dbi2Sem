@@ -47,6 +47,19 @@ FROM Schueler s;
 
 > **Hinweis:** Die Unterabfrage muss immer eingeklammert sein!
 
+## Vergleich mit Programmcode
+
+Hilfreich ist auch diese Analogie in den Programmiersprachen. Da die Unterabfrage keinerlei Daten
+von der äußeren Abfrage braucht, wird sie sozusagen vorher ausgeführt und wie als Variable gespeichert.
+
+```c#
+var value = MySubQuery();
+foreach (Abteilung a in db.Abteilungen)
+{
+    Console.WriteLine($"{a.AbtNr} {a.AbtLeiter} {value}")
+}
+```
+
 ## Verwendung mehrerer Unterabfragen
 
 Natürlich können auch mehrere Unterabfragen verwendet werden. Somit kann z. B. das Geburtsdatum
