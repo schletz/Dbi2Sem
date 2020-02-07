@@ -2,7 +2,7 @@
 
 Bis jetzt haben unsere Unterabfragen keinen Wert von der äußeren Abfrage bezogen. Es gibt allerdings
 Situationen, in denen das notwendig ist. Wir betrachten die folgende Abfrage, bei der wir ermitteln,
-wie vielen Abteilungen ein Abteilungsvorstand leitet:
+wie viele Abteilungen ein Abteilungsvorstand leitet:
 
 ![](corresponding_query.png)
 
