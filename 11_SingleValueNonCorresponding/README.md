@@ -145,7 +145,29 @@ Bearbeiten Sie die folgenden Abfragen. Die korrekte Lösung ist in der Tabelle d
 Spalte (#) ist allerdings nur die Datensatznummer und kommt im Abfrageergebnis nicht vor. Die
 Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt übereinstimmen.
 
-**(1)** Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.
+**(1)** Welche Lehrer sind neu bei uns, haben also das maximale Eintrittsjahr?
+| #   | LNr | LName     | LVorname  | LEintrittsjahr |
+| ---:| --- | --------- | --------- | --------------:|
+|   1 | BAM | Balluch   | Manfred   | 2019           |
+|   2 | BOA | Bohn      | Adele     | 2019           |
+|   3 | CO  | Coufal    | Klaus     | 2019           |
+|   4 | DOB | Dormayer  | Bernd     | 2019           |
+|   5 | FEM | Felix     | Mario     | 2019           |
+|   6 | GA  | Gschaider | Andreas   | 2019           |
+|   7 | MAY | Mayer     | Sonja     | 2019           |
+|   8 | MOS | Moser     | Gabriele  | 2019           |
+|   9 | NAI | Naimer    | Eva Maria | 2019           |
+|  10 | OEM | Öhlknecht | Martin    | 2019           |
+|  11 | POD | Poppel    | Dominik   | 2019           |
+|  12 | SAB | San       | Berg      | 2019           |
+|  13 | SAC | Schachner | Christine | 2019           |
+|  14 | SCM | Schrammel | Manuela   | 2019           |
+|  15 | SIL | Siller    | Waltraud  | 2019           |
+|  16 | WEM | Wessely   | Mario     | 2019           |
+|  17 | ZIP | Zippel    | Erich     | 2019           |
+|  18 | ZOC | Zöchbauer | Christian | 2019           |
+
+**(2)** Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.
 | #   | Klasse | KlassenGesamt | SchuelerGesamt |
 | ---:| ------ | -------------:| --------------:|
 |   1 | 2AAIF  | 61            | 1138           |
@@ -161,7 +183,7 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 |  11 | 6BAIF  | 61            | 1138           |
 |  12 | 6CAIF  | 61            | 1138           |
 
-**(2)** Geben Sie allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt aus.
+**(3)** Geben Sie allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt aus.
 | #   | LNr | LName     | LVorname  | LEintrittsjahr | LGehalt | AvgGehalt |
 | ---:| --- | --------- | --------- | --------------:| -------:| ---------:|
 |   1 | AH  | Auinger   | Harald    | 2018           | 2083    | 3126.67   |
@@ -175,7 +197,7 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 |   9 | SE  | Schmid    | Erhard    | 2018           | 2064    | 3126.67   |
 |  10 | ZLA | Zlabinger | Walter    | 2018           | 2256    | 3126.67   |
 
-**(3)** Als Ergänzung geben Sie nun bei diesen Lehrern die Abweichung vom Durchschnittsgehalt
+**(4)** Als Ergänzung geben Sie nun bei diesen Lehrern die Abweichung vom Durchschnittsgehalt
 aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschnittswert verdienen.
 | #   | LNr | LName   | LVorname | LEintrittsjahr | LGehalt | AvgGehalt | Abweichung |
 | ---:| --- | ------- | -------- | --------------:| -------:| ---------:| ----------:|
@@ -183,21 +205,27 @@ aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschni
 |   2 | KMO | Kmyta   | Olga     | 2018           | 2122    | 3126.67   | -1004.67   |
 |   3 | SE  | Schmid  | Erhard   | 2018           | 2064    | 3126.67   | -1062.67   |
 
-**(4)** Geben Sie die Prüfungen aus, die maximal 3 Tage vor der letzten Prüfung stattfanden.
-| #   | PDatumZeit          | PPruefer | PNote | Zuname    | Vorname |
-| ---:| ------------------- | -------- | -----:| --------- | ------- |
-|   1 | 31.05.2020 17:10:00 | SWA      | 2     | Abernathy | Jeanne  |
-|   2 | 29.05.2020 08:55:00 | KOL      | 5     | Bartell   | Jimmie  |
-|   3 | 29.05.2020 08:05:00 | CO       | 2     | Bogan     | Richard |
+**(5)** Geben Sie die Prüfungen aus, die maximal 3 Tage vor der letzten Prüfung stattfanden.
+| #   | PDatumZeit          | PPruefer | PNote | Zuname     | Vorname |
+| ---:| ------------------- | -------- | -----:| ---------- | ------- |
+|   1 | 31.05.2020 18:05:00 | KRB      |       | Gibson     | Joe     |
+|   2 | 31.05.2020 10:15:00 | BIG      | 2     | Dickinson  | Erik    |
+|   3 | 31.05.2020 09:35:00 | HOM      |       | Ziemann    | Boyd    |
+|   4 | 30.05.2020 21:00:00 | GC       | 2     | Hodkiewicz | Spencer |
+|   5 | 29.05.2020 15:45:00 | STA      | 5     | Harris     | Erick   |
+|   6 | 29.05.2020 13:35:00 | LIC      |       | Pagac      | Austin  |
+|   7 | 29.05.2020 11:40:00 | HT       | 5     | Ruecker    | Wade    |
+|   8 | 29.05.2020 10:05:00 | BIG      | 4     | Boyle      | Ella    |
+|   9 | 28.05.2020 19:20:00 | MUE      | 2     | Renner     | Angel   |
 
-**(5)** Geben Sie die Räume mit der meisten Kapazität (Spalte *R_Plaetze*) aus. Hinweis: Das können auch
+**(6)** Geben Sie die Räume mit der meisten Kapazität (Spalte *R_Plaetze*) aus. Hinweis: Das können auch
 mehrere Räume sein.
 | #   | RId   | RPlaetze | RArt                         |
 | ---:| ----- | --------:| ---------------------------- |
 |   1 | AH.32 | 36       | Naturwissenschaftlicher Raum |
 |   2 | B5.09 | 36       | Klassenraum                  |
 
-**(6)** Gibt es Räume, die unter einem Viertel der Plätze als der größte Raum haben?
+**(7)** Gibt es Räume, die unter einem Viertel der Plätze als der größte Raum haben?
 | #   | RId     | RPlaetze | RArt                                      |
 | ---:| ------- | --------:| ----------------------------------------- |
 |   1 | A3.04   | 3        | Multifunktionsraum Medien                 |
@@ -218,14 +246,14 @@ mehrere Räume sein.
 |  16 | DE.15L  | 8        | Versuchsanstalt Prüflabor                 |
 |  17 | DE.19L  | 8        | Versuchsanstalt Grünbereich               |
 
-**(7)** Welche Klasse hat mehr weibliche Schüler (S_Geschlecht ist 2) als die 5BAIF? Hinweis: Gruppieren Sie
+**(8)** Welche Klasse hat mehr weibliche Schüler (S_Geschlecht ist 2) als die 5BAIF? Hinweis: Gruppieren Sie
 die Schülertabelle und vergleichen die Anzahl mit dem ermittelten Wert aus der 5BAIF.
 | #   | Klasse | AnzWeibl |
 | ---:| ------ | --------:|
 |   1 | 5BBIF  | 17       |
 |   2 | 7CBIF  | 17       |
 
-**(8)** Geben Sie die Klassen der Abteilung BIF sowie die Anzahl der Schüler in dieser Abteilung aus.
+**(9)** Geben Sie die Klassen der Abteilung BIF sowie die Anzahl der Schüler in dieser Abteilung aus.
 Hinweis: Verwenden Sie GROUP BY, um die Schüleranzahl pro Klasse zu ermitteln. Achten Sie auch
 darauf, dass Klassen mit 0 Schülern auch angezeigt werden. Danach schreiben Sie 
 eine Unterabfrage, die die Schüler der BIF Abteilung zählt.

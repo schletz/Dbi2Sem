@@ -12,16 +12,17 @@ dieser Applikation. Der String *2019-2020* kann im Programm noch angepasst werde
 - *AlleLehrer/Lehrer_2019-2020.csv*
 - *DataFiles_2019-2020/\*.csv*
 
-## Anpassen der Program.cs
+## Starten des Programmes
 
-### Anpassen der Ausgabedatenbank
+In der Konsole kann das Programm - wenn die .NET Core SDK ab Version 3.1 vorhanden ist - kompiliert
+und ausgeführt werden:
 
-Der DB Context wird im Hauptprogramm durch die Variablen *_dbtype* und *_dbName* konfiguriert:
-
-```c#
-static readonly DbType _dbtype = DbType.Localdb;
-static readonly string _dbName = "Schule";
+```text
+cd SchulDbGenerator
+dotnet run -c Release
 ```
+
+Es wird der Typ der zu erstellenden Datenbank und weitere Informationen abgefragt.
 
 ### Anpassen des Schuljahres
 
@@ -37,14 +38,4 @@ using (SchuleContext db = new SchuleContext(options))
     db.Database.EnsureCreated();
     db.SeedDatabase(data, 2019);     // Schuljahr; 2019 für 2019/20
 }
-```
-
-## Starten des Programmes
-
-In der Konsole wird mit folgendem Befehl das Skript gestartet. Je nach verwendeter Datenbankkonfiguration
-wird die Datenbank in dieses Verzeichnis geschrieben.
-
-```text
-cd SchulDbGenerator
-dotnet run -c Release
 ```

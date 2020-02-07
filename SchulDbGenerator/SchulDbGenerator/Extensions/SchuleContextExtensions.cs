@@ -24,8 +24,8 @@ namespace SchulDbGenerator
             // Religion (R...) wird nicht importiert.
             var infStunden = (from s in data.Stundenplan
                               join k in infKlassen on s.Klasse equals k.Nr
-                              where !s.Fach.StartsWith("F") && !s.Fach.StartsWith("R")
-                              group s by new { s.Stunde, s.Tag, s.Lehrer } into g
+                              where !s.Fach.StartsWith("F") && !s.Fach.StartsWith("R") && !string.IsNullOrEmpty(s.Fach)
+                              group s by new { s.Stunde, s.Tag, s.Lehrer, s.Klasse } into g
                               select g.FirstOrDefault()).ToList();
             if (!infStunden.Any())
                 throw new SchulDb.SchulDbException("Die Datenbank enthält keine Stunden im Stundenplan.");
@@ -76,6 +76,24 @@ namespace SchulDbGenerator
             db.Staatens.Add(new Staat { StaNr = "D", StaName = "Deutschland", StaStaatsb = "Deutschland", StaEuland = true });
             db.Staatens.Add(new Staat { StaNr = "SQ", StaName = "Slowakei", StaStaatsb = "slowakisch", StaEuland = true });
             db.Staatens.Add(new Staat { StaNr = "SLO", StaName = "Slowenien", StaStaatsb = "slowenisch", StaEuland = true });
+            db.SaveChanges();
+
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 1, StrBeginn = new TimeSpan(8, 00, 0), StrEnde = new TimeSpan(8, 50, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 2, StrBeginn = new TimeSpan(8, 50, 0), StrEnde = new TimeSpan(9, 40, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 3, StrBeginn = new TimeSpan(9, 55, 0), StrEnde = new TimeSpan(10, 45, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 4, StrBeginn = new TimeSpan(10, 45, 0), StrEnde = new TimeSpan(11, 35, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 5, StrBeginn = new TimeSpan(11, 45, 0), StrEnde = new TimeSpan(12, 35, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 6, StrBeginn = new TimeSpan(12, 35, 0), StrEnde = new TimeSpan(13, 25, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 7, StrBeginn = new TimeSpan(13, 25, 0), StrEnde = new TimeSpan(14, 15, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 8, StrBeginn = new TimeSpan(14, 25, 0), StrEnde = new TimeSpan(15, 15, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 9, StrBeginn = new TimeSpan(15, 15, 0), StrEnde = new TimeSpan(16, 05, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 10, StrBeginn = new TimeSpan(16, 15, 0), StrEnde = new TimeSpan(17, 05, 0), StrIstAbend = false });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 11, StrBeginn = new TimeSpan(17, 10, 0), StrEnde = new TimeSpan(17, 55, 0), StrIstAbend = true });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 12, StrBeginn = new TimeSpan(17, 55, 0), StrEnde = new TimeSpan(18, 40, 0), StrIstAbend = true });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 13, StrBeginn = new TimeSpan(18, 50, 0), StrEnde = new TimeSpan(19, 35, 0), StrIstAbend = true });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 14, StrBeginn = new TimeSpan(19, 35, 0), StrEnde = new TimeSpan(20, 20, 0), StrIstAbend = true });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 15, StrBeginn = new TimeSpan(20, 30, 0), StrEnde = new TimeSpan(21, 15, 0), StrIstAbend = true });
+            db.Stundenrasters.Add(new Stundenraster { StrNr = 16, StrBeginn = new TimeSpan(21, 15, 0), StrEnde = new TimeSpan(22, 00, 0), StrIstAbend = true });
             db.SaveChanges();
 
             // *********************************************************************************
@@ -264,6 +282,19 @@ namespace SchulDbGenerator
             }
             db.SaveChanges();
 
+            // Die Klassensprecher und Stellverträter aus der Liste der Schüler der Klasse wählen
+            foreach (var k in db.Klassens.Where(k => k.Schuelers.Any()))
+            {
+                k.KKlasprNavigation = fkr.Random.ListItem(k.Schuelers.ToList()).OrDefault(fkr, 0.2f);
+                if (k.KKlasprNavigation != null)
+                {
+                    k.KKlasprstvNavigation = fkr.Random.ListItem(
+                        k.Schuelers.Where(s => s.SNr != k.KKlasprNavigation.SNr).ToList())
+                        .OrDefault(fkr, 0.2f);
+                }
+            }
+            db.SaveChanges();
+
             // Prüfungen für Klassen mit Schülern generieren
             var pruefarten = new Dictionary<string, string>
             {
@@ -277,7 +308,7 @@ namespace SchulDbGenerator
             {
                 var schueler = klasse.Schuelers.ToList();
                 var stunden = fkr.Random.ListItems(
-                    klasse.Stundens.GroupBy(s => s.StGegenstand).Select(g=>g.FirstOrDefault()).ToList(), 5);
+                    klasse.Stundens.GroupBy(s => s.StGegenstand).Select(g => g.FirstOrDefault()).ToList(), 5);
                 foreach (var stunde in stunden)
                 {
                     var pruefart = pruefarten.ContainsKey(stunde.StGegenstand) ?

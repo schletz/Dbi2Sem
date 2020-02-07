@@ -13,6 +13,18 @@ namespace SingleValueNonCorresponding
                 .UseSqlite("DataSource=../Schule.db")
                 .Options;
             using var db = new SchuleContext(options);
+            @"Welche Lehrer sind neu bei uns, haben also das maximale Eintrittsjahr?".WriteItem();
+            (from l in db.Lehrers
+             let maxJahr = db.Lehrers.Max(l => l.LEintrittsjahr)
+             where l.LEintrittsjahr == maxJahr
+             orderby l.LNr
+             select new
+             {
+                 l.LNr,
+                 l.LName,
+                 l.LVorname,
+                 l.LEintrittsjahr
+             }).WriteMarkdown();
 
             @"
 Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.".WriteItem();

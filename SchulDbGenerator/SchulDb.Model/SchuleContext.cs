@@ -28,6 +28,7 @@ namespace SchulDb.Model
         public virtual DbSet<Schuljahr> Schuljahres { get; set; }
         public virtual DbSet<Staat> Staatens { get; set; }
         public virtual DbSet<Stunde> Stundens { get; set; }
+        public virtual DbSet<Stundenraster> Stundenrasters { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -45,7 +46,7 @@ namespace SchulDb.Model
 
             modelBuilder.Entity<Stunde>(entity =>
             {
-                entity.HasKey(e => new { e.StStunde, e.StTag, e.StLehrer });
+                entity.HasKey(e => new { e.StStunde, e.StTag, e.StLehrer, e.StKlasse });
             });
         }
 

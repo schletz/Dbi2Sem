@@ -10,27 +10,31 @@ namespace SchulDb.Model
     public partial class Stunde
     {
         [Key]
-        [Column("ST_Stunde")]
+        [Column("St_Stunde")]
         public int StStunde { get; set; }
         [Key]
-        [Column("ST_Tag")]
+        [Column("St_Tag")]
         public int StTag { get; set; }
         [Key]
-        [Column("ST_Lehrer")]
+        [Column("St_Lehrer")]
         [StringLength(8)]
         public string StLehrer { get; set; }
+        [Key]
         [Required]
-        [Column("ST_Klasse")]
+        [Column("St_Klasse")]
         [StringLength(8)]
         public string StKlasse { get; set; }
         [Required]
-        [Column("ST_Gegenstand")]
+        [Column("St_Gegenstand")]
         [StringLength(8)]
         public string StGegenstand { get; set; }
-        [Column("ST_Raum")]
+        [Column("St_Raum")]
         [StringLength(8)]
         public string StRaum { get; set; }
 
+        [ForeignKey(nameof(StStunde))]
+        [InverseProperty(nameof(Stundenraster.Stundens))]
+        public virtual Stundenraster StStundeNavigation { get; set; }
         [ForeignKey(nameof(StGegenstand))]
         [InverseProperty(nameof(Gegenstand.Stundens))]
         public virtual Gegenstand StGegenstandNavigation { get; set; }

@@ -8,6 +8,7 @@
 2. [Korrespondierende Unterabfragen, die einen Wert liefern](12_SingleValueCorresponding)
 3. [Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)](13_ListSubqueries)
 4. [Unterabfragen, die in FROM verwendet werden](14_FromSubqueries)
+5. [Window Functions](15_WindowFunctions)
 
 ### Bereich Datenbankadministration
 
@@ -39,7 +40,7 @@ CREATE DATABASE [Schule] ON (FILENAME = N'C:\PATH\Schule.mdf') FOR ATTACH
 GO
 ```
 
-![](schuldb.png)
+![](schuldb20200207.png)
 
 
 ## Synchronisieren des Repositories in einen Ordner
