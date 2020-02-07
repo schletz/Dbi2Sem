@@ -2,8 +2,34 @@
 
 ## Lehrinhalte
 
-1. [Unterabfragen](01_Unterabfragen)
-2. [Datenbankadministration](02_Datenbankadministration)
+### Bereich SQL
+
+1. [Nicht korrespondierende Unterabfragen, die einen Wert liefern](11_SingleValueNonCorresponding)
+2. [Korrespondierende Unterabfragen, die einen Wert liefern](12_SingleValueCorresponding)
+3. [Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)](13_ListSubqueries)
+4. [Unterabfragen, die in FROM verwendet werden](14_FromSubqueries)
+
+### Bereich Datenbankadministration
+
+1. [Views](21_Views)
+2. [NULL Values](22_Null)
+3. [Transaktionen](23_Transaktionen)
+
+### Bereich ER Modellierung
+
+1. Normalformen
+2. Generalisierung
+3. Hierarchien
+4. Gruppen und Rollen
+5. Modellierungsprojekt
+
+## Die verwendete Schuldatenbank
+
+- [Download als SQLite Datenbank](Schule.db)
+- [Download als Access Datenbank](Schule.mdb)
+
+![](schuldb.png)
+
 
 ## Synchronisieren des Repositories in einen Ordner
 

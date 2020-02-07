@@ -8,8 +8,11 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MarkdownExtensions">
+      <HintPath>..\SchulDbGenerator\MarkdownExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="SchulDb.Model">
-      <HintPath>..\..\SchulDbGenerator\SchulDb.Model.dll</HintPath>
+      <HintPath>..\SchulDbGenerator\SchulDb.Model.dll</HintPath>
     </Reference>
   </ItemGroup>
 </Project>

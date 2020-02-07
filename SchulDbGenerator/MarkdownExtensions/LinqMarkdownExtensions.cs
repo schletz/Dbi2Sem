@@ -49,10 +49,10 @@ namespace System.Linq
 
             var properties = typeof(T).GetRuntimeProperties().Where(p => isAllowed(p.PropertyType));
             var gettables = from p in properties
-                            select new 
-                            { 
-                                p.Name, 
-                                GetValue = (Func<object, object>)p.GetValue, 
+                            select new
+                            {
+                                p.Name,
+                                GetValue = (Func<object, object>)p.GetValue,
                                 Type = p.PropertyType
                             };
 

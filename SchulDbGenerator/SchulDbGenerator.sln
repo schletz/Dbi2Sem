@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchulDb.Untis", "SchulDb.Un
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchulDbGenerator", "SchulDbGenerator\SchulDbGenerator.csproj", "{0F029BC1-F295-4041-8C07-8D3B293573A6}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownExtensions", "MarkdownExtensions\MarkdownExtensions.csproj", "{A2D9FF5E-E8FD-48EA-B6B9-12E26CD7DDCE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{0F029BC1-F295-4041-8C07-8D3B293573A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F029BC1-F295-4041-8C07-8D3B293573A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F029BC1-F295-4041-8C07-8D3B293573A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2D9FF5E-E8FD-48EA-B6B9-12E26CD7DDCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2D9FF5E-E8FD-48EA-B6B9-12E26CD7DDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2D9FF5E-E8FD-48EA-B6B9-12E26CD7DDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2D9FF5E-E8FD-48EA-B6B9-12E26CD7DDCE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
