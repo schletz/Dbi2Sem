@@ -39,7 +39,8 @@ Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und 
              }).WriteMarkdown();
 
             @"
-Geben Sie allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt aus.".WriteItem();
+Geben Sie bei allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt
+(gerechnet über alle Lehrer der Schule) aus.".WriteItem();
             var avgLehrerGehalt = db.Lehrers.ToList().Average(l => l.LGehalt);
             (from l in db.Lehrers
              where l.LEintrittsjahr == 2018

@@ -183,7 +183,8 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 |  11 | 6BAIF  | 61            | 1138           |
 |  12 | 6CAIF  | 61            | 1138           |
 
-**(3)** Geben Sie allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt aus.
+**(3)** Geben Sie bei allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt
+(gerechnet über alle Lehrer der Schule) aus.
 | #   | LNr | LName     | LVorname  | LEintrittsjahr | LGehalt | AvgGehalt |
 | ---:| --- | --------- | --------- | --------------:| -------:| ---------:|
 |   1 | AH  | Auinger   | Harald    | 2018           | 2083    | 3126.67   |
