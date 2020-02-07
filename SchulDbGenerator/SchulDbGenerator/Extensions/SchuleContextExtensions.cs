@@ -5,6 +5,7 @@ using Bogus;
 using Bogus.Distributions.Gaussian;
 using Bogus.Extensions;
 using SchulDb.Model;
+using System.Text.RegularExpressions;
 
 namespace SchulDbGenerator
 {
@@ -14,28 +15,27 @@ namespace SchulDbGenerator
         {
             // Wir schreiben nur die Informatikklassen in die Datenbank, sonst ist das Ergebnis der
             // Abfragen unnötig groß.
-            var infKlassen = (from k in data.Klassen
-                              where k.Nr.EndsWith("IF")
-                              select k).ToList();
-            if (!infKlassen.Any())
-                throw new SchulDb.SchulDbException("Die Datenbank enthält keine Informatikklassen.");
-            // Im Datenmodell darf ein Lehrer zu selben Zeit nur 1 Datensatz haben. Bei kombinierten
-            // Klassen (FITM/N) nehmen wir daher den ersten Datensatz. Freifächer (F...) und
-            // Religion (R...) wird nicht importiert.
-            var infStunden = (from s in data.Stundenplan
-                              join k in infKlassen on s.Klasse equals k.Nr
-                              where !s.Fach.StartsWith("F") && !s.Fach.StartsWith("R") && !string.IsNullOrEmpty(s.Fach)
-                              group s by new { s.Stunde, s.Tag, s.Lehrer, s.Klasse } into g
-                              select g.FirstOrDefault()).ToList();
-            if (!infStunden.Any())
-                throw new SchulDb.SchulDbException("Die Datenbank enthält keine Stunden im Stundenplan.");
-            // Alle Fächer, die in der Informatik unterrichtet werden.
-            var infFaecher = (from f in data.Faecher
-                              join s in infStunden on f.Nr equals s.Fach into sg
-                              where sg.Any()
-                              select f).ToList();
-            if (!infFaecher.Any())
-                throw new SchulDb.SchulDbException("Die Datenbank enthält keine Fächer im Stundenplan.");
+            var echteKlassen = (from k in data.Klassen
+                                where Regex.IsMatch(k.Nr ?? "", @"^[0-9][A-Z_]{2,}$", RegexOptions.IgnoreCase)
+                                select k).ToList();
+            if (!echteKlassen.Any())
+                throw new SchulDb.SchulDbException("Der Untis Export enthält keine Klassen.");
+            // Im Datenmodell darf ein Lehrer zu selben Zeit nur eine Klasse haben. Durch die
+            // Gruppierung stellen wir das sicher.
+            var echteStunden = (from s in data.Stundenplan
+                                join k in echteKlassen on s.Klasse equals k.Nr
+                                where Regex.IsMatch(s.Fach ?? "", @"^[^FR]", RegexOptions.IgnoreCase)
+                                group s by new { s.Stunde, s.Tag, s.Lehrer, s.Klasse } into g
+                                select g.FirstOrDefault()).ToList();
+            if (!echteStunden.Any())
+                throw new SchulDb.SchulDbException("Der Untis Export enthält keine Stunden im Stundenplan.");
+            // Alle Fächer, die unterrichtet werden. Das schließt Kunstfächer wie Sprechstunde, ... aus.
+            var echteFaecher = (from f in data.Faecher
+                                join s in echteStunden on f.Nr equals s.Fach into sg
+                                where sg.Any()
+                                select f).ToList();
+            if (!echteFaecher.Any())
+                throw new SchulDb.SchulDbException("Der Untis Export enthält keine Fächer im Stundenplan.");
 
             Randomizer.Seed = new Random(987);
             DateTime current = new DateTime(schuljahr, 9, 1);
@@ -142,9 +142,9 @@ namespace SchulDbGenerator
 
             // Die Abteilungen mit den oben eingetragenen Lehrern verknüpfen. Die ID ist die
             // 3. - 5. Stelle (3AFITM --> FIT)
-            db.Abteilungens.Add(new Abteilung { AbtNr = "0", AbtName = "Übergangsstufe" });
+            db.Abteilungens.Add(new Abteilung { AbtNr = "O", AbtName = "Übergangsstufe" });
             db.Abteilungens.Add(new Abteilung { AbtNr = "FIT", AbtName = "Fachschule für Informationstechnik", AbtLeiterNavigation = db.Lehrers.Find("HEB") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "BGM", AbtName = "Höhere Lehranstalt für Biomedizin- und Gesundheitstechnik", AbtLeiterNavigation = db.Lehrers.Find("HEB") });
+            db.Abteilungens.Add(new Abteilung { AbtNr = "HBG", AbtName = "Höhere Lehranstalt für Biomedizin- und Gesundheitstechnik", AbtLeiterNavigation = db.Lehrers.Find("HEB") });
             db.Abteilungens.Add(new Abteilung { AbtNr = "HIF", AbtName = "Höhere Lehranstalt für Informatik", AbtLeiterNavigation = db.Lehrers.Find("JEL") });
             db.Abteilungens.Add(new Abteilung { AbtNr = "HMN", AbtName = "Höhere Lehranstalt für Medien", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
             db.Abteilungens.Add(new Abteilung { AbtNr = "HKU", AbtName = "Höhere Lehranstalt für Kunst", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
@@ -154,10 +154,13 @@ namespace SchulDbGenerator
             db.Abteilungens.Add(new Abteilung { AbtNr = "CIF", AbtName = "Kolleg Abendform", AbtLeiterNavigation = db.Lehrers.Find("STH") });
             db.Abteilungens.Add(new Abteilung { AbtNr = "KIF", AbtName = "Kolleg Tagesform", AbtLeiterNavigation = db.Lehrers.Find("STH") });
             db.Abteilungens.Add(new Abteilung { AbtNr = "VIF", AbtName = "Vorbereitungslehrgang", AbtLeiterNavigation = db.Lehrers.Find("STH") });
+            db.Abteilungens.Add(new Abteilung { AbtNr = "KKU", AbtName = "Kolleg für Design", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
+            db.Abteilungens.Add(new Abteilung { AbtNr = "CMN", AbtName = "Kolleg für Medien", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
+            db.Abteilungens.Add(new Abteilung { AbtNr = "BKU", AbtName = "Kolleg für Audivisuelles Mediendesign", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
             db.SaveChanges();
 
             // Gegenstände, die in den Informatikklassen unterrichtet werden, eintragen.
-            db.Gegenstaendes.AddRange(from f in infFaecher
+            db.Gegenstaendes.AddRange(from f in echteFaecher
                                       select new Gegenstand
                                       {
                                           GNr = f.Nr,
@@ -166,13 +169,9 @@ namespace SchulDbGenerator
             db.SaveChanges();
 
             // Klassen aus den Informatikabteilungen eintragen.
-            db.Klassens.AddRange(from k in infKlassen
-                                 let kvId = fkr.Random.ListItem(
-                                     infStunden
-                                     .Where(s => s.Klasse == k.Nr)
-                                     .Select(s => s.Lehrer)
-                                     .Distinct().ToList())
+            db.Klassens.AddRange(from k in echteKlassen
                                  let sjahr = db.Schuljahres.Find(current.Year * 10 + k.Jahresform)
+                                 let abt = k.Nr.Substring(2, Math.Min(3, k.Nr.Length - 2))
                                  select new Klasse
                                  {
                                      KNr = k.Nr,
@@ -181,15 +180,14 @@ namespace SchulDbGenerator
                                      // Bei Jahresformen wird die Schulstufe (9, 10, ...) eingetragen.
                                      KSchulstufe = k.Jahresform == 0 ? k.Schulstufe : null,
                                      KStammraumNavigation = db.Raeumes.Find(k.Stammraum),
-                                     // Klassen des Sommersemesters haben noch keinen KV
-                                     KVorstandNavigation = k.Jahresform != 2 ? db.Lehrers.Find(kvId) : null,
-                                     KAbteilungNavigation = db.Abteilungens.Find(k.Nr.Substring(2, 3)),
+                                     KVorstandNavigation = db.Lehrers.Find(k.Kv),
+                                     KAbteilungNavigation = db.Abteilungens.Find(abt) ?? throw new SchulDb.SchulDbException($"Abteilung {abt} nicht vorhanden!"),
                                      KDatumbis = k.Abschlussklasse ? new DateTime(current.Year + 1, 5, 1) : (DateTime?)null
                                  });
             db.SaveChanges();
 
             // Den Stundenplan der Informatikklassen eintragen.
-            db.Stundens.AddRange(from s in infStunden
+            db.Stundens.AddRange(from s in echteStunden
                                  select new Stunde
                                  {
                                      StStunde = s.Stunde,
@@ -304,11 +302,12 @@ namespace SchulDbGenerator
                 { "POS1", "p" }, { "POS1x", "p" }, { "POS1y", "p" }, { "POS1z", "p" },
                 { "DBI1", "p" }, { "DBI1x", "p" }, { "DBI1y", "p" }, { "DBI2x", "p" }, { "DBI2y", "p" }
             };
-            foreach (var klasse in db.Klassens.Where(k => k.Schuelers.Any()))
+            var pruefungen = new List<Pruefung>();
+            foreach (var klasse in db.Klassens.Where(k => k.Schuelers.Any() && k.Stundens.Any()))
             {
                 var schueler = klasse.Schuelers.ToList();
-                var stunden = fkr.Random.ListItems(
-                    klasse.Stundens.GroupBy(s => s.StGegenstand).Select(g => g.FirstOrDefault()).ToList(), 5);
+                var pruefGegenstaende = klasse.Stundens.GroupBy(s => s.StGegenstand).Select(g => g.FirstOrDefault()).ToList();
+                var stunden = fkr.Random.ListItems(pruefGegenstaende, Math.Min(5, pruefGegenstaende.Count));
                 foreach (var stunde in stunden)
                 {
                     var pruefart = pruefarten.ContainsKey(stunde.StGegenstand) ?
@@ -343,9 +342,13 @@ namespace SchulDbGenerator
                                 p.PPrueferNavigation = stunde.StLehrerNavigation;
                             p.PKandidatNavigation = f.Random.ListItem(schueler);
                         });
-                    db.Pruefungens.AddRange(pruefFaker.Generate(fkr.Random.Int(0, 6)));
+                    pruefungen.AddRange(pruefFaker.Generate(fkr.Random.Int(0, 6)));
                 }
             }
+            // Prüfungen könnten doppelt sein, daher nehmen wir nur den ersten Datensatz.
+            db.Pruefungens.AddRange(pruefungen
+                .GroupBy(p => new { p.PDatumZeit, p.PPruefer, p.PGegenstand })
+                .Select(g => g.FirstOrDefault()));
             db.SaveChanges();
         }
     }

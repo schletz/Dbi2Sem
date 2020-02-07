@@ -183,18 +183,18 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 **(2)** Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.
 | #   | Klasse | KlassenGesamt | SchuelerGesamt |
 | ---:| ------ | -------------:| --------------:|
-|   1 | 2AAIF  | 61            | 1138           |
-|   2 | 2BAIF  | 61            | 1138           |
-|   3 | 2CAIF  | 61            | 1138           |
-|   4 | 2DAIF  | 61            | 1138           |
-|   5 | 3BAIF  | 61            | 1138           |
-|   6 | 3CAIF  | 61            | 1138           |
-|   7 | 4BAIF  | 61            | 1138           |
-|   8 | 4CAIF  | 61            | 1138           |
-|   9 | 5BAIF  | 61            | 1138           |
-|  10 | 5CAIF  | 61            | 1138           |
-|  11 | 6BAIF  | 61            | 1138           |
-|  12 | 6CAIF  | 61            | 1138           |
+|   1 | 2AAIF  | 116           | 2462           |
+|   2 | 2BAIF  | 116           | 2462           |
+|   3 | 2CAIF  | 116           | 2462           |
+|   4 | 2DAIF  | 116           | 2462           |
+|   5 | 3BAIF  | 116           | 2462           |
+|   6 | 3CAIF  | 116           | 2462           |
+|   7 | 4BAIF  | 116           | 2462           |
+|   8 | 4CAIF  | 116           | 2462           |
+|   9 | 5BAIF  | 116           | 2462           |
+|  10 | 5CAIF  | 116           | 2462           |
+|  11 | 6BAIF  | 116           | 2462           |
+|  12 | 6CAIF  | 116           | 2462           |
 
 **(3)** Geben Sie bei allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt
 (gerechnet über alle Lehrer der Schule) aus.
@@ -222,15 +222,20 @@ aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschni
 **(5)** Geben Sie die Prüfungen aus, die maximal 3 Tage vor der letzten Prüfung stattfanden.
 | #   | PDatumZeit          | PPruefer | PNote | Zuname     | Vorname |
 | ---:| ------------------- | -------- | -----:| ---------- | ------- |
-|   1 | 31.05.2020 18:05:00 | KRB      |       | Gibson     | Joe     |
-|   2 | 31.05.2020 10:15:00 | BIG      | 2     | Dickinson  | Erik    |
-|   3 | 31.05.2020 09:35:00 | HOM      |       | Ziemann    | Boyd    |
-|   4 | 30.05.2020 21:00:00 | GC       | 2     | Hodkiewicz | Spencer |
-|   5 | 29.05.2020 15:45:00 | STA      | 5     | Harris     | Erick   |
-|   6 | 29.05.2020 13:35:00 | LIC      |       | Pagac      | Austin  |
-|   7 | 29.05.2020 11:40:00 | HT       | 5     | Ruecker    | Wade    |
-|   8 | 29.05.2020 10:05:00 | BIG      | 4     | Boyle      | Ella    |
-|   9 | 28.05.2020 19:20:00 | MUE      | 2     | Renner     | Angel   |
+|   1 | 31.05.2020 20:10:00 | SAB      | 1     | Kuhlman    | Frances |
+|   2 | 31.05.2020 17:20:00 | PC       |       | Hammes     | Danny   |
+|   3 | 31.05.2020 12:55:00 | SJ       |       | Balistreri | Irene   |
+|   4 | 31.05.2020 09:10:00 | SGC      | 2     | Quitzon    | Sue     |
+|   5 | 30.05.2020 20:55:00 | SPN      | 3     | Rohan      | Tracy   |
+|   6 | 30.05.2020 20:10:00 | VOG      | 2     | Hahn       | Oliver  |
+|   7 | 30.05.2020 18:25:00 | HOH      | 2     | Sanford    | Everett |
+|   8 | 30.05.2020 17:25:00 | BEC      |       | Nicolas    | Erika   |
+|   9 | 30.05.2020 16:05:00 | KNT      | 4     | Klocko     | Kristie |
+|  10 | 30.05.2020 15:30:00 | WAG      | 3     | Frami      | Timothy |
+|  11 | 30.05.2020 11:00:00 | JAD      | 3     | Robel      | Drew    |
+|  12 | 30.05.2020 10:15:00 | PT       | 3     | Zemlak     | Katie   |
+|  13 | 29.05.2020 12:20:00 | HAU      |       | Prohaska   | Ross    |
+|  14 | 29.05.2020 11:05:00 | GAL      | 2     | O'Hara     | Hubert  |
 
 **(6)** Geben Sie die Räume mit der meisten Kapazität (Spalte *R_Plaetze*) aus. Hinweis: Das können auch
 mehrere Räume sein.
@@ -264,21 +269,46 @@ mehrere Räume sein.
 die Schülertabelle und vergleichen die Anzahl mit dem ermittelten Wert aus der 5BAIF.
 | #   | Klasse | AnzWeibl |
 | ---:| ------ | --------:|
-|   1 | 5BBIF  | 17       |
-|   2 | 7CBIF  | 17       |
+|   1 | 1AFITN | 15       |
+|   2 | 1AHBGM | 15       |
+|   3 | 1AHKUI | 18       |
+|   4 | 1AHMNA | 19       |
+|   5 | 1AHWIT | 17       |
+|   6 | 1AO    | 15       |
+|   7 | 1BFITN | 18       |
+|   8 | 1BHBGM | 18       |
+|   9 | 1BHWIT | 17       |
+|  10 | 1CVIF  | 19       |
+|  11 | 1DVIF  | 15       |
+|  12 | 1EVIF  | 15       |
+|  13 | 2AFITN | 17       |
+|  14 | 2AHBGM | 19       |
+|  15 | 2AHKUI | 18       |
+|  16 | 2BHWIT | 18       |
+|  17 | 2CHWIT | 19       |
+|  18 | 3ACIF  | 17       |
+|  19 | 3AKKUI | 16       |
+|  20 | 3CAIF  | 16       |
+|  21 | 4AFITM | 15       |
+|  22 | 4AHWIT | 17       |
+|  23 | 4BHBGM | 19       |
+|  24 | 5ACMNA | 15       |
+|  25 | 5AHBGM | 15       |
+|  26 | 5AKIF  | 16       |
+|  27 | 5CAIF  | 17       |
 
 **(9)** Geben Sie die Klassen der Abteilung BIF sowie die Anzahl der Schüler in dieser Abteilung aus.
 Hinweis: Verwenden Sie GROUP BY, um die Schüleranzahl pro Klasse zu ermitteln. Achten Sie auch
-darauf, dass Klassen mit 0 Schülern auch angezeigt werden. Danach schreiben Sie 
+darauf, dass Klassen mit 0 Schülern auch angezeigt werden. Danach schreiben Sie
 eine Unterabfrage, die die Schüler der BIF Abteilung zählt.
 | #   | Klasse | SchuelerKlasse | SchuelerBIF |
 | ---:| ------ | --------------:| -----------:|
-|   1 | 2ABIF  | 0              | 110         |
-|   2 | 3BBIF  | 27             | 110         |
-|   3 | 4BBIF  | 0              | 110         |
-|   4 | 5BBIF  | 27             | 110         |
-|   5 | 6BBIF  | 0              | 110         |
-|   6 | 7BBIF  | 28             | 110         |
-|   7 | 7CBIF  | 28             | 110         |
-|   8 | 8BBIF  | 0              | 110         |
-|   9 | 8CBIF  | 0              | 110         |
+|   1 | 2ABIF  | 0              | 105         |
+|   2 | 3BBIF  | 30             | 105         |
+|   3 | 4BBIF  | 0              | 105         |
+|   4 | 5BBIF  | 24             | 105         |
+|   5 | 6BBIF  | 0              | 105         |
+|   6 | 7BBIF  | 25             | 105         |
+|   7 | 7CBIF  | 26             | 105         |
+|   8 | 8BBIF  | 0              | 105         |
+|   9 | 8CBIF  | 0              | 105         |

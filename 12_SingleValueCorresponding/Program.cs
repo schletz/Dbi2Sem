@@ -28,11 +28,11 @@ Geben Sie die Klassen der Abteilung HIF und die Anzahl der männlichen und weibl
              }).WriteMarkdown();
 
             @"
-In welchen Klassen gibt es mehr weibliche als männliche Schüler?".WriteItem();
+In welchen Klassen gibt es mehr als doppelt so viel weibliche wie männliche Schüler?".WriteItem();
             (from k in db.Klassens
              let anzMaennl = k.Schuelers.Where(k => k.SGeschlecht == 1).Count()
              let anzWeibl = k.Schuelers.Where(k => k.SGeschlecht == 2).Count()
-             where anzWeibl > anzMaennl
+             where anzWeibl > 2 * anzMaennl
              orderby k.KNr
              select new
              {
@@ -70,12 +70,12 @@ Werte bei Parallelklassen entstehen.".WriteItem();
              }).WriteMarkdown();
 
             @"
-Wie viel Prozent der Stunden verbringen die Schüler in ihrem Stammraum? Für diese Anzahl werden einfach
-die Anzahl der Datensätze in der Stundentabelle gezählt.".Write();
+Wie viel Prozent der Stunden verbringen die Schüler der Abteilung KKU (Kolleg für Design) in ihrem
+Stammraum? Für diese Anzahl werden einfach die Anzahl der Datensätze in der Stundentabelle gezählt.".WriteItem();
             (from k in db.Klassens
              let anzStunden = k.Stundens.Count()
              let anzStundenStammraum = k.Stundens.Count(s => s.StRaum == k.KStammraum)
-             where k.KStammraum != null
+             where k.KStammraum != null && k.KAbteilung == "KKU"
              orderby k.KNr
              select new
              {

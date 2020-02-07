@@ -41,54 +41,55 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 **(1)** Geben Sie die Klassen der Abteilung HIF und die Anzahl der männlichen und weiblichen Schüler aus.
 | #   | Klasse | AnzGesamt | AnzMaennl | AnzWeibl |
 | ---:| ------ | ---------:| ---------:| --------:|
-|   1 | 1AHIF  | 32        | 24        | 8        |
+|   1 | 1AHIF  | 32        | 26        | 6        |
 |   2 | 1BHIF  | 32        | 32        | 0        |
 |   3 | 1CHIF  | 32        | 32        | 0        |
 |   4 | 1DHIF  | 32        | 32        | 0        |
 |   5 | 1EHIF  | 32        | 28        | 4        |
 |   6 | 1FHIF  | 32        | 32        | 0        |
-|   7 | 2AHIF  | 27        | 21        | 6        |
+|   7 | 2AHIF  | 24        | 20        | 4        |
 |   8 | 2BHIF  | 27        | 27        | 0        |
-|   9 | 2CHIF  | 26        | 26        | 0        |
+|   9 | 2CHIF  | 24        | 24        | 0        |
 |  10 | 2DHIF  | 27        | 27        | 0        |
-|  11 | 2EHIF  | 28        | 23        | 5        |
-|  12 | 3AHIF  | 26        | 23        | 3        |
-|  13 | 3BHIF  | 23        | 23        | 0        |
-|  14 | 3CHIF  | 24        | 24        | 0        |
-|  15 | 3EHIF  | 25        | 18        | 7        |
-|  16 | 4AHIF  | 25        | 22        | 3        |
-|  17 | 4BHIF  | 27        | 27        | 0        |
-|  18 | 4CHIF  | 27        | 27        | 0        |
-|  19 | 4EHIF  | 25        | 17        | 8        |
-|  20 | 5AHIF  | 27        | 21        | 6        |
+|  11 | 2EHIF  | 27        | 23        | 4        |
+|  12 | 3AHIF  | 25        | 21        | 4        |
+|  13 | 3BHIF  | 25        | 25        | 0        |
+|  14 | 3CHIF  | 22        | 22        | 0        |
+|  15 | 3EHIF  | 27        | 21        | 6        |
+|  16 | 4AHIF  | 26        | 18        | 8        |
+|  17 | 4BHIF  | 25        | 25        | 0        |
+|  18 | 4CHIF  | 29        | 29        | 0        |
+|  19 | 4EHIF  | 28        | 23        | 5        |
+|  20 | 5AHIF  | 28        | 20        | 8        |
 |  21 | 5BHIF  | 27        | 27        | 0        |
-|  22 | 5CHIF  | 29        | 29        | 0        |
-|  23 | 5EHIF  | 27        | 23        | 4        |
+|  22 | 5CHIF  | 27        | 27        | 0        |
+|  23 | 5EHIF  | 26        | 18        | 8        |
 
-**(2)** In welchen Klassen gibt es mehr weibliche als männliche Schüler?
+**(2)** In welchen Klassen gibt es mehr als doppelt so viel weibliche wie männliche Schüler?
 | #   | Klasse | AnzGesamt | AnzMaennl | AnzWeibl |
 | ---:| ------ | ---------:| ---------:| --------:|
-|   1 | 1BVIF  | 26        | 12        | 14       |
-|   2 | 1DVIF  | 27        | 13        | 14       |
-|   3 | 1EVIF  | 27        | 11        | 16       |
-|   4 | 3BAIF  | 25        | 10        | 15       |
-|   5 | 3BKIF  | 29        | 13        | 16       |
-|   6 | 3CAIF  | 27        | 13        | 14       |
-|   7 | 5ACIF  | 25        | 12        | 13       |
-|   8 | 5BAIF  | 26        | 10        | 16       |
-|   9 | 5BBIF  | 27        | 10        | 17       |
-|  10 | 7BBIF  | 28        | 13        | 15       |
-|  11 | 7CBIF  | 28        | 11        | 17       |
+|   1 | 1CVIF  | 28        | 9         | 19       |
+|   2 | 2BHWIT | 24        | 6         | 18       |
+|   3 | 2CHWIT | 25        | 6         | 19       |
+|   4 | 3ACIF  | 24        | 7         | 17       |
+|   5 | 5AKIF  | 23        | 7         | 16       |
 
 **(3)** Wie viele Stunden pro Woche sehen die Klassen der Abteilung AIF ihren Klassenvorstand? Lösen Sie
 das Beispiel zuerst mit einem klassischen JOIN in Kombination mit einer Gruppierung. Danach lösen Sie
 das Beispiel mit einer Unterabfrage ohne JOIN. Betrachten Sie nur Klassen mit eingetragenem Klassenvorstand.
 | #   | KNr   | AnzKvStunden |
 | ---:| ----- | ------------:|
-|   1 | 3BAIF | 7            |
-|   2 | 3CAIF | 2            |
-|   3 | 5BAIF | 5            |
-|   4 | 5CAIF | 2            |
+|   1 | 2AAIF | 6            |
+|   2 | 2BAIF | 0            |
+|   3 | 2CAIF | 6            |
+|   4 | 3BAIF | 2            |
+|   5 | 3CAIF | 2            |
+|   6 | 4BAIF | 2            |
+|   7 | 4CAIF | 2            |
+|   8 | 5BAIF | 8            |
+|   9 | 5CAIF | 2            |
+|  10 | 6BAIF | 8            |
+|  11 | 6CAIF | 2            |
 
 **(4)** Wie viele Wochenstunden haben die Klassen der Abteilung AIF? Achtung: Es gibt Stunden, in denen
 2 Lehrer in der Klasse sind. Pro Tag und Stunde ist jeder Datensatz nur 1x zu zählen. Könnten Sie
@@ -110,35 +111,16 @@ Werte bei Parallelklassen entstehen.
 |  11 | 6BAIF | 46             | 33         |
 |  12 | 6CAIF | 46             | 33         |
 
-Wie viel Prozent der Stunden verbringen die Schüler in ihrem Stammraum? Für diese Anzahl werden einfach
-die Anzahl der Datensätze in der Stundentabelle gezählt.
-| #   | KNr   | KStammraum | AnzStundenGesamt | AnzStundenStammraum | ProzentImStammraum |
-| ---:| ----- | ---------- | ----------------:| -------------------:| ------------------:|
-|   1 | 1AHIF | C5.09      | 59               | 12                  | 20                 |
-|   2 | 1BHIF | C5.09      | 62               | 11                  | 18                 |
-|   3 | 1CHIF | C5.10      | 65               | 19                  | 29                 |
-|   4 | 1DHIF | C5.10      | 59               | 14                  | 24                 |
-|   5 | 1EHIF | C4.14      | 62               | 9                   | 15                 |
-|   6 | 1FHIF | C4.14      | 61               | 8                   | 13                 |
-|   7 | 2AHIF | C4.07      | 49               | 23                  | 47                 |
-|   8 | 2BHIF | C4.07      | 47               | 6                   | 13                 |
-|   9 | 2CHIF | C4.08      | 56               | 13                  | 23                 |
-|  10 | 2DHIF | C4.08      | 59               | 16                  | 27                 |
-|  11 | 2EHIF | C4.09      | 52               | 23                  | 44                 |
-|  12 | 3AHIF | C4.10      | 61               | 25                  | 41                 |
-|  13 | 3BHIF | C4.10      | 54               | 19                  | 35                 |
-|  14 | 3CHIF | C4.11      | 53               | 16                  | 30                 |
-|  15 | 3EHIF | C4.11      | 47               | 14                  | 30                 |
-|  16 | 4AHIF | C3.07      | 70               | 37                  | 53                 |
-|  17 | 4BHIF | C3.07      | 74               | 16                  | 22                 |
-|  18 | 4CHIF | C3.08      | 72               | 17                  | 24                 |
-|  19 | 4EHIF | C3.08      | 73               | 40                  | 55                 |
-|  20 | 5AHIF | C3.10      | 60               | 15                  | 25                 |
-|  21 | 5BHIF | C3.10      | 68               | 27                  | 40                 |
-|  22 | 5CHIF | C3.11      | 61               | 23                  | 38                 |
-|  23 | 5EHIF | C3.11      | 59               | 17                  | 29                 |
+**(5)** Wie viel Prozent der Stunden verbringen die Schüler der Abteilung KKU (Kolleg für Design) in ihrem
+Stammraum? Für diese Anzahl werden einfach die Anzahl der Datensätze in der Stundentabelle gezählt.
+| #   | KNr    | KStammraum | AnzStundenGesamt | AnzStundenStammraum | ProzentImStammraum |
+| ---:| ------ | ---------- | ----------------:| -------------------:| ------------------:|
+|   1 | 3AKKUI | A2.05      | 66               | 52                  | 79                 |
+|   2 | 4AKKUI | A2.05      | 64               | 52                  | 81                 |
+|   3 | 5AKKUI | A2.04      | 57               | 45                  | 79                 |
+|   4 | 6AKKUI | A2.04      | 56               | 44                  | 79                 |
 
-**(5)** Welche Lehrer verdienen 50% mehr als der Durchschnitt von den Lehrern, die vorher in
+**(6)** Welche Lehrer verdienen 50% mehr als der Durchschnitt von den Lehrern, die vorher in
 die Schule eingetreten sind (Eintrittsjahr < Eintrittsjahr des Lehrers)?
 | #   | LNr | LName            | LVorname   | LGehalt | LEintrittsjahr | AvgGehaltAeltere |
 | ---:| --- | ---------------- | ---------- | -------:| --------------:| ----------------:|
@@ -154,48 +136,49 @@ die Schule eingetreten sind (Eintrittsjahr < Eintrittsjahr des Lehrers)?
 |  10 | JB  | Jagersberger     | Herbert    | 4354    | 1996           | 2896.73          |
 |  11 | HOM | Hörzinger        | Michael    | 4329    | 1997           | 2838.04          |
 
-**(6)** Welche Schüler haben im Gegenstand POS1 schlechtere Noten als der Durchschnitt der Prüfungen
+**(7)** Welche Schüler haben im Gegenstand POS1 schlechtere Noten als der Durchschnitt der Prüfungen
 bei diesem Prüfer in POS1?
-| #   | SNr  | SZuname   | SVorname  | SKlasse | PPruefer | PNote | PGegenstand | PrueferMittel |
-| ---:| ----:| --------- | --------- | ------- | -------- | -----:| ----------- | -------------:|
-|   1 | 1392 | Hyatt     | Vivian    | 5AKIF   | BAM      | 4     | POS1        | 3.75          |
-|   2 | 1455 | DuBuque   | Ramiro    | 5BAIF   | BAM      | 4     | POS1        | 3.75          |
-|   3 | 1421 | Mertz     | Florence  | 5CAIF   | BAM      | 5     | POS1        | 3.75          |
-|   4 | 1435 | Stark     | Morris    | 5BAIF   | BAM      | 5     | POS1        | 3.75          |
-|   5 | 1726 | Rath      | Jasmine   | 5BBIF   | CHA      | 4     | POS1        | 3             |
-|   6 | 2083 | Lang      | Roger     | 4CHIF   | GRJ      | 4     | POS1        | 3             |
-|   7 | 1813 | Krajcik   | Iris      | 3ACIF   | GT       | 4     | POS1        | 2.33          |
-|   8 | 1707 | Kris      | Betsy     | 7ACIF   | PS       | 3     | POS1        | 2.8           |
-|   9 | 1690 | Hilll     | Greg      | 7ACIF   | PS       | 4     | POS1        | 2.8           |
-|  10 | 1713 | Kling     | Alexandra | 7ACIF   | PS       | 4     | POS1        | 2.8           |
-|  11 | 1656 | Reichert  | Judy      | 7CBIF   | UK       | 4     | POS1        | 3.17          |
-|  12 | 1672 | Beer      | Joel      | 7BBIF   | UK       | 4     | POS1        | 3.17          |
-|  13 | 1674 | Koelpin   | Tina      | 7BBIF   | UK       | 5     | POS1        | 3.17          |
-|  14 | 1581 | Jenkins   | Leland    | 3BHIF   | WK       | 4     | POS1        | 3             |
-|  15 | 1562 | Hackett   | Grant     | 3BHIF   | WK       | 4     | POS1        | 3             |
-|  16 | 1567 | Brown     | Fredrick  | 3BHIF   | WK       | 4     | POS1        | 3             |
-|  17 | 1605 | O'Reilly  | Dominick  | 3CHIF   | WK       | 4     | POS1        | 3             |
-|  18 | 1588 | Halvorson | Herman    | 3CHIF   | WK       | 5     | POS1        | 3             |
+| #   | SNr  | SZuname   | SVorname | SKlasse | PPruefer | PNote | PGegenstand | PrueferMittel |
+| ---:| ----:| --------- | -------- | ------- | -------- | -----:| ----------- | -------------:|
+|   1 | 1155 | Pouros    | Dixie    | 5BAIF   | BAM      | 5     | POS1        | 3             |
+|   2 | 2371 | Thompson  | Sheri    | 5BBIF   | CHA      | 3     | POS1        | 2.5           |
+|   3 | 3334 | Kerluke   | Maureen  | 5AHIF   | GRJ      | 4     | POS1        | 3.33          |
+|   4 | 2372 | Turner    | Amos     | 5BBIF   | GT       | 5     | POS1        | 3             |
+|   5 | 2406 | Lehner    | Ramon    | 7ACIF   | PS       | 4     | POS1        | 3.25          |
+|   6 | 2457 | Schaefer  | Ross     | 7CBIF   | PS       | 5     | POS1        | 3.25          |
+|   7 | 2997 | Kozey     | Mario    | 2AHIF   | SCG      | 4     | POS1        | 3.6           |
+|   8 | 2998 | Nader     | Noel     | 2AHIF   | SCG      | 5     | POS1        | 3.6           |
+|   9 | 2999 | Turcotte  | Leo      | 2AHIF   | SCG      | 5     | POS1        | 3.6           |
+|  10 | 2393 | Osinski   | Julie    | 7ACIF   | SE       | 4     | POS1        | 3.25          |
+|  11 | 2350 | Aufderhar | Steven   | 5ACIF   | SE       | 4     | POS1        | 3.25          |
+|  12 | 2657 | Rodriguez | Bethany  | 5EHIF   | SK       | 3     | POS1        | 2.6           |
+|  13 | 2660 | Ryan      | Dominic  | 5EHIF   | SK       | 3     | POS1        | 2.6           |
+|  14 | 2925 | Mante     | Julian   | 1EHIF   | SK       | 4     | POS1        | 2.6           |
+|  15 | 3297 | Sawayn    | Cedric   | 4EHIF   | UK       | 5     | POS1        | 4.2           |
+|  16 | 2369 | Douglas   | Madeline | 5BBIF   | UK       | 5     | POS1        | 4.2           |
+|  17 | 2427 | Homenick  | Darla    | 7BBIF   | UK       | 5     | POS1        | 4.2           |
+|  18 | 2438 | Beahan    | Josh     | 7BBIF   | UK       | 5     | POS1        | 4.2           |
+|  19 | 2440 | Bauch     | Jeremiah | 7BBIF   | UK       | 5     | POS1        | 4.2           |
+|  20 | 1108 | Bins      | Jan      | 3AKIF   | ZUM      | 2     | POS1        | 1.83          |
+|  21 | 1115 | Schmitt   | Mike     | 3AKIF   | ZUM      | 3     | POS1        | 1.83          |
+|  22 | 3072 | Ankunding | Wilbur   | 2CHIF   | ZUM      | 3     | POS1        | 1.83          |
 
-**(7)** Verallgemeinern Sie das vorige Beispiel auf beliebige Fächer: Welche Schüler der 1AHIF 
+**(8)** Verallgemeinern Sie das vorige Beispiel auf beliebige Fächer: Welche Schüler der 1AHIF 
 haben schlechtere Noten als der Prüfer im Mittel für diesen Gegenstand vergibt?
 | #   | SNr  | SZuname   | SVorname | SKlasse | PPruefer | PNote | PGegenstand | PrueferMittel |
 | ---:| ----:| --------- | -------- | ------- | -------- | -----:| ----------- | -------------:|
-|   1 | 1360 | Shields   | Vincent  | 1AHIF   | FRF      | 3     | BWM1        | 2.6           |
-|   2 | 1349 | O'Connell | Johnny   | 1AHIF   | FRF      | 4     | BWM1        | 2.6           |
-|   3 | 1351 | Monahan   | Barbara  | 1AHIF   | FRF      | 4     | BWM2        | 2.6           |
-|   4 | 1362 | Hane      | Lionel   | 1AHIF   | FRF      | 4     | BWM2        | 2.6           |
-|   5 | 1360 | Shields   | Vincent  | 1AHIF   | LC       | 3     | POS1z       | 2             |
-|   6 | 1351 | Monahan   | Barbara  | 1AHIF   | NIJ      | 4     | SOPK        | 2.67          |
+|   1 | 2808 | Fahey     | Mark     | 1AHIF   | FRF      | 4     | BWM1        | 3.33          |
+|   2 | 2794 | Feil      | Sidney   | 1AHIF   | HOM      | 3     | AMx         | 2             |
+|   3 | 2788 | Rodriguez | Rosalie  | 1AHIF   | HOM      | 4     | AMx         | 2             |
 
-**(8)** Geben Sie die letzte Stunde der 3BAIF für jeden Wochentag aus. Beachten Sie, dass
+**(9)** Geben Sie die letzte Stunde der 3BAIF für jeden Wochentag aus. Beachten Sie, dass
 auch mehrere Datensätze für die letzte Stunde geliefert werden können (wenn 2 Lehrer dort unterrichten).
 | #   | StKlasse | StTag | StStunde | StGegenstand | StLehrer |
 | ---:| -------- | -----:| --------:| ------------ | -------- |
 |   1 | 3BAIF    | 1     | 14       | DBI1         | MIP      |
 |   2 | 3BAIF    | 1     | 14       | DBI1         | WES      |
-|   3 | 3BAIF    | 2     | 16       | NVS1         | HB       |
-|   4 | 3BAIF    | 2     | 16       | NVS1         | OM       |
+|   3 | 3BAIF    | 2     | 16       | NVS1         | OM       |
+|   4 | 3BAIF    | 2     | 16       | NVS1         | HB       |
 |   5 | 3BAIF    | 3     | 14       | COPR         | SCM      |
 |   6 | 3BAIF    | 3     | 14       | COPR         | HB       |
 |   7 | 3BAIF    | 4     | 16       | TINF_1       | EN       |

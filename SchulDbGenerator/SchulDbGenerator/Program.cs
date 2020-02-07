@@ -55,7 +55,7 @@ namespace SchulDbGenerator
             catch (SchulDb.SchulDbException e)
             {
                 Console.Error.WriteLine(e.Message);
-                Console.Error.WriteLine(e?.InnerException.Message);
+                Console.Error.WriteLine(e?.InnerException?.Message);
                 Console.Error.WriteLine(e.StackTrace);
                 return 1;
             }
