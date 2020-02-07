@@ -29,10 +29,13 @@
 - [Download als Access Datenbank](Schule.mdb)
 - [Download als Sql Server (LocalDB) Datenbank](Schule.mdf)
 
+Um die SQL Server Datenbank zu verwenden, müssen Sie die Datei im SQL Server Management Studio (SSMS)
+mit folgender Abfrage einhängen:
+
 ```sql
 USE [master]
 GO
-CREATE DATABASE [Schule] ON (FILENAME = N'C:\Github\Dbi2Sem\Schule.mdf') FOR ATTACH
+CREATE DATABASE [Schule] ON (FILENAME = N'C:\PATH\Schule.mdf') FOR ATTACH
 GO
 ```
 
