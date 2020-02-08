@@ -32,23 +32,30 @@
         <td colspan="3" valign="top">
             Bereich Datenbankadministration
             <ol>
-            <li><a href="21_Views">Views</a></li>
-            <li><a href="22_Null">NULL Values</a></li>
-            <li><a href="23_Transaktionen">Transaktionen</a></li>
+                <li><a href="21_Views">Views</a></li>
+                <li><a href="22_Null">NULL Values</a></li>
+                <li><a href="23_Transaktionen">Transaktionen</a></li>
             </ol>
         </td>
     </tr>
-
 </table>
 
+### Beurteilung
+
+- Insgesamt 2 praktische Überprüfungen im Bereich SQL und Datenbankadministration
+- Abgabe des Modellierungsprojektes
+- Die Gewichtung erfolgt nach Stundenausmaß, wobei beide Teile (Modellierung und SQL/DB Admin)
+  positiv sein müssen.
+  
 ## Die verwendete Schuldatenbank
 
 - [Download als SQLite Datenbank](Schule.db)
 - [Download als Access Datenbank](Schule.mdb)
 - [Download als Sql Server (LocalDB) Datenbank](Schule.mdf)
 
-Um die SQL Server Datenbank zu verwenden, müssen Sie die Datei im SQL Server Management Studio (SSMS)
-mit folgender Abfrage einhängen:
+Um die SQL Server Datenbank zu verwenden, müssen Sie sich im SQL Server Management Studio (SSMS)
+zur LocalDB mit dem Servernamen *(LocalDb)\MSSQLLocalDB* (Windows Authentifizierung) verbinden.
+Danach hängen Sie die Datei mit folgender Abfrage ein:
 
 ```sql
 USE [master]
