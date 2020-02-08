@@ -119,8 +119,8 @@ Unterricht?".WriteItem();
 
             @"
 Welche Lehrer haben Montag und Freitag frei, also keinen Unterricht an diesen Tagen in der
-Stundentabelle? Anmerkung, die nichts mit der Lösung zu tun hat: Religion und die Freifächer wurden
-- in Abweichung zu den Realdaten - nicht importiert.".WriteItem();
+Stundentabelle? Anmerkung, die nichts mit der Lösung zu tun hat: Religion und die Freifächer
+wurden - in Abweichung zu den Realdaten - nicht importiert.".WriteItem();
             (from l in db.Lehrers
              where !l.Stundens.Any(s => s.StTag == 1 || s.StTag == 5)
              orderby l.LNr
