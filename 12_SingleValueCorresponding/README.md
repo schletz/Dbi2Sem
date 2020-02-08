@@ -39,6 +39,7 @@ Spalte (#) ist allerdings nur die Datensatznummer und kommt im Abfrageergebnis n
 Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt übereinstimmen.
 
 **(1)** Geben Sie die Klassen der Abteilung HIF und die Anzahl der männlichen und weiblichen Schüler aus.
+
 | #   | Klasse | AnzGesamt | AnzMaennl | AnzWeibl |
 | ---:| ------ | ---------:| ---------:| --------:|
 |   1 | 1AHIF  | 32        | 26        | 6        |
@@ -66,6 +67,7 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 |  23 | 5EHIF  | 26        | 18        | 8        |
 
 **(2)** In welchen Klassen gibt es mehr als doppelt so viel weibliche wie männliche Schüler?
+
 | #   | Klasse | AnzGesamt | AnzMaennl | AnzWeibl |
 | ---:| ------ | ---------:| ---------:| --------:|
 |   1 | 1CVIF  | 28        | 9         | 19       |
@@ -77,6 +79,7 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 **(3)** Wie viele Stunden pro Woche sehen die Klassen der Abteilung AIF ihren Klassenvorstand? Lösen Sie
 das Beispiel zuerst mit einem klassischen JOIN in Kombination mit einer Gruppierung. Danach lösen Sie
 das Beispiel mit einer Unterabfrage ohne JOIN. Betrachten Sie nur Klassen mit eingetragenem Klassenvorstand.
+
 | #   | KNr   | AnzKvStunden |
 | ---:| ----- | ------------:|
 |   1 | 2AAIF | 6            |
@@ -96,6 +99,7 @@ das Beispiel mit einer Unterabfrage ohne JOIN. Betrachten Sie nur Klassen mit ei
 das Beispiel auch mit einem JOIN und einer Gruppierung lösen? Begründen Sie, wenn nicht.
 Anmerkung, die nichts mit der Abfrage zu tun hat: Durch Stundenverlegungen können unterschiedliche
 Werte bei Parallelklassen entstehen.
+
 | #   | KNr   | AnzDatensaetze | AnzStunden |
 | ---:| ----- | --------------:| ----------:|
 |   1 | 2AAIF | 24             | 22         |
@@ -113,6 +117,7 @@ Werte bei Parallelklassen entstehen.
 
 **(5)** Wie viel Prozent der Stunden verbringen die Schüler der Abteilung KKU (Kolleg für Design) in ihrem
 Stammraum? Für diese Anzahl werden einfach die Anzahl der Datensätze in der Stundentabelle gezählt.
+
 | #   | KNr    | KStammraum | AnzStundenGesamt | AnzStundenStammraum | ProzentImStammraum |
 | ---:| ------ | ---------- | ----------------:| -------------------:| ------------------:|
 |   1 | 3AKKUI | A2.05      | 66               | 52                  | 79                 |
@@ -122,6 +127,7 @@ Stammraum? Für diese Anzahl werden einfach die Anzahl der Datensätze in der St
 
 **(6)** Welche Lehrer verdienen 50% mehr als der Durchschnitt von den Lehrern, die vorher in
 die Schule eingetreten sind (Eintrittsjahr < Eintrittsjahr des Lehrers)?
+
 | #   | LNr | LName            | LVorname   | LGehalt | LEintrittsjahr | AvgGehaltAeltere |
 | ---:| --- | ---------------- | ---------- | -------:| --------------:| ----------------:|
 |   1 | MEA | Metz             | Andreas    | 5570    | 1984           | 3100.34          |
@@ -138,6 +144,7 @@ die Schule eingetreten sind (Eintrittsjahr < Eintrittsjahr des Lehrers)?
 
 **(7)** Welche Schüler haben im Gegenstand POS1 schlechtere Noten als der Durchschnitt der Prüfungen
 bei diesem Prüfer in POS1?
+
 | #   | SNr  | SZuname   | SVorname | SKlasse | PPruefer | PNote | PGegenstand | PrueferMittel |
 | ---:| ----:| --------- | -------- | ------- | -------- | -----:| ----------- | -------------:|
 |   1 | 1155 | Pouros    | Dixie    | 5BAIF   | BAM      | 5     | POS1        | 3             |
@@ -165,6 +172,7 @@ bei diesem Prüfer in POS1?
 
 **(8)** Verallgemeinern Sie das vorige Beispiel auf beliebige Fächer: Welche Schüler der 1AHIF 
 haben schlechtere Noten als der Prüfer im Mittel für diesen Gegenstand vergibt?
+
 | #   | SNr  | SZuname   | SVorname | SKlasse | PPruefer | PNote | PGegenstand | PrueferMittel |
 | ---:| ----:| --------- | -------- | ------- | -------- | -----:| ----------- | -------------:|
 |   1 | 2808 | Fahey     | Mark     | 1AHIF   | FRF      | 4     | BWM1        | 3.33          |
@@ -173,6 +181,7 @@ haben schlechtere Noten als der Prüfer im Mittel für diesen Gegenstand vergibt
 
 **(9)** Geben Sie die letzte Stunde der 3BAIF für jeden Wochentag aus. Beachten Sie, dass
 auch mehrere Datensätze für die letzte Stunde geliefert werden können (wenn 2 Lehrer dort unterrichten).
+
 | #   | StKlasse | StTag | StStunde | StGegenstand | StLehrer |
 | ---:| -------- | -----:| --------:| ------------ | -------- |
 |   1 | 3BAIF    | 1     | 14       | DBI1         | MIP      |

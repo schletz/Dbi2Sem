@@ -26,6 +26,7 @@ namespace System.Linq
 
         public static void WriteMarkdown<T>(this IEnumerable<T> source)
         {
+            Console.WriteLine();                       // Vor der Tabelle muss eine Leerzeile sein!
             Console.WriteLine(source.ToMarkdownTable());
         }
 

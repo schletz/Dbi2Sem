@@ -159,6 +159,7 @@ Spalte (#) ist allerdings nur die Datensatznummer und kommt im Abfrageergebnis n
 Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt übereinstimmen.
 
 **(1)** Welche Lehrer sind neu bei uns, haben also das maximale Eintrittsjahr?
+
 | #   | LNr | LName     | LVorname  | LEintrittsjahr |
 | ---:| --- | --------- | --------- | --------------:|
 |   1 | BAM | Balluch   | Manfred   | 2019           |
@@ -181,6 +182,7 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 |  18 | ZOC | Zöchbauer | Christian | 2019           |
 
 **(2)** Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.
+
 | #   | Klasse | KlassenGesamt | SchuelerGesamt |
 | ---:| ------ | -------------:| --------------:|
 |   1 | 2AAIF  | 116           | 2462           |
@@ -198,6 +200,7 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 
 **(3)** Geben Sie bei allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt
 (gerechnet über alle Lehrer der Schule) aus.
+
 | #   | LNr | LName     | LVorname  | LEintrittsjahr | LGehalt | AvgGehalt |
 | ---:| --- | --------- | --------- | --------------:| -------:| ---------:|
 |   1 | AH  | Auinger   | Harald    | 2018           | 2083    | 3126.67   |
@@ -213,6 +216,7 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 
 **(4)** Als Ergänzung geben Sie nun bei diesen Lehrern die Abweichung vom Durchschnittsgehalt
 aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschnittswert verdienen.
+
 | #   | LNr | LName   | LVorname | LEintrittsjahr | LGehalt | AvgGehalt | Abweichung |
 | ---:| --- | ------- | -------- | --------------:| -------:| ---------:| ----------:|
 |   1 | AH  | Auinger | Harald   | 2018           | 2083    | 3126.67   | -1043.67   |
@@ -220,6 +224,7 @@ aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschni
 |   3 | SE  | Schmid  | Erhard   | 2018           | 2064    | 3126.67   | -1062.67   |
 
 **(5)** Geben Sie die Prüfungen aus, die maximal 3 Tage vor der letzten Prüfung stattfanden.
+
 | #   | PDatumZeit          | PPruefer | PNote | Zuname     | Vorname |
 | ---:| ------------------- | -------- | -----:| ---------- | ------- |
 |   1 | 31.05.2020 20:10:00 | SAB      | 1     | Kuhlman    | Frances |
@@ -239,12 +244,14 @@ aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschni
 
 **(6)** Geben Sie die Räume mit der meisten Kapazität (Spalte *R_Plaetze*) aus. Hinweis: Das können auch
 mehrere Räume sein.
+
 | #   | RId   | RPlaetze | RArt                         |
 | ---:| ----- | --------:| ---------------------------- |
 |   1 | AH.32 | 36       | Naturwissenschaftlicher Raum |
 |   2 | B5.09 | 36       | Klassenraum                  |
 
 **(7)** Gibt es Räume, die unter einem Viertel der Plätze als der größte Raum haben?
+
 | #   | RId     | RPlaetze | RArt                                      |
 | ---:| ------- | --------:| ----------------------------------------- |
 |   1 | A3.04   | 3        | Multifunktionsraum Medien                 |
@@ -267,6 +274,7 @@ mehrere Räume sein.
 
 **(8)** Welche Klasse hat mehr weibliche Schüler (S_Geschlecht ist 2) als die 5BAIF? Hinweis: Gruppieren Sie
 die Schülertabelle und vergleichen die Anzahl mit dem ermittelten Wert aus der 5BAIF.
+
 | #   | Klasse | AnzWeibl |
 | ---:| ------ | --------:|
 |   1 | 1AFITN | 15       |
@@ -299,8 +307,9 @@ die Schülertabelle und vergleichen die Anzahl mit dem ermittelten Wert aus der 
 
 **(9)** Geben Sie die Klassen der Abteilung BIF sowie die Anzahl der Schüler in dieser Abteilung aus.
 Hinweis: Verwenden Sie GROUP BY, um die Schüleranzahl pro Klasse zu ermitteln. Achten Sie auch
-darauf, dass Klassen mit 0 Schülern auch angezeigt werden. Danach schreiben Sie
+darauf, dass Klassen mit 0 Schülern auch angezeigt werden. Danach schreiben Sie 
 eine Unterabfrage, die die Schüler der BIF Abteilung zählt.
+
 | #   | Klasse | SchuelerKlasse | SchuelerBIF |
 | ---:| ------ | --------------:| -----------:|
 |   1 | 2ABIF  | 0              | 105         |

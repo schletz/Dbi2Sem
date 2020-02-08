@@ -233,6 +233,7 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 
 **(1)** In welchen Klassen der Abteilung HIF kommt das Fach NW2 nicht im Stundenplan vor? Hinweis:
 Arbeiten Sie mit der Menge der Klassen, in denen NW2 unterrichtet wird.
+
 | #   | KNr   |
 | ---:| ----- |
 |   1 | 5AHIF |
@@ -243,6 +244,7 @@ Arbeiten Sie mit der Menge der Klassen, in denen NW2 unterrichtet wird.
 **(2)** Welche Gegenstände werden gar nicht geprüft? Lösen Sie die Aufgabe mit einem LEFT JOIN und danach
 mit einer Unterabfrage. Hinweis: Arbeiten Sie mit der Menge der Gegenstände, die in der
 Prüfungstabelle eingetragen sind.
+
 | #   | GNr    | GBez                                           |
 | ---:| ------ | ---------------------------------------------- |
 |   1 | WPT_4  | Werkstätte und Produktionstechnik              |
@@ -283,6 +285,7 @@ LEFT JOIN lösen? Begründen Sie wenn nicht. Hinweis: Arbeiten Sie mit der Menge
 die NICHT praktisch geprüft werden. Betrachten Sie außerdem nur Gegenstände, die überhaupt geprüft
 werden. Würden Gegenstände, die gar nicht geprüft werden, sonst aufscheinen? Macht das einen
 (aussagenlogischen) Sinn?
+
 | #   | GNr   | GBez                                            |
 | ---:| ----- | ----------------------------------------------- |
 |   1 | BSPM  | Bewegung und Sport - Mädchen                    |
@@ -301,6 +304,7 @@ werden. Würden Gegenstände, die gar nicht geprüft werden, sonst aufscheinen? 
 
 **(4)** Gibt es Prüfungen im Fach BWM, die von Lehrern abgenommen wurden, die die Klasse gar nicht
 unterrichten? Hinweis: Arbeiten Sie über die Menge der Lehrer, die den angezeigten Schüler unterrichten.
+
 | #   | PPruefer | PDatumZeit          | SNr  | SZuname | SVorname | PGegenstand | PNote |
 | ---:| -------- | ------------------- | ----:| ------- | -------- | ----------- | -----:|
 |   1 | BIE      | 08.03.2020 14:55:00 | 2446 | Purdy   | Georgia  | BWM         | 2     |
@@ -310,6 +314,7 @@ unterrichten? Hinweis: Arbeiten Sie über die Menge der Lehrer, die den angezeig
 
 **(5)** Für die Maturaaufsicht in POS werden Lehrer benötigt, die zwar in POS (Filtern nach POS%) unterrichten,
 aber in keiner 5. HIF Klasse (*K_Schulstufe* ist 13 und *K_Abteilung* ist HIF) sind.
+
 | #   | LNr | LName        | LVorname |
 | ---:| --- | ------------ | -------- |
 |   1 | BAM | Balluch      | Manfred  |
@@ -333,6 +338,7 @@ aber in keiner 5. HIF Klasse (*K_Schulstufe* ist 13 und *K_Abteilung* ist HIF) s
 **(6)** Lösen Sie das vorige Beispiel mit anderen Bedingungen: Geben Sie die Lehrer aus, die weder in einer
 5. Klasse (*K_Schulstufe* ist 13) noch in einer HIF Klasse (*K_Abteilung* ist HIF) unterrichten.
 Wie ändert sich Ihre Abfrage?
+
 | #   | LNr | LName    | LVorname |
 | ---:| --- | -------- | -------- |
 |   1 | BAM | Balluch  | Manfred  |
@@ -343,6 +349,7 @@ Wie ändert sich Ihre Abfrage?
 
 **(7)** Welche Klassen der HIF Abteilung haben auch in den Abendstunden (*Stundenraster.Str_IstAbend* = 1)
 Unterricht?
+
 | #   | KNr   |
 | ---:| ----- |
 |   1 | 1EHIF |
@@ -354,6 +361,7 @@ Unterricht?
 **(8)** Welche Lehrer haben Montag und Freitag frei, also keinen Unterricht an diesen Tagen in der
 Stundentabelle? Anmerkung, die nichts mit der Lösung zu tun hat: Religion und die Freifächer
 wurden - in Abweichung zu den Realdaten - nicht importiert.
+
 | #   | LNr | LName             | LVorname  |
 | ---:| --- | ----------------- | --------- |
 |   1 | AF  | Akyildiz          | Fatma     |
@@ -388,6 +396,7 @@ wurden - in Abweichung zu den Realdaten - nicht importiert.
 **(9)** Wie das vorherige Beispiel, allerdings sollen nur Lehrer, die auch Stunden haben (also in der
 Tabelle Stunden überhaupt vorkommen), berücksichtigt werden? Anmerkung, die nichts mit der Lösung
 zu tun hat: Religion und die Freifächer wurden  - in Abweichung zu den Realdaten - nicht importiert.
+
 | #   | LNr | LName        | LVorname  |
 | ---:| --- | ------------ | --------- |
 |   1 | BAR | Bartl-Binder | Petra     |
@@ -420,6 +429,7 @@ können (z. B. Tag und Abend) brauchen Sie hier geschachtelte Unterabfragen.
    nämlich aussagenlogisch auch nur in Abteilungen unterrichten, von denen sie KV sind.
    
 Korrekte Ausgabe:
+
 | #   | LNr | LName        | LVorname  |
 | ---:| --- | ------------ | --------- |
 |   1 | BAB | Bauer        | Beatrice  |
