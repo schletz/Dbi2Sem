@@ -17,7 +17,7 @@
                 <li><a href="">Modellierungsprojekt</a></li>
             </ol>
         </td>
-        <td colspan="3">
+        <td colspan="3" valign="top">
             Erweitertes SQL
             <ol>
                 <li><a href="11_SingleValueNonCorresponding">Nicht korrespondierende Unterabfragen, die einen Wert liefern</a></li>
@@ -29,7 +29,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="3">
+        <td colspan="3" valign="top">
             Bereich Datenbankadministration
             <ol>
             <li><a href="21_Views">Views</a></li>
