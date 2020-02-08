@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Nicht korrespondierende Unterabfragen, die einen Wert liefern</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+        <link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
+        <style>
+.task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
+</style>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
+    </head>
+    <body class="vscode-light">
+        <h1 id="nicht-korrespondierende-unterabfragen-die-einen-wert-liefern">Nicht korrespondierende Unterabfragen, die einen Wert liefern</h1>
+<p>Wir möchten als erstes Beispiel alle Schüler und das Geburtsdatum des jüngsten Schülers ausgeben.
+Dies klingt einmal einfach, stellt uns aber vor ein Problem.</p>
+<p>Einerseits erfolgt die Ausgabe der Schüler mit folgendem normalen SQL Statement:</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> s.S_Nr, s.S_Zuname, s.S_Vorname
+<span class="hljs-keyword">FROM</span> Schueler s;
+</div></code></pre>
+<p>Das Ermitteln des jüngsten Schülers ist auch keine schwierige Sache, es ist eine einfache <em>MAX()</em>
+Funktion.</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(s.S_Gebdatum) <span class="hljs-keyword">FROM</span> Schueler s;
+</div></code></pre>
+<p>Die Schwierigkeit ist die Kombination der beiden Ergebnisse. Denn wenn wir <em>MAX()</em> verwenden,
+gruppieren wir die Daten. Es entsteht 1 Datensatz pro Tabelle. Andererseits möchten wir aber alle
+Schülerdaten ausgeben.</p>
+<p>Die Lösung bieten Unterabfragen. Sie können - je nach ihrem Rückgabewert - in 3 Kategorien
+eingeteilt werden:</p>
+<ul>
+<li>Unterabfragen, die genau einen Wert liefern.</li>
+<li>Unterabfragen, die eine Liste von Werten (1 Spalte, mehrere Zeilen) liefern.</li>
+<li>Unterabfragen, die ganze Tabellen liefern.</li>
+</ul>
+<p>Die Verwendung von Unterabfragen, die genau einen Wert liefern, ist sehr leicht. Sie werden dort
+eingesetzt, wo normalerweise Spalten stehen. Unser Beispiel sieht dann so aus:</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span>
+    s.S_Nr, s.S_Zuname, s.S_Vorname,
+    (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(s.S_Gebdatum) <span class="hljs-keyword">FROM</span> Schueler s) <span class="hljs-keyword">AS</span> Aeltester
+<span class="hljs-keyword">FROM</span> Schueler s;
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>S_Nr</th>
+<th>S_Zuname</th>
+<th>S_Vorname</th>
+<th>Aeltester</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000</td>
+<td>Pfannerstill</td>
+<td>Ricardo</td>
+<td>2005-08-30</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>Mohr</td>
+<td>Alyssa</td>
+<td>2005-08-30</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>Schneider</td>
+<td>Lyle</td>
+<td>2005-08-30</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Hinweis:</strong> Die Unterabfrage muss immer eingeklammert sein!</p>
+</blockquote>
+<h2 id="vergleich-mit-programmcode">Vergleich mit Programmcode</h2>
+<p>Hilfreich ist auch diese Analogie in den Programmiersprachen. Da die Unterabfrage keinerlei Daten
+von der äußeren Abfrage braucht, wird sie sozusagen vorher ausgeführt und wie als Variable gespeichert.</p>
+<pre><code class="language-c#"><div><span class="hljs-keyword">var</span> <span class="hljs-keyword">value</span> = MySubQuery();
+<span class="hljs-keyword">foreach</span> (Abteilung a <span class="hljs-keyword">in</span> db.Abteilungen)
+{
+    Console.WriteLine(<span class="hljs-string">$"<span class="hljs-subst">{a.AbtNr}</span> <span class="hljs-subst">{a.AbtLeiter}</span> <span class="hljs-subst">{<span class="hljs-keyword">value</span>}</span>"</span>)
+}
+</div></code></pre>
+<h2 id="verwendung-mehrerer-unterabfragen">Verwendung mehrerer Unterabfragen</h2>
+<p>Natürlich können auch mehrere Unterabfragen verwendet werden. Somit kann z. B. das Geburtsdatum
+des ältesten und jüngsten Schülers ermittelt werden:</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span>
+    s.S_Nr, s.S_Zuname, s.S_Vorname,
+    (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(s.S_Gebdatum) <span class="hljs-keyword">FROM</span> Schueler s) <span class="hljs-keyword">AS</span> Aeltester,
+    (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MIN</span>(s.S_Gebdatum) <span class="hljs-keyword">FROM</span> Schueler s) <span class="hljs-keyword">AS</span> Juengster
+<span class="hljs-keyword">FROM</span> Schueler s;
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>S_Nr</th>
+<th>S_Zuname</th>
+<th>S_Vorname</th>
+<th>Aeltester</th>
+<th>Juengster</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000</td>
+<td>Pfannerstill</td>
+<td>Ricardo</td>
+<td>2005-08-30</td>
+<td>1989-09-14</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>Mohr</td>
+<td>Alyssa</td>
+<td>2005-08-30</td>
+<td>1989-09-14</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>Schneider</td>
+<td>Lyle</td>
+<td>2005-08-30</td>
+<td>1989-09-14</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<h2 id="unterabfragen-in-ausdr%c3%bccken">Unterabfragen in Ausdrücken</h2>
+<p>Da die angegebenen Unterabfragen nur 1 Wert zurückliefern, können sie auch in Ausdrücken verwendet
+werden. Hier wird die Altersdifferenz in Tagen zum ältesten Schüler berechnet. Die Funktion <em>JULIANDAY()</em>
+ist speziell für SQLite, denn sonst würde die Differenz in Jahren berechnet werden.</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span>
+    s.S_Nr, s.S_Zuname, s.S_Vorname,
+    JULIANDAY(s.S_Gebdatum) - JULIANDAY((<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MIN</span>(s.S_Gebdatum) <span class="hljs-keyword">FROM</span> Schueler s)) <span class="hljs-keyword">AS</span> DiffZuAeltester
+<span class="hljs-keyword">FROM</span> Schueler s;
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>S_Nr</th>
+<th>S_Zuname</th>
+<th>S_Vorname</th>
+<th>DiffZuAeltester</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1000</td>
+<td>Pfannerstill</td>
+<td>Ricardo</td>
+<td>1704</td>
+</tr>
+<tr>
+<td>1001</td>
+<td>Mohr</td>
+<td>Alyssa</td>
+<td>2221</td>
+</tr>
+<tr>
+<td>1002</td>
+<td>Schneider</td>
+<td>Lyle</td>
+<td>2979</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<h2 id="unterabfragen-in-filterkriterien-where-und-having">Unterabfragen in Filterkriterien (WHERE und HAVING)</h2>
+<p>Möchten wir alle Schüler ausgeben, die im selben Jahr wie der älteste Schüler geboren sind, so
+verwenden wir unsere Unterabfrage einfach in <em>WHERE</em>. Die Funktion <em>STRFTIME()</em> ist speziell für
+SQLite und gibt Teile (hier das Jahr) des Datumswertes zurück. Beachte die Klammerung der
+Unterabfrage im Argument von <em>STRFTIME</em>!</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span>   s.S_Nr, s.S_Zuname, s.S_Vorname, s.S_Klasse, s.S_Gebdatum
+<span class="hljs-keyword">FROM</span>     Schueler s
+<span class="hljs-keyword">WHERE</span>    STRFTIME(<span class="hljs-string">'%Y'</span>, s.S_Gebdatum) = STRFTIME(<span class="hljs-string">'%Y'</span>, (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MIN</span>(s.S_Gebdatum) <span class="hljs-keyword">FROM</span> Schueler s))
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> s.S_Klasse, s.S_Nr;
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>S_Nr</th>
+<th>S_Zuname</th>
+<th>S_Vorname</th>
+<th>S_Klasse</th>
+<th>S_Gebdatum</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1917</td>
+<td>Rippin</td>
+<td>Josh</td>
+<td>1AVIF</td>
+<td>1989-10-31</td>
+</tr>
+<tr>
+<td>1835</td>
+<td>Gibson</td>
+<td>Wallace</td>
+<td>1DVIF</td>
+<td>1989-12-20</td>
+</tr>
+<tr>
+<td>1848</td>
+<td>Kunde</td>
+<td>Amos</td>
+<td>1DVIF</td>
+<td>1989-10-20</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>Auer</td>
+<td>Bethany</td>
+<td>1EVIF</td>
+<td>1989-10-02</td>
+</tr>
+<tr>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+</tbody>
+</table>
+<p>Nun wollen wir die Klassen herausfinden, wo der älteste Schüler der Klasse im selben Jahr wie der
+älteste Schüler der Schule geboren wurde. Im Gegensatz zur vorigen Abfrage wird jetzt jede Klasse
+nur 1x ausgegeben.</p>
+<pre><code class="language-sql"><div><span class="hljs-keyword">SELECT</span>   s.S_Klasse, <span class="hljs-keyword">MIN</span>(s.S_Gebdatum) <span class="hljs-keyword">AS</span> Aelterster
+<span class="hljs-keyword">FROM</span>     Schueler s
+<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> s.S_Klasse
+<span class="hljs-keyword">HAVING</span>   <span class="hljs-keyword">MIN</span>(s.S_Gebdatum) = (<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MIN</span>(s.S_Gebdatum) <span class="hljs-keyword">FROM</span> Schueler s);
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>S_Klasse</th>
+<th>Aelterster</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1AVIF</td>
+<td>1989-10-31</td>
+</tr>
+<tr>
+<td>1DVIF</td>
+<td>1989-10-20</td>
+</tr>
+<tr>
+<td>1EVIF</td>
+<td>1989-10-02</td>
+</tr>
+<tr>
+<td>3ACIF</td>
+<td>1989-10-22</td>
+</tr>
+<tr>
+<td>3AKIF</td>
+<td>1989-11-11</td>
+</tr>
+<tr>
+<td>3BAIF</td>
+<td>1989-12-19</td>
+</tr>
+<tr>
+<td>3BKIF</td>
+<td>1989-10-26</td>
+</tr>
+<tr>
+<td>3CAIF</td>
+<td>1989-11-12</td>
+</tr>
+<tr>
+<td>5ACIF</td>
+<td>1989-09-25</td>
+</tr>
+<tr>
+<td>5BBIF</td>
+<td>1989-12-25</td>
+</tr>
+<tr>
+<td>5CAIF</td>
+<td>1989-11-27</td>
+</tr>
+<tr>
+<td>7ACIF</td>
+<td>1989-11-30</td>
+</tr>
+<tr>
+<td>7BBIF</td>
+<td>1989-09-14</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Zusammenfassung:</strong> Unterabfragen, die einen Wert liefern, lassen sich wie Variablen behandeln.
+Sie können überall dort eingesetzt werden, wo Spalten oder fixe Werte stehen können.</p>
+</blockquote>
+<h2 id="%c3%9cbungen">Übungen</h2>
+<p>Bearbeiten Sie die folgenden Abfragen. Die korrekte Lösung ist in der Tabelle darunter, die erste
+Spalte (#) ist allerdings nur die Datensatznummer und kommt im Abfrageergebnis nicht vor. Die
+Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt übereinstimmen.</p>
+<p><strong>(1)</strong> Welche Lehrer sind neu bei uns, haben also das maximale Eintrittsjahr?</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">#</th>
+<th>LNr</th>
+<th>LName</th>
+<th>LVorname</th>
+<th style="text-align:right">LEintrittsjahr</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>BAM</td>
+<td>Balluch</td>
+<td>Manfred</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>BOA</td>
+<td>Bohn</td>
+<td>Adele</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td>CO</td>
+<td>Coufal</td>
+<td>Klaus</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td>DOB</td>
+<td>Dormayer</td>
+<td>Bernd</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td>FEM</td>
+<td>Felix</td>
+<td>Mario</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td>GA</td>
+<td>Gschaider</td>
+<td>Andreas</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td>MAY</td>
+<td>Mayer</td>
+<td>Sonja</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td>MOS</td>
+<td>Moser</td>
+<td>Gabriele</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td>NAI</td>
+<td>Naimer</td>
+<td>Eva Maria</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td>OEM</td>
+<td>Öhlknecht</td>
+<td>Martin</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td>POD</td>
+<td>Poppel</td>
+<td>Dominik</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td>SAB</td>
+<td>San</td>
+<td>Berg</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td>SAC</td>
+<td>Schachner</td>
+<td>Christine</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td>SCM</td>
+<td>Schrammel</td>
+<td>Manuela</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td>SIL</td>
+<td>Siller</td>
+<td>Waltraud</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">16</td>
+<td>WEM</td>
+<td>Wessely</td>
+<td>Mario</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">17</td>
+<td>ZIP</td>
+<td>Zippel</td>
+<td>Erich</td>
+<td style="text-align:right">2019</td>
+</tr>
+<tr>
+<td style="text-align:right">18</td>
+<td>ZOC</td>
+<td>Zöchbauer</td>
+<td>Christian</td>
+<td style="text-align:right">2019</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(2)</strong> Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">#</th>
+<th>Klasse</th>
+<th style="text-align:right">KlassenGesamt</th>
+<th style="text-align:right">SchuelerGesamt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>2AAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>2BAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td>2CAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td>2DAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td>3BAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td>3CAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td>4BAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td>4CAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td>5BAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td>5CAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td>6BAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td>6CAIF</td>
+<td style="text-align:right">116</td>
+<td style="text-align:right">2462</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(3)</strong> Geben Sie bei allen Lehrern, die 2018 eingetreten sind (Spalte <em>L_Eintrittsjahr</em>), das Durchschnittsgehalt
+(gerechnet über alle Lehrer der Schule) aus.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">#</th>
+<th>LNr</th>
+<th>LName</th>
+<th>LVorname</th>
+<th style="text-align:right">LEintrittsjahr</th>
+<th style="text-align:right">LGehalt</th>
+<th style="text-align:right">AvgGehalt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>AH</td>
+<td>Auinger</td>
+<td>Harald</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2083</td>
+<td style="text-align:right">3126.67</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>BIE</td>
+<td>Bierbamer</td>
+<td>Peter</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2225</td>
+<td style="text-align:right">3126.67</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td>CAM</td>
+<td>Camrda</td>
+<td>Christian</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">3126.67</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td>HY</td>
+<td>Horny</td>
+<td>Christian</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2224</td>
+<td style="text-align:right">3126.67</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td>KEM</td>
+<td>Keminger</td>
+<td>Alexander</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2138</td>
+<td style="text-align:right">3126.67</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td>KMO</td>
+<td>Kmyta</td>
+<td>Olga</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2122</td>
+<td style="text-align:right">3126.67</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td>MC</td>
+<td>Marek</td>
+<td>Clemens</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2158</td>
+<td style="text-align:right">3126.67</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td>PEC</td>
+<td>Pemöller</td>
+<td>Christoph</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right"></td>
+<td style="text-align:right">3126.67</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td>SE</td>
+<td>Schmid</td>
+<td>Erhard</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2064</td>
+<td style="text-align:right">3126.67</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td>ZLA</td>
+<td>Zlabinger</td>
+<td>Walter</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2256</td>
+<td style="text-align:right">3126.67</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(4)</strong> Als Ergänzung geben Sie nun bei diesen Lehrern die Abweichung vom Durchschnittsgehalt
+aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschnittswert verdienen.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">#</th>
+<th>LNr</th>
+<th>LName</th>
+<th>LVorname</th>
+<th style="text-align:right">LEintrittsjahr</th>
+<th style="text-align:right">LGehalt</th>
+<th style="text-align:right">AvgGehalt</th>
+<th style="text-align:right">Abweichung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>AH</td>
+<td>Auinger</td>
+<td>Harald</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2083</td>
+<td style="text-align:right">3126.67</td>
+<td style="text-align:right">-1043.67</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>KMO</td>
+<td>Kmyta</td>
+<td>Olga</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2122</td>
+<td style="text-align:right">3126.67</td>
+<td style="text-align:right">-1004.67</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td>SE</td>
+<td>Schmid</td>
+<td>Erhard</td>
+<td style="text-align:right">2018</td>
+<td style="text-align:right">2064</td>
+<td style="text-align:right">3126.67</td>
+<td style="text-align:right">-1062.67</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(5)</strong> Geben Sie die Prüfungen aus, die maximal 3 Tage vor der letzten Prüfung stattfanden.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">#</th>
+<th>PDatumZeit</th>
+<th>PPruefer</th>
+<th style="text-align:right">PNote</th>
+<th>Zuname</th>
+<th>Vorname</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>31.05.2020 20:10:00</td>
+<td>SAB</td>
+<td style="text-align:right">1</td>
+<td>Kuhlman</td>
+<td>Frances</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>31.05.2020 17:20:00</td>
+<td>PC</td>
+<td style="text-align:right"></td>
+<td>Hammes</td>
+<td>Danny</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td>31.05.2020 12:55:00</td>
+<td>SJ</td>
+<td style="text-align:right"></td>
+<td>Balistreri</td>
+<td>Irene</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td>31.05.2020 09:10:00</td>
+<td>SGC</td>
+<td style="text-align:right">2</td>
+<td>Quitzon</td>
+<td>Sue</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td>30.05.2020 20:55:00</td>
+<td>SPN</td>
+<td style="text-align:right">3</td>
+<td>Rohan</td>
+<td>Tracy</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td>30.05.2020 20:10:00</td>
+<td>VOG</td>
+<td style="text-align:right">2</td>
+<td>Hahn</td>
+<td>Oliver</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td>30.05.2020 18:25:00</td>
+<td>HOH</td>
+<td style="text-align:right">2</td>
+<td>Sanford</td>
+<td>Everett</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td>30.05.2020 17:25:00</td>
+<td>BEC</td>
+<td style="text-align:right"></td>
+<td>Nicolas</td>
+<td>Erika</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td>30.05.2020 16:05:00</td>
+<td>KNT</td>
+<td style="text-align:right">4</td>
+<td>Klocko</td>
+<td>Kristie</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td>30.05.2020 15:30:00</td>
+<td>WAG</td>
+<td style="text-align:right">3</td>
+<td>Frami</td>
+<td>Timothy</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td>30.05.2020 11:00:00</td>
+<td>JAD</td>
+<td style="text-align:right">3</td>
+<td>Robel</td>
+<td>Drew</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td>30.05.2020 10:15:00</td>
+<td>PT</td>
+<td style="text-align:right">3</td>
+<td>Zemlak</td>
+<td>Katie</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td>29.05.2020 12:20:00</td>
+<td>HAU</td>
+<td style="text-align:right"></td>
+<td>Prohaska</td>
+<td>Ross</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td>29.05.2020 11:05:00</td>
+<td>GAL</td>
+<td style="text-align:right">2</td>
+<td>O'Hara</td>
+<td>Hubert</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(6)</strong> Geben Sie die Räume mit der meisten Kapazität (Spalte <em>R_Plaetze</em>) aus. Hinweis: Das können auch
+mehrere Räume sein.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">#</th>
+<th>RId</th>
+<th style="text-align:right">RPlaetze</th>
+<th>RArt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>AH.32</td>
+<td style="text-align:right">36</td>
+<td>Naturwissenschaftlicher Raum</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>B5.09</td>
+<td style="text-align:right">36</td>
+<td>Klassenraum</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(7)</strong> Gibt es Räume, die unter einem Viertel der Plätze als der größte Raum haben?</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">#</th>
+<th>RId</th>
+<th style="text-align:right">RPlaetze</th>
+<th>RArt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>A3.04</td>
+<td style="text-align:right">3</td>
+<td>Multifunktionsraum Medien</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>AH.21</td>
+<td style="text-align:right">6</td>
+<td>Bibliothek</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td>BH.08W</td>
+<td style="text-align:right">8</td>
+<td>Maschentechnik</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td>BH.09aW</td>
+<td style="text-align:right">8</td>
+<td>Gewebetechnik</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td>BH.10</td>
+<td style="text-align:right">8</td>
+<td>Schweisstechnik</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td>BH.11W</td>
+<td style="text-align:right">8</td>
+<td>Mechanik</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td>BLA</td>
+<td style="text-align:right">8</td>
+<td>Betriebslaboratorium</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td>DE.04L</td>
+<td style="text-align:right">8</td>
+<td>Instrumentelle Analytik</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td>DE.05L</td>
+<td style="text-align:right">8</td>
+<td>Analytik und Prüftechnik</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td>DE.06L</td>
+<td style="text-align:right">8</td>
+<td>Umweltlabor</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td>DE.09L</td>
+<td style="text-align:right">8</td>
+<td>Nasschemisches Labor</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td>DE.10W</td>
+<td style="text-align:right">8</td>
+<td>Reinigungs- und Facilitytechnik</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td>DE.11W</td>
+<td style="text-align:right">8</td>
+<td>Färbe-, Veredlungs- und Verfahrenstechnik</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td>DE.12aW</td>
+<td style="text-align:right">8</td>
+<td>Farblabor</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td>DE.13aW</td>
+<td style="text-align:right">8</td>
+<td>Drucktechnik</td>
+</tr>
+<tr>
+<td style="text-align:right">16</td>
+<td>DE.15L</td>
+<td style="text-align:right">8</td>
+<td>Versuchsanstalt Prüflabor</td>
+</tr>
+<tr>
+<td style="text-align:right">17</td>
+<td>DE.19L</td>
+<td style="text-align:right">8</td>
+<td>Versuchsanstalt Grünbereich</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(8)</strong> Welche Klasse hat mehr weibliche Schüler (S_Geschlecht ist 2) als die 5BAIF? Hinweis: Gruppieren Sie
+die Schülertabelle und vergleichen die Anzahl mit dem ermittelten Wert aus der 5BAIF.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">#</th>
+<th>Klasse</th>
+<th style="text-align:right">AnzWeibl</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>1AFITN</td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>1AHBGM</td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td>1AHKUI</td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td>1AHMNA</td>
+<td style="text-align:right">19</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td>1AHWIT</td>
+<td style="text-align:right">17</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td>1AO</td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td>1BFITN</td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td>1BHBGM</td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td>1BHWIT</td>
+<td style="text-align:right">17</td>
+</tr>
+<tr>
+<td style="text-align:right">10</td>
+<td>1CVIF</td>
+<td style="text-align:right">19</td>
+</tr>
+<tr>
+<td style="text-align:right">11</td>
+<td>1DVIF</td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td style="text-align:right">12</td>
+<td>1EVIF</td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td style="text-align:right">13</td>
+<td>2AFITN</td>
+<td style="text-align:right">17</td>
+</tr>
+<tr>
+<td style="text-align:right">14</td>
+<td>2AHBGM</td>
+<td style="text-align:right">19</td>
+</tr>
+<tr>
+<td style="text-align:right">15</td>
+<td>2AHKUI</td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td style="text-align:right">16</td>
+<td>2BHWIT</td>
+<td style="text-align:right">18</td>
+</tr>
+<tr>
+<td style="text-align:right">17</td>
+<td>2CHWIT</td>
+<td style="text-align:right">19</td>
+</tr>
+<tr>
+<td style="text-align:right">18</td>
+<td>3ACIF</td>
+<td style="text-align:right">17</td>
+</tr>
+<tr>
+<td style="text-align:right">19</td>
+<td>3AKKUI</td>
+<td style="text-align:right">16</td>
+</tr>
+<tr>
+<td style="text-align:right">20</td>
+<td>3CAIF</td>
+<td style="text-align:right">16</td>
+</tr>
+<tr>
+<td style="text-align:right">21</td>
+<td>4AFITM</td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td style="text-align:right">22</td>
+<td>4AHWIT</td>
+<td style="text-align:right">17</td>
+</tr>
+<tr>
+<td style="text-align:right">23</td>
+<td>4BHBGM</td>
+<td style="text-align:right">19</td>
+</tr>
+<tr>
+<td style="text-align:right">24</td>
+<td>5ACMNA</td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td style="text-align:right">25</td>
+<td>5AHBGM</td>
+<td style="text-align:right">15</td>
+</tr>
+<tr>
+<td style="text-align:right">26</td>
+<td>5AKIF</td>
+<td style="text-align:right">16</td>
+</tr>
+<tr>
+<td style="text-align:right">27</td>
+<td>5CAIF</td>
+<td style="text-align:right">17</td>
+</tr>
+</tbody>
+</table>
+<p><strong>(9)</strong> Geben Sie die Klassen der Abteilung BIF sowie die Anzahl der Schüler in dieser Abteilung aus.
+Hinweis: Verwenden Sie GROUP BY, um die Schüleranzahl pro Klasse zu ermitteln. Achten Sie auch
+darauf, dass Klassen mit 0 Schülern auch angezeigt werden. Danach schreiben Sie
+eine Unterabfrage, die die Schüler der BIF Abteilung zählt.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">#</th>
+<th>Klasse</th>
+<th style="text-align:right">SchuelerKlasse</th>
+<th style="text-align:right">SchuelerBIF</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">1</td>
+<td>2ABIF</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">105</td>
+</tr>
+<tr>
+<td style="text-align:right">2</td>
+<td>3BBIF</td>
+<td style="text-align:right">30</td>
+<td style="text-align:right">105</td>
+</tr>
+<tr>
+<td style="text-align:right">3</td>
+<td>4BBIF</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">105</td>
+</tr>
+<tr>
+<td style="text-align:right">4</td>
+<td>5BBIF</td>
+<td style="text-align:right">24</td>
+<td style="text-align:right">105</td>
+</tr>
+<tr>
+<td style="text-align:right">5</td>
+<td>6BBIF</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">105</td>
+</tr>
+<tr>
+<td style="text-align:right">6</td>
+<td>7BBIF</td>
+<td style="text-align:right">25</td>
+<td style="text-align:right">105</td>
+</tr>
+<tr>
+<td style="text-align:right">7</td>
+<td>7CBIF</td>
+<td style="text-align:right">26</td>
+<td style="text-align:right">105</td>
+</tr>
+<tr>
+<td style="text-align:right">8</td>
+<td>8BBIF</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">105</td>
+</tr>
+<tr>
+<td style="text-align:right">9</td>
+<td>8CBIF</td>
+<td style="text-align:right">0</td>
+<td style="text-align:right">105</td>
+</tr>
+</tbody>
+</table>
+
+    </body>
+    </html>

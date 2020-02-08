@@ -21,7 +21,8 @@
             ER Modellierung (1)
             <ol>
                 <li><a href="">Normalformen</a></li>
-                <li><a href="">Generalisierung</a></li>
+                <li><a href="32_Generalisierung">Generalisierung</a></li>
+                <li><a href="">Historisierung</a></li>
                 <li><a href="">Hierarchien</a></li>
                 <li><a href="">Gruppen und Rollen</a></li>
             </ol>
