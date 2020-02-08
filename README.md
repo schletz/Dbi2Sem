@@ -7,7 +7,7 @@
         <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th>
     </tr>
     <tr>
-        <td colspan="2" rowspan="2">
+        <td colspan="2" rowspan="2" valign="top">
             ER Modellierung
             <ol>
                 <li><a href="">Normalformen</a></li>
