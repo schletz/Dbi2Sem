@@ -17,19 +17,18 @@
                 <li><a href="15_WindowFunctions">Window Functions</a></li>
             </ol>
         </td>    
-        <td colspan="2" rowspan="2" valign="top">
-            ER Modellierung
+        <td colspan="2" valign="top">
+            ER Modellierung (1)
             <ol>
                 <li><a href="">Normalformen</a></li>
                 <li><a href="">Generalisierung</a></li>
                 <li><a href="">Hierarchien</a></li>
                 <li><a href="">Gruppen und Rollen</a></li>
-                <li><a href="">Modellierungsprojekt</a></li>
             </ol>
         </td>
     </tr>
     <tr>
-        <td colspan="3" valign="top">
+        <td colspan="2" valign="top">
             Bereich Datenbankadministration
             <ol>
                 <li><a href="21_Views">Views</a></li>
@@ -37,16 +36,22 @@
                 <li><a href="23_Transaktionen">Transaktionen</a></li>
             </ol>
         </td>
+        <td colspan="3" valign="top">
+            ER Modellierung (2)
+            <ol>
+                <li><a href="">Modellierungsprojekt</a></li>
+            </ol>
+        </td>        
     </tr>
 </table>
 
 ### Beurteilung
 
-- Insgesamt 2 praktische Überprüfungen im Bereich SQL und Datenbankadministration
-- Abgabe des Modellierungsprojektes
+- Insgesamt 2 praktische Überprüfungen im Bereich SQL und Datenbankadministration.
+- Abgabe des Modellierungsprojektes.
 - Die Gewichtung erfolgt nach Stundenausmaß, wobei beide Teile (Modellierung und SQL/DB Admin)
   positiv sein müssen.
-  
+
 ## Die verwendete Schuldatenbank
 
 - [Download als SQLite Datenbank](Schule.db)
