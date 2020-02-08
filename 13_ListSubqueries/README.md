@@ -159,7 +159,7 @@ WHERE l.L_Nr IN (SELECT s.St_Lehrer FROM Stunde s WHERE s.St_Klasse NOT LIKE '%H
 
 ## EXISTS
 
-SQL bietet noch eine 2. Möglichkeit zu Prüfen, ob ein Element im Ergebnis einer Unterabfrage
+SQL bietet noch eine 2. Möglichkeit zu prüfen, ob ein Element im Ergebnis einer Unterabfrage
 vorkommt: *EXISTS*. Dieser Operator liefert - im Gegensatz zu *IN* - nur *true* oder *false*.
 *true* wird dann geliefert, wenn die Liste einen (beliebigen) Wert enthält, ansonsten wird
 *false* geliefert.
