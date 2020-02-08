@@ -1,4 +1,4 @@
-# Unterabfragen, die Listen liefern (IN, NOT IN)
+# Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)
 
 Eine Liste ist hier ein Ergebnis, welches aus einer Spalte, aber mehreren Werten besteht. Wir
 haben solche Listen bereits in Kombination mit dem *IN* Operator kennengelernt, nämlich indem
@@ -156,6 +156,74 @@ SELECT *
 FROM Lehrer l
 WHERE l.L_Nr IN (SELECT s.St_Lehrer FROM Stunde s WHERE s.St_Klasse NOT LIKE '%HIF%');
 ```
+
+## EXISTS
+
+SQL bietet noch eine 2. Möglichkeit zu Prüfen, ob ein Element im Ergebnis einer Unterabfrage
+vorkommt: *EXISTS*. Dieser Operator liefert - im Gegensatz zu *IN* - nur *true* oder *false*.
+*true* wird dann geliefert, wenn die Liste einen (beliebigen) Wert enthält, ansonsten wird
+*false* geliefert.
+
+Diese Abfragen sind meist korrespondierend, das bedeutet dass Werte der äußeren Abfrage
+verwendet werden. Das folgende Beispiel liefert ebenfalls die Liste aller Räume, in denen
+überhaupt Unterricht statt findet:
+
+```sql
+SELECT *
+FROM Raum r
+WHERE EXISTS (SELECT 1 FROM Stunde s WHERE s.St_Raum == r.R_ID);
+```
+
+Da es nur darum geht, ob überhaupt Elemente geliefert werden, schreiben wir einfach 1 als
+Wert. Ob 1, NULL, *, ... verwendet wird ist Geschmackssachte.
+
+Die Räume, in denen DBI1 unterrichtet wird, werden durch folgende Abfrage geliefert:
+
+```sql
+SELECT *
+FROM Raum r
+WHERE EXISTS (SELECT 1 FROM Stunde s WHERE s.St_Raum == r.R_ID AND s.St_Gegenstand == 'DBI1');
+```
+
+### EXISTS oder IN?
+
+Die Stärke von *EXISTS* ist der Umgang mit mehreren Schlüsselteilen. Da *IN* nur eine Spalte
+liefern kann, gibt es ein Problem wenn eine Tabelle einen mehrteiligen Schlüssel hat.
+
+Das folgende Beispiel listet alle Prüfungen auf, wo der Prüfer das gleiche Fach am gleichen
+Tag nochmals prüft. Überlegen Sie, was ohne die letzte AND Bedingung geliefert werden würde.
+*DATE()* ruft in SQLite die Datumskomponente ab, schneidet also die Zeit weg.
+
+```sql
+SELECT *
+FROM Pruefung p
+WHERE EXISTS(
+    SELECT 1
+    FROM Pruefung p2
+    WHERE
+        p.P_Pruefer = p2.P_Pruefer AND
+        p.P_Gegenstand = p2.P_Gegenstand AND
+        DATE(p.P_DatumZeit) = DATE(p2.P_DatumZeit) AND
+        p.P_DatumZeit < p2.P_DatumZeit
+);
+```
+
+Mit *IN* müssten wir ebenso eine korrespondierende Abfrage schreiben, die dann eine Spalte
+(z. B. den Gegenstand) liefert, der dann verglichen werden kann. Das ist etwas willkürlich.
+
+> **Hinweis:** Würde die *IN* Abfrage ohnehin korrespondierend sein, ist EXISTS meist die
+> klarere Alternative.
+
+Es gibt auch *NOT EXISTS*, welche die Aussage von *EXISTS* verneint.
+
+Die Eigenschaften der jeweiligen Operatoren sind
+
+- Abfragen mit *IN* sind oft nicht korrespondierend und können separat getestet werden.
+- Bei mehrteiligen Schlüsseln ist die Abfrage mit *EXISTS* leichter zu schreiben.
+- EXISTS ist fast immer korrespondierend und kann daher schwerer getestet werden.
+- Über die Performance wird viel diskutiert. Der Optimizer der Datenbank arbeitet aber schon
+  so gut, dass ein einfaches Umstellen der Abfrage keinen Mehrwert mehr bringt. Schreiben Sie
+  daher die Abfragen so, wie es für Sie am klarsten erscheint.
 
 ## Übungen
 
