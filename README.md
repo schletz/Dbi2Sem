@@ -7,7 +7,7 @@
         <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th>
     </tr>
     <tr>
-        <td colspan="2" rowspan="2" style="vertical-align:top">
+        <td colspan="2" rowspan="2">
             ER Modellierung
             <ol>
                 <li><a href="">Normalformen</a></li>
@@ -17,7 +17,7 @@
                 <li><a href="">Modellierungsprojekt</a></li>
             </ol>
         </td>
-        <td colspan="3" style="vertical-align:top">
+        <td colspan="3">
             Erweitertes SQL
             <ol>
                 <li><a href="11_SingleValueNonCorresponding">Nicht korrespondierende Unterabfragen, die einen Wert liefern</a></li>
@@ -29,7 +29,7 @@
         </td>
     </tr>
     <tr>
-        <td colspan="3" style="vertical-align:top">
+        <td colspan="3">
             Bereich Datenbankadministration
             <ol>
             <li><a href="21_Views">Views</a></li>
