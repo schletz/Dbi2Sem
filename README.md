@@ -24,7 +24,7 @@
                 <li><a href="12_SingleValueCorresponding">Korrespondierende Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
                 <li><a href="14_FromSubqueries">Unterabfragen, die in FROM verwendet werden</a></li>
-                <li><a href="15_WindowFunctions">Window Functions](15_WindowFunctions)</a></li>
+                <li><a href="15_WindowFunctions">Window Functions</a></li>
             </ol>
         </td>
     </tr>
