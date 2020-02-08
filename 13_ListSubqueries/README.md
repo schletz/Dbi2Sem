@@ -103,7 +103,15 @@ SELECT 1 WHERE 'A' IN ('A', NULL);     -- Liefert 1, denn A ist sicher in der Li
 SELECT 1 WHERE 'B' NOT IN ('A', NULL); -- Liefert kein Ergebnis, denn B ist vielleicht der NULL Wert.
 ```
 
-## Abfragen mit "für alle": ein bisschen Aussagenlogik.
+Alternativ kann auch mit *COALESCE()* gearbeitet werden, um NULL Werte zu vermeiden:
+
+```sql
+SELECT *
+FROM Raum r
+WHERE r.R_ID NOT IN (SELECT COALESCE(s.St_Raum, '?') FROM Stunde s WHERE s.St_Gegenstand = 'DBI1');
+```
+
+## Abfragen mit "für alle": ein bisschen Aussagenlogik
 
 Wir betrachten das folgende Beispiel: Welche Lehrer unterrichten nur in den HIF Klassen? Dafür
 reicht das *IN* alleine nicht aus, denn es würde alle Lehrer liefern, die **unter anderem** eine
