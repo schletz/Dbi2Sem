@@ -2,27 +2,44 @@
 
 ## Lehrinhalte
 
-### Bereich SQL
+<table>
+    <tr>
+        <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th>
+    </tr>
+    <tr>
+        <td colspan="2" rowspan="2" style="vertical-align:top">
+            ER Modellierung
+            <ol>
+                <li><a href="">Normalformen</a></li>
+                <li><a href="">Generalisierung</a></li>
+                <li><a href="">Hierarchien</a></li>
+                <li><a href="">Gruppen und Rollen</a></li>
+                <li><a href="">Modellierungsprojekt</a></li>
+            </ol>
+        </td>
+        <td colspan="3" style="vertical-align:top">
+            Erweitertes SQL
+            <ol>
+                <li><a href="11_SingleValueNonCorresponding">Nicht korrespondierende Unterabfragen, die einen Wert liefern</a></li>
+                <li><a href="12_SingleValueCorresponding">Korrespondierende Unterabfragen, die einen Wert liefern</a></li>
+                <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
+                <li><a href="14_FromSubqueries">Unterabfragen, die in FROM verwendet werden</a></li>
+                <li><a href="15_WindowFunctions">Window Functions](15_WindowFunctions)</a></li>
+            </ol>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="3" style="vertical-align:top">
+            Bereich Datenbankadministration
+            <ol>
+            <li><a href="21_Views">Views</a></li>
+            <li><a href="22_Null">NULL Values</a></li>
+            <li><a href="23_Transaktionen">Transaktionen</a></li>
+            </ol>
+        </td>
+    </tr>
 
-1. [Nicht korrespondierende Unterabfragen, die einen Wert liefern](11_SingleValueNonCorresponding)
-2. [Korrespondierende Unterabfragen, die einen Wert liefern](12_SingleValueCorresponding)
-3. [Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)](13_ListSubqueries)
-4. [Unterabfragen, die in FROM verwendet werden](14_FromSubqueries)
-5. [Window Functions](15_WindowFunctions)
-
-### Bereich Datenbankadministration
-
-1. [Views](21_Views)
-2. [NULL Values](22_Null)
-3. [Transaktionen](23_Transaktionen)
-
-### Bereich ER Modellierung
-
-1. Normalformen
-2. Generalisierung
-3. Hierarchien
-4. Gruppen und Rollen
-5. Modellierungsprojekt
+</table>
 
 ## Die verwendete Schuldatenbank
 
@@ -41,7 +58,6 @@ GO
 ```
 
 ![](schuldb20200207.png)
-
 
 ## Synchronisieren des Repositories in einen Ordner
 
