@@ -159,7 +159,8 @@ können (z. B. Tag und Abend) brauchen Sie hier geschachtelte Unterabfragen.
 4. Der Lehrer darf nicht in der Liste von (3) vorkommen.
 5. Betrachten Sie zum Schluss nur die Lehrer, die auch KV sind. Lehrer, die kein KV sind, würden
    nämlich aussagenlogisch auch nur in Abteilungen unterrichten, von denen sie KV sind.
-".WriteItem();
+   
+Korrekte Ausgabe:".WriteItem();
             (from l in db.Lehrers
              where
                 l.Klassens.Any() &&
