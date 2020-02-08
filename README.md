@@ -7,16 +7,6 @@
         <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th>
     </tr>
     <tr>
-        <td colspan="2" rowspan="2" valign="top">
-            ER Modellierung
-            <ol>
-                <li><a href="">Normalformen</a></li>
-                <li><a href="">Generalisierung</a></li>
-                <li><a href="">Hierarchien</a></li>
-                <li><a href="">Gruppen und Rollen</a></li>
-                <li><a href="">Modellierungsprojekt</a></li>
-            </ol>
-        </td>
         <td colspan="3" valign="top">
             Erweitertes SQL
             <ol>
@@ -25,6 +15,16 @@
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
                 <li><a href="14_FromSubqueries">Unterabfragen, die in FROM verwendet werden</a></li>
                 <li><a href="15_WindowFunctions">Window Functions</a></li>
+            </ol>
+        </td>    
+        <td colspan="2" rowspan="2" valign="top">
+            ER Modellierung
+            <ol>
+                <li><a href="">Normalformen</a></li>
+                <li><a href="">Generalisierung</a></li>
+                <li><a href="">Hierarchien</a></li>
+                <li><a href="">Gruppen und Rollen</a></li>
+                <li><a href="">Modellierungsprojekt</a></li>
             </ol>
         </td>
     </tr>
