@@ -70,7 +70,7 @@ CREATE DATABASE [Schule] ON (FILENAME = N'C:\PATH\Schule.mdf') FOR ATTACH
 GO
 ```
 
-![](schuldb20200207.png)
+![](schuldb20200209.png)
 
 ## Synchronisieren des Repositories in einen Ordner
 
