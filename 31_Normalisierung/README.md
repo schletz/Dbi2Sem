@@ -2,6 +2,20 @@
 
 ## Funktionale Abhängigkeit
 
+Bei den Normalformen kommt oft der Begriff *funktionale Abhängigkeit* vor. In der Mathematik ist
+eine Funktion eine Vorschrift, die einen Eingangswert auf einen Ausgangswert abbildet. So bildet
+die Funktion *f(x) = x + 1* jede Zahl auf die um 1 erhöhte Zahl ab. Dabei gilt, dass der gleiche Eingangswert immer auf den selben Ausgangswert abgebildet wird.
+
+Nun kommen in Datenbanken keine mathematischen Formeln zum Einsatz, eine Funktion ist in diesem
+Fall ein Nachsehen in der Datenbank. Es wird die Frage gestellt, ob ich durch einen Wert (meist der
+Primärschlüssel) zusätzliche Informationen abrufen kann.
+
+> Bei einer funktionalen Abhängigkeit gilt: Gleiche Eingangswerte bedeuten gleiche
+> Ausgangswerte. Logisch ident ist auch die Aussage ungleiche Ausgangswerte haben
+> ungleiche Eingangswerte.
+
+Wir betrachten die folgende Tabelle:
+
 | COL_0 (PK) | COL_1 | COL_2 | COL_3 | COL_4 |
 | :--------: | :---: | :---: | :---: | :---: |
 |     1      |   1   |   1   |   1   |   2   |
@@ -10,10 +24,6 @@
 |     4      |   2   |   2   |   4   |   6   |
 |     5      |   2   |   3   |   4   |   7   |
 |     6      |   2   |   4   |   4   |   8   |
-
-> Bei einer funktionalen Abhängigkeit gilt: Gleiche Eingangswerte bedeuten gleiche
-> Ausgangswerte. Logisch ident ist auch die Aussage ungleiche Ausgangswerte haben
-> ungleiche Eingangswerte.
 
 - **COL_0** ist ein Autowert, er kann daher von keiner Spalte abhängig sein.
 - **COL_1** ist von keiner Spalte abhängig, denn es gibt keine Spalte, die immer dieselben Werte
@@ -43,7 +53,8 @@ enthalten.
 Die erste Normalform besagt, dass die Attribute einfache Wertausprägungen enthalten. Das bedeutet,
 dass pro Zelle nur ein Wert stehen darf. In unserem Beispiel trifft das auf die Spalte *Lehrer*
 nicht zu, denn sie umfasst mehrere Werte. Wir lösen das Problem so auf, indem wir eine
-zusätzliche Zeile einfügen.
+zusätzliche Zeile einfügen. Durch diese Zeilen müssen wir den Schlüssel auch anpassen, imdem wir
+den Lehrer (der mehrfach vorkam) einfügen.
 
 | Tag (PK) | Stunde (PK) | Klasse (PK) | Abteilung  | Fach | Fachnanme     | Lehrer (PK) | Raum  |
 | -------- | ----------- | ----------- | ---------- | ---- | ------------- | ----------- | ----- |
