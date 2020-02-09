@@ -145,8 +145,8 @@ führt man im Normalisierungsschritt bereits beide Normalisierungen auf einmal a
 
 ## Übung
 
-**(1)** Führen Sie eine formale Normalisierung der ersten Tabelle unter funktionale Abhängigkeiten
-durch. Legen Sie dafür TabelleA, TabelleB, ... an.
+**(1)** Führen Sie eine formale Normalisierung der ersten Tabelle aus dem Punkt funktionale
+Abhängigkeit durch. Legen Sie dafür TabelleA, TabelleB, ... an.
 
 **(2)** Fügen Sie in die Tabelle der 1. Normalform eine Spalte ID als Autowert ein. Wie sieht dann
 die 2. und 3. Normalform aus? Welche Aussage kann über Autowerte und die 2. Normalform getroffen
