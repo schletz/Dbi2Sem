@@ -165,7 +165,7 @@ Tabelle in ein Tabellenverarbeitungsprogramm kopieren.
 | VVL | Vukovic   | Vladimir       | vukovic@spengergasse.at   | Begleiter | Malta     | 30.11.2018 | 07.12.2018 |          24 | 4BHIF  | 2018/19   |
 | SUN | Subotic   | Nenad          | subotic@spengergasse.at   | Leiter    | Malta     | 30.11.2018 | 07.12.2018 |          24 | 4BHIF  | 2018/19   |
 | FAV | Fakitsch  | Viktoria       | fakitsch@spengergasse.at  | Leiter    | Malta     | 30.11.2018 | 07.12.2018 |          25 | 4AHIF  | 2018/19   |
-| KOP | Kock      | Philipp Anselm | kock@spengergasse.at      | Begleiter | Edinburgh | 23.02.2019 | 04.03.2019 |          25 | 4EHIF  | 2018/19   |
+| KOP | Kock      | Philipp | kock@spengergasse.at      | Begleiter | Edinburgh | 23.02.2019 | 04.03.2019 |          25 | 4EHIF  | 2018/19   |
 | FAV | Fakitsch  | Viktoria       | fakitsch@spengergasse.at  | Leiter    | Edinburgh | 23.02.2019 | 04.03.2019 |          25 | 4EHIF  | 2018/19   |
 | FAV | Fakitsch  | Viktoria       | fakitsch@spengergasse.at  | Begleiter | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
 | KAS | Karl      | Susanne        | karl@spengergasse.at      | Begleiter | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
