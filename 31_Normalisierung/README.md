@@ -29,9 +29,9 @@ Wir betrachten die folgende Tabelle:
 - **COL_1** ist von keiner Spalte abhängig, denn es gibt keine Spalte, die immer dieselben Werte
   in *COL_1* hat wenn der Spaltenwert der jeweiligen Spalte ident ist.
 - **COL_2** ist von keiner Spalte abhängig, es gilt ebenfalls die obige Aussage.
-- **COL_3** ist von COL_2 abhängig, denn es ist der Wert in COL_3 gleich, wenn die Werte in
+- **COL_3** ist von *COL_2* abhängig, denn es ist der Wert in *COL_3* gleich, wenn die Werte in
   *COL_2* gleich sind.
-- **COL_4** ist von COL_2 und COL_3 abhängig (es ist die Summe dieser Zahlen).
+- **COL_4** ist von *COL_2* und *COL_3* abhängig (es ist die Summe dieser Zahlen).
 
 ## Unnormalisierte Daten
 
