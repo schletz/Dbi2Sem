@@ -62,8 +62,8 @@ den Lehrer (der mehrfach vorkam) einfügen.
 | 2        | 3           | 5AHIF       | Informatik | DBI  | Datenbanken   | SZ          | C3.10 |
 | 2        | 4           | 5AHIF       | Informatik | DBI  | Datenbanken   | HIK         | C3.10 |
 | 2        | 4           | 5AHIF       | Informatik | DBI  | Datenbanken   | SZ          | C3.10 |
-| 2        | 3           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
-| 2        | 4           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
+| 3        | 3           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
+| 3        | 4           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
 | 4        | 7           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH         | C4.07 |
 | 4        | 7           | 5BHIF       | Informatik | DBI  | Datenbanken   | NIJ         | C4.07 |
 | 4        | 8           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH         | C4.07 |
