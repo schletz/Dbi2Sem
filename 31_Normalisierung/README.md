@@ -29,14 +29,14 @@ Unnormalisierte Daten können alle Daten in Tabellenform sein. Sie können mehre
 pro Zelle (Beistrichliste) oder zusammengesetzte Werte (Vor- und Nachname in einer Zelle)
 enthalten.
 
-| Tag  (PK) | Stunde  (PK) | Klasse  (PK) | Abteilung  | Fach | Fachnanme     | Lehrer   | Raum  |
-| --------- | ------------ | ------------ | ---------- | ---- | ------------- | -------- | ----- |
-| 2         | 3            | 5AHIF        | Informatik | DBI  | Datenbanken   | HIK, SZ  | C3.10 |
-| 2         | 4            | 5AHIF        | Informatik | DBI  | Datenbanken   | HIK, SZ  | C3.10 |
-| 2         | 3            | 5AHIF        | Informatik | POS  | Programmieren | SZ       | C4.06 |
-| 2         | 4            | 5AHIF        | Informatik | POS  | Programmieren | SZ       | C4.06 |
-| 4         | 7            | 5BHIF        | Informatik | DBI  | Datenbanken   | MOH, NIJ | C4.07 |
-| 4         | 8            | 5BHIF        | Informatik | DBI  | Datenbanken   | MOH, NIJ | C4.07 |
+| Tag (PK) | Stunde (PK) | Klasse (PK) | Abteilung  | Fach | Fachnanme     | Lehrer   | Raum  |
+| -------- | ----------- | ----------- | ---------- | ---- | ------------- | -------- | ----- |
+| 2        | 3           | 5AHIF       | Informatik | DBI  | Datenbanken   | HIK, SZ  | C3.10 |
+| 2        | 4           | 5AHIF       | Informatik | DBI  | Datenbanken   | HIK, SZ  | C3.10 |
+| 2        | 3           | 5AHIF       | Informatik | POS  | Programmieren | SZ       | C4.06 |
+| 2        | 4           | 5AHIF       | Informatik | POS  | Programmieren | SZ       | C4.06 |
+| 4        | 7           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH, NIJ | C4.07 |
+| 4        | 8           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH, NIJ | C4.07 |
 
 ## 1. Normalform
 
@@ -45,18 +45,18 @@ dass pro Zelle nur ein Wert stehen darf. In unserem Beispiel trifft das auf die 
 nicht zu, denn sie umfasst mehrere Werte. Wir lösen das Problem so auf, indem wir eine
 zusätzliche Zeile einfügen.
 
-| Tag  (PK) | Stunde  (PK) | Klasse  (PK) | Abteilung  | Fach | Fachnanme     | Lehrer  (PK) | Raum  |
-| --------- | ------------ | ------------ | ---------- | ---- | ------------- | ------------ | ----- |
-| 2         | 3            | 5AHIF        | Informatik | DBI  | Datenbanken   | HIK          | C3.10 |
-| 2         | 3            | 5AHIF        | Informatik | DBI  | Datenbanken   | SZ           | C3.10 |
-| 2         | 4            | 5AHIF        | Informatik | DBI  | Datenbanken   | HIK          | C3.10 |
-| 2         | 4            | 5AHIF        | Informatik | DBI  | Datenbanken   | SZ           | C3.10 |
-| 2         | 3            | 5AHIF        | Informatik | POS  | Programmieren | SZ           | C4.06 |
-| 2         | 4            | 5AHIF        | Informatik | POS  | Programmieren | SZ           | C4.06 |
-| 4         | 7            | 5BHIF        | Informatik | DBI  | Datenbanken   | MOH          | C4.07 |
-| 4         | 7            | 5BHIF        | Informatik | DBI  | Datenbanken   | NIJ          | C4.07 |
-| 4         | 8            | 5BHIF        | Informatik | DBI  | Datenbanken   | MOH          | C4.07 |
-| 4         | 8            | 5BHIF        | Informatik | DBI  | Datenbanken   | NIJ          | C4.07 |
+| Tag (PK) | Stunde (PK) | Klasse (PK) | Abteilung  | Fach | Fachnanme     | Lehrer (PK) | Raum  |
+| -------- | ----------- | ----------- | ---------- | ---- | ------------- | ----------- | ----- |
+| 2        | 3           | 5AHIF       | Informatik | DBI  | Datenbanken   | HIK         | C3.10 |
+| 2        | 3           | 5AHIF       | Informatik | DBI  | Datenbanken   | SZ          | C3.10 |
+| 2        | 4           | 5AHIF       | Informatik | DBI  | Datenbanken   | HIK         | C3.10 |
+| 2        | 4           | 5AHIF       | Informatik | DBI  | Datenbanken   | SZ          | C3.10 |
+| 2        | 3           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
+| 2        | 4           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
+| 4        | 7           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH         | C4.07 |
+| 4        | 7           | 5BHIF       | Informatik | DBI  | Datenbanken   | NIJ         | C4.07 |
+| 4        | 8           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH         | C4.07 |
+| 4        | 8           | 5BHIF       | Informatik | DBI  | Datenbanken   | NIJ         | C4.07 |
 
 ## 2. Normalform
 
@@ -71,25 +71,25 @@ kann auf die Abteilung geschlossen werden.
 
 ### Tabelle Unterricht
 
-| Tag  (PK) | Stunde  (PK) | Klasse  (PK) | Lehrer  (PK) | Raum  | Fach | Fachnanme     |
-| --------- | ------------ | ------------ | ------------ | ----- | ---- | ------------- |
-| 2         | 3            | 5AHIF        | HIK          | C3.10 | DBI  | Datenbanken   |
-| 2         | 3            | 5AHIF        | SZ           | C3.10 | DBI  | Datenbanken   |
-| 2         | 4            | 5AHIF        | HIK          | C3.10 | DBI  | Datenbanken   |
-| 2         | 4            | 5AHIF        | SZ           | C3.10 | DBI  | Datenbanken   |
-| 2         | 3            | 5AHIF        | SZ           | C4.06 | POS  | Programmieren |
-| 2         | 4            | 5AHIF        | SZ           | C4.06 | POS  | Programmieren |
-| 4         | 7            | 5BHIF        | MOH          | C4.07 | DBI  | Datenbanken   |
-| 4         | 7            | 5BHIF        | NIJ          | C4.07 | DBI  | Datenbanken   |
-| 4         | 8            | 5BHIF        | MOH          | C4.07 | DBI  | Datenbanken   |
-| 4         | 8            | 5BHIF        | NIJ          | C4.07 | DBI  | Datenbanken   |
+| Tag (PK) | Stunde (PK) | Klasse (PK) | Lehrer (PK) | Raum  | Fach | Fachnanme     |
+| -------- | ----------- | ----------- | ----------- | ----- | ---- | ------------- |
+| 2        | 3           | 5AHIF       | HIK         | C3.10 | DBI  | Datenbanken   |
+| 2        | 3           | 5AHIF       | SZ          | C3.10 | DBI  | Datenbanken   |
+| 2        | 4           | 5AHIF       | HIK         | C3.10 | DBI  | Datenbanken   |
+| 2        | 4           | 5AHIF       | SZ          | C3.10 | DBI  | Datenbanken   |
+| 2        | 3           | 5AHIF       | SZ          | C4.06 | POS  | Programmieren |
+| 2        | 4           | 5AHIF       | SZ          | C4.06 | POS  | Programmieren |
+| 4        | 7           | 5BHIF       | MOH         | C4.07 | DBI  | Datenbanken   |
+| 4        | 7           | 5BHIF       | NIJ         | C4.07 | DBI  | Datenbanken   |
+| 4        | 8           | 5BHIF       | MOH         | C4.07 | DBI  | Datenbanken   |
+| 4        | 8           | 5BHIF       | NIJ         | C4.07 | DBI  | Datenbanken   |
 
 ### Tabelle Klasse
 
-| Nr  (PK) | Abteilung  |
-| -------- | ---------- |
-| 5AHIF    | Informatik |
-| 5BHIF    | Informatik |
+| Nr (PK) | Abteilung  |
+| ------- | ---------- |
+| 5AHIF   | Informatik |
+| 5BHIF   | Informatik |
 
 ## 3. Normalform
 
@@ -105,32 +105,32 @@ führt man im Normalisierungsschritt bereits beide Normalisierungen auf einmal a
 
 ### Tabelle Unterricht
 
-| Tag  (PK) | Stunde  (PK) | Klasse  (PK) | Lehrer  (PK) | Raum  | Fach |
-| --------- | ------------ | ------------ | ------------ | ----- | ---- |
-| 2         | 3            | 5AHIF        | HIK          | C3.10 | DBI  |
-| 2         | 3            | 5AHIF        | SZ           | C3.10 | DBI  |
-| 2         | 4            | 5AHIF        | HIK          | C3.10 | DBI  |
-| 2         | 4            | 5AHIF        | SZ           | C3.10 | DBI  |
-| 2         | 3            | 5AHIF        | SZ           | C4.06 | POS  |
-| 2         | 4            | 5AHIF        | SZ           | C4.06 | POS  |
-| 4         | 7            | 5BHIF        | MOH          | C4.07 | DBI  |
-| 4         | 7            | 5BHIF        | NIJ          | C4.07 | DBI  |
-| 4         | 8            | 5BHIF        | MOH          | C4.07 | DBI  |
-| 4         | 8            | 5BHIF        | NIJ          | C4.07 | DBI  |
+| Tag (PK) | Stunde (PK) | Klasse (PK) | Lehrer (PK) | Raum  | Fach |
+| -------- | ----------- | ----------- | ----------- | ----- | ---- |
+| 2        | 3           | 5AHIF       | HIK         | C3.10 | DBI  |
+| 2        | 3           | 5AHIF       | SZ          | C3.10 | DBI  |
+| 2        | 4           | 5AHIF       | HIK         | C3.10 | DBI  |
+| 2        | 4           | 5AHIF       | SZ          | C3.10 | DBI  |
+| 2        | 3           | 5AHIF       | SZ          | C4.06 | POS  |
+| 2        | 4           | 5AHIF       | SZ          | C4.06 | POS  |
+| 4        | 7           | 5BHIF       | MOH         | C4.07 | DBI  |
+| 4        | 7           | 5BHIF       | NIJ         | C4.07 | DBI  |
+| 4        | 8           | 5BHIF       | MOH         | C4.07 | DBI  |
+| 4        | 8           | 5BHIF       | NIJ         | C4.07 | DBI  |
 
 ### Tabelle Klasse
 
-| Nr  (PK) | Abteilung  |
-| -------- | ---------- |
-| 5AHIF    | Informatik |
-| 5BHIF    | Informatik |
+| Nr (PK) | Abteilung  |
+| ------- | ---------- |
+| 5AHIF   | Informatik |
+| 5BHIF   | Informatik |
 
 ### Tabelle Fach (neu)
 
-| Nr  (PK) | Fachname      |
-| -------- | ------------- |
-| DBI      | Datenbanken   |
-| POS      | Programmieren |
+| Nr (PK) | Fachname      |
+| ------- | ------------- |
+| DBI     | Datenbanken   |
+| POS     | Programmieren |
 
 ## Übung
 
