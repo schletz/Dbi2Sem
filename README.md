@@ -34,7 +34,7 @@
             <ol>
                 <li>Views</li>
                 <li><a href="22_Null">NULL Values</a></li>
-                <li><a href="23_Normalisierung">Transaktionen</a></li>
+                <li><a href="23_Transactions">Transaktionen</a></li>
             </ol>
         </td>
         <td colspan="3" valign="top">
