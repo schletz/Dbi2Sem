@@ -1,5 +1,5 @@
 # Generalisierung
 
-![](arten20200208.png)
+![](arten20200209.png)
 
 http://blog.mid.de/generalisierung-vs-spezialisierung
