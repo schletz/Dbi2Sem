@@ -212,7 +212,7 @@ Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt ü
 |   10 | ZLA | Zlabinger | Walter    |           2018 |    2256 |   3126.67 |
 
 **(4)** Als Ergänzung geben Sie nun bei diesen Lehrern die Abweichung vom Durchschnittsgehalt
-aus. Zeigen Sie dabei nur die Lehrer an, über 1000 Euro unter diesem Durchschnittswert verdienen.
+aus. Zeigen Sie dabei nur die Lehrer an, die über 1000 Euro unter diesem Durchschnittswert verdienen.
 
 |    # | LNr | LName   | LVorname | LEintrittsjahr | LGehalt | AvgGehalt | Abweichung |
 | ---: | --- | ------- | -------- | -------------: | ------: | --------: | ---------: |
