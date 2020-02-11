@@ -121,7 +121,7 @@ ORDER BY s.S_Klasse, s.S_Nr;
 |1942|Towne|Kevin|1AO|1973-11-11 00:00:00|
 
 
-Nun wollen wir die Klassen herausfinden, wo der älteste Schüler der Klasse im selben Jahr wie der
+Nun wollen wir die Klassen herausfinden, wo der älteste Schüler der Klasse am selben Tag wie der
 älteste Schüler der Schule geboren wurde. Im Gegensatz zur vorigen Abfrage wird jetzt jede Klasse
 nur 1x ausgegeben.
 
