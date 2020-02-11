@@ -116,11 +116,10 @@ ORDER BY s.S_Klasse, s.S_Nr;
 
 |S_Nr|S_Zuname|S_Vorname|S_Klasse|S_Gebdatum|
 |----|--------|---------|--------|----------|
-|1917|Rippin|Josh|1AVIF|1989-10-31|
-|1835|Gibson|Wallace|1DVIF|1989-12-20|
-|1848|Kunde|Amos|1DVIF|1989-10-20|
-|1010|Auer|Bethany|1EVIF|1989-10-02|
-|...|...|...|...|...|
+|1935|Kuhic|Natalie|1AO|1973-11-19 00:00:00|
+|1937|West|Courtney|1AO|1973-10-30 00:00:00|
+|1942|Towne|Kevin|1AO|1973-11-11 00:00:00|
+
 
 Nun wollen wir die Klassen herausfinden, wo der älteste Schüler der Klasse im selben Jahr wie der
 älteste Schüler der Schule geboren wurde. Im Gegensatz zur vorigen Abfrage wird jetzt jede Klasse
@@ -135,19 +134,8 @@ HAVING   MIN(s.S_Gebdatum) = (SELECT MIN(s.S_Gebdatum) FROM Schueler s);
 
 |S_Klasse|Aelterster|
 |--------|----------|
-|1AVIF|1989-10-31|
-|1DVIF|1989-10-20|
-|1EVIF|1989-10-02|
-|3ACIF|1989-10-22|
-|3AKIF|1989-11-11|
-|3BAIF|1989-12-19|
-|3BKIF|1989-10-26|
-|3CAIF|1989-11-12|
-|5ACIF|1989-09-25|
-|5BBIF|1989-12-25|
-|5CAIF|1989-11-27|
-|7ACIF|1989-11-30|
-|7BBIF|1989-09-14|
+|1AO|1973-10-30 00:00:00|
+
 
 > **Zusammenfassung:** Unterabfragen, die einen Wert liefern, lassen sich wie Variablen behandeln.
 > Sie können überall dort eingesetzt werden, wo Spalten oder fixe Werte stehen können.
