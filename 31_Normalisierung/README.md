@@ -43,8 +43,8 @@ enthalten.
 | -------- | ----------- | ----------- | ---------- | ---- | ------------- | -------- | ----- |
 | 2        | 3           | 5AHIF       | Informatik | DBI  | Datenbanken   | HIK, SZ  | C3.10 |
 | 2        | 4           | 5AHIF       | Informatik | DBI  | Datenbanken   | HIK, SZ  | C3.10 |
-| 2        | 3           | 5AHIF       | Informatik | POS  | Programmieren | SZ       | C4.06 |
-| 2        | 4           | 5AHIF       | Informatik | POS  | Programmieren | SZ       | C4.06 |
+| 3        | 3           | 5AHIF       | Informatik | POS  | Programmieren | SZ       | C4.06 |
+| 3        | 4           | 5AHIF       | Informatik | POS  | Programmieren | SZ       | C4.06 |
 | 4        | 7           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH, NIJ | C4.07 |
 | 4        | 8           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH, NIJ | C4.07 |
 
@@ -62,8 +62,8 @@ den Lehrer (der mehrfach vorkam) einfügen.
 | 2        | 3           | 5AHIF       | Informatik | DBI  | Datenbanken   | SZ          | C3.10 |
 | 2        | 4           | 5AHIF       | Informatik | DBI  | Datenbanken   | HIK         | C3.10 |
 | 2        | 4           | 5AHIF       | Informatik | DBI  | Datenbanken   | SZ          | C3.10 |
-| 2        | 3           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
-| 2        | 4           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
+| 3        | 3           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
+| 3        | 4           | 5AHIF       | Informatik | POS  | Programmieren | SZ          | C4.06 |
 | 4        | 7           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH         | C4.07 |
 | 4        | 7           | 5BHIF       | Informatik | DBI  | Datenbanken   | NIJ         | C4.07 |
 | 4        | 8           | 5BHIF       | Informatik | DBI  | Datenbanken   | MOH         | C4.07 |
@@ -88,8 +88,8 @@ kann auf die Abteilung geschlossen werden.
 | 2        | 3           | 5AHIF       | SZ          | C3.10 | DBI  | Datenbanken   |
 | 2        | 4           | 5AHIF       | HIK         | C3.10 | DBI  | Datenbanken   |
 | 2        | 4           | 5AHIF       | SZ          | C3.10 | DBI  | Datenbanken   |
-| 2        | 3           | 5AHIF       | SZ          | C4.06 | POS  | Programmieren |
-| 2        | 4           | 5AHIF       | SZ          | C4.06 | POS  | Programmieren |
+| 3        | 3           | 5AHIF       | SZ          | C4.06 | POS  | Programmieren |
+| 3        | 4           | 5AHIF       | SZ          | C4.06 | POS  | Programmieren |
 | 4        | 7           | 5BHIF       | MOH         | C4.07 | DBI  | Datenbanken   |
 | 4        | 7           | 5BHIF       | NIJ         | C4.07 | DBI  | Datenbanken   |
 | 4        | 8           | 5BHIF       | MOH         | C4.07 | DBI  | Datenbanken   |
@@ -122,8 +122,8 @@ führt man im Normalisierungsschritt bereits beide Normalisierungen auf einmal a
 | 2        | 3           | 5AHIF       | SZ          | C3.10 | DBI  |
 | 2        | 4           | 5AHIF       | HIK         | C3.10 | DBI  |
 | 2        | 4           | 5AHIF       | SZ          | C3.10 | DBI  |
-| 2        | 3           | 5AHIF       | SZ          | C4.06 | POS  |
-| 2        | 4           | 5AHIF       | SZ          | C4.06 | POS  |
+| 3        | 3           | 5AHIF       | SZ          | C4.06 | POS  |
+| 3        | 4           | 5AHIF       | SZ          | C4.06 | POS  |
 | 4        | 7           | 5BHIF       | MOH         | C4.07 | DBI  |
 | 4        | 7           | 5BHIF       | NIJ         | C4.07 | DBI  |
 | 4        | 8           | 5BHIF       | MOH         | C4.07 | DBI  |
