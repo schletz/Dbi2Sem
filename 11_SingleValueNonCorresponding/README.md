@@ -68,12 +68,12 @@ des ältesten und jüngsten Schülers ermittelt werden:
 ```sql
 SELECT
     s.S_Nr, s.S_Zuname, s.S_Vorname,
-    (SELECT MAX(s.S_Gebdatum) FROM Schueler s) AS Aeltester,
-    (SELECT MIN(s.S_Gebdatum) FROM Schueler s) AS Juengster
+    (SELECT MAX(s.S_Gebdatum) FROM Schueler s) AS Juengster,
+    (SELECT MIN(s.S_Gebdatum) FROM Schueler s) AS Aelterster
 FROM Schueler s;
 ```
 
-| S_Nr | S_Zuname   | S_Vorname | Aeltester  | Juengster  |
+| S_Nr | S_Zuname   | S_Vorname | Juengster  | Aeltester  |
 | ---- | ---------- | --------- | ---------- | ---------- |
 | 1000 | Cartwright | Jaime     | 2005-08-31 | 1973-10-30 |
 | 1001 | Bogan      | Stanley   | 2005-08-31 | 1973-10-30 |
