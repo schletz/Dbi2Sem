@@ -38,12 +38,12 @@ SELECT
 FROM Schueler s;
 ```
 
-| S_Nr | S_Zuname     | S_Vorname | Aeltester  |
-| ---- | ------------ | --------- | ---------- |
-| 1000 | Pfannerstill | Ricardo   | 2005-08-30 |
-| 1001 | Mohr         | Alyssa    | 2005-08-30 |
-| 1002 | Schneider    | Lyle      | 2005-08-30 |
-| ...  | ...          | ...       | ...        |
+| S_Nr | S_Zuname   | S_Vorname | Aeltester  |
+| ---- | ---------- | --------- | ---------- |
+| 1000 | Cartwright | Jaime     | 2005-08-31 |
+| 1001 | Bogan      | Stanley   | 2005-08-31 |
+| 1002 | Mertz      | Andy      | 2005-08-31 |
+| ...  | ...        | ...       | ...        |
 
 > **Hinweis:** Die Unterabfrage muss immer eingeklammert sein!
 
@@ -73,12 +73,12 @@ SELECT
 FROM Schueler s;
 ```
 
-| S_Nr | S_Zuname     | S_Vorname | Aeltester  | Juengster  |
-| ---- | ------------ | --------- | ---------- | ---------- |
-| 1000 | Pfannerstill | Ricardo   | 2005-08-30 | 1989-09-14 |
-| 1001 | Mohr         | Alyssa    | 2005-08-30 | 1989-09-14 |
-| 1002 | Schneider    | Lyle      | 2005-08-30 | 1989-09-14 |
-| ...  | ...          | ...       | ...        | ...        |
+| S_Nr | S_Zuname   | S_Vorname | Aeltester  | Juengster  |
+| ---- | ---------- | --------- | ---------- | ---------- |
+| 1000 | Cartwright | Jaime     | 2005-08-31 | 1973-10-30 |
+| 1001 | Bogan      | Stanley   | 2005-08-31 | 1973-10-30 |
+| 1002 | Mertz      | Andy      | 2005-08-31 | 1973-10-30 |
+| ...  | ...        | ...       | ...        | ...        |
 
 ## Unterabfragen in Ausdrücken
 
@@ -93,12 +93,12 @@ SELECT
 FROM Schueler s;
 ```
 
-| S_Nr | S_Zuname     | S_Vorname | DiffZuAeltester |
-| ---- | ------------ | --------- | --------------- |
-| 1000 | Pfannerstill | Ricardo   | 1704            |
-| 1001 | Mohr         | Alyssa    | 2221            |
-| 1002 | Schneider    | Lyle      | 2979            |
-| ...  | ...          | ...       | ...             |
+| S_Nr | S_Zuname   | S_Vorname | DiffZuAeltester |
+| ---- | ---------- | --------- | --------------- |
+| 1000 | Cartwright | Jaime     | 6642            |
+| 1001 | Bogan      | Stanley   | 6829            |
+| 1002 | Mertz      | Andy      | 6387            |
+| ...  | ...        | ...       | ...             |
 
 ## Unterabfragen in Filterkriterien (WHERE und HAVING)
 
