@@ -14,6 +14,7 @@
                 <li><a href="12_SingleValueCorresponding">Korrespondierende Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
                 <li>Unterabfragen, die in FROM verwendet werden</li>
+                <li>CASE, COALESCE und andere Funktionen</li>
                 <li>Window Functions</li>
             </ol>
         </td>    
