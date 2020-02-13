@@ -34,11 +34,11 @@ eingesetzt, wo normalerweise Spalten stehen. Unser Beispiel sieht dann so aus:
 ```sql
 SELECT
     s.S_Nr, s.S_Zuname, s.S_Vorname,
-    (SELECT MAX(s.S_Gebdatum) FROM Schueler s) AS Aeltester
+    (SELECT MAX(s.S_Gebdatum) FROM Schueler s) AS Juengster
 FROM Schueler s;
 ```
 
-| S_Nr | S_Zuname   | S_Vorname | Aeltester  |
+| S_Nr | S_Zuname   | S_Vorname | Juengster  |
 | ---- | ---------- | --------- | ---------- |
 | 1000 | Cartwright | Jaime     | 2005-08-31 |
 | 1001 | Bogan      | Stanley   | 2005-08-31 |
