@@ -32,8 +32,8 @@ zusätzliche Speichern in der Tabelle Verkauf:
 
 ![](tankstelle_history_1.png)
 
-Die Tabelle Preis beinhaltet den aktuellen Preis, der auf der Homepage oder der Zapfsäule angezeigt
-wird. Bei einem Verkauf wird dieser Preis übernommen. Wollen Sie allerdings den Preisverlauf als
+Die Tabelle Preis beinhaltet den aktuellen Wert, der auf der Homepage oder der Zapfsäule angezeigt
+wird. Bei einem Verkauf wird dieser Wert übernommen. Wollen Sie allerdings den Preisverlauf als
 Diagramm darstellen, ergibt sich allerdings ein Problem:
 
 - Von wann bis wann galt dieser Preis? Sie sehen nur das Verkaufsdatum, wann ein Kunde getankt hat.
