@@ -107,7 +107,7 @@ ist hier der Fall, denn Schüler und Lehrer sind völlig getrennte Rollen und ni
 
 Das Problem mit Variante 1 ist, dass eine Datenbank - im Gegensatz zu objektorientierten
 Programmiersprachen wie C# oder Java - bei *CREATE TABLE* keine spezielle Syntax für diesen
-Sachverhalt kennt. Die CREATE TABLE Anweisungen sind die gleichen wie für eine normale
+Sachverhalt kennt. Die CREATE TABLE Anweisungen sind die Gleichen wie für eine normale
 Fremdschlüsselbeziehung:
 
 ```sql
