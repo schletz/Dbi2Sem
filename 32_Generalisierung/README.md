@@ -143,13 +143,7 @@ da die Autortabelle an den Subtyp gebunden war.
 
 Der Track verweist nach wie vor auf die Tabelle *Disc*.
 
-| Entity      | Attribute                                                 |
-| ----------- | --------------------------------------------------------- |
-| Autor       | **ID**, Name, Vorname                                     |
-| Buch        | **ISBN**, Titel, Verlag, Autor, Auflage, Erscheinungsjahr |
-| Zeitschrift | **ISBN**, Titel, Verlag, Autor, Erscheinungsdatum         |
-| Disc        | **ISBN**, Titel, Verlag, Autor                            |
-| Track       | **Disc**, **Nr**, Name, Startposition, Dauer              |
+![](rolldown.png)
 
 ### Rollup: Hinzufügen der Attribute zum Supertyp
 
@@ -157,14 +151,9 @@ Hier bleibt nur die Tabelle Werk. Die einzelnen Spalten der Subtypen sind nun in
 natürlich NULL Werte enthalten. Beachten Sie die Tabelle Track. Sie ist nun an das Werk gebunden
 und hat sinnvollerweise nur Einträge für Daten der Kategorie Disc.
 
-| Entity    | Attribute                                                                               |
-| --------- | --------------------------------------------------------------------------------------- |
-| Autor     | **ID**, Name, Vorname                                                                   |
-| Kategorie | **ID**, Name                                                                            |
-| Werk      | **ISBN**, Kategorie, Titel, Verlag, Autor, Auflage, Erscheinungsjahr, Erscheinungsdatum |
-| Track     | **Werk**, **Nr**, Name, Startposition, Dauer                                            |
+![](rollup.png)
 
-### Was soll ich für die Auflösung wählen
+### Was soll ich für die Auflösung wählen?
 
 Verwenden Sie als Kriterium die Tabellen, die sie im Modell mit dem Sub- oder Supertyp verbinden.
 Haben Sie die Situation, dass der Supertyp (hier das Werk) viele Beziehungen zu anderen Tabellen hat,
