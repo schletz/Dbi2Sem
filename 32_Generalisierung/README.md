@@ -13,8 +13,8 @@ mehrere Titel mit Namen.
 
 Aus dieser Information können wir die benötigten Attribute schon herausfinden:
 
-| Entity      | Attribute                                                        |
-| ----------- | ---------------------------------------------------------------- |
+| Entity      | Attribute                                                 |
+| ----------- | --------------------------------------------------------- |
 | Buch        | **ISBN**, Titel, Verlag, Autor, Auflage, Erscheinungsjahr |
 | Zeitschrift | **ISBN**, Titel, Verlag, Autor, Erscheinungsdatum         |
 | Disc        | **ISBN**, Titel, Verlag, Autor                            |
@@ -23,12 +23,12 @@ Nun sehen wir, dass einige Attribute in jeder Tabelle vorkommen. Diese können w
 Obertyp (*Supertyp*) zusammenfassen. Diesen Vorgang nennt man *Generalisierung*. Es entsteht
 eine neue Tabelle *Werk*, die Titel, Verlag und Autor beinhaltet.
 
-| Entity      | Attribute                                  |
-| ----------- | ------------------------------------------ |
+| Entity      | Attribute                           |
+| ----------- | ----------------------------------- |
 | Werk        | **ISBN**, Titel, Verlag, Autor      |
 | Buch        | **ISBN**, Auflage, Erscheinungsjahr |
 | Zeitschrift | **ISBN**, Erscheinungsdatum         |
-| Disc        | **ISBN**, Autor                     |
+| Disc        | **ISBN**                            |
 
 Alle verbliebenen Untertypen (Buch, Zeitschrift, Disc) nennt man *Subtypen*. Zwischen diesen
 Typen und dem Werk besteht eine *IS-A* Beziehung. Ein Buch ist ein Werk, eine Zeitschrift ist ein
@@ -80,8 +80,8 @@ kann also nicht sein, dass wir nur ein Werk ohne Typ (Buch, Zeitschrift oder Dis
 
 Wir stellen uns vor, dass eine Leihwagenfirma 2 Arten von Fahrzeugen anbietet:
 
-| Fahrzeug    | Attribute                                              |
-| ----------- | ------------------------------------------------------ |
+| Fahrzeug    | Attribute                                       |
+| ----------- | ----------------------------------------------- |
 | PKW         | **ID**, Kennzeichen, Kilometerstand, AnzPlaetze |
 | Transporter | **ID**, Kennzeichen, Kilometerstand, Nutzlast   |
 
@@ -143,13 +143,13 @@ da die Autortabelle an den Subtyp gebunden war.
 
 Der Track verweist nach wie vor auf die Tabelle *Disc*.
 
-| Entity      | Attribute                                                        |
-| ----------- | ---------------------------------------------------------------- |
+| Entity      | Attribute                                                 |
+| ----------- | --------------------------------------------------------- |
 | Autor       | **ID**, Name, Vorname                                     |
 | Buch        | **ISBN**, Titel, Verlag, Autor, Auflage, Erscheinungsjahr |
 | Zeitschrift | **ISBN**, Titel, Verlag, Autor, Erscheinungsdatum         |
 | Disc        | **ISBN**, Titel, Verlag, Autor                            |
-| Track       | **Disc**, **Nr**, Name, Startposition, Dauer       |
+| Track       | **Disc**, **Nr**, Name, Startposition, Dauer              |
 
 ### Rollup: Hinzufügen der Attribute zum Supertyp
 
@@ -157,12 +157,12 @@ Hier bleibt nur die Tabelle Werk. Die einzelnen Spalten der Subtypen sind nun in
 natürlich NULL Werte enthalten. Beachten Sie die Tabelle Track. Sie ist nun an das Werk gebunden
 und hat sinnvollerweise nur Einträge für Daten der Kategorie Disc.
 
-| Entity    | Attribute                                                                                      |
-| --------- | ---------------------------------------------------------------------------------------------- |
+| Entity    | Attribute                                                                               |
+| --------- | --------------------------------------------------------------------------------------- |
 | Autor     | **ID**, Name, Vorname                                                                   |
 | Kategorie | **ID**, Name                                                                            |
 | Werk      | **ISBN**, Kategorie, Titel, Verlag, Autor, Auflage, Erscheinungsjahr, Erscheinungsdatum |
-| Track     | **Werk**, **Nr**, Name, Startposition, Dauer                                     |
+| Track     | **Werk**, **Nr**, Name, Startposition, Dauer                                            |
 
 ### Was soll ich für die Auflösung wählen
 
