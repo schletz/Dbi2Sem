@@ -83,7 +83,7 @@ Wir stellen uns vor, dass eine Leihwagenfirma 2 Arten von Fahrzeugen anbietet:
 | Fahrzeug    | Attribute                                              |
 | ----------- | ------------------------------------------------------ |
 | PKW         | <u>**ID**</u>, Kennzeichen, Kilometerstand, AnzPlaetze |
-| Transporter | <u>**ID**</u>, Kennzeichen, Kilometerstand             |
+| Transporter | <u>**ID**</u>, Kennzeichen, Kilometerstand, Nutzlast   |
 
 Wir können hier auch nach Variante 1 vorgehen, einen Supertyp *Fahrzeug* anlegen und 2 Subtypen
 (PKW und Transporter) damit verbinden. Dieses Modell geht allerdings einen anderen Weg:
