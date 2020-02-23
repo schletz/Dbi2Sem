@@ -15,7 +15,7 @@ Aus dieser Information können wir die benötigten Attribute schon herausfinden:
 
 | Entity      | Attribute                                                        |
 | ----------- | ---------------------------------------------------------------- |
-| Buch        | <u>**ISBN**</u>, Titel, Verlag, Autor, Auflage, Erscheinungsjahr |
+| Buch        | __**ISBN**__, Titel, Verlag, Autor, Auflage, Erscheinungsjahr |
 | Zeitschrift | <u>**ISBN**</u>, Titel, Verlag, Autor, Erscheinungsdatum         |
 | Disc        | <u>**ISBN**</u>, Titel, Verlag, Autor                            |
 
