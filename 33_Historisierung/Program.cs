@@ -66,13 +66,13 @@ namespace Tankstelle
                         .RuleFor(p => p.GueltigVon, f => start)
                         .Generate();
                     var alterPreis = db.Preise.SingleOrDefault(
-                        p => p.Tankstelle == preis.Tankstelle && 
-                        p.Kategorie == preis.Kategorie && 
+                        p => p.Tankstelle == preis.Tankstelle &&
+                        p.Kategorie == preis.Kategorie &&
                         p.GueltigBis == null);
                     if (alterPreis != null)
                     {
                         alterPreis.GueltigBis = start;
-                        preis.Wert = alterPreis.Wert + fkr.Random.GaussianDecimal(0, 0.01);
+                        preis.Wert = alterPreis.Wert + Math.Round(fkr.Random.GaussianDecimal(0, 0.01), 4);
                     }
                     else
                     {
@@ -84,8 +84,16 @@ namespace Tankstelle
                             _ => 1M
                         };
                     }
+                    var verkaeufe = Enumerable.Range(0, fkr.Random.Int(0, 4))
+                    .Select(i => new Verkauf
+                    {
+                        Datum = fkr.Date.Between(start, start + TimeSpan.FromDays(10)),
+                        Menge = Math.Round(fkr.Random.GaussianDecimal(50, 10), 2),
+                        Preis = preis
+                    });
 
                     db.Preise.Add(preis);
+                    db.Verkaeufe.AddRange(verkaeufe);
                     db.SaveChanges();
                     start += TimeSpan.FromDays(10);
                 }

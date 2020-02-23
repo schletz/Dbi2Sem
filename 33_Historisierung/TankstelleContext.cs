@@ -13,7 +13,7 @@ namespace Tankstelle
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int Id { get; set; }
-        [Column(TypeName = "DATETIME")]
+        [Column(TypeName = "DATE")]
         public DateTime Datum { get; set; }
         public int Wochentag { get; set; }
         public int Monat { get; set; }
@@ -51,6 +51,18 @@ namespace Tankstelle
         public virtual Tankstelle Tankstelle { get; set; }
         [Required]
         public virtual Kategorie Kategorie { get; set; }
+        public virtual ICollection<Verkauf> Verkaeufe { get; set; }
+    }
+
+    [Table("Verkauf")]
+    class Verkauf
+    {
+        public int Id { get; set; }
+        [Column(TypeName = "DATETIME")]
+        public DateTime Datum { get; set; }
+        [Column(TypeName = "NUMERIC(9,4)")]
+        public decimal Menge { get; set; }
+        public virtual Preis Preis { get; set; }
     }
 
     class TankstelleContext : DbContext
@@ -65,13 +77,14 @@ namespace Tankstelle
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=Tankstellen;");
-            optionsBuilder.UseSqlite(@"Data Source=Tankstellen.db");
+            optionsBuilder.UseSqlServer(@"Data Source=(LocalDb)\MSSQLLocalDB;Initial Catalog=Tankstellen;");
+            //optionsBuilder.UseSqlite(@"Data Source=Tankstellen.db");
         }
 
         public DbSet<Tag> Tage { get; set; }
         public DbSet<Tankstelle> Tankstellen { get; set; }
         public DbSet<Kategorie> Kategorien { get; set; }
         public DbSet<Preis> Preise { get; set; }
+        public DbSet<Verkauf> Verkaeufe { get; set; }
     }
 }
