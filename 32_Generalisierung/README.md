@@ -82,13 +82,13 @@ Wir stellen uns vor, dass eine Leihwagenfirma 2 Arten von Fahrzeugen anbietet:
 
 | Fahrzeug    | Attribute                                              |
 | ----------- | ------------------------------------------------------ |
-| PKW         | <u>**ID**</u>, Kennzeichen, AnzPlaetze, Kilometerstand |
-| Transporter | <u>**ID**</u>, Nutzlast                                |
+| PKW         | <u>**ID**</u>, Kennzeichen, Kilometerstand, AnzPlaetze |
+| Transporter | <u>**ID**</u>, Kennzeichen, Kilometerstand             |
 
 Wir können hier auch nach Variante 1 vorgehen, einen Supertyp *Fahrzeug* anlegen und 2 Subtypen
 (PKW und Transporter) damit verbinden. Dieses Modell geht allerdings einen anderen Weg:
 Es speichert in einer einzigen Tabelle (Fahrzeug) *alle Spalten von PKW und Transporter*. Natürlich
-muss die Spalte *Nutzlast* nullable sein, da sie bei einem PKW nicht vorkommt.
+müssen die Spalten *AnzPlaetze* und *Nutzlast* nullable sein, da sie nicht überall vorkommen.
 
 Zusätzlich muss noch die Art gespeichert werden. Dies geschieht im Attribut *Kategorie*. In der
 Lookup Tabelle sind dann 2 Datensätze (PKW und Transporter) gespeichert.
