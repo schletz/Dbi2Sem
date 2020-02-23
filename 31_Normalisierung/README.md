@@ -143,6 +143,18 @@ führt man im Normalisierungsschritt bereits beide Normalisierungen auf einmal a
 | DBI     | Datenbanken   |
 | POS     | Programmieren |
 
+## Auswirkungen der Normalisierung
+
+- Mehr Tabellen, daher auch mehr Joins bei Abfragen notwendig
+- Tabellen haben weniger Attribute
+- Keine Redundanz
+- Updates, Insert und Delete Befehle können in der Regel schnell ausgeführt werden
+- Weniger Speicher wird benötigt
+- Weniger Anomalien (Änderungen können bei Beachtung der Primärschlüssel- und Fremdschlüsselbedingung keine Inkonsistenzen hervorrufen)
+- Erhöhung der Integritätsbedingungen
+- Für "große" Abfragen schlechtere Lese-Performance, Datenmodelle in Business Intelligence sind tw. denormalisiert
+- Modell ist komplexer als ein denormalisiertes Modell
+
 ## Übung
 
 **(1)** Führen Sie eine formale Normalisierung der ersten Tabelle aus dem Punkt funktionale
