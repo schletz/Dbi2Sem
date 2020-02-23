@@ -23,7 +23,7 @@
             <ol>
                 <li><a href="31_Normalisierung">Normalformen</a></li>
                 <li><a href="32_Generalisierung">Generalisierung</a></li>
-                <li>Historisierung</li>
+                <li><a href="33_Historisierung">Historisierung</a></li>
                 <li>Hierarchien</li>
                 <li>Gruppen und Rollen</li>
             </ol>
