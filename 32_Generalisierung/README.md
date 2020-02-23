@@ -1,7 +1,5 @@
 # Generalisierung
 
-## Was versteht man unter Generalisierung?
-
 Betrachten Sie die folgenden Datenmodelle:
 
 ![](arten20200209.png)
