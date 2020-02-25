@@ -121,8 +121,8 @@ Stammraum? Für diese Anzahl werden einfach die Anzahl der Datensätze in der St
 |   3 | 5AKKUI | A2.04      | 57               | 45                  | 79                 |
 |   4 | 6AKKUI | A2.04      | 56               | 44                  | 79                 |
 
-**(6)** Welche Lehrer verdienen 50% mehr als der Durchschnitt von den Lehrern, die vorher in
-die Schule eingetreten sind (Eintrittsjahr < Eintrittsjahr des Lehrers)?
+**(6)** Welche Lehrer verdienen 50% mehr als der Durchschnitt von den Lehrern, die nachher in
+die Schule eingetreten sind (Eintrittsjahr > Eintrittsjahr des Lehrers)?
 
 | #   | LNr | LName            | LVorname   | LGehalt | LEintrittsjahr | AvgGehaltAeltere |
 | ---:| --- | ---------------- | ---------- | -------:| --------------:| ----------------:|

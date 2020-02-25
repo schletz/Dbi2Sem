@@ -81,8 +81,8 @@ Stammraum? Für diese Anzahl werden einfach die Anzahl der Datensätze in der St
                  ProzentImStammraum = Math.Round(100M * anzStundenStammraum / anzStunden, 0)
              }).WriteMarkdown();
 
-            @"Welche Lehrer verdienen 50% mehr als der Durchschnitt von den Lehrern, die vorher in
-die Schule eingetreten sind (Eintrittsjahr < Eintrittsjahr des Lehrers)?".WriteItem();
+            @"Welche Lehrer verdienen 50% mehr als der Durchschnitt von den Lehrern, die nachher in
+die Schule eingetreten sind (Eintrittsjahr > Eintrittsjahr des Lehrers)?".WriteItem();
             var lehrerLocal = db.Lehrers.ToList();
             (from l in lehrerLocal
              let avgGehalt = lehrerLocal.Where(le => l.LEintrittsjahr < le.LEintrittsjahr).Average(le => le.LGehalt)
