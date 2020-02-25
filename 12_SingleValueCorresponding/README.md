@@ -96,20 +96,20 @@ das Beispiel mit einer Unterabfrage ohne JOIN. Betrachten Sie nur Klassen mit ei
 
 **(4)** Wie viele Wochenstunden haben die Klassen der Abteilung AIF?
 
-| #   | KNr   | AnzDatensaetze | AnzStunden |
-| ---:| ----- | --------------:| ----------:|
-|   1 | 2AAIF | 24             | 24         |
-|   2 | 2BAIF | 24             | 24         |
-|   3 | 2CAIF | 30             | 30         |
-|   4 | 2DAIF | 24             | 24         |
-|   5 | 3BAIF | 53             | 53         |
-|   6 | 3CAIF | 51             | 51         |
-|   7 | 4BAIF | 51             | 51         |
-|   8 | 4CAIF | 51             | 51         |
-|   9 | 5BAIF | 48             | 48         |
-|  10 | 5CAIF | 46             | 46         |
-|  11 | 6BAIF | 46             | 46         |
-|  12 | 6CAIF | 46             | 46         |
+| #   | KNr   | AnzStunden |
+| ---:| ----- | ----------:|
+|   1 | 2AAIF | 24         |
+|   2 | 2BAIF | 24         |
+|   3 | 2CAIF | 30         |
+|   4 | 2DAIF | 24         |
+|   5 | 3BAIF | 53         |
+|   6 | 3CAIF | 51         |
+|   7 | 4BAIF | 51         |
+|   8 | 4CAIF | 51         |
+|   9 | 5BAIF | 48         |
+|  10 | 5CAIF | 46         |
+|  11 | 6BAIF | 46         |
+|  12 | 6CAIF | 46         |
 
 **(5)** Wie viel Prozent der Stunden verbringen die Schüler der Abteilung KKU (Kolleg für Design) in ihrem
 Stammraum? Für diese Anzahl werden einfach die Anzahl der Datensätze in der Stundentabelle gezählt.

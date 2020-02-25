@@ -61,7 +61,6 @@ das Beispiel mit einer Unterabfrage ohne JOIN. Betrachten Sie nur Klassen mit ei
              select new
              {
                  k.KNr,
-                 AnzDatensaetze = k.Stundens.Count(),
                  AnzStunden = k.Stundens.Count()
              }).WriteMarkdown();
 
