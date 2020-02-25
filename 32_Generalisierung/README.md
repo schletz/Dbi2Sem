@@ -160,6 +160,8 @@ Haben Sie die Situation, dass der Supertyp (hier das Werk) viele Beziehungen zu 
 werden Sie dies mit Rollup leichter umsetzen können. Verwenden Sie allerdings oft den spezifischen
 Subtyp in Beziehung mit anderen Tabellen, so wird der Rolldown Ansatz reibungsloser funktionieren.
 
+![](rollup_or_rolldown.png)
+
 ## Übung
 
 **(1)** Ein Fußballverein gibt ihnen folgende Informationen:
