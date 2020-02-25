@@ -55,18 +55,14 @@ das Beispiel mit einer Unterabfrage ohne JOIN. Betrachten Sie nur Klassen mit ei
                  AnzKvStunden = anzKvStunden
              }).WriteMarkdown();
 
-            @"Wie viele Wochenstunden haben die Klassen der Abteilung AIF? Achtung: Es gibt Stunden, in denen
-2 Lehrer in der Klasse sind. Pro Tag und Stunde ist jeder Datensatz nur 1x zu zählen. Könnten Sie
-das Beispiel auch mit einem JOIN und einer Gruppierung lösen? Begründen Sie, wenn nicht.
-Anmerkung, die nichts mit der Abfrage zu tun hat: Durch Stundenverlegungen können unterschiedliche
-Werte bei Parallelklassen entstehen.".WriteItem();
+            @"Wie viele Wochenstunden haben die Klassen der Abteilung AIF?".WriteItem();
             (from k in db.Klassens.Include(k => k.Stundens).ToList()
              where k.KAbteilung == "AIF"
              select new
              {
                  k.KNr,
                  AnzDatensaetze = k.Stundens.Count(),
-                 AnzStunden = k.Stundens.GroupBy(s => new { s.StTag, s.StStunde }).Count()
+                 AnzStunden = k.Stundens.Count()
              }).WriteMarkdown();
 
             @"

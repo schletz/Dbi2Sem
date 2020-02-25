@@ -94,26 +94,22 @@ das Beispiel mit einer Unterabfrage ohne JOIN. Betrachten Sie nur Klassen mit ei
 |  10 | 6BAIF | 8            |
 |  11 | 6CAIF | 2            |
 
-**(4)** Wie viele Wochenstunden haben die Klassen der Abteilung AIF? Achtung: Es gibt Stunden, in denen
-2 Lehrer in der Klasse sind. Pro Tag und Stunde ist jeder Datensatz nur 1x zu zählen. Könnten Sie
-das Beispiel auch mit einem JOIN und einer Gruppierung lösen? Begründen Sie, wenn nicht.
-Anmerkung, die nichts mit der Abfrage zu tun hat: Durch Stundenverlegungen können unterschiedliche
-Werte bei Parallelklassen entstehen.
+**(4)** Wie viele Wochenstunden haben die Klassen der Abteilung AIF?
 
 | #   | KNr   | AnzDatensaetze | AnzStunden |
 | ---:| ----- | --------------:| ----------:|
-|   1 | 2AAIF | 24             | 22         |
-|   2 | 2BAIF | 24             | 22         |
-|   3 | 2CAIF | 30             | 22         |
-|   4 | 2DAIF | 24             | 22         |
-|   5 | 3BAIF | 53             | 38         |
-|   6 | 3CAIF | 51             | 36         |
-|   7 | 4BAIF | 51             | 36         |
-|   8 | 4CAIF | 51             | 36         |
-|   9 | 5BAIF | 48             | 34         |
-|  10 | 5CAIF | 46             | 33         |
-|  11 | 6BAIF | 46             | 33         |
-|  12 | 6CAIF | 46             | 33         |
+|   1 | 2AAIF | 24             | 24         |
+|   2 | 2BAIF | 24             | 24         |
+|   3 | 2CAIF | 30             | 30         |
+|   4 | 2DAIF | 24             | 24         |
+|   5 | 3BAIF | 53             | 53         |
+|   6 | 3CAIF | 51             | 51         |
+|   7 | 4BAIF | 51             | 51         |
+|   8 | 4CAIF | 51             | 51         |
+|   9 | 5BAIF | 48             | 48         |
+|  10 | 5CAIF | 46             | 46         |
+|  11 | 6BAIF | 46             | 46         |
+|  12 | 6CAIF | 46             | 46         |
 
 **(5)** Wie viel Prozent der Stunden verbringen die Schüler der Abteilung KKU (Kolleg für Design) in ihrem
 Stammraum? Für diese Anzahl werden einfach die Anzahl der Datensätze in der Stundentabelle gezählt.
