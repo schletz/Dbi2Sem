@@ -167,20 +167,19 @@ um die Normalisierung durchzuführen.
 
 **(3)** Nachfolgende Tabelle entstand aus einer Abfrage über die Sprachreisen unserer Schule. Sie
 liegt bereits in der 1. Normalform vor. Führen Sie die folgenden Aufgaben durch, indem sie die
-Tabelle in ein Tabellenverarbeitungsprogramm kopieren.
+Tabelle in ein Tabellenverarbeitungsprogramm kopieren. Verwenden Sie als Primärschlüssel die Spalten 
+*LNr, Funktion, Klasse und Schuljahr*.
 
-1. Suchen Sie sich einen Schlüssel für diese Tabelle.
-2. Führen Sie die Normalisierungsschritte zur 2. und 3. Normalform durch.
+Führen Sie die Normalisierungsschritte zur 2. und 3. Normalform durch.
 
-| LNr | Zuname    | Vorname        | Email                     | Funktion  | Ziel      | Von        | Bis        | AnzSchueler | Klasse | Schuljahr |
-| --- | --------- | -------------- | ------------------------- | --------- | --------- | ---------- | ---------- | ----------: | ------ | --------- |
-| VVL | Vukovic   | Vladimir       | vukovic@spengergasse.at   | Begleiter | Malta     | 30.11.2018 | 07.12.2018 |          24 | 4BHIF  | 2018/19   |
-| SUN | Subotic   | Nenad          | subotic@spengergasse.at   | Leiter    | Malta     | 30.11.2018 | 07.12.2018 |          24 | 4BHIF  | 2018/19   |
-| FAV | Fakitsch  | Viktoria       | fakitsch@spengergasse.at  | Leiter    | Malta     | 30.11.2018 | 07.12.2018 |          25 | 4AHIF  | 2018/19   |
-| KOP | Kock      | Philipp | kock@spengergasse.at      | Begleiter | Edinburgh | 23.02.2019 | 04.03.2019 |          25 | 4EHIF  | 2018/19   |
-| FAV | Fakitsch  | Viktoria       | fakitsch@spengergasse.at  | Leiter    | Edinburgh | 23.02.2019 | 04.03.2019 |          25 | 4EHIF  | 2018/19   |
-| FAV | Fakitsch  | Viktoria       | fakitsch@spengergasse.at  | Begleiter | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
-| KAS | Karl      | Susanne        | karl@spengergasse.at      | Begleiter | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
-| NI  | Niemeczek | Claudia        | niemeczek@spengergasse.at | Leiter    | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
-| NI  | Niemeczek | Claudia        | niemeczek@spengergasse.at | Begleiter | Edinburgh | 14.06.2018 | 21.06.2018 |          25 | 4AHIF  | 2017/18   |
-| KEM | Keminger  | Alexander      | keminger@spengergasse.at  | Leiter    | Edinburgh | 14.06.2018 | 21.06.2018 |          25 | 4AHIF  | 2017/18   |
+| LNr | Zuname    | Vorname   | Email                     | Funktion  | Ziel      | Von        | Bis        | AnzSchueler | Klasse | Schuljahr |
+| --- | --------- | --------- | ------------------------- | --------- | --------- | ---------- | ---------- | ----------: | ------ | --------- |
+| VVL | Vukovic   | Vladimir  | vukovic@spengergasse.at   | Begleiter | Malta     | 30.11.2018 | 07.12.2018 |          24 | 4BHIF  | 2018/19   |
+| SUN | Subotic   | Nenad     | subotic@spengergasse.at   | Leiter    | Malta     | 30.11.2018 | 07.12.2018 |          24 | 4BHIF  | 2018/19   |
+| FAV | Fakitsch  | Viktoria  | fakitsch@spengergasse.at  | Leiter    | Malta     | 30.11.2018 | 07.12.2018 |          25 | 4AHIF  | 2018/19   |
+| KOP | Kock      | Philipp   | kock@spengergasse.at      | Begleiter | Edinburgh | 23.02.2019 | 04.03.2019 |          25 | 4EHIF  | 2018/19   |
+| FAV | Fakitsch  | Viktoria  | fakitsch@spengergasse.at  | Leiter    | Edinburgh | 23.02.2019 | 04.03.2019 |          25 | 4EHIF  | 2018/19   |
+| FAV | Fakitsch  | Viktoria  | fakitsch@spengergasse.at  | Begleiter | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
+| NI  | Niemeczek | Claudia   | niemeczek@spengergasse.at | Leiter    | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
+| NI  | Niemeczek | Claudia   | niemeczek@spengergasse.at | Begleiter | Edinburgh | 14.06.2018 | 21.06.2018 |          25 | 4AHIF  | 2017/18   |
+| KEM | Keminger  | Alexander | keminger@spengergasse.at  | Leiter    | Edinburgh | 14.06.2018 | 21.06.2018 |          25 | 4AHIF  | 2017/18   |
