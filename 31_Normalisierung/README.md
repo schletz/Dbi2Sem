@@ -180,6 +180,7 @@ Führen Sie die Normalisierungsschritte zur 2. und 3. Normalform durch.
 | KOP | Kock      | Philipp   | kock@spengergasse.at      | Begleiter | Edinburgh | 23.02.2019 | 04.03.2019 |          25 | 4EHIF  | 2018/19   |
 | FAV | Fakitsch  | Viktoria  | fakitsch@spengergasse.at  | Leiter    | Edinburgh | 23.02.2019 | 04.03.2019 |          25 | 4EHIF  | 2018/19   |
 | FAV | Fakitsch  | Viktoria  | fakitsch@spengergasse.at  | Begleiter | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
+| KAS | Karl      | Susanne   | karl@spengergasse.at      | Begleiter | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
 | NI  | Niemeczek | Claudia   | niemeczek@spengergasse.at | Leiter    | Cambridge | 26.02.2019 | 05.03.2019 |          25 | 4CHIF  | 2018/19   |
 | NI  | Niemeczek | Claudia   | niemeczek@spengergasse.at | Begleiter | Edinburgh | 14.06.2018 | 21.06.2018 |          25 | 4AHIF  | 2017/18   |
 | KEM | Keminger  | Alexander | keminger@spengergasse.at  | Leiter    | Edinburgh | 14.06.2018 | 21.06.2018 |          25 | 4AHIF  | 2017/18   |
