@@ -167,8 +167,8 @@ um die Normalisierung durchzuführen.
 
 **(3)** Nachfolgende Tabelle entstand aus einer Abfrage über die Sprachreisen unserer Schule. Sie
 liegt bereits in der 1. Normalform vor. Führen Sie die folgenden Aufgaben durch, indem sie die
-Tabelle in ein Tabellenverarbeitungsprogramm kopieren. Verwenden Sie als Primärschlüssel die Spalten 
-*LNr, Funktion, Klasse und Schuljahr*.
+Tabelle in ein Tabellenverarbeitungsprogramm kopieren. Verwenden Sie als Primärschlüssel die Spalten
+*LNr, Klasse und Schuljahr*.
 
 Führen Sie die Normalisierungsschritte zur 2. und 3. Normalform durch.
 
