@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="CsvHelper" Version="15.0.0" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="4.7.0" />
-    <PackageReference Include="System.Text.Json" Version="4.7.0" />
+    <PackageReference Include="CsvHelper" Version="*" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="*" />
+    <PackageReference Include="System.Text.Json" Version="*" />
   </ItemGroup>
 
   <ItemGroup>

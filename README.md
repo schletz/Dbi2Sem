@@ -10,10 +10,10 @@
         <td colspan="3" valign="top">
             <b>1</b> Erweitertes SQL
             <ol>
-                <li><a href="11_SingleValueNonCorresponding">Nicht korrespondierende Unterabfragen, die einen Wert liefern</a></li>
-                <li><a href="12_SingleValueCorresponding">Korrespondierende Unterabfragen, die einen Wert liefern</a></li>
+                <li><a href="11_SingleValueNonCorresponding">Nicht korrelierte Unterabfragen, die einen Wert liefern</a></li>
+                <li><a href="12_SingleValueCorresponding">Korrelierte Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
-                <li>Unterabfragen, die in FROM verwendet werden</li>
+                <li>Views und Unterabfragen in FROM</li>
                 <li>CASE, COALESCE, Datumswerte und andere Funktionen</li>
                 <li>Window Functions</li>
             </ol>

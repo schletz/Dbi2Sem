@@ -1,4 +1,4 @@
-# Korrespondierende Unterabfragen, die einen Wert liefern
+# Korrelierte Unterabfragen, die einen Wert liefern
 
 Bis jetzt haben unsere Unterabfragen keinen Wert von der äußeren Abfrage bezogen. Es gibt allerdings
 Situationen, in denen das notwendig ist. Wir betrachten die folgende Abfrage, bei der wir ermitteln,

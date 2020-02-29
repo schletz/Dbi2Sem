@@ -1,4 +1,4 @@
-# Nicht korrespondierende Unterabfragen, die einen Wert liefern
+# Nicht korrelierende Unterabfragen, die einen Wert liefern
 
 Wir möchten als erstes Beispiel alle Schüler und das Geburtsdatum des jüngsten Schülers ausgeben.
 Dies klingt einmal einfach, stellt uns aber vor ein Problem.
