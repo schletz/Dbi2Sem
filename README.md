@@ -14,7 +14,8 @@
                 <li><a href="12_SingleValueCorresponding">Korrelierte Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
                 <li><a href="14_FromSubqueries">Views und Unterabfragen in FROM</a></li>
-                <li>CASE, COALESCE, Datumswerte und andere Funktionen</li>
+                <li>CASE in SQL Funktionen</li>
+                <li>Datum und Zeit</li>
                 <li>Window Functions</li>
             </ol>
         </td>    
