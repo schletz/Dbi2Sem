@@ -13,7 +13,7 @@
                 <li><a href="11_SingleValueNonCorresponding">Nicht korrelierte Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="12_SingleValueCorresponding">Korrelierte Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
-                <li>Views und Unterabfragen in FROM</li>
+                <li>><a href="14_FromSubqueries">Views und Unterabfragen in FROM</a></li>
                 <li>CASE, COALESCE, Datumswerte und andere Funktionen</li>
                 <li>Window Functions</li>
             </ol>
@@ -33,7 +33,7 @@
         <td colspan="2" valign="top">
             <b>2</b> Bereich Datenbankadministration
             <ol>
-                <li>Views</li>
+                <li>Arbeiten mit der Oracle VM</li>
                 <li><a href="22_Null">NULL Values</a></li>
                 <li><a href="23_Transactions">Transaktionen</a></li>
             </ol>
