@@ -12,7 +12,7 @@ namespace SchulDbGenerator
         static DbContextOptions<SchuleContext> GetOptions()
         {
             var builder = new DbContextOptionsBuilder<SchuleContext>();
-            Console.Write("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb ");
+            Console.Write("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle ");
             string dbType = Console.ReadLine();
             dbType = string.IsNullOrEmpty(dbType) ? "1" : dbType;
 
@@ -32,6 +32,27 @@ namespace SchulDbGenerator
                                 $"AttachDBFilename={System.Environment.CurrentDirectory}\\{dbName}.mdf;" +
                                 $"Database={dbName};" +
                                 $"Trusted_Connection=True;MultipleActiveResultSets=true");
+            }
+            else if (dbType == "3")
+            {
+                Console.Write("Wie soll der Benutzer heißen? Default: Schule ");
+                string dbName = Console.ReadLine();
+                dbName = string.IsNullOrEmpty(dbName) ? "Schule" : dbName;
+                builder.UseOracle($"User Id={dbName};Password=oracle;Data Source=localhost:1521/orcl");
+
+                var oracleSystemOptions = new DbContextOptionsBuilder<SchuleContext>()
+                    .UseOracle("User Id=System;Password=oracle;Data Source=localhost:1521/orcl")
+                    .Options;
+
+                Console.WriteLine($"Lege Benutzer {dbName} mit Passwort oracle an...");
+                using (SchuleContext db = new SchuleContext(oracleSystemOptions))
+                {
+                    try { db.Database.ExecuteSqlCommand("DROP USER " + dbName + " CASCADE"); }
+                    catch { }
+                    db.Database.ExecuteSqlCommand("CREATE USER " + dbName + " IDENTIFIED BY oracle");
+                    db.Database.ExecuteSqlCommand("GRANT CONNECT, RESOURCE, CREATE VIEW TO " + dbName);
+                    db.Database.ExecuteSqlCommand("GRANT UNLIMITED TABLESPACE TO " + dbName);
+                }
             }
             else
             {

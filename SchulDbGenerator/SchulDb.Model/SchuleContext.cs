@@ -48,6 +48,20 @@ namespace SchulDb.Model
             {
                 entity.HasKey(e => new { e.StStunde, e.StTag, e.StLehrer, e.StKlasse });
             });
+
+            // Für Oracle alle Namen großschreiben, sonst sind sie Case Sensitive und brauchen
+            // ein " bei den Abfragen.
+            if (Database.IsOracle())
+            {
+                foreach (var entity in modelBuilder.Model.GetEntityTypes())
+                {
+                    foreach (var property in entity.GetProperties())
+                    {
+                        property.Relational().ColumnName = property.Relational().ColumnName.ToUpper();
+                    }
+                    entity.Relational().TableName = entity.Relational().TableName.ToUpper();
+                }
+            }
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

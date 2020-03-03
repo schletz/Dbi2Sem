@@ -10,7 +10,7 @@ namespace SchulDb.Model
     public partial class Pruefung
     {
         [Key]
-        [Column("P_DatumZeit", TypeName = "datetime")]
+        [Column("P_DatumZeit")]
         public DateTime PDatumZeit { get; set; }
         [Key]
         [Column("P_Pruefer")]

@@ -30,9 +30,9 @@ namespace SchulDb.Model
         [Column("L_Vorname")]
         [StringLength(255)]
         public string LVorname { get; set; }
-        [Column("L_Gebdat", TypeName = "datetime")]
+        [Column("L_Gebdat")]
         public DateTime? LGebdat { get; set; }
-        [Column("L_Gehalt", TypeName = "money")]
+        [Column("L_Gehalt", TypeName = "DECIMAL(9,4)")]
         public decimal? LGehalt { get; set; }
         [Column("L_Chef")]
         [StringLength(8)]

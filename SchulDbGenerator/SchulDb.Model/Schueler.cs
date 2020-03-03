@@ -34,7 +34,7 @@ namespace SchulDb.Model
         public string SVorname { get; set; }
         [Column("S_Geschlecht")]
         public int SGeschlecht { get; set; }
-        [Column("S_Gebdatum", TypeName = "datetime")]
+        [Column("S_Gebdatum")]
         public DateTime? SGebdatum { get; set; }
         [Column("S_Strasse")]
         [StringLength(255)]

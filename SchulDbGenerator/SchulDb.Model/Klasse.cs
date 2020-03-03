@@ -43,9 +43,9 @@ namespace SchulDb.Model
         [Column("K_Schulstufe")]
         public int? KSchulstufe { get; set; }
 
-        [Column("K_Datumvon", TypeName = "datetime")]
+        [Column("K_Datumvon")]
         public DateTime? KDatumvon { get; set; }
-        [Column("K_Datumbis", TypeName = "datetime")]
+        [Column("K_Datumbis")]
         public DateTime? KDatumbis { get; set; }
         [ForeignKey(nameof(KAbteilung))]
         [InverseProperty(nameof(Abteilung.Klassens))]

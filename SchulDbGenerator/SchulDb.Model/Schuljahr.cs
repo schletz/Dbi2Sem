@@ -17,9 +17,9 @@ namespace SchulDb.Model
         [Column("Sja_Bezeichnung")]
         [StringLength(255)]
         public string SjaBezeichnung { get; set; }
-        [Column("Sja_Datumvon", TypeName = "datetime")]
+        [Column("Sja_Datumvon")]
         public DateTime SjaDatumvon { get; set; }
-        [Column("Sja_Datumbis", TypeName = "datetime")]
+        [Column("Sja_Datumbis")]
         public DateTime SjaDatumbis { get; set; }
         [Column("Sja_Wintersemester")]
         public bool Wintersemester { get; set; }
