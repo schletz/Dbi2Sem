@@ -77,50 +77,53 @@ Folgende Daten sind in der Tabelle *Kategorie*:
 
 ### Preis zum Zeitpunkt *t*
 
-Die Preise für die Tankstelle 1 für Benzin super sind wie folgt abzufragen:
+Die Preise für die Tankstelle 2 für Benzin super (Kategorie 1) sind wie folgt abzufragen:
 
 ```sql
 SELECT *
 FROM Preis p
-WHERE p.KategorieId = 1 AND p.TankstelleId = 1
+WHERE p.KategorieId = 1 AND p.TankstelleId = 2
 ORDER BY p.GueltigVon;
 ```
 
-| Id  | Wert   | GueltigVon | GueltigBis | TankstelleId | KategorieId |
-| --- | ------ | ---------- | ---------- | ------------ | ----------- |
-| 9   | 1.3    | 2019-03-22 | 2019-05-11 | 1            | 1           |
-| 14  | 1.2829 | 2019-05-11 | 2019-08-09 | 1            | 1           |
-| 23  | 1.2915 | 2019-08-09 | 2019-09-18 | 1            | 1           |
-| 27  | 1.2824 | 2019-09-18 | 2019-10-18 | 1            | 1           |
-| 30  | 1.2871 | 2019-10-18 | 2019-11-17 | 1            | 1           |
-| 33  | 1.2819 | 2019-11-17 |            | 1            | 1           |
+| Id   | Wert   | GueltigVon | GueltigBis | TankstelleId | KategorieId |
+| :--- | :----- | :--------- | :--------- | :----------- | :---------- |
+| 2    | 1.3000 | 2019-01-11 | 2019-02-10 | 2            | 1           |
+| 5    | 1.2926 | 2019-02-10 | 2019-03-12 | 2            | 1           |
+| 8    | 1.2943 | 2019-03-12 | 2019-04-01 | 2            | 1           |
+| 10   | 1.3035 | 2019-04-01 | 2019-04-21 | 2            | 1           |
+| 12   | 1.3287 | 2019-04-21 | 2019-05-01 | 2            | 1           |
+| 13   | 1.3423 | 2019-05-01 | 2019-05-31 | 2            | 1           |
+| 16   | 1.3342 | 2019-05-31 | 2019-07-10 | 2            | 1           |
+| 20   | 1.3327 | 2019-07-10 | NULL       | 2            | 1           |
 
-Wollen wir nun wissen, welche Preise für die Tankstelle 1 am 1. April 2019 eingetragen
+Wollen wir nun wissen, welche Preise für die Tankstelle 2 am 1. April 2019 eingetragen
 wurden, fragen wir mit 2 Kriterien ab:
 
 ```sql
 SELECT *
 FROM Preis p
 WHERE
-    p.TankstelleId = 1 AND
-    p.GueltigVon <= '2019-04-01' AND p.GueltigBis > '2019-04-01';
+    p.TankstelleId = 2 AND
+    p.GueltigVon <= '2019-04-01' AND p.GueltigBis > '2019-04-01'
+ORDER BY p.KategorieId;
 ```
 
-| Id  | Wert  | GueltigVon | GueltigBis | TankstelleId | KategorieId |
-| --- | ----- | ---------- | ---------- | ------------ | ----------- |
-| 6   | 1.111 | 2019-02-20 | 2019-07-10 | 1            | 3           |
-| 8   | 1.2   | 2019-03-12 | 2019-08-29 | 1            | 2           |
-| 9   | 1.3   | 2019-03-22 | 2019-05-11 | 1            | 1           |
+| Id   | Wert   | GueltigVon | GueltigBis | TankstelleId | KategorieId |
+| :--- | :----- | :--------- | :--------- | :----------- | :---------- |
+| 8    | 1.2943 | 2019-03-12 | 2019-04-01 | 2            | 1           |
+| 1    | 1.2000 | 2019-01-01 | 2019-05-11 | 2            | 2           |
+| 3    | 1.1000 | 2019-01-21 | 2019-05-21 | 2            | 3           |
 
-Beachten Sie, dass wir für *GueltigVon* den Operator <=  verwenden und für *GueltigBis* den
+Beachten Sie, dass wir für *GueltigVon* den Operator <= verwenden und für *GueltigBis* den
 Operator >.
 
 Wir versuchen nun, den Preis für den 1. November 2019 nach derselben Methode herauszufinden.
 Auf einmal sehen wir nur mehr 1 Datensatz im Ergebnis:
 
-| Id  | Wert   | GueltigVon | GueltigBis | TankstelleId | KategorieId |
-| --- | ------ | ---------- | ---------- | ------------ | ----------- |
-| 30  | 1.2871 | 2019-10-18 | 2019-11-17 | 1            | 1           |
+| Id   | Wert   | GueltigVon | GueltigBis | TankstelleId | KategorieId |
+| :--- | :----- | :--------- | :--------- | :----------- | :---------- |
+| 31   | 1.1681 | 2019-10-28 | 2019-11-07 | 2            | 2           |
 
 Das Problem ist der Wert NULL, wenn der Preis aktuell gültig ist. In der Kategorie 2 und 3 hat
 der Preis, der am 1.11.2019 gilt, kein Enddatum, da er noch gilt. Da NULL aber beim Vergleich mit
@@ -133,15 +136,15 @@ NULL wert zurückgeben lassen.
 SELECT *
 FROM Preis p
 WHERE
-    p.TankstelleId = 1 AND
+    p.TankstelleId = 2 AND
     p.GueltigVon <= '2019-11-01' AND COALESCE(p.GueltigBis, DATE('2099-12-31')) > '2019-11-01';
 ```
 
-| Id  | Wert   | GueltigVon | GueltigBis | TankstelleId | KategorieId |
-| --- | ------ | ---------- | ---------- | ------------ | ----------- |
-| 20  | 1.1238 | 2019-07-10 |            | 1            | 3           |
-| 28  | 1.2044 | 2019-09-28 |            | 1            | 2           |
-| 30  | 1.2871 | 2019-10-18 | 2019-11-17 | 1            | 1           |
+| Id   | Wert   | GueltigVon | GueltigBis | TankstelleId | KategorieId |
+| :--- | :----- | :--------- | :--------- | :----------- | :---------- |
+| 20   | 1.3327 | 2019-07-10 | NULL       | 2            | 1           |
+| 31   | 1.1681 | 2019-10-28 | 2019-11-07 | 2            | 2           |
+| 30   | 1.0758 | 2019-10-18 | NULL       | 2            | 3           |
 
 Das Abfragen des gerade gültigen Preises ist mit der Information, dass *GueltigBis* im letzten
 Intervall den Wert NULL hat, sehr einfach:
@@ -149,14 +152,15 @@ Intervall den Wert NULL hat, sehr einfach:
 ```c#
 SELECT *
 FROM Preis p
-WHERE p.TankstelleId = 1 AND p.GueltigBis IS NULL;
+WHERE p.TankstelleId = 2 AND p.GueltigBis IS NULL
+ORDER BY p.KategorieId;
 ```
 
-| Id  | Wert   | GueltigVon | GueltigBis | TankstelleId | KategorieId |
-| --- | ------ | ---------- | ---------- | ------------ | ----------- |
-| 20  | 1.1238 | 2019-07-10 |            | 1            | 3           |
-| 28  | 1.2044 | 2019-09-28 |            | 1            | 2           |
-| 33  | 1.2819 | 2019-11-17 |            | 1            | 1           |
+| Id   | Wert   | GueltigVon | GueltigBis | TankstelleId | KategorieId |
+| :--- | :----- | :--------- | :--------- | :----------- | :---------- |
+| 20   | 1.3327 | 2019-07-10 | NULL       | 2            | 1           |
+| 37   | 1.1931 | 2019-12-27 | NULL       | 2            | 2           |
+| 30   | 1.0758 | 2019-10-18 | NULL       | 2            | 3           |
 
 ## Übung
 
@@ -167,7 +171,7 @@ Tankstelle 1 ausgibt. Hinweis: Verwenden Sie die Intervallabfrage im JOIN Ausdru
 
 **(2)** Ermitteln Sie mit einem SQL Statement den Durchschnittspreis im Juli 2019 für Diesel
 (Kategorie 3). Beachten Sie, dass bei der Berechnung des Durchschnittes die einzelnen Tage
-verwendet werden, um jeden Tag des Monats - egal wie lange der Preis gilt - gleich stark zu 
+verwendet werden, um jeden Tag des Monats - egal wie lange der Preis gilt - gleich stark zu
 gewichten. Korrekte Antwort: 1.1011 Euro.
 
 **(3)** In unserer Schuldatenbank sind Schüler (Vor- und Zuname sowie Geburtsdatum) einer Klasse
