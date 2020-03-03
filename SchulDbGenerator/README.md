@@ -5,17 +5,18 @@ Prüfungen. Es verwendet EF Core und schreibt die gesamte Datenbank neu.
 
 ## Voraussetzung: .NET Core Version 3.1
 
-Dieses Programm verwendet .NET Core 3.1. Prüfen Sie vorher in der Eingabeaufforderung (Konsole), ob
+Dieses Programm verwendet .NET Core 3.1. Es kann daher unter Windows, Linux (64bit) und unter macOS
+ausgeführt werden. Prüfen Sie vorher in der Eingabeaufforderung (Konsole), ob
 Sie die entsprechende .NET Code Version installiert haben:
 
 ```text
 dotnet --version
 ```
 
-Liefert dieser Befehl einen Fehler oder ist die .NET Version kleiner als 3.1, laden Sie sich von der
+Liefert dieser Befehl einen Fehler oder ist die .NET Version kleiner als 3.1, laden Sie von der
 [dotnet Download Seite](https://dotnet.microsoft.com/download) die neueste SDK Version
-(nicht die Runtime) von .NET Core. Nach der Installation müssen Sie die Eingabeaufforderung beenden
-und neu öffnen.
+(nicht die Runtime) von .NET Core für Ihr Betriebssystem. Nach der Installation müssen Sie die
+Eingabeaufforderung beenden und neu öffnen.
 
 ## Starten des Programmes
 
