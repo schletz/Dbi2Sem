@@ -65,36 +65,25 @@ aktiviert ist. Es ist standardmäßig gesetzt, sollte also immer eingetragen sei
 
 ![](port_forwarding.png)
 
+## Generierung der Schuldatenbank
+
+Zum Generieren der Schuldatenbank starten Sie den [SchulDbGenerator](../SchulDbGenerator/README.md).
+Dieses Programm legt einen Benutzer und die Datenbank in Ihrer Oracle VM an.
+
 ## Installation von SQL Developer
 
 SQL Developer ist zwar in der virtuellen Maschine integriert, eine Installation unter ihrem Hostbetriebssystem erlaubt allerdings ein flüssigeres Arbeiten. Dafür verbindet sich SQL Developer über TCP (Port 1521) zu Ihrer virtuellen Maschine, die natürlich laufen muss.
 
 Sie können SQL Developer entweder direkt von der <a href="https://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html" target="_blank">[Downloadseite von Oracle]</a> laden, oder Sie kopieren sich die Datei *sqldeveloper-18.2.0.183.1748-x64.zip* vom Ordner `\\enterprise\ausbildung\unterricht\unterlagen\schletz\DBI_Stuff`. Die ZIP Datei muss nur entpackt und sqldeveloper.exe gestartet werden.
 
-Zu Beginn verbinden wir uns als System User, um einen Benutzer einzurichten. Dazu klicken Sie auf das grüne Plus in der Palette Connections. Nun kann die Verbindung wie folgt eingerichtet werden:
+Das Programm *SchulDbGenerator* hat zuvor einen Benutzer und ein Kennwort in Ihrer VM angelegt. Diese
+Daten werden am Enge angezeigt, denn Sie benötigen Sie nun. Zum Anlegen einer Verbindung klicken Sie
+auf das grüne Plus in der Palette Connections. Nun kann die Verbindung wie folgt eingerichtet werden:
 
-* Verbindungsname: frei wählbar (s. B. *SystemConn*)
-* Benutzername: *System*
-* Kennwort: *oracle*
-* Service-Name (statt SID): *orcl*
-
-In das SQL Abfragefenster kopieren Sie folgende Befehle:
-
-```sql
--- Nach IDENTIFIED BY kommt das Passwort, in unserem Fall oracle.
-CREATE USER SchulDb IDENTIFIED BY oracle;
--- Nun bekommt der User alle Rechte.
-GRANT CONNECT, RESOURCE, CREATE VIEW TO SchulDb;
--- Unser User darf auch Daten anlegen.
-GRANT UNLIMITED TABLESPACE TO SchulDb;
-```
-
-Nach dem Ausführen der Befehle (F5) ist der Benutzer SchulDb angelegt und kann auch als Verbindung hinzugefügt werden. Dazu klicken Sie wieder auf das grüne Plus in der Palette Connections. Nun kann die Verbindung wie folgt eingerichtet werden:
-
-* Verbindungsname: frei wählbar (s. B. *SchulDbConn*)
-* Benutzername: *SchulDb*
-* Kennwort: *oracle*
-* Service-Name (statt SID): *orcl*
+- Verbindungsname: frei wählbar (s. B. *SchulDbConn*)
+- Benutzername: *Schule* (wie im SchulDbGenerator angezeigt)
+- Kennwort: *oracle* (wie im SchulDbGenerator angezeigt)
+- Service-Name (statt SID): *orcl*
 
 Nach dem Klick auf Test und Save steht die neue Verbindung nun in der Palette Connections zur Verfügung. Ein Klick auf die Verbindung öffnet das Abfragefenster.
 
