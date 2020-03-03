@@ -125,7 +125,7 @@ Auf einmal sehen wir nur mehr 1 Datensatz im Ergebnis:
 | :--- | :----- | :--------- | :--------- | :----------- | :---------- |
 | 31   | 1.1681 | 2019-10-28 | 2019-11-07 | 2            | 2           |
 
-Das Problem ist der Wert NULL, wenn der Preis aktuell gültig ist. In der Kategorie 2 und 3 hat
+Das Problem ist der Wert NULL, wenn der Preis aktuell gültig ist. In der Kategorie 1 und 3 hat
 der Preis, der am 1.11.2019 gilt, kein Enddatum, da er noch gilt. Da NULL aber beim Vergleich mit
 dem > Operator nicht true liefert, wird er ausgefiltert.
 
