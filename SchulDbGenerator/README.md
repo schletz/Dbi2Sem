@@ -3,39 +3,42 @@
 Dieses Programm generiert - basierend auf den realen Untisdaten - Musterdaten für Schüler und
 Prüfungen. Es verwendet EF Core und schreibt die gesamte Datenbank neu.
 
-## Kopieren der Untisdaten
+## Voraussetzung: .NET Core Version 3.1
 
-Für das Untistool werden täglich auf `\\enterprise\administration\schmidsUntisTool` csv Daten aus
-der Untisdatenbank exportiert. Kopiere die folgenden Dateien in das Verzeichnis `Untis/Data`
-dieser Applikation. Der String *2019-2020* kann im Programm noch angepasst werden.
+Dieses Programm verwendet .NET Core 3.1. Prüfen Sie vorher in der Eingabeaufforderung (Konsole), ob
+Sie die entsprechende .NET Code Version installiert haben:
 
-- *AlleLehrer/Lehrer_2019-2020.csv*
-- *DataFiles_2019-2020/\*.csv*
+```text
+dotnet --version
+```
+
+Liefert dieser Befehl einen Fehler oder ist die .NET Version kleiner als 3.1, laden Sie sich von der
+[dotnet Download Seite](https://dotnet.microsoft.com/download) die neueste SDK Version
+(nicht die Runtime) von .NET Core. Nach der Installation müssen Sie die Eingabeaufforderung beenden
+und neu öffnen.
 
 ## Starten des Programmes
 
-In der Konsole kann das Programm - wenn die .NET Core SDK ab Version 3.1 vorhanden ist - kompiliert
-und ausgeführt werden:
+Nun kann die Datenbank mit dem Generator erzeugt werden:
 
 ```text
 cd SchulDbGenerator
 dotnet run -c Release
 ```
 
-Es wird der Typ der zu erstellenden Datenbank und weitere Informationen abgefragt.
+Das Programm fragt ab, welche Datenbank Sie anlegen möchten. Es kann eine SQLite Datei, eine SQL
+Server Datenbank (LocalDb) oder eine Oracle Datenbank angelegt werden.
 
-### Anpassen des Schuljahres
-
-Im Programm gibt es einen auskommentierten Block, der die Datenbank generiert. Hier kann das Prefix
-der Dateien und das Schuljahr, das als Basisdatum für zeitbasierende Musterdaten verwendet wird,
-geändert werden.
-
-```c#
-Untisdata data = await Untisdata.Load("Untis/Data", "2019-2020");
-using (SchuleContext db = new SchuleContext(options))
-{
-    db.Database.EnsureDeleted();
-    db.Database.EnsureCreated();
-    db.SeedDatabase(data, 2019);     // Schuljahr; 2019 für 2019/20
-}
+```text
+Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 1
+Dateiname? Hinweis: Relative Pfade (..) sind möglich. Default: Schule.db
 ```
+
+- Um sich zur SQLite Datenbank zu verbinden, öffnen Sie DBeaver oder DataGrip und wählen eine SQLite
+  Verbindung.
+- Für den Zugriff auf die SQL Server Datenbank benötigen Sie das
+  [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15).
+  Dort können Sie sich zum Server *(LocalDb)\MSSQLLocalDB* (Windows Authentication) verbinden.
+- Für die Verwendung der Oracle Datenbank muss die Virtuelle Maschine vor der Generierung natürlich
+  gestartet werden. Nachdem die Datenbank erzeugt wurde, können Sie sich mit dem angezeigten
+  Benutzerdaten zu localhost, Service Name *orcl* verbinden.
