@@ -83,8 +83,10 @@ In das SQL Abfragefenster kopieren Sie folgende Befehle:
 ```sql
 -- Nach IDENTIFIED BY kommt das Passwort, in unserem Fall oracle.
 CREATE USER SchulDb IDENTIFIED BY oracle;
--- Nun bekommt der User alle Rechte 
-GRANT CONNECT, RESOURCE, DBA TO SchulDb;
+-- Nun bekommt der User alle Rechte.
+GRANT CONNECT, RESOURCE, CREATE VIEW TO SchulDb;
+-- Unser User darf auch Daten anlegen.
+GRANT UNLIMITED TABLESPACE TO SchulDb;
 ```
 
 Nach dem Ausführen der Befehle (F5) ist der Benutzer SchulDb angelegt und kann auch als Verbindung hinzugefügt werden. Dazu klicken Sie wieder auf das grüne Plus in der Palette Connections. Nun kann die Verbindung wie folgt eingerichtet werden:
