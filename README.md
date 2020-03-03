@@ -45,7 +45,13 @@
     </tr>
 </table>
 
-### Beurteilung
+## Informationen zum Start
+
+- [Download und Konfiguration der VM](01_OracleVM/README.md)
+- [Installation von DBeaver](01_OracleVM/01_Dbeaver/README.md)
+- [Optional: Installation von JetBrains DataGrip](01_OracleVM/02_DataGrip/README.md)
+
+## Beurteilung
 
 - Insgesamt 2 praktische Überprüfungen im Bereich SQL und Datenbankadministration.
 - Abgabe des Modellierungsprojektes.
