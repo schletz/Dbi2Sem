@@ -50,6 +50,7 @@
 - [Download und Konfiguration der VM](01_OracleVM/README.md)
 - [Installation von DBeaver](01_OracleVM/01_Dbeaver/README.md)
 - [Optional: Installation von JetBrains DataGrip](01_OracleVM/02_DataGrip/README.md)
+- [Installation von erwin Data Modeler](02_ErWin/README.md)
 
 ## Beurteilung
 
