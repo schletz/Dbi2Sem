@@ -284,7 +284,7 @@ Prüfungstabelle eingetragen sind.
 LEFT JOIN lösen? Begründen Sie wenn nicht. Hinweis: Arbeiten Sie mit der Menge der Gegenstände,
 die NICHT praktisch geprüft werden. Betrachten Sie außerdem nur Gegenstände, die überhaupt geprüft
 werden. Würden Gegenstände, die gar nicht geprüft werden, sonst aufscheinen? Macht das einen
-(aussagenlogischen) Sinn?
+(aussagenlogischen) Sinn? Vorsicht, denn es gibt auch Prüfungen mit Prüfungsart NULL.
 
 | #   | GNr   | GBez                                            |
 | ---:| ----- | ----------------------------------------------- |
