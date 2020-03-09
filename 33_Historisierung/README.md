@@ -167,7 +167,7 @@ ORDER BY p.KategorieId;
 **(1)** In der Tankstellendatenbank gibt es eine Tabelle *Tag*. Diese ist sehr einfach gebaut: Sie
 speichert einfach jeden einzelnen Tag des 21. Jahrhunderts (1.1.2000 - 31.12.2099). Schreiben
 Sie eine Abfrage, die den Tagespreis für Diesel (Kategorie 3) im Jahr 2019 an der
-Tankstelle 1 ausgibt. Hinweis: Da nicht für das ganze Jahr eine Preis vorhanden ist, wird
+Tankstelle 1 ausgibt. Hinweis: Da nicht für das ganze Jahr ein Preis vorhanden ist, wird
 Ihr Ergebnis erst nach dem 1. Jänner beginnen. Es muss aber bis 31. Dezember 2019 gehen, da hier
 der letzte eingetragene Preis verwendet wird.
 
