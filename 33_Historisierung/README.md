@@ -182,11 +182,11 @@ beginnt. Falls noch kein Preis vorhanden ist, soll NULL geliefert werden. Hinwei
 Sie *LEFT JOIN* und filtern Sie nach der Tankstelle im JOIN Ausdruck. Begründen Sie, warum das
 Filtern nach der Tankstelle im WHERE Ausdruck Ihre Ergebnisse am Anfang des Jahres wieder entfernt.
 
-**(3)** In unserer Schuldatenbank sind Schüler (Vor- und Zuname sowie Geburtsdatum) einer Klasse
+**(4)** In unserer Schuldatenbank sind Schüler (Vor- und Zuname sowie Geburtsdatum) einer Klasse
 (Bezeichnung und Stammraum) zugeordnet. Erstellen Sie ein kleines Modell, bei dem Sie herausfinden
 können, welche Klasse jeder Schüler in jedem Schuljahr besucht hat.
 
-**(4)** Verbinden Sie mit der Schülertabelle aus Übung (3) eine Tabelle Zeugnisnoten. Diese
+**(5)** Verbinden Sie mit der Schülertabelle aus Übung (3) eine Tabelle Zeugnisnoten. Diese
 Zeugnisnoten werden von einem Lehrer (Vor- und Zuname) in einem Fach (Bezeichnung und Langname)
 für eine bestimmtes Schuljahr eingetragen. Anstatt die Note einfach zu überschreiben, wollen
 Sie ein Protokoll haben, wer die Note geändert hat. Wie finden Sie die aktuelle Note heraus? Geben
