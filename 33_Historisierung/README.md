@@ -175,7 +175,11 @@ der letzte eingetragene Preis verwendet wird.
 (Kategorie 3). Beachten Sie, dass bei der Berechnung des Durchschnittes die einzelnen Tage
 verwendet werden, um jeden Tag des Monats - egal wie lange der Preis gilt - gleich stark zu
 gewichten. Prüfen Sie Ihre Antwort, indem Sie die Tagespreise in Excel laden und den Mittelwert
-dort berechnen.
+dort berechnen. Hinweis: Streng genommen müsste
+zuerst der durchschnittliche Preis pro Tag ermittelt werden, und danach der Mittelwert davon berechnet
+werden. Da aber beide Tankstellen Preise eingetragen haben, genügt ein einfacher Mittelwert über
+die Kategorie 3 im Juli 2019. Ein Unterschied entsteht erst, wenn pro Tag nicht immer gleich viele
+Preise vorhanden sind.
 
 **(3)** Schreiben Sie Ihre Abfrage von (1) so um, dass Ihr Ergebnis mit 1. Jänner 2019
 beginnt. Falls noch kein Preis vorhanden ist, soll NULL geliefert werden. Hinweis: Verwenden
