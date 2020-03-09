@@ -179,7 +179,7 @@ dort berechnen.
 
 **(3)** Schreiben Sie Ihre Abfrage von (1) so um, dass Ihr Ergebnis mit 1. Jänner 2019
 beginnt. Falls noch kein Preis vorhanden ist, soll NULL geliefert werden. Hinweis: Verwenden
-Sie *LEFT JOIN* und filtern Sie nach der Tankstelle im JOIN Ausdruck. Begründen Sie, warum das
+Sie *LEFT JOIN* und filtern Sie nach Tankstelle und Kategorie im JOIN Ausdruck. Begründen Sie, warum das
 Filtern nach der Tankstelle im WHERE Ausdruck Ihre Ergebnisse am Anfang des Jahres wieder entfernt.
 
 **(4)** In unserer Schuldatenbank sind Schüler (Vor- und Zuname sowie Geburtsdatum) einer Klasse
