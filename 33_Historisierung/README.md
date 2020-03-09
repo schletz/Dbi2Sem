@@ -172,7 +172,8 @@ Tankstelle 1 ausgibt. Hinweis: Verwenden Sie die Intervallabfrage im JOIN Ausdru
 **(2)** Ermitteln Sie mit einem SQL Statement den Durchschnittspreis im Juli 2019 für Diesel
 (Kategorie 3). Beachten Sie, dass bei der Berechnung des Durchschnittes die einzelnen Tage
 verwendet werden, um jeden Tag des Monats - egal wie lange der Preis gilt - gleich stark zu
-gewichten. Korrekte Antwort: 1.1011 Euro.
+gewichten. Prüfen Sie Ihre Antwort, indem Sie die Tagespreise in Excel laden und den Mittelwert
+dort berechnen.
 
 **(3)** In unserer Schuldatenbank sind Schüler (Vor- und Zuname sowie Geburtsdatum) einer Klasse
 (Bezeichnung und Stammraum) zugeordnet. Erstellen Sie ein kleines Modell, bei dem Sie herausfinden
