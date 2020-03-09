@@ -166,8 +166,9 @@ ORDER BY p.KategorieId;
 
 **(1)** In der Tankstellendatenbank gibt es eine Tabelle *Tag*. Diese ist sehr einfach gebaut: Sie
 speichert einfach jeden einzelnen Tag des 21. Jahrhunderts (1.1.2000 - 31.12.2099). Schreiben
-Sie eine Abfrage, die den Tagespreis für Diesel (Kategorie 3) im Jahr 2019 an der
-Tankstelle 1 ausgibt. Hinweis: Verwenden Sie die Intervallabfrage im JOIN Ausdruck.
+Sie eine Abfrage, die den Tagespreis für Diesel (Kategorie 3) im November 2019 an der
+Tankstelle 1 ausgibt. Hinweis: Verwenden Sie die Intervallabfrage im JOIN Ausdruck. Hinweis:
+Der November hat 30 Tage, deswegen brauchen Sie auch 30 Datensätze.
 
 **(2)** Ermitteln Sie mit einem SQL Statement den Durchschnittspreis im Juli 2019 für Diesel
 (Kategorie 3). Beachten Sie, dass bei der Berechnung des Durchschnittes die einzelnen Tage
