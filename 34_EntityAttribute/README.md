@@ -144,7 +144,7 @@ WITH (
     Temperature DECIMAL(9,4) '$.temp',
     Humidity    DECIMAL(9,4) '$.hum',
     Pressure    DECIMAL(9,4) '$.pres'
- );
+);
 ```
 
 Weitere Informationen auf https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server?view=sql-server-ver15
