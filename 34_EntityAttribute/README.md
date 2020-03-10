@@ -95,7 +95,7 @@ Weitere Informationen: https://docs.microsoft.com/en-us/sql/t-sql/queries/from-u
 
 ## Speichern von JSON Daten (SQL Server)
 
-In SQL Server ab Version 2016 können auch JSON Daten bearbeitet werden. Sie werden zunächst einmal
+In SQL Server ab Version 2016 können auch JSON Daten verarbeitet werden. Sie werden zunächst einmal
 als normale Strings (*VARCHAR*) in der Tabelle gespeichert. Danach werden Sie mit den entsprechenden
 JSON Funktionen von SQL Server bearbeitet.
 
