@@ -133,7 +133,7 @@ INSERT INTO Measurement VALUES ('2020-03-10T03:00:00Z', 2, '{"temp": 24.8}');
 SELECT
     m.Date, m.Sensor,
     JSON_VALUE(m.Value, '$.temp') AS Temperature,
-    JSON_VALUE(m.Value, '$.hum') AS Humidity,
+    JSON_VALUE(m.Value, '$.hum')  AS Humidity,
     JSON_VALUE(m.Value, '$.pres') AS Pressure
 FROM Measurement m;
 
@@ -141,7 +141,7 @@ FROM Measurement m;
 SELECT *
 FROM Measurement m CROSS APPLY OPENJSON (m.Value)
 WITH (
-    Temperature DECIMAL(9,4) '$.temp' ,
+    Temperature DECIMAL(9,4) '$.temp',
     Humidity    DECIMAL(9,4) '$.hum',
     Pressure    DECIMAL(9,4) '$.pres'
  );
