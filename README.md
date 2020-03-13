@@ -26,8 +26,8 @@
                 <li><a href="32_Generalisierung">Generalisierung</a></li>
                 <li><a href="33_Historisierung">Historisierung</a></li>
                 <li><a href="34_EntityAttribute">Entity Attribute Model</a></li>
-                <li>Hierarchien</li>
-                <li>Gruppen und Rollen</li>
+                <li><a href="35_RekursiveBeziehungen">Rekursive Beziehungen</a></li>
+                <li><a href="36_Standardwerte">Standardwerte</a></li>
             </ol>
         </td>
     </tr>
@@ -35,9 +35,10 @@
         <td colspan="2" valign="top">
             <b>2</b> Bereich Datenbankadministration
             <ol>
-                <li>Arbeiten mit der Oracle VM</li>
+                <li><a href="01_OracleVM">Arbeiten mit der Oracle VM</li>
                 <li><a href="22_Null">NULL Values</a></li>
-                <li><a href="23_Transactions">Transaktionen</a></li>
+                <li><a href="#">Index - Grundlagen</a></li>
+                <li><a href="24_Transactions">Transaktionen</a></li>
             </ol>
         </td>
         <td colspan="3" valign="top">

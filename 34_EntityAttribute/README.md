@@ -2,7 +2,22 @@
 
 [Folien als PDF](Entity_Attribute_Model.pdf) (Dank an Koll. Hilbe für die Bereitstellung!)
 
-## Pivot in SQL Server
+## Übungsangabe: Der Autokatalog
+
+Die Firma WESLA überlegt Ihre Autos nur noch online zu verkaufen. Als ersten Schritt soll ein Datenmodell erstellt werden, in welcher alle möglichen Eigenschaften gespeichert werden können
+
+Für jedes Auto soll auf jeden Fall die Fahrgestellnummer gespeichert, der Preis und die Treibstoffart. Diese Informationen stehen bei jedem Auto zur Verfügung. Zusätzlich sollen verschiedenste Eigenschaften des Autos festgehalten werden, bspw. Lichtanlage, Radioart, Fahrassistent, Multimedia System, Gewicht, Beschleunigung von 0 auf 100, Höchstgeschwindigkeit, durchschnittlicher Verbrauch, Tankvolumen und so weiter.
+
+Wichtig sind dem Auftraggeber zwei Dinge. Die Liste der Eigenschaften soll erweiterbar sein und er legt hohen Wert auf gute Datenqualität. Stellen Sie daher sicher, dass soweit als möglich nur sinnvolle Werte eingetragen werden können und bei Zahlen mathematische Operationen angewendet werden können, wie beispielsweise durchschnittlicher Verbrauch (daher keine Buchstaben bei Gewicht, Tankvolumen oder durchschnittlicher Verbrauch!). Gehen Sie weiters davon aus, dass es sehr viele Eigenschaften gibt, jedoch in der Regel für jedes Auto nur sehr wenige Eigenschaften befüllt sind. Unten angeführt sind noch exemplarisch die derzeit möglichen Werte für die Eigenschaften.
+
+- Lichtanlage: LED, Xenon, Normal
+- Radio: USB, USB CD
+- Fahrassistent: Parkhilfe, Parkhilfe und Abstand, Parkhilfe und Abstand und Spurassistent
+- Multimedia System: TV Funktion, TV und Entertainment Funktion
+
+Bei den Eigenschaften Gewicht, Beschleunigung von 0 auf 100, Höchstgeschwindigkeit, durchschnittlicher Verbrauch, Tankvolumen sollen nur Zahlenwerte eingetragen werden. Idealerweise speichern sie zu jedem Wert auch die Einheit ab.
+
+## Zusatzinfo: Pivot in SQL Server
 
 Zur Demonstration wird in SQL Server eine kleine Datenbank mit
 Sensorwerten angelegt. Die Sensoren liefern Messwerte für Temperatur, Feuchtigkeit und Luftdruck.
