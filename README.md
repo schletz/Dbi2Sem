@@ -27,7 +27,6 @@
                 <li><a href="33_Historisierung">Historisierung</a></li>
                 <li><a href="34_EntityAttribute">Entity Attribute Model</a></li>
                 <li><a href="35_RekursiveBeziehungen">Rekursive Beziehungen</a></li>
-                <li><a href="36_Standardwerte">Standardwerte</a></li>
             </ol>
         </td>
     </tr>
