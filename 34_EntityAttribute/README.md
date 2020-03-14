@@ -25,7 +25,7 @@ km Stand eine Zahl, das verbaute Navi ein String. Wollen wir Autos mit mehr als 
 müssen wir den Wert konvertieren (Typecast).
 
 **Seite 6:** Aus diesem Grund unterscheiden wir in 2 Spalten Zahlen- und Textwerte. So ist beim km
-Stand nut der Zahlenwert befüllt, der Zeichenwert ist NULL. Beim Navi ist es umgekehrt. Die Tabelle
+Stand nur der Zahlenwert befüllt, der Zeichenwert ist NULL. Beim Navi ist es umgekehrt. Die Tabelle
 Einheit speichert noch zusätzlich, dass es sich bei der Zahl des km Standes (z. B. 89.000) um die
 Einheit "km" handelt. Beim km Stand kann man dies wohl auch ohne Einheit erkennen, bei der Leistung
 wäre dies schon schwieriger (PS oder kW).
