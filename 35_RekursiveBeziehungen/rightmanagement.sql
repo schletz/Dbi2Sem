@@ -1,8 +1,13 @@
-USE master
-DROP DATABASE Groupmembers
-CREATE DATABASE Groupmembers
-USE Groupmembers
-GO
+-- CREATE DATABASE nur für SQL Server
+-- USE master
+-- DROP DATABASE Groupmembers
+-- CREATE DATABASE Groupmembers
+-- USE Groupmembers
+-- GO
+
+-- *************************************************************************************************
+-- TEIL 1: Gruppen als eigene Tabellen
+-- *************************************************************************************************
 
 CREATE TABLE Abteilung (
 	AbteilungId INTEGER PRIMARY KEY,
@@ -21,19 +26,22 @@ CREATE TABLE Schueler (
 	SchuelerId  INTEGER PRIMARY KEY,
 	Firstname   VARCHAR(200) NOT NULL,
 	Lastname    VARCHAR(200) NOT NULL,
-	Klasse      INTEGER REFERENCES Klasse(KlasseId),
+	Klasse      INTEGER NOT NULL REFERENCES Klasse(KlasseId),
 	CanEdit     INTEGER
 );
 
 
+-- Abteilungsgruppen anlegen
 INSERT INTO Abteilung VALUES (1100, 'Informatik Abend', NULL);
 INSERT INTO Abteilung VALUES (2100, 'Wirtschaftsingenieur', 0);
 
+-- Klassengruppen anlegen
 INSERT INTO Klasse VALUES (1110, 1100, '2AKIF', NULL);
 INSERT INTO Klasse VALUES (1120, 1100, '2BKIF', 1);
 INSERT INTO Klasse VALUES (2110, 2100, '1AHWIT', NULL);
 INSERT INTO Klasse VALUES (2120, 2100, '2AHWIT', 1);
 
+-- Schüler anlegen
 -- 2AKIF
 insert into Schueler values (1000, 'Selig', 'Grabiec', 1110, NULL);
 insert into Schueler values (1001, 'Bee', 'Apted', 1110, 1);
@@ -48,7 +56,7 @@ insert into Schueler values (1006, 'Kennan', 'Imloch', 2120, NULL);
 insert into Schueler values (1007, 'Mitchell', 'Rearden', 2120, 0);
 
 
--- Welche effektiven Rechte haben die Sch�ler?
+-- Welche effektiven Rechte haben die Schüler?
 SELECT a.Name AS Abt, k.Name AS Klasse, s.Firstname, s.Lastname,
        a.CanEdit AS CanEditAbt,
        k.CanEdit AS CanEditKlasse,
@@ -59,9 +67,9 @@ FROM Abteilung a INNER JOIN Klasse k ON (a.AbteilungId = k.Abteilung)
 ORDER BY a.Name, k.Name, s.Lastname;
 
 
-
--- Allgemeine L�sung mit Gruppen
-
+-- *************************************************************************************************
+-- TEIL 2: Lösung mit einer allgemeinen Gruppentabelle
+-- *************************************************************************************************
 CREATE TABLE AppGroup (
 	GroupId     INTEGER PRIMARY KEY,
 	ParentGroup INTEGER REFERENCES AppGroup(GroupId),
@@ -73,11 +81,11 @@ CREATE TABLE Person (
 	PersonId  INTEGER PRIMARY KEY,
 	Firstname VARCHAR(200) NOT NULL,
 	Lastname  VARCHAR(200) NOT NULL,
-	AppGroup  INTEGER REFERENCES AppGroup(GroupId),
+	AppGroup  INTEGER NOT NULL REFERENCES AppGroup(GroupId),
 	CanEdit   INTEGER
 );
 
-
+-- Die Gruppen und ihre Hierarchien aufbauen.
 INSERT INTO AppGroup VALUES (1000, NULL, 'Studierende', NULL);
     INSERT INTO AppGroup VALUES (1100, 1000, 'Informatik Abend', NULL);
         INSERT INTO AppGroup VALUES (1110, 1100, '2AKIF', NULL);
@@ -89,6 +97,7 @@ INSERT INTO AppGroup VALUES (1000, NULL, 'Studierende', NULL);
 INSERT INTO AppGroup VALUES (2000, NULL, 'Lehrende', 1);
 INSERT INTO AppGroup VALUES (2200, 2000, 'Karenziert', 0);
 
+-- Schüler eintragen.
 -- 2AKIF
 insert into Person values (1000, 'Selig', 'Grabiec', 1110, NULL);
 insert into Person values (1001, 'Bee', 'Apted', 1110, 1);
@@ -103,7 +112,7 @@ insert into Person values (1006, 'Kennan', 'Imloch', 2120, NULL);
 insert into Person values (1007, 'Mitchell', 'Rearden', 2120, 0);
 
 
--- Lehrer
+-- Lehrer eintragen.
 insert into Person values (2000, 'Kristofer', 'Kitchingman', 2000, NULL);
 insert into Person values (2001, 'Filberto', 'Brettor', 2000, NULL);
 -- Karenzierte Lehrer
@@ -111,7 +120,6 @@ insert into Person values (2002, 'Tamma', 'McTeague', 2200, NULL);
 
 
 -- Effektive Rechte, max. 3 Ebenen
-
 SELECT p.Lastname, p.Firstname, 
     p.CanEdit AS EditFromPerson,
 	g1.Name AS Group1, g1.CanEdit AS EditFromGroup1,
@@ -122,21 +130,19 @@ FROM Person p LEFT JOIN AppGroup g1 ON (p.AppGroup = g1.GroupId)
  LEFT JOIN AppGroup g2 ON (g1.ParentGroup = g2.GroupId)
  LEFT JOIN AppGroup g3 ON (g2.ParentGroup = g3.GroupId);
 
- -- Rekursives SQL (SQL Server)
+ -- Zusatzinfo: Rekursives SQL
 WITH RightsCTE AS
-( 
+(
 SELECT p.PersonId, p.Lastname, p.Firstname,
        g.GroupId, g.Name, g.ParentGroup,
-	   COALESCE(p.CanEdit, g.CanEdit) AS CanEdit
+       COALESCE(p.CanEdit, g.CanEdit) AS CanEdit
 FROM Person p INNER JOIN AppGroup g ON (p.AppGroup = g.GroupId)
 UNION ALL
     SELECT 
         r.PersonId, r.Lastname, r.Firstname,
-		g1.GroupId, g1.Name, g1.ParentGroup, -- Hier werden die Parent Daten ausgegeben.
-		COALESCE(r.CanEdit, g1.CanEdit)      -- Effekive Rechte berechnen, wenn wir die Hierachie hinauf gehen.
-	-- Join zwischen der eigenen CTE Tabelle und der neuen Gruppe
+        g1.GroupId, g1.Name, g1.ParentGroup, -- Hier werden Daten der parent group ausgegeben.
+        COALESCE(r.CanEdit, g1.CanEdit)      -- Effekive Rechte berechnen, wenn wir die Hierarchie hinauf gehen.
+    -- Join zwischen der eigenen CTE Tabelle und der neuen Gruppe
     FROM RightsCTE r INNER JOIN AppGroup g1 ON (r.ParentGroup = g1.GroupId)
 )
-
 SELECT * FROM RightsCTE WHERE ParentGroup IS NULL;
-
