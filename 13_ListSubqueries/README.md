@@ -164,25 +164,45 @@ vorkommt: *EXISTS*. Dieser Operator liefert - im Gegensatz zu *IN* - nur *true* 
 *true* wird dann geliefert, wenn die Liste einen (beliebigen) Wert enthält, ansonsten wird
 *false* geliefert.
 
-Diese Abfragen sind meist korrespondierend, das bedeutet dass Werte der äußeren Abfrage
-verwendet werden. Das folgende Beispiel liefert ebenfalls die Liste aller Räume, in denen
+Da es nur darum geht, ob überhaupt Elemente geliefert werden, gibt unsere Unterabfrage * zurück.
+Ob 1, NULL, *, ... verwendet wird ist Geschmackssache, denn die Datenbank verwirft das Ergebnis
+ohnehin. Es ist nur eine syntaktische notwendigkeit, da bei SELECT eine Spaltenliste angegeben werden
+muss.
+
+```sql
+-- Liefert frue, denn es gibt Datensätze in der Tabelle Prüfung.
+SELECT EXISTS(SELECT * FROM Pruefung p);
+-- Liefert false, denn es gibt keine Prüfungen im Gegenstand XXX.
+SELECT EXISTS(SELECT * FROM Pruefung p WHERE p.P_Gegenstand = 'XXX');
+```
+
+Unterabfragen mit *EXISTS* sind fast immer korrelierend, das bedeutet dass Werte der äußeren Abfrage
+verwendet werden. Das folgende Beispiel liefert die Liste aller Räume, in denen
 überhaupt Unterricht statt findet:
 
 ```sql
 SELECT *
 FROM Raum r
-WHERE EXISTS (SELECT 1 FROM Stunde s WHERE s.St_Raum == r.R_ID);
+WHERE EXISTS (SELECT * FROM Stunde s WHERE s.St_Raum == r.R_ID);
 ```
 
-Da es nur darum geht, ob überhaupt Elemente geliefert werden, schreiben wir einfach 1 als
-Wert. Ob 1, NULL, *, ... verwendet wird ist Geschmackssachte.
-
-Die Räume, in denen DBI1 unterrichtet wird, werden durch folgende Abfrage geliefert:
+Andere Beispiele sind:
 
 ```sql
+-- Gibt alle Klassen aus, in denen Schüler sind.
+SELECT *
+FROM Klasse k
+WHERE EXISTS(SELECT * FROM Schueler s WHERE s.S_Klasse = k.K_Nr);
+
+-- Gibt alle Klassen aus, in denen keine Schüler sind.
+SELECT *
+FROM Klasse k
+WHERE NOT EXISTS(SELECT * FROM Schueler s WHERE s.S_Klasse = k.K_Nr);
+
+-- Die Räume, in denen DBI1 unterrichtet wird, werden durch folgende Abfrage geliefert:
 SELECT *
 FROM Raum r
-WHERE EXISTS (SELECT 1 FROM Stunde s WHERE s.St_Raum == r.R_ID AND s.St_Gegenstand == 'DBI1');
+WHERE EXISTS (SELECT * FROM Stunde s WHERE s.St_Raum == r.R_ID AND s.St_Gegenstand == 'DBI1');
 ```
 
 ### EXISTS oder IN?
@@ -190,22 +210,21 @@ WHERE EXISTS (SELECT 1 FROM Stunde s WHERE s.St_Raum == r.R_ID AND s.St_Gegensta
 Die Stärke von *EXISTS* ist der Umgang mit mehreren Schlüsselteilen. Da *IN* nur eine Spalte
 liefern kann, gibt es ein Problem wenn eine Tabelle einen mehrteiligen Schlüssel hat.
 
-Das folgende Beispiel listet alle Prüfungen auf, wo der Prüfer das gleiche Fach am gleichen
-Tag nochmals prüft. Überlegen Sie, was ohne die letzte AND Bedingung geliefert werden würde.
-*DATE()* ruft in SQLite die Datumskomponente ab, schneidet also die Zeit weg.
+Das folgende Beispiel gibt alle Doppelstunden der 5AHIF aus. Dabei geht die Abfrage so vor:
+Eine Doppelstunde ist dann gegeben, wenn in der Stundentabelle für die nächste Stunde (*St_Stunde + 1*)
+ein Datensatz mit gleichem Tag, Klasse und Gegenstand existiert.
 
 ```sql
-SELECT *
-FROM Pruefung p
-WHERE EXISTS(
-    SELECT 1
-    FROM Pruefung p2
-    WHERE
-        p.P_Pruefer = p2.P_Pruefer AND
-        p.P_Gegenstand = p2.P_Gegenstand AND
-        DATE(p.P_DatumZeit) = DATE(p2.P_DatumZeit) AND
-        p.P_DatumZeit < p2.P_DatumZeit
-);
+SELECT s1.St_Tag, s1.St_Stunde, s1.St_Gegenstand
+FROM Stunde s1
+WHERE EXISTS(SELECT *
+             FROM Stunde s2
+             WHERE s2.St_Tag = s1.St_Tag AND
+                   s2.St_Klasse = s1.St_Klasse AND
+                   s2.St_Gegenstand = s1.St_Gegenstand AND
+                   s2.St_Stunde = s1.St_Stunde + 1) AND
+s1.St_Klasse = '5AHIF'
+ORDER BY s1.St_Tag, s1.St_Stunde;
 ```
 
 Mit *IN* müssten wir ebenso eine korrespondierende Abfrage schreiben, die dann eine Spalte
