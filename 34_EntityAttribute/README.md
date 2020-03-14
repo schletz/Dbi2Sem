@@ -2,6 +2,38 @@
 
 [Folien als PDF](Entity_Attribute_Model.pdf) (Dank an Koll. Hilbe für die Bereitstellung!)
 
+## Erklärung zu den Folien
+
+**Seite 2:** Oft haben Entities Attribute, die nicht zu 100% bei der Modellierung feststehen. So kann
+sich herausstellen, dass unser Auto zusätzliche Attribute bekommen soll (z. B. km Stand). Dies kann
+nur durch Änderung des Schemas abgebildet werden, was im laufenden Betrieb vermieden werden soll.
+Außerdem werden die Inhalte als Strings gespeichert, was eine Abfrage schwierig macht. So gibt
+jemand für das Navi die Bezeichnung "TomTom 1" ein, ein anderer Datensatz hat den Wert "Tom Tom 1"
+(mit Leerstelle). Somit ist ein Filtern schwierig.
+
+**Seite 3:** Damit die Werte kategorisiert werden können, werden hier Lookup Tabellen verwendet. So
+ist genau festgelegt, welche Radioarten eingetragen werden dürfen. Neue Merkmale können hier allerdings
+auch nicht ohne Änderung des Schemas hinzugefügt werden.
+
+**Seite 4:** Dieses Modell geht einen anderen Weg: Es sagt einfach "Ein Auto hat mehrere Eigenschaften".
+Eine Eigenschaft ist das verbaute Navi, der km Stand, ... Die gespeicherten Eigenschaften können einfach
+mit einem INSERT in die Tabelle Eigenschaft erweitert werden. Somit wird die Eigenschaft nicht als
+Spalte, sondern als Zeile gespeichert.
+
+**Seite 5:** In diesem Modell werden jedoch alle Eigenschaften gleich behandelt. Allerdings ist der
+km Stand eine Zahl, das verbaute Navi ein String. Wollen wir Autos mit mehr als 100.000 km filtern,
+müssen wir den Wert konvertieren (Typecast).
+
+**Seite 6:** Aus diesem Grund unterscheiden wir in 2 Spalten Zahlen- und Textwerte. So ist beim km
+Stand nut der Zahlenwert befüllt, der Zeichenwert ist NULL. Beim Navi ist es umgekehrt. Die Tabelle
+Einheit speichert noch zusätzlich, dass es sich bei der Zahl des km Standes (z. B. 89.000) um die
+Einheit "km" handelt. Beim km Stand kann man dies wohl auch ohne Einheit erkennen, bei der Leistung
+wäre dies schon schwieriger (PS oder kW).
+
+**Seite 8:** Bei Zeichenwerten haben wir aber wieder das Problem, dass sie frei eingegeben werden
+können (siehe Seite 2). Also definieren wir sogenannte *Ausprägungen*, also Dropdownlisten in einem
+Programm, wo nur diese Werte verwendet werden dürfen.
+
 ## Übungsangabe: Der Autokatalog
 
 Die Firma WESLA überlegt Ihre Autos nur noch online zu verkaufen. Als ersten Schritt soll ein Datenmodell erstellt werden, in welcher alle möglichen Eigenschaften gespeichert werden können
