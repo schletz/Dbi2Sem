@@ -18,6 +18,8 @@ auf der Hin- und auf der Rückfahrt unterschieden.
 ## Download der Datenbank
 
 Die Datenbank ist als SQLite Datenbank in der Datei [Wienerlinien.db](Wienerlinien.db) vorhanden.
+Sie kann auch über die Konsole mit .NET Core und dem Befehl *dotnet run -c Release* in diesem
+Verzeichnis erzeugt werden.
 
 ## Übungsaufgaben
 
