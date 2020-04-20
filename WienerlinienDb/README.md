@@ -1,4 +1,4 @@
-# Übungsdatenbank Linien
+# Übungsdatenbank zu Unterabfragen: Wiener Linien
 
 Die folgende Datenbank beinhaltet die offiziellen Daten der Wiener Linien über die Haltestellen,
 Steige und Linien. Die Daten können unter folgender URL abgerufen werden:
@@ -14,6 +14,10 @@ bleibt. Die Bezirke sind Musterdaten und entsprchen nicht dem echten Gemeindebez
 
 Jede Haltestelle hat mehrere Steige, von denen eine Linie abfährt. Es wird zwischen Haltestellen
 auf der Hin- und auf der Rückfahrt unterschieden.
+
+## Download der Datenbank
+
+Die Datenbank ist als SQLite Datenbank in der Datei [Wienerlinien.db](Wienerlinien.db) vorhanden.
 
 ## Übungsaufgaben
 
