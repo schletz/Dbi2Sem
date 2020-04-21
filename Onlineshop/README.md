@@ -61,6 +61,8 @@ folgende Skala: 12 Punkte: 1, 11 - 10 Punkte: 2, 9 - 8 Punkte: 3, 7 Punkte: 4
 |10|3971100666748|Unbranded Steel Fish|226|4|
 |14|2208113939738|Practical Steel Hat|225.6|4|
 
+**(4)** Fehler bei der Numerierung, dieser Punkt bleibt leer (ist also einfach zu lösen ;).
+
 **(5)** Gibt es "leere" Bestellungen, also Bestellungen ohne Positionen? Hinweis: Am Einfachsten
         funktioniert dies mit *NOT EXISTS*.
 
