@@ -121,7 +121,7 @@ folgende Skala: 12 Punkte: 1, 11 - 10 Punkte: 2, 9 - 8 Punkte: 3, 7 Punkte: 4
 |41|2020-01-05 06:54:04.25|16|
 |57|2020-01-02 16:10:33.496|7|
 
-**(10)** Erstellen Sie eine View *vUmstatzstatistik*, die pro Kunde den Umsatz aufsummiert. Sie
+**(10)** Erstellen Sie eine View *vUmsatzstatistik*, die pro Kunde den Umsatz aufsummiert. Sie
          berechnen den Umsatz einer Position mit Menge x Artikelpreis. Die nachfolgenden Daten
          entstehen bei der Abfrage `SELECT * FROM vUmsatzstatistik`.
 
