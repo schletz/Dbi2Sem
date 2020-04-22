@@ -90,7 +90,7 @@ INSERT INTO AppGroup VALUES (1000, NULL, 'Studierende', NULL);
     INSERT INTO AppGroup VALUES (1100, 1000, 'Informatik Abend', NULL);
         INSERT INTO AppGroup VALUES (1110, 1100, '2AKIF', NULL);
         INSERT INTO AppGroup VALUES (1120, 1100, '2BKIF', 1);
-    INSERT INTO AppGroup VALUES (2100, NULL, 'Wirtschaftsingenieur', 0);
+    INSERT INTO AppGroup VALUES (2100, 1000, 'Wirtschaftsingenieur', 0);
         INSERT INTO AppGroup VALUES (2110, 2100, '1AHWIT', NULL);
         INSERT INTO AppGroup VALUES (2120, 2100, '2AHWIT', 1);
 

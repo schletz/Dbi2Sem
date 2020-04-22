@@ -154,10 +154,10 @@ In *EffectiveEdit* wird wieder das berechnete Recht ausgegeben.
 | Apted       | Bee       | 1              | 2AKIF      |                | Informatik Abend     |                | Studierende |                | 1             |
 | Ramsted     | Hiram     |                | 2BKIF      | 1              | Informatik Abend     |                | Studierende |                | 1             |
 | Lewknor     | Jeth      |                | 2BKIF      | 1              | Informatik Abend     |                | Studierende |                | 1             |
-| Trusdale    | Garrick   |                | 1AHWIT     |                | Wirtschaftsingenieur | 0              |             |                | 0             |
-| Adshed      | Velvet    |                | 1AHWIT     |                | Wirtschaftsingenieur | 0              |             |                | 0             |
-| Imloch      | Kennan    |                | 2AHWIT     | 1              | Wirtschaftsingenieur | 0              |             |                | 1             |
-| Rearden     | Mitchell  | 0              | 2AHWIT     | 1              | Wirtschaftsingenieur | 0              |             |                | 0             |
+| Trusdale    | Garrick   |                | 1AHWIT     |                | Wirtschaftsingenieur | 0              | Studierende |                | 0             |
+| Adshed      | Velvet    |                | 1AHWIT     |                | Wirtschaftsingenieur | 0              | Studierende |                | 0             |
+| Imloch      | Kennan    |                | 2AHWIT     | 1              | Wirtschaftsingenieur | 0              | Studierende |                | 1             |
+| Rearden     | Mitchell  | 0              | 2AHWIT     | 1              | Wirtschaftsingenieur | 0              | Studierende |                | 0             |
 | Kitchingman | Kristofer |                | Lehrende   | 1              |                      |                |             |                | 1             |
 | Brettor     | Filberto  |                | Lehrende   | 1              |                      |                |             |                | 1             |
 | McTeague    | Tamma     |                | Karenziert | 0              | Lehrende             | 1              |             |                | 0             |
