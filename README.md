@@ -42,6 +42,9 @@
         </td>
         <td colspan="3" valign="top">
             <b>4</b> Modellierungsprojekt
+            <ol>
+                <li><a href="VorlageDbiModellierungsprojekt.docx">Wordvorlage</li>
+            </ol>
         </td>
     </tr>
 </table>
