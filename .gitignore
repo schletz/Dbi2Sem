@@ -5,7 +5,6 @@
 
 # User-specific files
 syncGit.cmd
-*.docx
 *.xlsx
 *.rsuser
 *.suo
