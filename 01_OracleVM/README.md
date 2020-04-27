@@ -1,5 +1,13 @@
 # Download und Konfiguration der VM
 
+## Vorbereitung: VPN Client für die Schule
+
+Wer von zu Hause aus die Dateien laden möchte, kann den Cisco VPN Client der Schule installieren.
+Er ist unter https://gate.spengergasse.at/+CSCOE+/logon.html nach einem Login mit den Schuldaten
+zu laden. Nach dem Setup kann mit dem Server *gate.spengergasse.at* Verbindung aufgenommen werden.
+
+## Download und Installation der VM
+
 Oracle ist ein Datenbankserver, der in unserem Falle in einer virtuellen Maschine läuft. Oracle stellt sogenannte Developer VMs bereit, um Erfahrungen mit der Datenbank zu sammeln. Auf <a href="http://www.oracle.com/technetwork/community/developer-vm/index.html" target="_blank">[Pre-Built Developer VMs (for Oracle VM VirtualBox)]</a> kann die VM *Database App Development VM* (am Besten im Browser auf der Seite danach suchen, es gibt viele VMs dort) bezogen werden, die unter anderen folgende Komponenten beinhaltet:
 
 - Oracle Linux 7
@@ -13,11 +21,11 @@ Zum Starten der VM gehen Sie so vor:
 
 1. Virtual Box von <a href="https://www.virtualbox.org/wiki/Downloads" target="_blank">[www.virtualbox.org]</a> laden und installieren. Dafür wählen Sie bei *VirtualBox 5.2.18 platform packages* (oder neuer) das Paket für *Windows hosts* (oder ein anderes Betriebssystem, wenn Sie z. B. unter OS X arbeiten). Bei der Installation können die Standardeinstellungen belassen werden.
 
-1. Von `\\enterprise\ausbildung\unterricht\unterlagen\schletz\DBI_Stuff\Oracle12` können Sie sich Datei `DeveloperDaysVM2018-05-30_16.ova`(7.4 GB) laden. Unter dem oben beschriebenen Link auf oracle.com können Sie die VM ebenfalls beziehen, nur ist der Download recht langsam.
+2. Von `\\enterprise\ausbildung\unterricht\unterlagen\schletz\DBI_Stuff\Oracle12` können Sie sich Datei `DeveloperDaysVM2018-05-30_16.ova`(7.4 GB) laden. Unter dem oben beschriebenen Link auf oracle.com können Sie die VM ebenfalls beziehen, nur ist der Download recht langsam.
 
-1. Nun müssen Sie die Virtuelle Maschine importieren. Durch Doppelklick öffnet sich automatisch Virtual Box mit dem Importidalog. Dort können Sie alles so lassen wie es ist, allerdings möchten Sie eventuell den Ort der vdm Dateien (virtuelle Harddisk) ändern. Das können Sie durch Eingabe eines neuen Pfades unter SATA Controller ganz unten im Importfenster. Nach dem Klick auf *Importieren* werden die virtuellen Harddisks erzeugt, was je nach Festplatte einige Minuten dauern kann.
+3. Nun müssen Sie die Virtuelle Maschine importieren. Durch Doppelklick öffnet sich automatisch Virtual Box mit dem Importidalog. Dort können Sie alles so lassen wie es ist, allerdings möchten Sie eventuell den Ort der vdm Dateien (virtuelle Harddisk) ändern. Das können Sie durch Eingabe eines neuen Pfades unter SATA Controller ganz unten im Importfenster. Nach dem Klick auf *Importieren* werden die virtuellen Harddisks erzeugt, was je nach Festplatte einige Minuten dauern kann.
 
-1. Nun steht ihnen in Virtual Box die VM *Oracle DB Developer VM* zur Verfügung. Sie können diese nun starten. Falls eine Fehlermeldung, dass Intel VTx nicht aktiviert ist, erscheint, müssen Sie die dies im BIOS/UEFI Ihres Notebooks aktivieren. Je nach Modell ist dies anders möglich, suchen Sie einfach nach VTx und ihrem Notebookmodell im Internet nach einer Anleitung.
+4. Nun steht ihnen in Virtual Box die VM *Oracle DB Developer VM* zur Verfügung. Sie können diese nun starten. Falls eine Fehlermeldung, dass Intel VTx nicht aktiviert ist, erscheint, müssen Sie die dies im BIOS/UEFI Ihres Notebooks aktivieren. Je nach Modell ist dies anders möglich, suchen Sie einfach nach VTx und ihrem Notebookmodell im Internet nach einer Anleitung.
 
 Nach jeder Sitzung kann mit dem Befehl `poweroff` in der Konsole die VM sicher heruntergefahren werden.
 
