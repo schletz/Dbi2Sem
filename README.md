@@ -32,9 +32,9 @@
             <b>2</b> Bereich Datenbankadministration
             <ol>
                 <li><a href="01_OracleVM">Arbeiten mit der Oracle VM</li>
-                <li><a href="22_Null">NULL Values</a></li>
+                <li><a href="21_Null">NULL Values</a></li>
+                <li><a href="22_Transactions">Transaktionen</a></li>
                 <li><a href="#">Index - Grundlagen</a></li>
-                <li><a href="24_Transactions">Transaktionen</a></li>
             </ol>
         </td>
         <td colspan="3" valign="top">
