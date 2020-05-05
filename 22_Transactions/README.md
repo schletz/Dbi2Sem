@@ -9,13 +9,16 @@ werden!
 
 ## Anlegen von 2 Usern
 
-Wir verbinden uns mit dem User System zur Datenbank und legen 2 Tabellen an.
+Wir verbinden uns mit dem User System zur Datenbank und legen 2 Benutzer an.
 
 ```sql
 CREATE USER User1 IDENTIFIED BY oracle;
-GRANT CONNECT, RESOURCE, DBA TO User1;
+GRANT CONNECT, RESOURCE, CREATE VIEW TO User1;
+GRANT UNLIMITED TABLESPACE TO User1;
+
 CREATE USER User2 IDENTIFIED BY oracle;
-GRANT CONNECT, RESOURCE, DBA TO User2;
+GRANT CONNECT, RESOURCE, CREATE VIEW TO User2;
+GRANT UNLIMITED TABLESPACE TO User2;
 ```
 
 ## COMMIT mit mehreren Usern

@@ -2,6 +2,14 @@
 
 Unterlagen auf http://griesmayer.com/?menu=Oracle&semester=Semester_5&topic=03_NULL
 
+**Erstellen eines Users NullDemo**
+
+```sql
+CREATE USER NullDemo IDENTIFIED BY oracle;
+GRANT CONNECT, RESOURCE, CREATE VIEW TO NullDemo;
+GRANT UNLIMITED TABLESPACE TO NullDemo;
+```
+
 Basis für unsere Abfragen sind folgende 2 Tabellen samt Musterdaten:
 
 **Tabelle PATIENT**
