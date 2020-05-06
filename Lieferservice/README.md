@@ -2,7 +2,7 @@
 
 ## Datenbank und Schema
 
-In der Datei [Lieferservice.db](SLieferservicehop.db) befindet sich eine SQLite Datenbank,
+In der Datei [Lieferservice.db](Lieferservice.db) befindet sich eine SQLite Datenbank,
 die das Backend einer kleinen Pizzaria mit Lieferservice simuliert. Diese Datenbank hat folgendes
 Schema:
 
