@@ -12,10 +12,12 @@ werden. In DBeaver muss in der Symbolleiste statt Auto der Punkt *Manual Commit*
 Wir verbinden uns mit dem User System zur Datenbank und legen 2 Benutzer an.
 
 ```sql
+-- DROP USER User1 CASCADE;
 CREATE USER User1 IDENTIFIED BY oracle;
 GRANT CONNECT, RESOURCE, CREATE VIEW TO User1;
 GRANT UNLIMITED TABLESPACE TO User1;
 
+-- DROP USER User2 CASCADE;
 CREATE USER User2 IDENTIFIED BY oracle;
 GRANT CONNECT, RESOURCE, CREATE VIEW TO User2;
 GRANT UNLIMITED TABLESPACE TO User2;
