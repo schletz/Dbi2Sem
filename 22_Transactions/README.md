@@ -5,7 +5,7 @@ http://www.griesmayer.com/content/Oracle/Semester_5/02_Transaction/Folie_Transac
 abrufbar.
 
 In SQL Developer muss unter *Preferences* - *Advanced* der Punkt *Autocommit* für diese Übung deaktiviert.
-werden!
+werden. In DBeaver muss in der Symbolleiste statt Auto der Punkt *Manual Commit* aktiviert werden.
 
 ## Anlegen von 2 Usern
 
@@ -20,6 +20,10 @@ CREATE USER User2 IDENTIFIED BY oracle;
 GRANT CONNECT, RESOURCE, CREATE VIEW TO User2;
 GRANT UNLIMITED TABLESPACE TO User2;
 ```
+
+Nach dem Anlegen der User werden in SQL Developer oder DBeaver 2 Oracle Verindungen erstellt: Eine
+unter dem Benutzer *User1* und eine unter dem Benutzer *User2*. Öffnen Sie dann für diese User sowie
+dem System User ein SQL Fenster.
 
 ## COMMIT mit mehreren Usern
 
@@ -58,6 +62,7 @@ INSERT INTO GRIESMAYER_ACCOUNTS VALUES (5, 'Kurt',   TO_DATE('1975-02-28', 'yyyy
 
 SELECT * FROM   GRIESMAYER_ACCOUNTS;
 
+-- Ausführen als User System
 SELECT * FROM  V$TRANSACTION;
 ```
 
