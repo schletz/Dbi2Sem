@@ -84,9 +84,19 @@ SQL Developer ist zwar in der virtuellen Maschine integriert, eine Installation 
 
 Sie können SQL Developer entweder direkt von der <a href="https://www.oracle.com/technetwork/developer-tools/sql-developer/downloads/index.html" target="_blank">[Downloadseite von Oracle]</a> laden, oder Sie kopieren sich die Datei *sqldeveloper-18.2.0.183.1748-x64.zip* vom Ordner `\\enterprise\ausbildung\unterricht\unterlagen\schletz\DBI_Stuff`. Die ZIP Datei muss nur entpackt und sqldeveloper.exe gestartet werden.
 
+Nach der Installation steht der User *System* mit dem Passwort *oracle* zur Verfügung. Wenn Sie die
+Verbindung testen wollen, können Sie diesen Benutzer in SQL Developer einrichten. Zum Anlegen einer
+Verbindung klicken Sie auf das grüne Plus in der Palette Connections. Nun kann die Verbindung wie
+folgt eingerichtet werden:
+
+- Verbindungsname: frei wählbar (s. B. *SchulDbConn*)
+- Benutzername: *Schule* (wie im SchulDbGenerator angezeigt)
+- Kennwort: *oracle* (wie im SchulDbGenerator angezeigt)
+- Service-Name (statt SID): *orcl*
+
 Das Programm *SchulDbGenerator* hat zuvor einen Benutzer und ein Kennwort in Ihrer VM angelegt. Diese
-Daten werden am Enge angezeigt, denn Sie benötigen Sie nun. Zum Anlegen einer Verbindung klicken Sie
-auf das grüne Plus in der Palette Connections. Nun kann die Verbindung wie folgt eingerichtet werden:
+Daten werden am Ende angezeigt, denn Sie benötigen Sie nun. Zum Anlegen einer Verbindung klicken Sie
+wieder auf das grüne Plus in der Palette Connections und richten die Verbindung wie folgt ein:
 
 - Verbindungsname: frei wählbar (s. B. *SchulDbConn*)
 - Benutzername: *Schule* (wie im SchulDbGenerator angezeigt)
