@@ -90,8 +90,8 @@ Verbindung klicken Sie auf das grüne Plus in der Palette Connections. Nun kann 
 folgt eingerichtet werden:
 
 - Verbindungsname: frei wählbar (s. B. *SchulDbConn*)
-- Benutzername: *Schule* (wie im SchulDbGenerator angezeigt)
-- Kennwort: *oracle* (wie im SchulDbGenerator angezeigt)
+- Benutzername: *System*
+- Kennwort: *oracle*
 - Service-Name (statt SID): *orcl*
 
 Das Programm *SchulDbGenerator* hat zuvor einen Benutzer und ein Kennwort in Ihrer VM angelegt. Diese
