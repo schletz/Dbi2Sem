@@ -1,5 +1,7 @@
 # Der Index
 
+Quelle: Microsoft Press: Whalen, Garcia, Patel, Misner, Isakov: Microsoft SQL Server 2005 Das Handbuch.
+
 Indizes sind ein Feature, das entworfen wurde, um den Zugriff auf Daten in
 der Datenbank zu beschleunigen. Sie ähneln dem Stichwortverzeichnis dieses Buchs. Durch die
 Verwwendung von Indizes können Sie schnell bestimmte Daten finden, ohne alle Daten in der Tabelle
@@ -126,13 +128,13 @@ Schlüsselwerten sortiert werden.
 
 Wenn beispielsweise ein Index für die Spalte *last_name* und anschließend für *first_name* erstellt
 wird, werden die Daten zuerst nach *last_name* sortiert und anschließend innerhalb jedes Nachnamens
-nach *first_name*. Abbildung 12.3 zeigt ein Beispiel, das diesen Punkt verdeutlicht.
+nach *first_name*. Die folgende Abbildung zeigt ein Beispiel, das diesen Punkt verdeutlicht.
 
 ![](namensliste.png)
 
 Da die Werte der zweiten Schlüsselspalte über den gesamten Index verstreut sind, können Sie nur
 dann aus der Verwendung dieses Index einen Nutzen ziehen, wenn die erste Schlüsselspalte in der
-WHERE-Klausel vorhanden ist. Wenn ein Index wie oben gezeigt für last_name und first_name
+WHERE-Klausel vorhanden ist. Wenn ein Index wie oben gezeigt für *last_name* und *first_name*
 erstellt wird, kann auf ihn wie in der folgenden SQL-Anweisung sehr effektiv zugegriffen werden:
 
 ```sql
@@ -211,7 +213,7 @@ Ein nicht gruppierter Index ist sowohl logisch als auch physisch von den Tabelle
 
 Nicht gruppierte Indizes können entweder eindeutig oder nicht eindeutig definiert werden. Zusätzlich kann ein nicht gruppierter Index als Primärschlüsselindex verwendet werden, obwohl häufig empfohlen wird, auf der Grundlage des Primärschlüsselindex eine Gruppierung auszuführen. Für eine Tabelle können Sie nicht gruppierte Indizes definieren. Diese Indizes können für verschiedene Spaltenkombinationen definiert werden. Je mehr Indizes es gibt, desto besser können verschiedene Abfragen werden. Mehr Indizes bedeuten jedoch höheren Aufwand. Immer dann, wenn Daten eingefügt, aktualisiert oder gelöscht werden, müssen alle durch diese Zeile beeinflussten Indizes ebenfalls aktualisiert werden. Dies führt dazu, dass die Anzahl der Indizes wächst und die Aktualisierungs-, Einfüge- und Löschvorgänge langsamer werden.
 
-Ein umfassender Index ist ein Index, der genug Informationen enthält, sodass es nicht notwendig ist, die Lesezeichensuche auszuführen. Dieses Werkzeug funktioniert in Verbindung mit einer umfassenden Abfrage. Wenn die ausgewählten Kriterien im hinteren Ende des Index eingeschlossen sind und das führende Ende des Index in der WHERE-Klausel einer Abfrage verwendet wird, können die Daten aus dem Index selbst an den Benutzer zurückgeben werden. Beispielsweise kann die folgende Abfrage ausgegeben werden, wenn ein Index auf der Grundlage von last_name, first_name und social_security_number erstellt wird:
+Ein umfassender Index ist ein Index, der genug Informationen enthält, sodass es nicht notwendig ist, die Lesezeichensuche auszuführen. Dieses Werkzeug funktioniert in Verbindung mit einer umfassenden Abfrage. Wenn die ausgewählten Kriterien im hinteren Ende des Index eingeschlossen sind und das führende Ende des Index in der WHERE-Klausel einer Abfrage verwendet wird, können die Daten aus dem Index selbst an den Benutzer zurückgeben werden. Beispielsweise kann die folgende Abfrage ausgegeben werden, wenn ein Index auf der Grundlage von *last_name*, *first_name* und *social_security_number* erstellt wird:
 
 ```sql
 SELECT social_security_number FROM myTable
@@ -241,8 +243,7 @@ in keiner bestimmten Reihenfolge aufgeführt sind:
 - **Erstellen von Indizes, die die Anzahl von Zeilen verringern.** Wenn eine Abfrage einige Zeilen aus einer großen Tabelle auswählt, sollten Indizes erstellt werden, die diese Zeilenverringerung unterstützen. 
 - **Erstellen von Indizes, die einen Zeilenbereich auswählen.** Wenn die Abfrage eine Menge von ähnlichen Zeilen zurückgibt, kann ein Index die Auswahl dieser Zeilen unterstützen.
 - **Erstellen von gruppierten Indizes als eindeutige Indizes, wenn dies möglich ist.** Die besten Kandidaten für gruppierte Indizes sind Primärschlüssel und eindeutige Indizes. Wenn der Primärschlüsselindex zu groß ist, ist es jedoch nicht immer eine gute Idee, ihn zum gruppierten Index zu machen. In einigen Fällen ist es besser, den Primärschlüsselindex als nicht gruppiert zu erstellen und zusätzlich einen kleineren gruppierten Index zu verwenden.
-- **Indizes so schmal wie möglich halten.** Ein Index, der auf der Grundlage einer oder mehrerer schmaler Spalten erstellt wird, wird als schmaler Index bezeichnet, ein Index mit vielen umfang
-- reichen Schlüsselspalten breiter Index. Je weniger Spalten im Index enthalten sind, desto besser, aber Sie müssen genug Spalten haben, damit der Index wirksam ist. 
+- **Indizes so schmal wie möglich halten.** Ein Index, der auf der Grundlage einer oder mehrerer schmaler Spalten erstellt wird, wird als schmaler Index bezeichnet, ein Index mit vielen umfangreichen Schlüsselspalten breiter Index. Je weniger Spalten im Index enthalten sind, desto besser, aber Sie müssen genug Spalten haben, damit der Index wirksam ist. 
 - **Indizes sparsam für Tabellen verwenden, die zahlreichen Aktualisierungen unterliegen.** Sie können mehr Indizes für Tabellen erstellen, die nicht vielen Aktualisierungen unterliegen. Sehr kleine Tabellen nicht indizieren Bei sehr kleinen Tabellen ist der Aufwand für einen Inde: höher als dessen Nutzen. Da ein Index Seiten hinzufügt, die gelesen werden müssen, ist ein Tabellenscan manchmal effizienter.
 - **Erstellen von umfassenden Indizes, wenn dies möglich ist.** Umfassende Indizes sind mit de Einführung von Indizes mit eingeschlossenen Spalten stark im Wert gestiegen.
 - **Sichten indizieren, wenn dies angemessen ist.** Indizierte Sichten können bei Aggregaten un einigen Verknüpfungen sehr wirksam sein. Wenn Sie diese Richtlinien befolgen, werden Ihre Indizes wirksamer und daher wahrscheinlich ehe verwendet. Ein unwirksamer Index wird voraussichtlich nicht verwendet und fügt daher nur unnötigen Aufwand zu den Systemen hinzu. Indizes, insbesondere gruppierte, sollten sorgsam entworfen und sparsam verwendet werden, da sie Aufwand verursachen und die Leistung von Datenaktualisierungen reduzieren.
