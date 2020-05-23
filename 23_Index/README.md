@@ -59,9 +59,8 @@ Ein eindeutiger Index hat die höchste Ebene an Selektivität, die ein Index hab
 Schlüsselwert nur einer Zeile zugeordnet ist bzw. jede Zeile einen eindeutigen Schlüsselwert hat.
 Jeder Versuch, einen doppelten Index
 schlüsselwert in einen eindeutigen Index einzufügen, führt zu einem Fehler. Ein Satz von Spalten,
-der definiert wird, um jede Zeile in der
-Tabelle eindeutig zu kennzeichnen, wird als Primärschlüssel (Primary Key) bezeichnet,
-wie in Kapitel 13 »Durchsetzen der Datenintegrität«, erwähnt wird. Der Primärschlüssel ist für
+der definiert wird, um jede Zeile in der Tabelle eindeutig zu kennzeichnen, wird als Primärschlüssel
+(Primary Key) bezeichnet. Der Primärschlüssel ist für
 gewöhnlich mit einer Beschränkung verknüpft und häufig ein sehr guter Kandidat für einen gruppierten
 Index. Leider kann eine Tabelle nicht immer mit einem Primärschlüssel
 definiert werden, da es unmöglich sein kann, eine Zeile eindeutig zu bezeichnen. Es kann nur einen
@@ -150,12 +149,9 @@ SELECT PhoneNumber FROM myTable
 WHERE last_name = 'smith';
 ```
 
-Die folgende Abfrage verwendet diesen Index jedoch nicht (sofern sie nicht dazu
-gezwungen ist, d
-es ein gruppierter Index ist), da zwar die Nachnamen an einer Stelle
-zusammengehalten werden, di
-Vornamen aber über den Index verstreut sind. In diesem Fall wird ein Tabellenscan
-durchgeführt:
+Die folgende Abfrage verwendet diesen Index jedoch nicht, da zwar die Nachnamen an einer Stelle
+zusammengehalten werden, die Vornamen aber über den Index verstreut sind. In diesem Fall wird ein
+Tabellenscan durchgeführt:
 
 ```sql
 SELECT PhoneNumber FROM myTable
@@ -177,7 +173,7 @@ Indextyp kann sich die Funktionsweise unterscheiden.
 ### Gruppierter (clustered) Index in SQL Server
 
 Ein gruppierter Index speichert die Tabellendaten auf der Grundlage des Indexschlüssels in sortierter
-Reihenfolge aufder Blattseite des Index. Aufgrund dieser Anforderung besteht die Notwendigkeit, die
+Reihenfolge auf der Blattseite des Index. Aufgrund dieser Anforderung besteht die Notwendigkeit, die
 Seiten im Index fortwährend neu anzuordnen. Sobald Daten in die Datenbank eingegeben werden,
 wird möglicherweise Speicherplatz benötigt, um diese neuen Seiten zum Index hinzuzufügen.
 
@@ -251,3 +247,83 @@ in keiner bestimmten Reihenfolge aufgeführt sind:
 - **Erstellen von umfassenden Indizes, wenn dies möglich ist.** Umfassende Indizes sind mit de Einführung von Indizes mit eingeschlossenen Spalten stark im Wert gestiegen.
 - **Sichten indizieren, wenn dies angemessen ist.** Indizierte Sichten können bei Aggregaten un einigen Verknüpfungen sehr wirksam sein. Wenn Sie diese Richtlinien befolgen, werden Ihre Indizes wirksamer und daher wahrscheinlich ehe verwendet. Ein unwirksamer Index wird voraussichtlich nicht verwendet und fügt daher nur unnötigen Aufwand zu den Systemen hinzu. Indizes, insbesondere gruppierte, sollten sorgsam entworfen und sparsam verwendet werden, da sie Aufwand verursachen und die Leistung von Datenaktualisierungen reduzieren.
 
+## SQL Beispiele
+
+![](index_sql.png)
+
+<sup>Quelle: https://www.oracletutorial.com/oracle-index/oracle-create-index</sup>
+
+Die folgenden Beispiele verwenden die Schuldatenbank in Oracle. Die Zugriffsarten können in DBeaver
+über *Explain Execution Plan* abgerufen werden.
+
+```sql
+-- *************************************************************************************************
+-- Anlegen des Index idx_Schueler_Name in der Schülertabelle über Zu- und Vorname
+-- *************************************************************************************************
+CREATE INDEX idx_Schueler_Name ON SCHUELER(S_ZUNAME, S_VORNAME);
+
+-- Nachsehen, ob der Index angelegt wurde.
+SELECT * FROM all_indexes WHERE table_name = 'SCHUELER';
+
+-- Enthält die Zugriffsart "INDEX (RANGE SCAN)"
+SELECT * FROM SCHUELER s
+WHERE s.S_ZUNAME = 'Davis' AND s.S_VORNAME = 'Mindy';
+
+-- Enthält die Zugriffsart "INDEX (RANGE SCAN)"
+SELECT * FROM SCHUELER s
+WHERE s.S_ZUNAME = 'Davis';
+
+-- Gar kein Tabellenzugriff nötig, nur "INDEX (RANGE SCAN)"
+SELECT s.S_VORNAME, s.S_ZUNAME FROM SCHUELER s
+WHERE s.S_ZUNAME = 'Davis';
+
+-- Zugriffsart "TABLE ACCESS (FULL), da der Index mit dem Nachnamen beginnt.
+SELECT * FROM SCHUELER s
+WHERE s.S_VORNAME = 'Mindy';
+
+-- Enthält die Zugriffsart "INDEX (RANGE SCAN)"
+SELECT * FROM SCHUELER s
+WHERE s.S_ZUNAME LIKE 'Dav%';
+
+-- Zugriffsart "TABLE ACCESS (FULL)", da zu wenig selektiv.
+SELECT * FROM SCHUELER s
+WHERE s.S_ZUNAME LIKE 'D%';
+
+-- Zugriffsart "TABLE ACCESS (FULL)", da eine Funktion aufgerufen wird.
+SELECT * FROM SCHUELER s
+WHERE LOWER(s.S_ZUNAME) = 'davis';
+
+-- *************************************************************************************************
+-- LÖSCHEN DES INDEX
+-- *************************************************************************************************
+DROP INDEX idx_Schueler_Name;
+
+-- Zugriffsart "TABLE ACCESS (FULL)
+SELECT * FROM SCHUELER s
+WHERE s.S_ZUNAME = 'Davis';
+
+-- *************************************************************************************************
+-- UNIQUE INDEX
+-- *************************************************************************************************
+
+CREATE UNIQUE INDEX idx_Abteilung_Name ON ABTEILUNG(ABT_Name);
+```
+
+### Fragestellungen
+
+**(1)** In der Schuldatenbank werden häufig Klassenlisten angefragt. Diese Abfragen sehen so aus:
+
+```sql
+SELECT s.S_KLASSE, s.S_ZUNAME, s.S_VORNAME FROM SCHUELER s
+WHERE s.S_KLASSE = '4AHIF';
+```
+
+Welche Felder müssen im Index sein, um diese Abfrage unterstützen? Wie sieht die Definition in SQL aus?
+
+**(2)** Kann ein Index auch nach der Suche von Lehrern, die weniger als x Euro verdienen, unterstützen?
+Welche Felder müssen indiziert werden?
+
+**(3)** Macht ein Index über das Geschlecht in der Schülertabelle Sinn?
+
+**(4)** Macht ein Index in der Prüfungstabelle Sinn, wenn mehr Einfüge- als Abfrageoperationen
+erwartet werden?
