@@ -170,7 +170,7 @@ XML-Indizes, die jeweils einen eigenen Zweck und eigene Merkmale haben. Wenn Sie
 Indizes funktionieren, sind Sie besser in der Lage, Indizes zu erstellen und zu optimieren. Je nach
 Indextyp kann sich die Funktionsweise unterscheiden.
 
-### Gruppierter (clustered) Index in SQL Server
+### Gruppierter (Clustered) Index in SQL Server
 
 Ein gruppierter Index speichert die Tabellendaten auf der Grundlage des Indexschlüssels in sortierter
 Reihenfolge auf der Blattseite des Index. Aufgrund dieser Anforderung besteht die Notwendigkeit, die
@@ -206,7 +206,7 @@ ein Primärschlüssel ist ein hervorragender Kandidat für einen gruppierten Ind
 In Oracle existieren sogenannte **Index-Organized Tables**. Details finden Sie auf
 [docs.oracle.com](https://docs.oracle.com/cd/B10501_01/appdev.920/a96590/adg07iot.htm).
 
-## Nicht gruppierter (nonclustered) Index
+## Nicht gruppierter (Non clustered) Index
 
 Ein nicht gruppierter Index ist sowohl logisch als auch physisch von den Tabellendaten unabhängig. Dieser Index ähnelt dem gruppierten Index, mit der Ausnahme, dass die Tabellendaten nicht im Endknoten des Index gespeichert werden. Stattdessen enthält der Endknoten entweder den Clusterschlüssel, wenn der Index auf einen gruppierten Index zeigt, oder eine rowid, die direkt auf die Tabellendaten zeigt, wenn kein gruppierter Index vorhanden ist.
 
