@@ -206,7 +206,7 @@ ein Primärschlüssel ist ein hervorragender Kandidat für einen gruppierten Ind
 In Oracle existieren sogenannte **Index-Organized Tables**. Details finden Sie auf
 [docs.oracle.com](https://docs.oracle.com/cd/B10501_01/appdev.920/a96590/adg07iot.htm).
 
-## Nicht gruppierter (nnclustered) Index
+## Nicht gruppierter (nonclustered) Index
 
 Ein nicht gruppierter Index ist sowohl logisch als auch physisch von den Tabellendaten unabhängig. Dieser Index ähnelt dem gruppierten Index, mit der Ausnahme, dass die Tabellendaten nicht im Endknoten des Index gespeichert werden. Stattdessen enthält der Endknoten entweder den Clusterschlüssel, wenn der Index auf einen gruppierten Index zeigt, oder eine rowid, die direkt auf die Tabellendaten zeigt, wenn kein gruppierter Index vorhanden ist.
 
