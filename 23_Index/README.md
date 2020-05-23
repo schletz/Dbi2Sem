@@ -198,7 +198,9 @@ nicht gruppierter Index verwendet wird, um Daten in einem gruppierten Index zu f
 Endknoten des nicht gruppierten Index die Indexschlüssel für den gruppierten zur Verfügung, und
 der zugrunde liegende gruppierte Index wird gescannt. Dieser Schritt wird als
 Lesezeichensuche bezeichnet. Dabei handelt es sich entweder um den Zugriff auf eine Zeile über den
-Wert einer rowid (kein gruppierter Index) oder eine Indexsuche mithilfe des gruppierten Indexschlüssels (gruppierter Index). Aus diesem Grund ist die Qualität des gruppierten Index von so großer Bedeutung.
+Wert einer rowid (kein gruppierter Index) oder eine Indexsuche mithilfe des gruppierten
+Indexschlüssels (gruppierter Index). Aus diesem Grund ist die Qualität des gruppierten Index von so
+großer Bedeutung.
 
 Es ist sehr wichtig, dass der gruppierte Index so wirksam wie möglich ist. Ein eindeutiger Index oder
 ein Primärschlüssel ist ein hervorragender Kandidat für einen gruppierten Index.
@@ -208,11 +210,29 @@ In Oracle existieren sogenannte **Index-Organized Tables**. Details finden Sie a
 
 ## Nicht gruppierter (Non clustered) Index
 
-Ein nicht gruppierter Index ist sowohl logisch als auch physisch von den Tabellendaten unabhängig. Dieser Index ähnelt dem gruppierten Index, mit der Ausnahme, dass die Tabellendaten nicht im Endknoten des Index gespeichert werden. Stattdessen enthält der Endknoten entweder den Clusterschlüssel, wenn der Index auf einen gruppierten Index zeigt, oder eine rowid, die direkt auf die Tabellendaten zeigt, wenn kein gruppierter Index vorhanden ist.
+Ein nicht gruppierter Index ist sowohl logisch als auch physisch von den Tabellendaten unabhängig.
+Dieser Index ähnelt dem gruppierten Index, mit der Ausnahme, dass die Tabellendaten nicht im
+Endknoten des Index gespeichert werden. Stattdessen enthält der Endknoten entweder den
+Clusterschlüssel, wenn der Index auf einen gruppierten Index zeigt, oder eine rowid, die direkt auf
+die Tabellendaten zeigt, wenn kein gruppierter Index vorhanden ist.
 
-Nicht gruppierte Indizes können entweder eindeutig oder nicht eindeutig definiert werden. Zusätzlich kann ein nicht gruppierter Index als Primärschlüsselindex verwendet werden, obwohl häufig empfohlen wird, auf der Grundlage des Primärschlüsselindex eine Gruppierung auszuführen. Für eine Tabelle können Sie nicht gruppierte Indizes definieren. Diese Indizes können für verschiedene Spaltenkombinationen definiert werden. Je mehr Indizes es gibt, desto besser können verschiedene Abfragen werden. Mehr Indizes bedeuten jedoch höheren Aufwand. Immer dann, wenn Daten eingefügt, aktualisiert oder gelöscht werden, müssen alle durch diese Zeile beeinflussten Indizes ebenfalls aktualisiert werden. Dies führt dazu, dass die Anzahl der Indizes wächst und die Aktualisierungs-, Einfüge- und Löschvorgänge langsamer werden.
+Nicht gruppierte Indizes können entweder eindeutig oder nicht eindeutig definiert werden. Zusätzlich
+kann ein nicht gruppierter Index als Primärschlüsselindex verwendet werden, obwohl häufig empfohlen
+wird, auf der Grundlage des Primärschlüsselindex eine Gruppierung auszuführen. Für eine Tabelle
+können Sie nicht gruppierte Indizes definieren. Diese Indizes können für verschiedene
+Spaltenkombinationen definiert werden. Je mehr Indizes es gibt, desto besser können verschiedene
+Abfragen werden. Mehr Indizes bedeuten jedoch höheren Aufwand. Immer dann, wenn Daten eingefügt,
+aktualisiert oder gelöscht werden, müssen alle durch diese Zeile beeinflussten Indizes ebenfalls
+aktualisiert werden. Dies führt dazu, dass die Anzahl der Indizes wächst und die Aktualisierungs-,
+Einfüge- und Löschvorgänge langsamer werden.
 
-Ein umfassender Index ist ein Index, der genug Informationen enthält, sodass es nicht notwendig ist, die Lesezeichensuche auszuführen. Dieses Werkzeug funktioniert in Verbindung mit einer umfassenden Abfrage. Wenn die ausgewählten Kriterien im hinteren Ende des Index eingeschlossen sind und das führende Ende des Index in der WHERE-Klausel einer Abfrage verwendet wird, können die Daten aus dem Index selbst an den Benutzer zurückgeben werden. Beispielsweise kann die folgende Abfrage ausgegeben werden, wenn ein Index auf der Grundlage von *last_name*, *first_name* und *social_security_number* erstellt wird:
+Ein umfassender Index ist ein Index, der genug Informationen enthält, sodass es nicht notwendig ist,
+die Lesezeichensuche auszuführen. Dieses Werkzeug funktioniert in Verbindung mit einer umfassenden
+Abfrage. Wenn die ausgewählten Kriterien im hinteren Ende des Index eingeschlossen sind und das
+führende Ende des Index in der WHERE-Klausel einer Abfrage verwendet wird, können die Daten aus dem
+Index selbst an den Benutzer zurückgeben werden. Beispielsweise kann die folgende Abfrage ausgegeben
+werden, wenn ein Index auf der Grundlage von *last_name*, *first_name* und *social_security_number*
+erstellt wird:
 
 ```sql
 SELECT social_security_number FROM myTable
@@ -315,7 +335,8 @@ CREATE UNIQUE INDEX idx_Abteilung_Name ON ABTEILUNG(ABT_Name);
 
 ```sql
 SELECT s.S_KLASSE, s.S_ZUNAME, s.S_VORNAME FROM SCHUELER s
-WHERE s.S_KLASSE = '4AHIF';
+WHERE s.S_KLASSE = '4AHIF'
+ORDER BY s.S_ZUNAME, s.S_VORNAME;
 ```
 
 Welche Felder müssen im Index sein, um diese Abfrage unterstützen? Wie sieht die Definition in SQL aus?
