@@ -276,6 +276,15 @@ in keiner bestimmten Reihenfolge aufgeführt sind:
 Die folgenden Beispiele verwenden die Schuldatenbank in Oracle. Die Zugriffsarten können in DBeaver
 über *Explain Execution Plan* abgerufen werden.
 
+Wird SQLite verwendet, so kann ebenfalls ein Index angelegt werden. Der Ausführungsplan wird mit
+einem vorangestelltem *EXPLAIN QUERY PLAN* als Tabelle angezeigt. Die Spalte *detail*
+enthält dann Informationen über den Zugriff.
+
+```sql
+-- Liefert "SCAN TABLE ABTEILUNG AS a" in der Spalte detail.
+EXPLAIN QUERY PLAN SELECT * FROM ABTEILUNG a;
+```
+
 ```sql
 -- *************************************************************************************************
 -- Anlegen des Index idx_Schueler_Name in der Schülertabelle über Zu- und Vorname
