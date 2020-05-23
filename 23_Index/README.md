@@ -327,6 +327,9 @@ WHERE s.S_ZUNAME = 'Davis';
 -- *************************************************************************************************
 
 CREATE UNIQUE INDEX idx_Abteilung_Name ON ABTEILUNG(ABT_Name);
+
+-- Enthält zugriffsart INDEX (UNIQUE SCAN)
+SELECT * FROM ABTEILUNG a WHERE ABT_NAME = 'Höhere Lehranstalt für Informatik';
 ```
 
 ### Fragestellungen
@@ -348,3 +351,7 @@ Welche Felder müssen indiziert werden?
 
 **(4)** Macht ein Index in der Prüfungstabelle Sinn, wenn mehr Einfüge- als Abfrageoperationen
 erwartet werden?
+
+**(5)** In Datenbanken werden oft künstliche Schlüssel statt Stringschlüssel verwendet. Wenn die
+Klassentabelle diesen Aufbau hätte (also eine Klassen-ID und den Klassennamen wie 4AHIF, ...), welchen
+Index würden Sie dann anlegen?
