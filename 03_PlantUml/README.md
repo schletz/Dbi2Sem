@@ -9,7 +9,7 @@ Für die Erstellung von Diagrammen in PlantUML gibt es unter Windows mit VS Code
 **(2)** Füge in der Datei *settings.json* (*F1* - *Open Settings (JSON)*) folgende Zeilen ein:
 
 ```javascript
-"plantuml.server": "https://www.plantuml.com/plantuml"
+"plantuml.server": "https://www.plantuml.com/plantuml",
 "markdown-pdf.plantumlOpenMarker": "```plantuml",
 "markdown-pdf.plantumlCloseMarker": "```"
 ```
