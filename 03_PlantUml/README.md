@@ -4,19 +4,64 @@
 
 Für die Erstellung von Diagrammen in PlantUML gibt es unter Windows mit VS Code folgende Möglichkeit:
 
-(1) *graphviz-2.44.1-win32.zip* von https://www2.graphviz.org/Packages/stable/windows/10/msbuild/Release/Win32/
-    laden und das ZIP nach *C:\Graphviz* entpacken. In C:\Graphviz\bin muss die Datei dot.exe zu finden sein.
-    
-(2) In VS Code die Erweiterung PlantUML installieren und in der settings.json die Konfiguration
+**(1)** Installiere in VS Code die Erweiterung PlantUML und Markdown PDF.
+
+**(2)** Füge in der Datei *settings.json* (*F1* - *Open Settings (JSON)*) folgende Zeilen ein:
 
 ```javascript
-"plantuml.commandArgs":
-	[ "-DGRAPHVIZ_DOT=C:\\Graphviz\\bin\\dot.exe" ]
+"plantuml.server": "https://www.plantuml.com/plantuml"
+"markdown-pdf.plantumlOpenMarker": "```plantuml",
+"markdown-pdf.plantumlCloseMarker": "```"
 ```
-einfügen.
 
-(3) Eine neue Datei mit der Erweiterung .puml erstellen. Alt+D aktiviert die Vorschau.
-Syntax: https://plantuml.com/class-diagram bzw. https://plantuml.com/ie-diagram
+Nun kann folgendes Markdown Dokument gerendert und auch als PDF ausgegeben werden. Die PDF Ausgabe
+erfolgt mit *F1* - *Markdown PDF: Export (pdf)*
 
-![](plantuml_vscode.png)
+```text
+# Testdokument für Markdown und PlantUML
 
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+```plantuml
+@startuml
+
+hide circle
+skinparam linetype ortho
+
+entity "Entity01" as e01 {
+    *e1_id : number <<generated>>
+    --
+    *name : text
+    description : text
+}
+entity "Entity02" as e02 {
+    *e2_id : number
+    --
+    *e1_id : number <<FK>>
+    other_details : text
+}
+
+entity "Entity03" as e03 {
+    *e3_id : number
+    --
+    e1_id : number <<FK>>
+    other_details : text
+}
+
+entity "Entity04" as e04 {
+    *e3_id : number
+    --
+    e1_id : number <<FK>>
+    other_details : text
+}
+
+<> xx
+e02 -- xx
+xx --|> e01
+e03 -- xx
+e04 -- xx
+
+@enduml
+```
+
+```
