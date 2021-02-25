@@ -52,13 +52,7 @@
 - [Installation von DBeaver](01_OracleVM/01_Dbeaver/README.md)
 - [Optional: Installation von JetBrains DataGrip](01_OracleVM/02_DataGrip/README.md)
 - [Installation von erwin Data Modeler](02_ErWin/README.md)
-
-## Beurteilung
-
-- Insgesamt 2 praktische Überprüfungen im Bereich SQL und Datenbankadministration.
-- Abgabe des Modellierungsprojektes.
-- Die Gewichtung erfolgt nach Stundenausmaß, wobei beide Teile (Modellierung und SQL/DB Admin)
-  positiv sein müssen.
+- [Installation von PlantUML in VS Code](03_PlantUml/README.md)
 
 ## Die verwendete Schuldatenbank
 
