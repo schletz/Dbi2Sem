@@ -162,6 +162,214 @@ Subtyp in Beziehung mit anderen Tabellen, so wird der Rolldown Ansatz reibungslo
 
 ![](rollup_or_rolldown.png)
 
+## Vererbung im OR Mapper
+
+Das Konzept der Vererbung ist den besprochenen Ideen sehr ähnlich. Wir definieren daher zum Test
+3 Klassen in C#
+
+```c#
+class Person
+{
+    public int Id { get; set; }
+    public string Firstname { get; set; } = default!;
+    public string Lastname { get; set; } = default!;
+}
+class Student : Person
+{
+    public string Class { get; set; } = default!;
+}
+class Teacher : Person
+{
+    public string TeachersRoom { get; set; } = default!;
+}
+
+class DemoContext : DbContext
+{
+    public DbSet<Person> Persons => Set<Person>();
+    public DbSet<Student> Students => Set<Student>();
+    public DbSet<Teacher> Teachers => Set<Teacher>();
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlite("Data Source=Demo.db");
+    }
+}
+```
+
+EF Core erzeugt daraus 1 Tabelle ("roll up") mit einer Spalte *Discriminator*. Dies wird in EF Core
+mit *table per hierarchy* bezeichnet:
+
+| Id | Firstname | Lastname     | **Discriminator** | Class  | TeachersRoom |
+|----|-----------|--------------|---------------|--------|--------------|
+| 1  | Cecilia   | Rink         | Person        | [NULL] | [NULL]       |
+| 2  | Matthias  | Dreher       | Person        | [NULL] | [NULL]       |
+| 3  | Melvin    | Ney          | Person        | [NULL] | [NULL]       |
+| 4  | Mads      | Wittich      | Student       | 3BHMNA | [NULL]       |
+| 5  | Elaine    | Schnürer     | Student       | 4AHBGM | [NULL]       |
+| 6  | Annabelle | Eggenmueller | Student       | 1AHBGM | [NULL]       |
+| 7  | Victor    | Kobs         | Teacher       | [NULL] | A1.04        |
+| 8  | Jessy     | Jambor       | Teacher       | [NULL] | C1.03        |
+| 9  | Jella     | Fietz        | Teacher       | [NULL] | C1.04        |
+
+### EF Core und Typecasts
+
+Erstellen Sie ein Projekt mit folgenden Konsolenbefehlen
+
+```text
+rd /S /Q EfCoreInheritanceDemoApp
+md EfCoreInheritanceDemoApp
+cd EfCoreInheritanceDemoApp
+dotnet new console
+dotnet add package Microsoft.EntityFrameworkCore
+dotnet add package Microsoft.EntityFrameworkCore.Sqlite
+dotnet add package Bogus
+start EfCoreInheritanceDemoApp.csproj
+```
+
+#### Datei Program.cs
+
+```c#
+using Microsoft.EntityFrameworkCore;
+using Bogus;
+using System;
+using System.Linq;
+
+namespace EfCoreInheritanceDemoApp
+{
+    class Person
+    {
+        public int Id { get; set; }
+        public string Firstname { get; set; } = default!;
+        public string Lastname { get; set; } = default!;
+    }
+    class Student : Person
+    {
+        public string Class { get; set; } = default!;
+    }
+    class Teacher : Person
+    {
+        public string TeachersRoom { get; set; } = default!;
+    }
+
+    class DemoContext : DbContext
+    {
+        public DbSet<Person> Persons => Set<Person>();
+        public DbSet<Student> Students => Set<Student>();
+        public DbSet<Teacher> Teachers => Set<Teacher>();
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=Demo.db");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+        }
+        public void Seed()
+        {
+            var departments = new string[] { "HIF", "HBGM", "HWIT", "HMNA", "HMNG" };
+            Randomizer.Seed = new Random(729);
+
+            var persons = new Faker<Person>("de").Rules((f, t) =>
+            {
+                t.Firstname = f.Name.FirstName();
+                t.Lastname = f.Name.LastName();
+            })
+            .Generate(3);
+            Persons.AddRange(persons);
+            SaveChanges();
+
+            var students = new Faker<Student>("de").Rules((f, s) =>
+            {
+                s.Firstname = f.Name.FirstName();
+                s.Lastname = f.Name.LastName();
+                s.Class = f.Random.Int(1, 5)
+                    + f.Random.String2(1, "ABC")
+                    + f.Random.ListItem(departments);
+
+            })
+            .Generate(3);
+            Students.AddRange(students);
+            SaveChanges();
+
+            var teachers = new Faker<Teacher>("de").Rules((f, t) =>
+            {
+                t.Firstname = f.Name.FirstName();
+                t.Lastname = f.Name.LastName();
+                t.TeachersRoom = f.Random.String2(1, "ABC") + f.Random.Int(1, 5) + ".0" + f.Random.Int(1, 9);
+            })
+            .Generate(3);
+            Teachers.AddRange(teachers);
+            SaveChanges();
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            using (DemoContext db = new DemoContext())
+            {
+                db.Database.EnsureDeleted();
+                db.Database.EnsureCreated();
+                db.Seed();
+
+                Console.WriteLine("Reading Set<Person>");
+                foreach (var p in db.Persons)
+                {
+                    if (p is Student)
+                    {
+                        var s = (Student)p;
+                        Console.WriteLine($"    {s.Firstname} {s.Lastname}, {s.Class} is a student.");
+                        continue;
+                    }
+                    if (p is Teacher)
+                    {
+                        var t = (Teacher)p;
+                        Console.WriteLine($"    {t.Firstname} {t.Lastname} is a teacher in {t.TeachersRoom}.");
+                        continue;
+                    }
+                    Console.WriteLine($"    {p.Firstname} {p.Lastname} is a person.");
+                }
+
+                Console.WriteLine("Reading Set<Teacher>");
+                foreach (var t in db.Teachers)
+                {
+                    Console.WriteLine($"    {t.Firstname} {t.Lastname} is a teacher in {t.TeachersRoom}.");
+                }
+
+                Console.WriteLine("Reading Set<Person> with type cast");
+                foreach (var t in db.Persons.Where(p => p is Teacher).Cast<Teacher>())
+                {
+                    Console.WriteLine($"    {t.Firstname} {t.Lastname} is a teacher in {t.TeachersRoom}.");
+                }
+            }
+        }
+    }
+}
+```
+
+```text
+Reading Set<Person>
+    Cecilia Rink is a person.
+    Matthias Dreher is a person.
+    Melvin Ney is a person.
+    Mads Wittich, 3BHMNA is a student.
+    Elaine Schnürer, 4AHBGM is a student.
+    Annabelle Eggenmueller, 1AHBGM is a student.
+    Victor Kobs is a teacher in A1.04.
+    Jessy Jambor is a teacher in C1.03.
+    Jella Fietz is a teacher in C1.04.
+Reading Set<Teacher>
+    Victor Kobs is a teacher in A1.04.
+    Jessy Jambor is a teacher in C1.03.
+    Jella Fietz is a teacher in C1.04.
+Reading Set<Person> with type cast
+    Victor Kobs is a teacher in A1.04.
+    Jessy Jambor is a teacher in C1.03.
+    Jella Fietz is a teacher in C1.04.
+```
 ## Übung
 
 **(1)** Ein Fußballverein gibt ihnen folgende Informationen:
