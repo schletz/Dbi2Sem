@@ -340,7 +340,7 @@ namespace EfCoreInheritanceDemoApp
                 }
 
                 Console.WriteLine("Reading Set<Person> with type cast");
-                foreach (var t in db.Persons.Where(p => p is Teacher).Cast<Teacher>())
+                foreach (var t in db.Persons.OfType<Teacher>())
                 {
                     Console.WriteLine($"    {t.Firstname} {t.Lastname} is a teacher in {t.TeachersRoom}.");
                 }
