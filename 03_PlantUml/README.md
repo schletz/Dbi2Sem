@@ -11,7 +11,11 @@ Für die Erstellung von Diagrammen in PlantUML gibt es unter Windows mit VS Code
 ```javascript
 "plantuml.server": "https://www.plantuml.com/plantuml",
 "markdown-pdf.plantumlOpenMarker": "```plantuml",
-"markdown-pdf.plantumlCloseMarker": "```"
+"markdown-pdf.plantumlCloseMarker": "```",
+"markdown-pdf.margin.top": "3.5cm",
+"markdown-pdf.margin.bottom": "3.5cm",
+"markdown-pdf.margin.right": "2.5cm",
+"markdown-pdf.margin.left": "2.5cm"
 ```
 
 Nun kann folgendes Markdown Dokument gerendert und auch als PDF ausgegeben werden. Die PDF Ausgabe
