@@ -38,13 +38,17 @@ namespace SchulDb.Untis
         }
         private static List<T> ReadUntisFile<T>(string filename)
         {
+            var configuration = new CsvHelper.Configuration.CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = false,
+                Delimiter = ";"
+            };
+
             try
             {
                 using (var reader = new StreamReader(filename, Encoding.GetEncoding(1252)))
-                using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+                using (var csv = new CsvReader(reader, configuration))
                 {
-                    csv.Configuration.HasHeaderRecord = false;
-                    csv.Configuration.Delimiter = ";";
                     return csv.GetRecords<T>().ToList();
                 }
             }
