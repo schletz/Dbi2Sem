@@ -48,7 +48,7 @@
 
 ## Informationen zum Start
 
-- [Download und Konfiguration der VM](01_OracleVM/README.md)
+- [Download und Konfiguration der VM](01_OracleVM/README.md) **oder** [Oracle 21 XE als Docker Image](01_OracleVM/03_Docker/README.md)
 - [Installation von DBeaver](01_OracleVM/01_Dbeaver/README.md)
 - [Optional: Installation von JetBrains DataGrip](01_OracleVM/02_DataGrip/README.md)
 - [Installation von erwin Data Modeler](02_ErWin/README.md)
