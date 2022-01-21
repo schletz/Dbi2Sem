@@ -17,6 +17,7 @@ muss Oracle als Datenbanksystem ausgewählt werden:
 ![](dbeaver01.png)
 
 Zum Verbinden müssen wie in SQL Developer die Verbindungsdaten eingegeben werden:
+
 - Host: *localhost*
 - Database: *orcl* (Service Name)
 - Username: *SchulDb* (oder *System*, falls noch kein User existiert)
@@ -28,9 +29,6 @@ Beim ersten Verbinden wird der Treiber aus dem Netz geladen.
 
 Oracle 19 oder 21 arbeiten mit pluggable databases. Daher ist die Verbindungsinformation anders:
 
-![](dbeaver01.png)
-
-Zum Verbinden müssen wie in SQL Developer die Verbindungsdaten eingegeben werden:
 - Host: *localhost*
 - Database: *XEPDB1* (Service Name)
 - Username: *SchulDb* (oder *System*, falls noch kein User existiert)
