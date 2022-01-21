@@ -1,71 +1,142 @@
-# PlantUML Klassendiagramme und ER Diagramme
+# PlantUML und VS Code als Modellierungswerkzeug
 
-## Installation mit VS Code
+In der Konzeptionierungsphase ist ein grafisches Tool zum Erzeugen von Klassenmodellen sehr wichtig.
+In diesen Kurs werden immer wieder UML Klassendiagramme hergezeigt. Sie können mit VS Code und
+PlantUML erzeugt werden:
 
-Für die Erstellung von Diagrammen in PlantUML gibt es unter Windows mit VS Code folgende Möglichkeit:
-
-**(1)** Installiere in VS Code die Erweiterung PlantUML und Markdown PDF.
-
-**(2)** Füge in der Datei *settings.json* (*F1* - *Open Settings (JSON)*) folgende Zeilen ein:
+1. Prüfe, ob Java installiert und im PATH eingetragen ist. Der Befehl *java -version* muss erkannt werden.
+1. Installiere [Visual Studio Code](https://code.visualstudio.com). Achtung: Aktiviere beim Setup
+   die Option "In den Explorer integrieren", damit Sie im Kontextmenü VS Code starten können.
+1. Installiere die folgenden Extensions:
+   - Markdown PDF
+   - Markdown Preview Enhanced
+   - PlantUML
+1. Öffne die VS Code Konfiguration (*F1* - "*settings*" eingeben - "*Preferences: Open Settings (JSON)*" wählen)
+   und füge folgende Zeilen hinzu:
 
 ```javascript
-"plantuml.server": "https://www.plantuml.com/plantuml",
-"markdown-pdf.plantumlOpenMarker": "```plantuml",
-"markdown-pdf.plantumlCloseMarker": "```",
-"markdown-pdf.margin.top": "3.5cm",
-"markdown-pdf.margin.bottom": "3.5cm",
-"markdown-pdf.margin.right": "2.5cm",
-"markdown-pdf.margin.left": "2.5cm"
+    "markdown-pdf.plantumlOpenMarker": "```plantuml",
+    "markdown-pdf.plantumlCloseMarker": "```"   
 ```
 
-Nun kann folgendes Markdown Dokument gerendert und auch als PDF ausgegeben werden. Die PDF Ausgabe
-erfolgt mit *F1* - *Markdown PDF: Export (pdf)*
+Nun steht durch die Extension *Markdown Preview Enhanced* ein Icon bereit, welches eine Vorschau mit dem gerenderten Diagramm bietet. Beachte: Dies ist nur bei Dokumenten mit der 
+Endung *.md* Verfügbar.
+![](preview_vscode.png)
 
-```text
-# Testdokument für Markdown und PlantUML
+## Demo Markdownfile mit PlantUML
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+Kopiere den nachfolgenden Code in eine neue Datei mit dem Namen
+*er_demo.md*.
+**Wichtig: Die Datei muss die Endung md haben, sonst werden die Extensions in VS Code nicht aktiviert!**
+Es sollte in der Vorschau mit Markdown Preview Enhanced ein ER Diagramm gerendert werden.
+Mit *F1* - *Markdown PDF: Export (PDF)* kann ein PDF erzeugt werden.
+
+## Musterdatei
+
+````text
+# Ein kleines Diagramm
+
+Mit der Extension *Markdown Preview Enhanced* können Sie PlantUML Diagramme in Markdown
+Dateien einbetten. Die Voransicht sollte unter der Beschreibung ein kleines ER Diagramm rendern. Es
+gelten folgende Regeln:
+
+- Erforderliche Felder (*NOT NULL*) werden mit einem Stern (\*) gekennzeichnet.
+- Primärschlüssel werden im oberen Teil angegeben. Danach kommen 3 Striche.
+  Darunter die restlichen Attribute.
+- Generierte Werte (wie autoincrement Werte) werden mit *\<\<generated\>\>* gekennzeichnet.
+- Beziehungen kommen in mehreren Arten vor:
+  - `||..o{` definiert eine nicht identifizierende 1 : n Beziehung. Der FK ist also ein Attribut.
+  - `|o..o{` definiert eine (0, 1) : n Beziehung. Der FK ist also optional (nullable).
+  -  `||--0{` definiert eine identifizierende 1 : n Beziehung. Der FK ist also Teil des Primärschlüssels.
+- Fremdschlüssel werden mit *\<\<FK\>\>* gekennzeichnet.
+- Constraints werden in 2 spitzen Klammern angegeben (z. B. *\<\<unique\>\>*, *\<\<index\>\>*).
 
 ```plantuml
 @startuml
-
+' hide the spot
 hide circle
-skinparam linetype ortho
+' Optional: enable for orthogonal lines.
+' skinparam linetype ortho
 
-entity "Entity01" as e01 {
-    *e1_id : number <<generated>>
-    --
-    *name : text
-    description : text
-}
-entity "Entity02" as e02 {
-    *e2_id : number
-    --
-    *e1_id : number <<FK>>
-    other_details : text
+entity Room {
+    *Id : number <<generated>>
+    ---
+    *Name : varchar(16) <<unique>>
+    Capacity : number
 }
 
-entity "Entity03" as e03 {
-    *e3_id : number
-    --
-    e1_id : number <<FK>>
-    other_details : text
+entity Schoolyear {
+    *Id : number
+    ---
+    *Start : datetime
+    *End : datetime
 }
 
-entity "Entity04" as e04 {
-    *e3_id : number
-    --
-    e1_id : number <<FK>>
-    other_details : text
+entity Teacher {
+    *Id : number <<generated>>
+    ---
+    *Shortname : varchar(8) <<unique>>
+    *Firstname : varchar(255)
+    *Lastname : varchar(255)
+    *Accountname : varchar(16) <<unique>>
 }
 
-<> xx
-e02 -- xx
-xx --|> e01
-e03 -- xx
-e04 -- xx
+entity Class {
+    *Id : number <<generated>>
+    ---
+    *Name : varchar(16)
+    *SchoolyearId : number <<FK>>
+    *TeacherId : number <<FK>>
+    RoomId : varchar(16) <<FK>>
+}
+
+Schoolyear ||..o{ Class
+Teacher ||..o{ Class
+Room |o..o{ Class
+
+entity Subject {
+    *Id : number <<generated>>
+    ---
+    *Name : varchar(16) <<unique>>
+    *Longname : varchar(255)
+}
+
+
+entity Student {
+    *Id : number <<generated>>
+    ---
+    *Firstname : varchar(255)
+    *Lastname : varchar(255)
+    *Accountname : varchar(16) <<unique>>
+    *ClassId : number <<FK>>
+}
+
+Class ||..o{ Student
+
+
+
+entity Lesson {
+    *Id : number <<generated>>
+    ---
+    *ClassId : number <<FK>>
+    *SubjectId : number <<FK>>
+    *TeacherId : number <<FK>>
+}
+
+Teacher ||..o{ Lesson
+
+Class ||..o{ Lesson
+Subject ||..o{ Lesson
+
+entity LessonPlanned {
+    *LessonId : number <<FK>>
+    *DayOfWeek : number
+    *LessonNumber : number
+    ---
+    *RoomId
+}
+Lesson ||--o{ LessonPlanned
 
 @enduml
 ```
-
-```
+````
