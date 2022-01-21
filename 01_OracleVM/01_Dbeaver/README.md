@@ -9,7 +9,7 @@ heruntergeladen werden.
 Das Portforwarding des Port 1521 muss - wie im Kapitel Installation beschrieben - in Virtual Box
 gesetzt werden.
 
-## Verbinden zur Oracle Datenbank in der VM
+## Verbinden zur Oracle Datenbank in der VM (Oracle 11 oder 12)
 
 Durch den Button *New Database Connection* kann der Verbindungsdialog geöffnet werden. In diesem Dialog
 muss Oracle als Datenbanksystem ausgewählt werden:
@@ -17,16 +17,28 @@ muss Oracle als Datenbanksystem ausgewählt werden:
 ![](dbeaver01.png)
 
 Zum Verbinden müssen wie in SQL Developer die Verbindungsdaten eingegeben werden:
-- Hostname: *localhost*
+- Host: *localhost*
 - Database: *orcl* (Service Name)
 - Username: *SchulDb* (oder *System*, falls noch kein User existiert)
 - Passwort: *oracle*
 
-![](dbeaver02.png)
+Beim ersten Verbinden wird der Treiber aus dem Netz geladen.
 
-Da Oracle den JDBC Treiber nicht ohne Login zum Download anbietet, muss er nach dem Klicken auf Test
-Connection mittels Add JARs geladen werden. Die Dafür benötigte Datei [ojdbc10.jar](ojdbc10.jar) ist in diesem Ordner
-im Repository enthalten.
+## Verbinden zur Oracle Datenbank in der VM (Oracle 19 XE oder 21 XE)
+
+Oracle 19 oder 21 arbeiten mit pluggable databases. Daher ist die Verbindungsinformation anders:
+
+![](dbeaver01.png)
+
+Zum Verbinden müssen wie in SQL Developer die Verbindungsdaten eingegeben werden:
+- Host: *localhost*
+- Database: *XEPDB1* (Service Name)
+- Username: *SchulDb* (oder *System*, falls noch kein User existiert)
+- Passwort: *oracle*
+
+Beim ersten Verbinden wird der Treiber aus dem Netz geladen. Die angebotenen pluggable databases
+können herausgefunden werden, indem man sich mit dem User *system* und dem Service Name *XE*
+verbindet. Danach wird das SQL Statement `SELECT name FROM v$pdbs;` abgesetzt.
 
 ## Zugriff auf das Schema
 

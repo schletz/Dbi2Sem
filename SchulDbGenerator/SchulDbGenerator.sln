@@ -9,8 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchulDb.Untis", "SchulDb.Un
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SchulDbGenerator", "SchulDbGenerator\SchulDbGenerator.csproj", "{0F029BC1-F295-4041-8C07-8D3B293573A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MarkdownExtensions", "MarkdownExtensions\MarkdownExtensions.csproj", "{A2D9FF5E-E8FD-48EA-B6B9-12E26CD7DDCE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

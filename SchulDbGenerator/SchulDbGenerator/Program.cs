@@ -12,7 +12,7 @@ namespace SchulDbGenerator
         static DbContextOptions<SchuleContext> GetOptions()
         {
             var builder = new DbContextOptionsBuilder<SchuleContext>();
-            Console.Write("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle ");
+            Console.Write("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE");
             string dbType = Console.ReadLine();
             dbType = string.IsNullOrEmpty(dbType) ? "1" : dbType;
 
@@ -33,15 +33,19 @@ namespace SchulDbGenerator
                                 $"Database={dbName};" +
                                 $"Trusted_Connection=True;MultipleActiveResultSets=true");
             }
-            else if (dbType == "3")
+            else if (dbType == "3" || dbType == "4")
             {
                 Console.Write("Wie soll der Benutzer heißen? Default: Schule ");
                 string dbName = Console.ReadLine();
                 dbName = string.IsNullOrEmpty(dbName) ? "Schule" : dbName;
-                builder.UseOracle($"User Id={dbName};Password=oracle;Data Source=localhost:1521/orcl");
+                // Oracle 19 und 21 arbeiten mit pluggable Databases. Diese können mit
+                // nach einem Login als system mit derm Service Name XE und folgendem Statement herausgefunden werden:
+                // SELECT name FROM v$pdbs;
+                var serviceName = dbType == "3" ? "orcl" : "XEPDB1";
+                builder.UseOracle($"User Id={dbName};Password=oracle;Data Source=localhost:1521/{serviceName}");
 
                 var oracleSystemOptions = new DbContextOptionsBuilder<SchuleContext>()
-                    .UseOracle("User Id=System;Password=oracle;Data Source=localhost:1521/orcl")
+                    .UseOracle($"User Id=System;Password=oracle;Data Source=localhost:1521/{serviceName}")
                     .Options;
 
                 Console.WriteLine($"Lege Benutzer {dbName} mit Passwort oracle an...");
@@ -53,17 +57,24 @@ namespace SchulDbGenerator
                         // ist, wird sie deaktiviert. Außerdem funktioniert keine andere Variante
                         // (OracleParameter, Interpolated String, ...).
 #pragma warning disable EF1000
-                        try { db.Database.ExecuteSqlCommand("DROP USER " + dbName + " CASCADE"); }
+                        try { db.Database.ExecuteSqlRaw("DROP USER " + dbName + " CASCADE"); }
                         catch { }
-                        db.Database.ExecuteSqlCommand("CREATE USER " + dbName + " IDENTIFIED BY oracle");
-                        db.Database.ExecuteSqlCommand("GRANT CONNECT, RESOURCE, CREATE VIEW TO " + dbName);
-                        db.Database.ExecuteSqlCommand("GRANT UNLIMITED TABLESPACE TO " + dbName);
+                        db.Database.ExecuteSqlRaw("CREATE USER " + dbName + " IDENTIFIED BY oracle");
+                        db.Database.ExecuteSqlRaw("GRANT CONNECT, RESOURCE, CREATE VIEW TO " + dbName);
+                        db.Database.ExecuteSqlRaw("GRANT UNLIMITED TABLESPACE TO " + dbName);
                     }
+                    Console.WriteLine("*********************************************************");
+                    Console.WriteLine("Fertig. Du kannst dich nun mit folgenden Daten verbinden:");
+                    Console.WriteLine($"   Username:     {dbName}");
+                    Console.WriteLine($"   Passwort:     oracle");
+                    Console.WriteLine($"   Service Name: {serviceName}");
+                    Console.WriteLine("*********************************************************");
                 }
-                catch
+                catch (Exception e)
                 {
-                    throw new SchulDb.SchulDbException("Fehler beim Löschen und neu Anlegen des Oracle Benutzers. " +
-                        "Mögliche Ursachen: Der Benutzer ist gerade aktiv oder die VM läuft nicht.");
+                    throw new SchulDb.SchulDbException("Fehler beim Löschen und neu Anlegen des Oracle Benutzers." + Environment.NewLine
+                        + "Fehlermeldung: " + e.Message + Environment.NewLine
+                        + "Mögliche Ursachen: Der Benutzer ist gerade aktiv oder die VM läuft nicht.");
                 }
             }
             else
@@ -89,18 +100,12 @@ namespace SchulDbGenerator
             {
                 Console.Error.WriteLine(e.Message);
                 Console.Error.WriteLine(e?.InnerException?.Message);
-#if DEBUG
-                Console.Error.WriteLine(e.StackTrace);
-#endif
                 return 1;
             }
             catch (Exception e)
             {
                 Console.Error.WriteLine(e.Message);
                 Console.Error.WriteLine(e?.InnerException?.Message);
-#if DEBUG
-                Console.Error.WriteLine(e.StackTrace);
-#endif
                 return 2;
             }
             return 0;

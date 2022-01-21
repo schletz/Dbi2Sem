@@ -30,13 +30,6 @@ namespace SchulDb.Model
         public virtual DbSet<Stunde> Stundens { get; set; }
         public virtual DbSet<Stundenraster> Stundenrasters { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Pruefung>(entity =>
@@ -55,15 +48,16 @@ namespace SchulDb.Model
             {
                 foreach (var entity in modelBuilder.Model.GetEntityTypes())
                 {
+                    var schema = entity.GetSchema();
+                    var tableName = entity.GetTableName();
+                    var storeObjectIdentifier = StoreObjectIdentifier.Table(tableName, schema);
                     foreach (var property in entity.GetProperties())
                     {
-                        property.Relational().ColumnName = property.Relational().ColumnName.ToUpper();
+                        property.SetColumnName(property.GetColumnName(storeObjectIdentifier).ToUpper());
                     }
-                    entity.Relational().TableName = entity.Relational().TableName.ToUpper();
+                    entity.SetTableName(tableName.ToUpper());
                 }
             }
         }
-
-        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }

@@ -1,24 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath />
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>..\Release</OutputPath>
-  </PropertyGroup>
-
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+	</PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Bogus" Version="*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.*" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.*" />
-    <PackageReference Include="Oracle.EntityFrameworkCore" Version="2.*" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="*" />
+    <PackageReference Include="Bogus" Version="34.*" />
   </ItemGroup>
 
   <ItemGroup>

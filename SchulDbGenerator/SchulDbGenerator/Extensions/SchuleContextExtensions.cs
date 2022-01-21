@@ -325,12 +325,9 @@ namespace SchulDbGenerator
                             p.PDatumZeit =
                                 f.Date.Between(current, current.AddMonths(9)).Date +
                                 new TimeSpan(f.Random.Int(8, 21), f.Random.Int(0, 11) * 5, 0);
-                            if (p.PDatumZeit != null)
-                            {
-                                p.PNote = f.Random
-                                    .Int(besteNote, schlechtesteNote)
-                                    .OrNull(f, 0.2f);
-                            }
+                            p.PNote = f.Random
+                                .Int(besteNote, schlechtesteNote)
+                                .OrNull(f, 0.2f);
                             p.PGegenstandNavigation = stunde.StGegenstandNavigation;
                             // In 10% der Fälle nehmen wir irgeneinen Prüfer, der das Fach unterrichtet,
                             // aber nicht notwendigerweise in der Klasse steht.
