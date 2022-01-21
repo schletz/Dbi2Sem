@@ -70,6 +70,8 @@ die das ganze System betreffen, gelesen und gesetzt werden:
 docker exec -it oracle21c sqlplus SYS AS SYSDBA
 ```
 
+Mit dem Befehl *quit* kann der SQL*Plus Prompt verlassen werden.
+
 ### Shell (bash)
 
 Wir können auch eine Shell öffnen und Befehle in Linux absetzen:
