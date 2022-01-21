@@ -53,6 +53,7 @@
 - [Optional: Installation von JetBrains DataGrip](01_OracleVM/02_DataGrip/README.md)
 - [Installation von erwin Data Modeler](02_ErWin/README.md)
 - [Installation von PlantUML in VS Code](03_PlantUml/README.md)
+- [Anlegen der Musterdatenbank (SchulDb)](SchulDbGenerator/README.md)
 
 ## Die verwendete Schuldatenbank
 
