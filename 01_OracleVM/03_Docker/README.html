@@ -69,8 +69,9 @@ im <em>docker run</em> Befehl weiter oben als Umgebungsvariable <em>ORACLE_PASSW
 <pre><code class="language-text"><div>docker exec -it oracle21c sqlplus system/oracle@//localhost/XEPDB1
 </div></code></pre>
 <p>Wollen wir <em>systemweite Änderungen</em> machen, gibt es noch den User <em>SYS</em>. Hier können Konfigurationen,
-die das ganze System betreffen, gelesen und gesetzt werden:</p>
-<pre><code class="language-text"><div>docker exec -it oracle21c sqlplus SYS AS SYSDBA
+die das ganze System betreffen, gelesen und gesetzt werden. Beachte, dass <em>oracle</em> das Passwort
+des Users sys ist.</p>
+<pre><code class="language-text"><div>docker exec -it oracle21c sqlplus sys/oracle AS SYSDBA
 </div></code></pre>
 <p>Mit dem Befehl <em>quit</em> kann der SQL*Plus Prompt verlassen werden.</p>
 <h3 id="shell-bash">Shell (bash)</h3>

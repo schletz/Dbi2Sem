@@ -49,10 +49,11 @@ docker exec -it oracle21c sqlplus system/oracle@//localhost/XEPDB1
 ```
 
 Wollen wir *systemweite Änderungen* machen, gibt es noch den User *SYS*. Hier können Konfigurationen,
-die das ganze System betreffen, gelesen und gesetzt werden:
+die das ganze System betreffen, gelesen und gesetzt werden. Beachte, dass *oracle* das Passwort
+des Users sys ist.
 
 ```text
-docker exec -it oracle21c sqlplus SYS AS SYSDBA
+docker exec -it oracle21c sqlplus sys/oracle AS SYSDBA
 ```
 
 Mit dem Befehl *quit* kann der SQL*Plus Prompt verlassen werden.
