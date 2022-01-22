@@ -4,7 +4,7 @@ Die neuste Express Edition (XE) von Oracle gibt es auch als Docker Container. La
 Docker für dein Betriebssystem von [docs.docker.com](https://docs.docker.com/get-docker/).
 
 Die Installation von Docker Desktop und das Laden des Containers ist als Video
-verfügbar: https://youtu.be/K6IMey4u_cA
+verfügbar: https://youtu.be/eWsscU7ivFI
 
 Nach der erfolgreichen Installation wird der Container für Oracle 21 XE mittels der folgenden
 Befehle in der Windows Konsole geladen und ausgeführt. Der Container hat rund 3.5 GB.
