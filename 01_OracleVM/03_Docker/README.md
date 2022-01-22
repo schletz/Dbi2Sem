@@ -11,43 +11,25 @@ Befehle in der Windows Konsole geladen und ausgeführt. Der Container hat rund 3
 
 ```text
 docker pull gvenzl/oracle-xe:21-full
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/XE21CFULL/oradata gvenzl/oracle-xe:21-full
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/XE21CFULL/oradata --name oracle21c gvenzl/oracle-xe:21-full
 ```
 Die Umgebungsvariable *ORACLE_PASSWORD* setzt das Systempasswort. Da es keine Produktionsdatenbank
 ist, verwenden wir zur Vereinfachung *oracle*.
 
-## Umbenennen des Containers
+## Starten und Stoppen des Containers
 
-Zuerst müssen wir herausfinden, welche ID unser Container hat. Der folgende Befehl zeigt
-eine Liste aller Container und dessen Daten an:
-
-```text
-docker container ls
-```
-
-**Ausgabe:**
-```text
-CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                    NAMES
-c3231e31cbcf   gvenzl/oracle-xe:21-full   "container-entrypoin…"   4 minutes ago   Up 4 minutes   0.0.0.0:1521->1521/tcp   exciting_chaplygin
-```
-
-In diesem Fall hat der Container die ID *c3231e31cbcf*. Beachte, dass die ID immer anders ist.
-Ersetze daher die angegebene ID durch den entsprechenden Wert.
-Mit *docker rename* kann dieser in einen schöneren Namen, nämlich *oracle21c* umbenannt werden:
+Durch *docker run* wird unser Container bereits gestartet. Aber wie verhält es sich nach einem
+Neustart von Windows? Docker Desktop startet automatisch mit
+Microsoft Windows, der Container wird allerdings nicht automatisch gestartet.
+Daher die zwei folgenden Befehle in der Konsole zum Starten bzw. manuellen Stoppen (wenn notwendig)
+des Containers wichtig:
 
 ```text
-docker rename c3231e31cbcf oracle21c
-```
-
-## Starten und Stoppen
-
-Nach *docker run* ist unser Container bereits gestartet. Nach einen Neustart bzw. zum Beenden des
-Containers sind die zwei folgenden Befehle wichtig:
-
-```text
-docker stop oracle21c
 docker start oracle21c
+docker stop oracle21c
 ```
+
+Natürlich kann mit Docker Desktop der Container ebenfalls gestartet und beendet werden.
 
 ## Ausführen von Programmen im Container
 

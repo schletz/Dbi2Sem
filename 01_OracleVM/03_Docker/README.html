@@ -43,30 +43,20 @@ verfügbar: <a href="https://youtu.be/K6IMey4u_cA">https://youtu.be/K6IMey4u_cA<
 <p>Nach der erfolgreichen Installation wird der Container für Oracle 21 XE mittels der folgenden
 Befehle in der Windows Konsole geladen und ausgeführt. Der Container hat rund 3.5 GB.</p>
 <pre><code class="language-text"><div>docker pull gvenzl/oracle-xe:21-full
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/XE21CFULL/oradata gvenzl/oracle-xe:21-full
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/XE21CFULL/oradata --name oracle21c gvenzl/oracle-xe:21-full
 </div></code></pre>
 <p>Die Umgebungsvariable <em>ORACLE_PASSWORD</em> setzt das Systempasswort. Da es keine Produktionsdatenbank
 ist, verwenden wir zur Vereinfachung <em>oracle</em>.</p>
-<h2 id="umbenennen-des-containers">Umbenennen des Containers</h2>
-<p>Zuerst müssen wir herausfinden, welche ID unser Container hat. Der folgende Befehl zeigt
-eine Liste aller Container und dessen Daten an:</p>
-<pre><code class="language-text"><div>docker container ls
+<h2 id="starten-und-stoppen-des-containers">Starten und Stoppen des Containers</h2>
+<p>Durch <em>docker run</em> wird unser Container bereits gestartet. Aber wie verhält es sich nach einem
+Neustart von Windows? Docker Desktop startet automatisch mit
+Microsoft Windows, der Container wird allerdings nicht automatisch gestartet.
+Daher die zwei folgenden Befehle in der Konsole zum Starten bzw. manuellen Stoppen (wenn notwendig)
+des Containers wichtig:</p>
+<pre><code class="language-text"><div>docker start oracle21c
+docker stop oracle21c
 </div></code></pre>
-<p><strong>Ausgabe:</strong></p>
-<pre><code class="language-text"><div>CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                    NAMES
-c3231e31cbcf   gvenzl/oracle-xe:21-full   &quot;container-entrypoin…&quot;   4 minutes ago   Up 4 minutes   0.0.0.0:1521-&gt;1521/tcp   exciting_chaplygin
-</div></code></pre>
-<p>In diesem Fall hat der Container die ID <em>c3231e31cbcf</em>. Beachte, dass die ID immer anders ist.
-Ersetze daher die angegebene ID durch den entsprechenden Wert.
-Mit <em>docker rename</em> kann dieser in einen schöneren Namen, nämlich <em>oracle21c</em> umbenannt werden:</p>
-<pre><code class="language-text"><div>docker rename c3231e31cbcf oracle21c
-</div></code></pre>
-<h2 id="starten-und-stoppen">Starten und Stoppen</h2>
-<p>Nach <em>docker run</em> ist unser Container bereits gestartet. Nach einen Neustart bzw. zum Beenden des
-Containers sind die zwei folgenden Befehle wichtig:</p>
-<pre><code class="language-text"><div>docker stop oracle21c
-docker start oracle21c
-</div></code></pre>
+<p>Natürlich kann mit Docker Desktop der Container ebenfalls gestartet und beendet werden.</p>
 <h2 id="ausführen-von-programmen-im-container">Ausführen von Programmen im Container</h2>
 <p>Mit <em>docker exec -it oracle21c COMMAND</em> können Befehle direkt im Container ausgeführt werden.
 Die Option <em>-i</em> bedeutet eine interaktive Ausführung. <em>-t</em> öffnet ein Terminal, sodass nicht CR+LF
