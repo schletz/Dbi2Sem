@@ -37,3 +37,8 @@ oracle/database:19.3.0-ee
 ![](dgSettings.png)
 
 7. Fertig! Sobald die Verbindung funktioniert können wir im weiteren Verlauf eine Datenbank importieren und unsere Übungen starten. Bei Fragen bitte das Youtube Video schauen oder mir eine E-Mail schreiben. 
+
+## Extra: docker-compose
+
+Um nicht jedes mal beim Containerstart `docker run ...` eingeben zu müssen können die Informationen für die Erstellung eines Containers auch in der Datei `docker-compose.yml` gespeichert werden. Docker Compose ist ein Zusatzprogramm für die schnelle Erstellung von Containern welche (im Normalfall) miteinander interagieren. Durch den Befehl `docker-compose up -d` im selbem Verzeichnis in dem sich auch die YML-Datei befindet werden automatisch Images von Docker Hub heruntergeladen, Volumes angelegt, Netzwerke eingerichtete uvm. Wichtig hierbei ist auf die Image-Id zu achten. Diese ist von Maschine zu Maschine anders. Leider funktioniert docker-compose in diesem Fall nicht mit dem Imagenamen da es Versucht ein solches Image von Docker Hub herunterzuladen, dieses jedoch nicht existiert. 
+
