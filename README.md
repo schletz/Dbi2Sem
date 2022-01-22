@@ -58,7 +58,6 @@
 ## Die verwendete Schuldatenbank
 
 - [Download als SQLite Datenbank](Schule.db)
-- [Download als Access Datenbank](Schule.mdb)
 - [Download als Sql Server (LocalDB) Datenbank](Schule.mdf)
 
 Um die SQL Server Datenbank zu verwenden, müssen Sie sich im SQL Server Management Studio (SSMS)

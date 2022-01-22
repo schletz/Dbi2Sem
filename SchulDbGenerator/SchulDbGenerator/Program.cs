@@ -12,7 +12,7 @@ namespace SchulDbGenerator
         static DbContextOptions<SchuleContext> GetOptions()
         {
             var builder = new DbContextOptionsBuilder<SchuleContext>();
-            Console.Write("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE");
+            Console.WriteLine("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE");
             string dbType = Console.ReadLine();
             dbType = string.IsNullOrEmpty(dbType) ? "1" : dbType;
 
@@ -64,7 +64,7 @@ namespace SchulDbGenerator
                         db.Database.ExecuteSqlRaw("GRANT UNLIMITED TABLESPACE TO " + dbName);
                     }
                     Console.WriteLine("*********************************************************");
-                    Console.WriteLine("Fertig. Du kannst dich nun mit folgenden Daten verbinden:");
+                    Console.WriteLine("Du kannst dich nun mit folgenden Daten verbinden:");
                     Console.WriteLine($"   Username:     {dbName}");
                     Console.WriteLine($"   Passwort:     oracle");
                     Console.WriteLine($"   Service Name: {serviceName}");
@@ -88,25 +88,25 @@ namespace SchulDbGenerator
             try
             {
                 var options = GetOptions();
-                Untisdata data = await Untisdata.Load("Data", "2019-2020");
+                Untisdata data = await Untisdata.Load("Data");
                 using (SchuleContext db = new SchuleContext(options))
                 {
+                    Console.WriteLine("Lösche die alte Datenbank...");
                     db.Database.EnsureDeleted();
                     db.Database.EnsureCreated();
-                    db.SeedDatabase(data, 2019);
+                    Console.WriteLine("Schreibe Musterdaten...");
+                    db.SeedDatabase(data, 2021);
+                    Console.WriteLine("FERTIG!");
                 }
-            }
-            catch (SchulDb.SchulDbException e)
-            {
-                Console.Error.WriteLine(e.Message);
-                Console.Error.WriteLine(e?.InnerException?.Message);
-                return 1;
             }
             catch (Exception e)
             {
+                var color = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Error.WriteLine(e.Message);
                 Console.Error.WriteLine(e?.InnerException?.Message);
-                return 2;
+                Console.ForegroundColor = color;
+                return 1;
             }
             return 0;
         }

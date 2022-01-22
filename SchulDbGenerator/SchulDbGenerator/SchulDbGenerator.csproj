@@ -16,19 +16,19 @@
     <None Update="Data\adressen.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Faecher_2019-2020.csv">
+    <None Update="Data\Faecher.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Klassen_2019-2020.csv">
+    <None Update="Data\Klassen.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Lehrer_2019-2020.csv">
+    <None Update="Data\Lehrer.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Raeume_2019-2020.csv">
+    <None Update="Data\Raeume.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Data\Stundenplan_2019-2020.csv">
+    <None Update="Data\Stundenplan.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

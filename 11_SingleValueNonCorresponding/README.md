@@ -151,170 +151,162 @@ HAVING   STRFTIME('%Y', MIN(s.S_Gebdatum)) =
 
 ## Übungen
 
-Bearbeiten Sie die folgenden Abfragen. Die korrekte Lösung ist in der Tabelle darunter, die erste
-Spalte (#) ist allerdings nur die Datensatznummer und kommt im Abfrageergebnis nicht vor. Die
+Bearbeiten Sie die folgenden Abfragen. Die korrekte Lösung ist in der Tabelle darunter. Die
 Bezeichnung der Spalten, die Formatierung und die Sortierung muss nicht exakt übereinstimmen.
 
 **(1)** Welche Lehrer sind neu bei uns, haben also das maximale Eintrittsjahr?
 
-|    # | LNr | LName     | LVorname  | LEintrittsjahr |
-| ---: | --- | --------- | --------- | -------------: |
-|    1 | BAM | Balluch   | Manfred   |           2019 |
-|    2 | BOA | Bohn      | Adele     |           2019 |
-|    3 | CO  | Coufal    | Klaus     |           2019 |
-|    4 | DOB | Dormayer  | Bernd     |           2019 |
-|    5 | FEM | Felix     | Mario     |           2019 |
-|    6 | GA  | Gschaider | Andreas   |           2019 |
-|    7 | MAY | Mayer     | Sonja     |           2019 |
-|    8 | MOS | Moser     | Gabriele  |           2019 |
-|    9 | NAI | Naimer    | Eva Maria |           2019 |
-|   10 | OEM | Öhlknecht | Martin    |           2019 |
-|   11 | POD | Poppel    | Dominik   |           2019 |
-|   12 | SAB | San       | Berg      |           2019 |
-|   13 | SAC | Schachner | Christine |           2019 |
-|   14 | SCM | Schrammel | Manuela   |           2019 |
-|   15 | SIL | Siller    | Waltraud  |           2019 |
-|   16 | WEM | Wessely   | Mario     |           2019 |
-|   17 | ZIP | Zippel    | Erich     |           2019 |
-|   18 | ZOC | Zöchbauer | Christian |           2019 |
+|L_NR|L_NAME|L_VORNAME|L_EINTRITTSJAHR|
+|----|------|---------|---------------|
+|BAE|Blaschke|Waltraude|2021|
+|BIN|Binder|Florian|2021|
+|BW|Bergmann|Wolfgang|2021|
+|CEC|Celeda|Claus|2021|
+|DOM|Dolezal|Michael|2021|
+|EN|Engleitner|Thomas|2021|
+|KUA|Kulich|Anna-Leena|2021|
+|LAN|Langer|Uwe|2021|
+|LES|Lenk|Stefan|2021|
+|LOY|Loy|Amelie|2021|
+|MIP|Michel|Philip|2021|
+|PK|Pollack-Drs|Susanne|2021|
+|POD|Poppel|Dominik|2021|
+|PRW|Pramel|Werner|2021|
+|REM|Rentsch|Michaela|2021|
+|SPN|Spanner|Christian|2021|
+|SUN|Subotic|Nenad|2021|
+|SWA|Schwaiger|Michael|2021|
+|TOM|Tomc|Angela|2021|
+|TT|Tschernko|Thomas|2021|
+|VOR|Voracek|Adolf|2021|
 
 **(2)** Geben Sie die Klassen der Abteilung AIF und die Anzahl der gesamten Klassen und Schüler der Schule aus.
 
-|    # | Klasse | KlassenGesamt | SchuelerGesamt |
-| ---: | ------ | ------------: | -------------: |
-|    1 | 2AAIF  |           116 |           2462 |
-|    2 | 2BAIF  |           116 |           2462 |
-|    3 | 2CAIF  |           116 |           2462 |
-|    4 | 2DAIF  |           116 |           2462 |
-|    5 | 3BAIF  |           116 |           2462 |
-|    6 | 3CAIF  |           116 |           2462 |
-|    7 | 4BAIF  |           116 |           2462 |
-|    8 | 4CAIF  |           116 |           2462 |
-|    9 | 5BAIF  |           116 |           2462 |
-|   10 | 5CAIF  |           116 |           2462 |
-|   11 | 6BAIF  |           116 |           2462 |
-|   12 | 6CAIF  |           116 |           2462 |
+|K_NR|KLASSENGESAMT|SCHUELERGESAMT|
+|----|-------------|--------------|
+|2AAIF|125|2592|
+|2BAIF|125|2592|
+|2CAIF|125|2592|
+|2DAIF|125|2592|
+|3AAIF|125|2592|
+|3BAIF|125|2592|
+|3CAIF|125|2592|
+|4AAIF|125|2592|
+|4BAIF|125|2592|
+|4CAIF|125|2592|
+|5AAIF|125|2592|
+|5BAIF|125|2592|
+|6AAIF|125|2592|
+|6BAIF|125|2592|
 
 **(3)** Geben Sie bei allen Lehrern, die 2018 eingetreten sind (Spalte *L_Eintrittsjahr*), das Durchschnittsgehalt
 (gerechnet über alle Lehrer der Schule) aus.
 
-|    # | LNr | LName     | LVorname  | LEintrittsjahr | LGehalt | AvgGehalt |
-| ---: | --- | --------- | --------- | -------------: | ------: | --------: |
-|    1 | AH  | Auinger   | Harald    |           2018 |    2083 |   3126.67 |
-|    2 | BIE | Bierbamer | Peter     |           2018 |    2225 |   3126.67 |
-|    3 | CAM | Camrda    | Christian |           2018 |         |   3126.67 |
-|    4 | HY  | Horny     | Christian |           2018 |    2224 |   3126.67 |
-|    5 | KEM | Keminger  | Alexander |           2018 |    2138 |   3126.67 |
-|    6 | KMO | Kmyta     | Olga      |           2018 |    2122 |   3126.67 |
-|    7 | MC  | Marek     | Clemens   |           2018 |    2158 |   3126.67 |
-|    8 | PEC | Pemöller  | Christoph |           2018 |         |   3126.67 |
-|    9 | SE  | Schmid    | Erhard    |           2018 |    2064 |   3126.67 |
-|   10 | ZLA | Zlabinger | Walter    |           2018 |    2256 |   3126.67 |
+|L_NR|L_NAME|L_VORNAME|L_EINTRITTSJAHR|L_GEHALT|AVGGEHALT|
+|----|------|---------|---------------|--------|---------|
+|CAM|Camrda|Christian|2018|2349|3099.2|
+|EIA|Eibler|Alexander|2018|2287|3099.2|
+|GRL|Grottenthaler|Lisa|2018||3099.2|
+|LAD|Latsch|Daniela|2018|2151|3099.2|
+|MC|Marek|Clemens|2018|2344|3099.2|
+|MUE|Müller|Simone|2018|2335|3099.2|
+|NWV|Neuwirth|Veronika|2018||3099.2|
+|PC|Pemmer|Christian|2018|2150|3099.2|
+|RRN|Rodas Reyna|Fitzgerald|2018||3099.2|
+|SJ|Strassl|Johannes|2018||3099.2|
+|STC|Stach|Angela|2018||3099.2|
+|TOF|Tonti|Fabio|2018|2166|3099.2|
+|ZOE|Zöttl|Andreas|2018||3099.2|
 
 **(4)** Als Ergänzung geben Sie nun bei diesen Lehrern die Abweichung vom Durchschnittsgehalt
-aus. Zeigen Sie dabei nur die Lehrer an, die über 1000 Euro unter diesem Durchschnittswert verdienen.
+aus. Zeigen Sie dabei nur die Lehrer an, die weniger als 800 Euro unter dem Durchschnittswert verdienen.
 
-|    # | LNr | LName   | LVorname | LEintrittsjahr | LGehalt | AvgGehalt | Abweichung |
-| ---: | --- | ------- | -------- | -------------: | ------: | --------: | ---------: |
-|    1 | AH  | Auinger | Harald   |           2018 |    2083 |   3126.67 |   -1043.67 |
-|    2 | KMO | Kmyta   | Olga     |           2018 |    2122 |   3126.67 |   -1004.67 |
-|    3 | SE  | Schmid  | Erhard   |           2018 |    2064 |   3126.67 |   -1062.67 |
+|L_NR|L_NAME|L_VORNAME|L_EINTRITTSJAHR|L_GEHALT|AVGGEHALT|ABWEICHUNG|
+|----|------|---------|---------------|--------|---------|----------|
+|EIA|Eibler|Alexander|2018|2287|3099.2|-812.16|
+|LAD|Latsch|Daniela|2018|2151|3099.2|-948.16|
+|PC|Pemmer|Christian|2018|2150|3099.2|-949.16|
+|TOF|Tonti|Fabio|2018|2166|3099.2|-933.16|
 
-**(5)** Geben Sie die Prüfungen aus, die maximal 3 Tage vor der letzten Prüfung stattfanden.
+**(5)** Geben Sie die Prüfungen aus, die maximal 3 Tage (72 Stunden) vor der letzten Prüfung stattfanden.
 
-|    # | PDatumZeit          | PPruefer | PNote | Zuname     | Vorname |
-| ---: | ------------------- | -------- | ----: | ---------- | ------- |
-|    1 | 31.05.2020 20:10:00 | SAB      |     1 | Kuhlman    | Frances |
-|    2 | 31.05.2020 17:20:00 | PC       |       | Hammes     | Danny   |
-|    3 | 31.05.2020 12:55:00 | SJ       |       | Balistreri | Irene   |
-|    4 | 31.05.2020 09:10:00 | SGC      |     2 | Quitzon    | Sue     |
-|    5 | 30.05.2020 20:55:00 | SPN      |     3 | Rohan      | Tracy   |
-|    6 | 30.05.2020 20:10:00 | VOG      |     2 | Hahn       | Oliver  |
-|    7 | 30.05.2020 18:25:00 | HOH      |     2 | Sanford    | Everett |
-|    8 | 30.05.2020 17:25:00 | BEC      |       | Nicolas    | Erika   |
-|    9 | 30.05.2020 16:05:00 | KNT      |     4 | Klocko     | Kristie |
-|   10 | 30.05.2020 15:30:00 | WAG      |     3 | Frami      | Timothy |
-|   11 | 30.05.2020 11:00:00 | JAD      |     3 | Robel      | Drew    |
-|   12 | 30.05.2020 10:15:00 | PT       |     3 | Zemlak     | Katie   |
-|   13 | 29.05.2020 12:20:00 | HAU      |       | Prohaska   | Ross    |
-|   14 | 29.05.2020 11:05:00 | GAL      |     2 | O'Hara     | Hubert  |
+|P_DATUMZEIT|P_PRUEFER|P_NOTE|S_ZUNAME|S_VORNAME|
+|-----------|---------|------|--------|---------|
+|2022-05-29 10:25:00.000|MOS||Welch|Janie|
+|2022-05-29 13:50:00.000|BAR|5|Kling|Cody|
+|2022-05-29 14:15:00.000|LUP||Hagenes|Kirk|
+|2022-05-29 16:50:00.000|PF|5|Gibson|Gary|
+|2022-05-30 08:10:00.000|BOM||Koch|Kevin|
+|2022-05-30 08:30:00.000|SCM|2|Harvey|Carla|
+|2022-05-30 09:20:00.000|GRM|3|Towne|Andrea|
+|2022-05-30 13:15:00.000|AT||Botsford|Jimmy|
+|2022-05-30 20:30:00.000|AF|3|Satterfield|Clay|
+|2022-05-31 10:20:00.000|SOG||Kris|Valerie|
+|2022-05-31 11:20:00.000|STC|5|Schroeder|Melba|
+|2022-05-31 13:20:00.000|KUA|2|Prohaska|Adrian|
+|2022-05-31 13:25:00.000|ZEP|4|Dare|Lance|
+|2022-05-31 18:55:00.000|BRA|2|Wunsch|Jan|
+|2022-05-31 19:45:00.000|AT|2|D'Amore|Nicholas|
+|2022-05-31 21:40:00.000|BH|2|Conn|Mitchell|
 
 **(6)** Geben Sie die Räume mit der meisten Kapazität (Spalte *R_Plaetze*) aus. Hinweis: Das können auch
 mehrere Räume sein.
 
-|    # | RId   | RPlaetze | RArt                         |
-| ---: | ----- | -------: | ---------------------------- |
-|    1 | AH.32 |       36 | Naturwissenschaftlicher Raum |
-|    2 | B5.09 |       36 | Klassenraum                  |
+|R_ID|R_PLAETZE|R_ART|
+|----|---------|-----|
+|AH.32|36|Naturwissenschaftlicher Raum|
+|C1.13|36|Klassenraum|
 
-**(7)** Gibt es Räume, die unter einem Viertel der Plätze als der größte Raum haben?
+**(7)** Gibt es Räume, die weniger als ein Viertel der Plätze als der größte Raum haben?
 
-|    # | RId     | RPlaetze | RArt                                      |
-| ---: | ------- | -------: | ----------------------------------------- |
-|    1 | A3.04   |        3 | Multifunktionsraum Medien                 |
-|    2 | AH.21   |        6 | Bibliothek                                |
-|    3 | BH.08W  |        8 | Maschentechnik                            |
-|    4 | BH.09aW |        8 | Gewebetechnik                             |
-|    5 | BH.10   |        8 | Schweisstechnik                           |
-|    6 | BH.11W  |        8 | Mechanik                                  |
-|    7 | BLA     |        8 | Betriebslaboratorium                      |
-|    8 | DE.04L  |        8 | Instrumentelle Analytik                   |
-|    9 | DE.05L  |        8 | Analytik und Prüftechnik                  |
-|   10 | DE.06L  |        8 | Umweltlabor                               |
-|   11 | DE.09L  |        8 | Nasschemisches Labor                      |
-|   12 | DE.10W  |        8 | Reinigungs- und Facilitytechnik           |
-|   13 | DE.11W  |        8 | Färbe-, Veredlungs- und Verfahrenstechnik |
-|   14 | DE.12aW |        8 | Farblabor                                 |
-|   15 | DE.13aW |        8 | Drucktechnik                              |
-|   16 | DE.15L  |        8 | Versuchsanstalt Prüflabor                 |
-|   17 | DE.19L  |        8 | Versuchsanstalt Grünbereich               |
+|R_ID|R_PLAETZE|R_ART|
+|----|---------|-----|
+|AH.21|6|Bibliothek|
+|BH.08W|8|Netzwerktechnik|
+|BH.09aW|8|Mechanik|
+|BH.09bW|8|CNC-Technik|
+|BH.09cW|8|Blechbearbeitung|
+|BH.09dW|8|Schweisstechnik|
+|BH.10aW|8|Plasmaschneider|
+|BH.11W|8|Mechanik|
+|DE.04L|8|Instrumentelle Analytik|
+|DE.05L|8|Analytik und Prüftechnik|
+|DE.06L|8|Umweltlabor|
+|DE.09L|8|Nasschemisches Labor|
+|DE.10W|8|Reinigungs- und Facilitytechnik|
+|DE.11W|8|Färbe-, Veredlungs- und Verfahrenstechnik|
+|DE.12aW|8|Farblabor|
+|DE.13aW|8|Drucktechnik|
+|DE.15L|8|Versuchsanstalt Prüflabor|
 
-**(8)** Welche Klasse hat mehr weibliche Schüler (S_Geschlecht ist 2) als die 5BAIF? Hinweis: Gruppieren Sie
-die Schülertabelle und vergleichen die Anzahl mit dem ermittelten Wert aus der 5BAIF.
+**(8)** Welche Klasse hat mehr weibliche Schüler (S_Geschlecht ist 2) als die 5AHBGM? Hinweis: Gruppieren Sie
+die Schülertabelle und vergleichen die Anzahl mit dem ermittelten Wert aus der 5AHBGM.
 
-|    # | Klasse | AnzWeibl |
-| ---: | ------ | -------: |
-|    1 | 1AFITN |       15 |
-|    2 | 1AHBGM |       15 |
-|    3 | 1AHKUI |       18 |
-|    4 | 1AHMNA |       19 |
-|    5 | 1AHWIT |       17 |
-|    6 | 1AO    |       15 |
-|    7 | 1BFITN |       18 |
-|    8 | 1BHBGM |       18 |
-|    9 | 1BHWIT |       17 |
-|   10 | 1CVIF  |       19 |
-|   11 | 1DVIF  |       15 |
-|   12 | 1EVIF  |       15 |
-|   13 | 2AFITN |       17 |
-|   14 | 2AHBGM |       19 |
-|   15 | 2AHKUI |       18 |
-|   16 | 2BHWIT |       18 |
-|   17 | 2CHWIT |       19 |
-|   18 | 3ACIF  |       17 |
-|   19 | 3AKKUI |       16 |
-|   20 | 3CAIF  |       16 |
-|   21 | 4AFITM |       15 |
-|   22 | 4AHWIT |       17 |
-|   23 | 4BHBGM |       19 |
-|   24 | 5ACMNA |       15 |
-|   25 | 5AHBGM |       15 |
-|   26 | 5AKIF  |       16 |
-|   27 | 5CAIF  |       17 |
+|S_KLASSE|ANZWEIBL|
+|--------|--------|
+|1AHMNG|18|
+|1AHWIT|19|
+|1BFITM|22|
+|2AHKUI|18|
+|3AAIF|17|
+|3BHBGM|19|
+|3BHWIT|19|
+|5ACMNA|20|
+|5BKIF|18|
 
 **(9)** Geben Sie die Klassen der Abteilung BIF sowie die Anzahl der Schüler in dieser Abteilung aus.
 Hinweis: Verwenden Sie GROUP BY, um die Schüleranzahl pro Klasse zu ermitteln. Achten Sie auch
 darauf, dass Klassen mit 0 Schülern auch angezeigt werden. Danach schreiben Sie 
 eine Unterabfrage, die die Schüler der BIF Abteilung zählt.
 
-|    # | Klasse | SchuelerKlasse | SchuelerBIF |
-| ---: | ------ | -------------: | ----------: |
-|    1 | 2ABIF  |              0 |         105 |
-|    2 | 3BBIF  |             30 |         105 |
-|    3 | 4BBIF  |              0 |         105 |
-|    4 | 5BBIF  |             24 |         105 |
-|    5 | 6BBIF  |              0 |         105 |
-|    6 | 7BBIF  |             25 |         105 |
-|    7 | 7CBIF  |             26 |         105 |
-|    8 | 8BBIF  |              0 |         105 |
-|    9 | 8CBIF  |              0 |         105 |
+|K_NR|SCHUELERKLASSE|SCHUELERBIF|
+|----|--------------|-----------|
+|2ABIF|0|108|
+|3ABIF|30|108|
+|4ABIF|0|108|
+|5ABIF|25|108|
+|6ABIF|0|108|
+|7ABIF|24|108|
+|7BBIF|29|108|
+|8ABIF|0|108|
+|8BBIF|0|108|

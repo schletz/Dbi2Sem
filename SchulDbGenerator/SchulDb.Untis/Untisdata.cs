@@ -23,17 +23,17 @@ namespace SchulDb.Untis
         public List<Raum> Raeume { get; private set; }
         public List<Unterricht> Stundenplan { get; private set; }
         private Untisdata() { }
-        public static async Task<Untisdata> Load(string path, string suffix)
+        public static async Task<Untisdata> Load(string path)
         {
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
             Untisdata untisdata = new Untisdata();
             untisdata.Adressen = await ReadJsonFile<Adresse>($"{path}/adressen.json");
-            untisdata.Faecher = ReadUntisFile<Fach>($"{path}/Faecher_{suffix}.csv");
-            untisdata.Klassen = ReadUntisFile<Klasse>($"{path}/Klassen_{suffix}.csv");
-            untisdata.Lehrer = ReadUntisFile<Lehrer>($"{path}/Lehrer_{suffix}.csv");
-            untisdata.Raeume = ReadUntisFile<Raum>($"{path}/Raeume_{suffix}.csv");
-            untisdata.Stundenplan = ReadUntisFile<Unterricht>($"{path}/Stundenplan_{suffix}.csv");
+            untisdata.Faecher = ReadUntisFile<Fach>($"{path}/Faecher.csv");
+            untisdata.Klassen = ReadUntisFile<Klasse>($"{path}/Klassen.csv");
+            untisdata.Lehrer = ReadUntisFile<Lehrer>($"{path}/Lehrer.csv");
+            untisdata.Raeume = ReadUntisFile<Raum>($"{path}/Raeume.csv");
+            untisdata.Stundenplan = ReadUntisFile<Unterricht>($"{path}/Stundenplan.csv");
             return untisdata;
         }
         private static List<T> ReadUntisFile<T>(string filename)
@@ -54,7 +54,7 @@ namespace SchulDb.Untis
             }
             catch (Exception e)
             {
-                throw new SchulDbException("Fehler beim Lesen der Untisdateien. ist der Pfad und das Suffix richtig?", e.InnerException);
+                throw new SchulDbException("Fehler beim Lesen der Untisdateien. ist der Pfad richtig?", e.InnerException);
             }
 
         }

@@ -15,25 +15,25 @@ namespace SchulDbGenerator
         {
             // Wir schreiben nur die Informatikklassen in die Datenbank, sonst ist das Ergebnis der
             // Abfragen unnötig groß.
-            var echteKlassen = (from k in data.Klassen
-                                where Regex.IsMatch(k.Nr ?? "", @"^[0-9][A-Z_]{2,}$", RegexOptions.IgnoreCase)
-                                select k).ToList();
+
+            var echteKlassen = data.Klassen
+                .Where(k => !string.IsNullOrEmpty(k.Nr) && Regex.IsMatch(k.Nr ?? "", @"^[0-9][A-Z_]{2,}$"))
+                .ToList();
             if (!echteKlassen.Any())
                 throw new SchulDb.SchulDbException("Der Untis Export enthält keine Klassen.");
             // Im Datenmodell darf ein Lehrer zu selben Zeit nur eine Klasse haben. Durch die
             // Gruppierung stellen wir das sicher.
-            var echteStunden = (from s in data.Stundenplan
-                                join k in echteKlassen on s.Klasse equals k.Nr
-                                where Regex.IsMatch(s.Fach ?? "", @"^[^FR]", RegexOptions.IgnoreCase)
-                                group s by new { s.Stunde, s.Tag, s.Lehrer, s.Klasse } into g
-                                select g.FirstOrDefault()).ToList();
+            var echteStunden = data.Stundenplan.Where(s =>
+                    !string.IsNullOrEmpty(s.Fach) &&
+                    echteKlassen.Any(k => k.Nr == s.Klasse) &&
+                    data.Faecher.Any(f => f.Nr == s.Fach))
+                .GroupBy(s => new { s.Stunde, s.Tag, s.Lehrer, s.Klasse })
+                .Select(g => g.First())
+                .ToList();
             if (!echteStunden.Any())
                 throw new SchulDb.SchulDbException("Der Untis Export enthält keine Stunden im Stundenplan.");
             // Alle Fächer, die unterrichtet werden. Das schließt Kunstfächer wie Sprechstunde, ... aus.
-            var echteFaecher = (from f in data.Faecher
-                                join s in echteStunden on f.Nr equals s.Fach into sg
-                                where sg.Any()
-                                select f).ToList();
+            var echteFaecher = data.Faecher.Where(f => echteStunden.Any(s => s.Fach == f.Nr)).ToList();
             if (!echteFaecher.Any())
                 throw new SchulDb.SchulDbException("Der Untis Export enthält keine Fächer im Stundenplan.");
 
@@ -45,185 +45,210 @@ namespace SchulDbGenerator
             // STATISCHE DATEN
             // *********************************************************************************
 
-            db.Geschlechters.Add(new Geschlecht { GesId = 1, GesMw = "m", GesMaennlichweiblich = "männlich", GesSchuelerschuelerin = "Schüler", GesLehrerlehrerin = "Lehrer" });
-            db.Geschlechters.Add(new Geschlecht { GesId = 2, GesMw = "w", GesMaennlichweiblich = "weiblich", GesSchuelerschuelerin = "Schülerin", GesLehrerlehrerin = "Lehrerin" });
+            var geschlechters = new List<Geschlecht>
+            {
+                new Geschlecht { GesId = 1, GesMw = "m", GesMaennlichweiblich = "männlich", GesSchuelerschuelerin = "Schüler", GesLehrerlehrerin = "Lehrer" },
+                new Geschlecht { GesId = 2, GesMw = "w", GesMaennlichweiblich = "weiblich", GesSchuelerschuelerin = "Schülerin", GesLehrerlehrerin = "Lehrerin" }
+            };
+            db.Geschlechters.AddRange(geschlechters);
             db.SaveChanges();
 
-            db.Religionens.Add(new Religion { RelId = 10, RelNr = "ob", RelName = "Ohne Bekenntnis", RelGesetzlichanerkannt = false, RelStaatlicheingetragen = false });
-            db.Religionens.Add(new Religion { RelId = 11, RelNr = "evab", RelName = "evangelisch A.B.", RelGesetzlichanerkannt = true, RelStaatlicheingetragen = false });
-            db.Religionens.Add(new Religion { RelId = 12, RelNr = "islam", RelName = "islamisch", RelGesetzlichanerkannt = true, RelStaatlicheingetragen = false });
-            db.Religionens.Add(new Religion { RelId = 13, RelNr = "rk", RelName = "römisch - katholisch", RelGesetzlichanerkannt = true, RelStaatlicheingetragen = false });
+            var religionens = new List<Religion>()
+            {
+                new Religion { RelId = 10, RelNr = "ob", RelName = "Ohne Bekenntnis", RelGesetzlichanerkannt = false, RelStaatlicheingetragen = false },
+                new Religion { RelId = 11, RelNr = "evab", RelName = "evangelisch A.B.", RelGesetzlichanerkannt = true, RelStaatlicheingetragen = false },
+                new Religion { RelId = 12, RelNr = "islam", RelName = "islamisch", RelGesetzlichanerkannt = true, RelStaatlicheingetragen = false },
+                new Religion { RelId = 13, RelNr = "rk", RelName = "römisch - katholisch", RelGesetzlichanerkannt = true, RelStaatlicheingetragen = false }
+            };
+            db.Religionens.AddRange(religionens);
+
             db.SaveChanges();
 
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20180, SjaBezeichnung = "Schuljahr 2018/19", Wintersemester = true, Sommersemester = true, SjaDatumvon = new DateTime(2018, 9, 3), SjaDatumbis = new DateTime(2019, 6, 28) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20181, SjaBezeichnung = "Wintersemester 2018/19", Wintersemester = true, Sommersemester = false, SjaDatumvon = new DateTime(2018, 9, 3), SjaDatumbis = new DateTime(2019, 2, 10) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20182, SjaBezeichnung = "Sommersemester 2018/19", Wintersemester = false, Sommersemester = true, SjaDatumvon = new DateTime(2019, 2, 11), SjaDatumbis = new DateTime(2019, 6, 28) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20190, SjaBezeichnung = "Schuljahr 2019/20", Wintersemester = true, Sommersemester = true, SjaDatumvon = new DateTime(2019, 9, 2), SjaDatumbis = new DateTime(2020, 7, 3) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20191, SjaBezeichnung = "Wintersemester 2019/20", Wintersemester = true, Sommersemester = false, SjaDatumvon = new DateTime(2019, 9, 2), SjaDatumbis = new DateTime(2020, 2, 9) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20192, SjaBezeichnung = "Sommersemester 2019/20", Wintersemester = false, Sommersemester = true, SjaDatumvon = new DateTime(2020, 2, 10), SjaDatumbis = new DateTime(2020, 7, 3) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20200, SjaBezeichnung = "Schuljahr 2020/21", Wintersemester = true, Sommersemester = true, SjaDatumvon = new DateTime(2020, 9, 7), SjaDatumbis = new DateTime(2021, 7, 2) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20201, SjaBezeichnung = "Wintersemester 2020/21", Wintersemester = true, Sommersemester = false, SjaDatumvon = new DateTime(2020, 9, 7), SjaDatumbis = new DateTime(2021, 2, 7) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20202, SjaBezeichnung = "Sommersemester 2020/21", Wintersemester = false, Sommersemester = true, SjaDatumvon = new DateTime(2019, 2, 8), SjaDatumbis = new DateTime(2021, 7, 2) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20210, SjaBezeichnung = "Schuljahr 2021/22", Wintersemester = true, Sommersemester = true, SjaDatumvon = new DateTime(2021, 9, 6), SjaDatumbis = new DateTime(2022, 7, 1) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20211, SjaBezeichnung = "Wintersemester 2021/22", Wintersemester = true, Sommersemester = false, SjaDatumvon = new DateTime(2021, 9, 6), SjaDatumbis = new DateTime(2022, 2, 13) });
-            db.Schuljahres.Add(new Schuljahr { SjaNr = 20212, SjaBezeichnung = "Sommersemester 2021/22", Wintersemester = false, Sommersemester = true, SjaDatumvon = new DateTime(2022, 2, 14), SjaDatumbis = new DateTime(2022, 7, 1) });
+            var schuljahres = new List<Schuljahr>
+            {
+                new Schuljahr { SjaNr = 20190, SjaBezeichnung = "Schuljahr 2019/20", Wintersemester = true, Sommersemester = true, SjaDatumvon = new DateTime(2019, 9, 2), SjaDatumbis = new DateTime(2020, 7, 3) },
+                new Schuljahr { SjaNr = 20191, SjaBezeichnung = "Wintersemester 2019/20", Wintersemester = true, Sommersemester = false, SjaDatumvon = new DateTime(2019, 9, 2), SjaDatumbis = new DateTime(2020, 2, 9) },
+                new Schuljahr { SjaNr = 20192, SjaBezeichnung = "Sommersemester 2019/20", Wintersemester = false, Sommersemester = true, SjaDatumvon = new DateTime(2020, 2, 10), SjaDatumbis = new DateTime(2020, 7, 3) },
+                new Schuljahr { SjaNr = 20200, SjaBezeichnung = "Schuljahr 2020/21", Wintersemester = true, Sommersemester = true, SjaDatumvon = new DateTime(2020, 9, 7), SjaDatumbis = new DateTime(2021, 7, 2) },
+                new Schuljahr { SjaNr = 20201, SjaBezeichnung = "Wintersemester 2020/21", Wintersemester = true, Sommersemester = false, SjaDatumvon = new DateTime(2020, 9, 7), SjaDatumbis = new DateTime(2021, 2, 7) },
+                new Schuljahr { SjaNr = 20202, SjaBezeichnung = "Sommersemester 2020/21", Wintersemester = false, Sommersemester = true, SjaDatumvon = new DateTime(2019, 2, 8), SjaDatumbis = new DateTime(2021, 7, 2) },
+                new Schuljahr { SjaNr = 20210, SjaBezeichnung = "Schuljahr 2021/22", Wintersemester = true, Sommersemester = true, SjaDatumvon = new DateTime(2021, 9, 6), SjaDatumbis = new DateTime(2022, 7, 1) },
+                new Schuljahr { SjaNr = 20211, SjaBezeichnung = "Wintersemester 2021/22", Wintersemester = true, Sommersemester = false, SjaDatumvon = new DateTime(2021, 9, 6), SjaDatumbis = new DateTime(2022, 2, 13) },
+                new Schuljahr { SjaNr = 20212, SjaBezeichnung = "Sommersemester 2021/22", Wintersemester = false, Sommersemester = true, SjaDatumvon = new DateTime(2022, 2, 14), SjaDatumbis = new DateTime(2022, 7, 1) }
+            };
+            db.Schuljahres.AddRange(schuljahres);
             db.SaveChanges();
 
-            db.Staatens.Add(new Staat { StaNr = "A", StaName = "Österreich", StaStaatsb = "österreichisch", StaEuland = true });
-            db.Staatens.Add(new Staat { StaNr = "TR", StaName = "Türkei", StaStaatsb = "türkisch", StaEuland = false });
-            db.Staatens.Add(new Staat { StaNr = "SBM", StaName = "Serbien", StaStaatsb = "serbisch", StaEuland = false });
-            db.Staatens.Add(new Staat { StaNr = "CRO", StaName = "Kroatien", StaStaatsb = "kroatisch", StaEuland = false });
-            db.Staatens.Add(new Staat { StaNr = "D", StaName = "Deutschland", StaStaatsb = "Deutschland", StaEuland = true });
-            db.Staatens.Add(new Staat { StaNr = "SQ", StaName = "Slowakei", StaStaatsb = "slowakisch", StaEuland = true });
-            db.Staatens.Add(new Staat { StaNr = "SLO", StaName = "Slowenien", StaStaatsb = "slowenisch", StaEuland = true });
+            var staatens = new List<Staat>
+            {
+                new Staat { StaNr = "A", StaName = "Österreich", StaStaatsb = "österreichisch", StaEuland = true },
+                new Staat { StaNr = "TR", StaName = "Türkei", StaStaatsb = "türkisch", StaEuland = false },
+                new Staat { StaNr = "SBM", StaName = "Serbien", StaStaatsb = "serbisch", StaEuland = false },
+                new Staat { StaNr = "CRO", StaName = "Kroatien", StaStaatsb = "kroatisch", StaEuland = true },
+                new Staat { StaNr = "D", StaName = "Deutschland", StaStaatsb = "Deutschland", StaEuland = true },
+                new Staat { StaNr = "SQ", StaName = "Slowakei", StaStaatsb = "slowakisch", StaEuland = true },
+                new Staat { StaNr = "SLO", StaName = "Slowenien", StaStaatsb = "slowenisch", StaEuland = true }
+            };
+            db.Staatens.AddRange(staatens);
             db.SaveChanges();
 
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 1, StrBeginn = new TimeSpan(8, 00, 0), StrEnde = new TimeSpan(8, 50, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 2, StrBeginn = new TimeSpan(8, 50, 0), StrEnde = new TimeSpan(9, 40, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 3, StrBeginn = new TimeSpan(9, 55, 0), StrEnde = new TimeSpan(10, 45, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 4, StrBeginn = new TimeSpan(10, 45, 0), StrEnde = new TimeSpan(11, 35, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 5, StrBeginn = new TimeSpan(11, 45, 0), StrEnde = new TimeSpan(12, 35, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 6, StrBeginn = new TimeSpan(12, 35, 0), StrEnde = new TimeSpan(13, 25, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 7, StrBeginn = new TimeSpan(13, 25, 0), StrEnde = new TimeSpan(14, 15, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 8, StrBeginn = new TimeSpan(14, 25, 0), StrEnde = new TimeSpan(15, 15, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 9, StrBeginn = new TimeSpan(15, 15, 0), StrEnde = new TimeSpan(16, 05, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 10, StrBeginn = new TimeSpan(16, 15, 0), StrEnde = new TimeSpan(17, 05, 0), StrIstAbend = false });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 11, StrBeginn = new TimeSpan(17, 10, 0), StrEnde = new TimeSpan(17, 55, 0), StrIstAbend = true });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 12, StrBeginn = new TimeSpan(17, 55, 0), StrEnde = new TimeSpan(18, 40, 0), StrIstAbend = true });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 13, StrBeginn = new TimeSpan(18, 50, 0), StrEnde = new TimeSpan(19, 35, 0), StrIstAbend = true });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 14, StrBeginn = new TimeSpan(19, 35, 0), StrEnde = new TimeSpan(20, 20, 0), StrIstAbend = true });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 15, StrBeginn = new TimeSpan(20, 30, 0), StrEnde = new TimeSpan(21, 15, 0), StrIstAbend = true });
-            db.Stundenrasters.Add(new Stundenraster { StrNr = 16, StrBeginn = new TimeSpan(21, 15, 0), StrEnde = new TimeSpan(22, 00, 0), StrIstAbend = true });
+            var stundenrasters = new List<Stundenraster>
+            {
+                new Stundenraster { StrNr = 1, StrBeginn = new TimeSpan(8, 00, 0), StrEnde = new TimeSpan(8, 50, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 2, StrBeginn = new TimeSpan(8, 50, 0), StrEnde = new TimeSpan(9, 40, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 3, StrBeginn = new TimeSpan(9, 55, 0), StrEnde = new TimeSpan(10, 45, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 4, StrBeginn = new TimeSpan(10, 45, 0), StrEnde = new TimeSpan(11, 35, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 5, StrBeginn = new TimeSpan(11, 45, 0), StrEnde = new TimeSpan(12, 35, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 6, StrBeginn = new TimeSpan(12, 35, 0), StrEnde = new TimeSpan(13, 25, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 7, StrBeginn = new TimeSpan(13, 25, 0), StrEnde = new TimeSpan(14, 15, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 8, StrBeginn = new TimeSpan(14, 25, 0), StrEnde = new TimeSpan(15, 15, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 9, StrBeginn = new TimeSpan(15, 15, 0), StrEnde = new TimeSpan(16, 05, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 10, StrBeginn = new TimeSpan(16, 15, 0), StrEnde = new TimeSpan(17, 05, 0), StrIstAbend = false },
+                new Stundenraster { StrNr = 11, StrBeginn = new TimeSpan(17, 10, 0), StrEnde = new TimeSpan(17, 55, 0), StrIstAbend = true },
+                new Stundenraster { StrNr = 12, StrBeginn = new TimeSpan(17, 55, 0), StrEnde = new TimeSpan(18, 40, 0), StrIstAbend = true },
+                new Stundenraster { StrNr = 13, StrBeginn = new TimeSpan(18, 50, 0), StrEnde = new TimeSpan(19, 35, 0), StrIstAbend = true },
+                new Stundenraster { StrNr = 14, StrBeginn = new TimeSpan(19, 35, 0), StrEnde = new TimeSpan(20, 20, 0), StrIstAbend = true },
+                new Stundenraster { StrNr = 15, StrBeginn = new TimeSpan(20, 30, 0), StrEnde = new TimeSpan(21, 15, 0), StrIstAbend = true },
+                new Stundenraster { StrNr = 16, StrBeginn = new TimeSpan(21, 15, 0), StrEnde = new TimeSpan(22, 00, 0), StrIstAbend = true }
+            };
+            db.Stundenrasters.AddRange(stundenrasters);
             db.SaveChanges();
 
             // *********************************************************************************
             // DATEN AUS UNTIS
             // *********************************************************************************
-
             // Die Räume der Schule lesen und eintragen.
-            db.Raeumes.AddRange(from r in data.Raeume
-                                where
-                                    r.Nr[0] == 'A' || r.Nr[0] == 'B' ||
-                                    r.Nr[0] == 'C' || r.Nr[0] == 'D'
-                                select new Raum
-                                {
-                                    RId = r.Nr,
-                                    RPlaetze = r.Kapaz,
-                                    // Stammklasse sorgt für Verwirrung, da auch der Stammraum
-                                    // der Klasse gemeint sein kann.
-                                    RArt = r.Art == "Stammklasse" ? "Klassenraum" : r.Art
-                                });
+            var raeumes = data.Raeume
+                .Where(r => Regex.IsMatch(r.Nr, @"^[ABCD].\..+"))
+                .Select(r => new Raum
+                {
+                    RId = r.Nr,
+                    RPlaetze = r.Kapaz,
+                    RArt = r.Art == "Stammklasse" ? "Klassenraum" : r.Art
+                })
+                .ToList();
+            db.Raeumes.AddRange(raeumes);
             db.SaveChanges();
 
-            // Die Lehrer der Schule lesen und eintragen.
-            db.Lehrers.AddRange(from l in data.Lehrer
-                                join s in data.Stundenplan.Where(s => s.Klasse == "SPR") on l.Nr equals s.Lehrer into sg
-                                let gebdat = fkr.Date.Between(
-                                    current.AddYears(-65),
-                                    current.AddYears(-25)).Date
-                                let eintrittsjahr = fkr.Random.Int(
-                                    gebdat.Year + 24,
-                                    current.Year)
-                                let spr = sg.FirstOrDefault()
-                                select new Lehrer
-                                {
-                                    LNr = l.Nr,
-                                    LName = l.Zuname,
-                                    LVorname = l.Vorname,
-                                    LGebdat = gebdat.OrNull(fkr, 0.2f),
-                                    LGehalt = Math.Round(2000M +
-                                            (current.Year - eintrittsjahr) * 100M +
-                                            fkr.Random.GaussianDecimal(0, 100)).OrNull(fkr, 0.2f),
-                                    LEintrittsjahr = eintrittsjahr.OrNull(fkr, 0.2f),
-                                    LSprechstunde = spr != null ? SchulDb.Untis.Untisdata.Wochentage[spr.Tag - 1] +
-                                        spr.Stunde.ToString() : null
-                                });
+            // Die "echten" Lehrer der Schule (die eine Sprechstunde eingetragen haben) lesen und eintragen.
+            var sprechstunden = data.Stundenplan.Where(s => s.Fach == "S").GroupBy(s => s.Lehrer).ToDictionary(s => s.Key, s => s.First());
+            if (!sprechstunden.Any())
+            {
+                throw new SchulDb.SchulDbException("Es wurden keine Sprechstunden (Fach = S) im Stundenplanfile gefunden.");
+            }
+            var lehrers = data.Lehrer
+                .Where(l =>
+                    !string.IsNullOrEmpty(l.Nr) && !string.IsNullOrEmpty(l.Vorname) && !string.IsNullOrEmpty(l.Zuname))
+                .Select(l =>
+                {
+                    var gebdat = fkr.Date.Between(current.AddYears(-65), current.AddYears(-25)).Date;
+                    var eintrittsjahr = fkr.Random.Int(gebdat.Year + 24, current.Year);
+                    return new Lehrer
+                    {
+                        LNr = l.Nr,
+                        LName = l.Zuname,
+                        LVorname = l.Vorname,
+                        LGebdat = gebdat.OrNull(fkr, 0.2f),
+                        LGehalt = Math.Round(2000M +
+                                       (current.Year - eintrittsjahr) * 100M +
+                                       fkr.Random.GaussianDecimal(0, 100)).OrNull(fkr, 0.2f),
+                        LEintrittsjahr = eintrittsjahr.OrNull(fkr, 0.2f),
+                        LSprechstunde = sprechstunden.TryGetValue(l.Nr, out var spr) ? SchulDb.Untis.Untisdata.Wochentage[spr.Tag - 1] + spr.Stunde.ToString() : null
+                    };
+                })
+                .ToList();
+            db.Lehrers.AddRange(lehrers);
             db.SaveChanges();
 
             // Die Abteilungen mit den oben eingetragenen Lehrern verknüpfen. Die ID ist die
             // 3. - 5. Stelle (3AFITM --> FIT)
-            db.Abteilungens.Add(new Abteilung { AbtNr = "O", AbtName = "Übergangsstufe" });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "FIT", AbtName = "Fachschule für Informationstechnik", AbtLeiterNavigation = db.Lehrers.Find("HEB") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "HBG", AbtName = "Höhere Lehranstalt für Biomedizin- und Gesundheitstechnik", AbtLeiterNavigation = db.Lehrers.Find("HEB") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "HIF", AbtName = "Höhere Lehranstalt für Informatik", AbtLeiterNavigation = db.Lehrers.Find("JEL") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "HMN", AbtName = "Höhere Lehranstalt für Medien", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "HKU", AbtName = "Höhere Lehranstalt für Kunst", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "HWI", AbtName = "Höhere Lehranstalt für Wirtschaftsingenieure", AbtLeiterNavigation = db.Lehrers.Find("ZLA") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "AIF", AbtName = "Aufbaulehrgang Tagesform", AbtLeiterNavigation = db.Lehrers.Find("STH") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "BIF", AbtName = "Aufbaulehrgang Abendform", AbtLeiterNavigation = db.Lehrers.Find("STH") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "CIF", AbtName = "Kolleg Abendform", AbtLeiterNavigation = db.Lehrers.Find("STH") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "KIF", AbtName = "Kolleg Tagesform", AbtLeiterNavigation = db.Lehrers.Find("STH") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "VIF", AbtName = "Vorbereitungslehrgang", AbtLeiterNavigation = db.Lehrers.Find("STH") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "KKU", AbtName = "Kolleg für Design", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "CMN", AbtName = "Kolleg für Medien", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
-            db.Abteilungens.Add(new Abteilung { AbtNr = "BKU", AbtName = "Kolleg für Audivisuelles Mediendesign", AbtLeiterNavigation = db.Lehrers.Find("PRW") });
+            var abteilungens = new List<Abteilung>
+            {
+                new Abteilung { AbtNr = "O", AbtName = "Übergangsstufe", AbtLeiterNavigation = lehrers.First(l => l.LNr == "ZLA") },
+                new Abteilung { AbtNr = "FIT", AbtName = "Fachschule für Informationstechnik", AbtLeiterNavigation = lehrers.First(l => l.LNr == "HEB") },
+                new Abteilung { AbtNr = "HBG", AbtName = "Höhere Lehranstalt für Biomedizin- und Gesundheitstechnik", AbtLeiterNavigation = lehrers.First(l => l.LNr == "HEB") },
+                new Abteilung { AbtNr = "HIF", AbtName = "Höhere Lehranstalt für Informatik", AbtLeiterNavigation = lehrers.First(l => l.LNr == "JEL") },
+                new Abteilung { AbtNr = "HMN", AbtName = "Höhere Lehranstalt für Medien", AbtLeiterNavigation = lehrers.First(l => l.LNr == "PRW") },
+                new Abteilung { AbtNr = "HKU", AbtName = "Höhere Lehranstalt für Kunst", AbtLeiterNavigation = lehrers.First(l => l.LNr == "PRW") },
+                new Abteilung { AbtNr = "HWI", AbtName = "Höhere Lehranstalt für Wirtschaftsingenieure", AbtLeiterNavigation = lehrers.First(l => l.LNr == "ZLA") },
+                new Abteilung { AbtNr = "AIF", AbtName = "Aufbaulehrgang Tagesform", AbtLeiterNavigation = lehrers.First(l => l.LNr == "STH") },
+                new Abteilung { AbtNr = "BIF", AbtName = "Aufbaulehrgang Abendform", AbtLeiterNavigation = lehrers.First(l => l.LNr == "STH") },
+                new Abteilung { AbtNr = "CIF", AbtName = "Kolleg Abendform", AbtLeiterNavigation = lehrers.First(l => l.LNr == "STH") },
+                new Abteilung { AbtNr = "KIF", AbtName = "Kolleg Tagesform", AbtLeiterNavigation = lehrers.First(l => l.LNr == "STH") },
+                new Abteilung { AbtNr = "VIF", AbtName = "Vorbereitungslehrgang", AbtLeiterNavigation = lehrers.First(l => l.LNr == "STH") },
+                new Abteilung { AbtNr = "KKU", AbtName = "Kolleg für Design", AbtLeiterNavigation = lehrers.First(l => l.LNr == "PRW") },
+                new Abteilung { AbtNr = "CMN", AbtName = "Kolleg für Medien", AbtLeiterNavigation = lehrers.First(l => l.LNr == "PRW") },
+                new Abteilung { AbtNr = "BKU", AbtName = "Kolleg für Audivisuelles Mediendesign", AbtLeiterNavigation = lehrers.First(l => l.LNr == "PRW") }
+            };
+            db.Abteilungens.AddRange(abteilungens);
             db.SaveChanges();
 
-            // Gegenstände, die in den Informatikklassen unterrichtet werden, eintragen.
-            db.Gegenstaendes.AddRange(from f in echteFaecher
-                                      select new Gegenstand
-                                      {
-                                          GNr = f.Nr,
-                                          GBez = f.Langname
-                                      });
+            foreach (var l in lehrers)
+            {
+                if (l.LNr == "HG") { l.LChefNavigation = null; }
+                else if (abteilungens.Any(a => a.AbtLeiterNavigation.LNr == l.LNr))
+                    l.LChefNavigation = lehrers.First(l => l.LNr == "HG");
+                else
+                    l.LChefNavigation = fkr.Random.ListItem(abteilungens).AbtLeiterNavigation;
+            }
             db.SaveChanges();
 
-            // Klassen aus den Informatikabteilungen eintragen.
-            db.Klassens.AddRange(from k in echteKlassen
-                                 let sjahr = db.Schuljahres.Find(current.Year * 10 + k.Jahresform)
-                                 let abt = k.Nr.Substring(2, Math.Min(3, k.Nr.Length - 2))
-                                 select new Klasse
-                                 {
-                                     KNr = k.Nr,
-                                     KSchuljahrNavigation = sjahr,
-                                     KBez = k.Beschreibung,
-                                     // Bei Jahresformen wird die Schulstufe (9, 10, ...) eingetragen.
-                                     KSchulstufe = k.Jahresform == 0 ? k.Schulstufe : null,
-                                     KStammraumNavigation = db.Raeumes.Find(k.Stammraum),
-                                     KVorstandNavigation = db.Lehrers.Find(k.Kv),
-                                     KAbteilungNavigation = db.Abteilungens.Find(abt) ?? throw new SchulDb.SchulDbException($"Abteilung {abt} nicht vorhanden!"),
-                                     KDatumbis = k.Abschlussklasse ? new DateTime(current.Year + 1, 5, 1) : (DateTime?)null
-                                 });
+            // Gegenstände, die unterrichtet werden, eintragen.
+            var gegenstaendes = echteFaecher.Select(f => new Gegenstand
+            {
+                GNr = f.Nr,
+                GBez = f.Langname
+            })
+            .ToList();
+            db.Gegenstaendes.AddRange(gegenstaendes);
             db.SaveChanges();
 
-            // Den Stundenplan der Informatikklassen eintragen.
-            db.Stundens.AddRange(from s in echteStunden
-                                 select new Stunde
-                                 {
-                                     StStunde = s.Stunde,
-                                     StTag = s.Tag,
-                                     StLehrerNavigation = db.Lehrers.Find(s.Lehrer),
-                                     StKlasseNavigation = db.Klassens.Find(s.Klasse),
-                                     StGegenstandNavigation = db.Gegenstaendes.Find(s.Fach),
-                                     StRaumNavigation = db.Raeumes.Find(s.Raum)
-                                 });
+            // Klassen eintragen.
+            var klassens = echteKlassen.Select(k =>
+            {
+                var sjahr = schuljahres.First(s => s.SjaNr == current.Year * 10 + k.Jahresform);
+                return new Klasse
+                {
+                    KNr = k.Nr,
+                    KSchuljahrNavigation = sjahr,
+                    KBez = k.Beschreibung,
+                    // Bei Jahresformen wird die Schulstufe (9, 10, ...) eingetragen.
+                    KSchulstufe = k.Jahresform == 0 ? k.Schulstufe : null,
+                    KStammraumNavigation = raeumes.FirstOrDefault(r => r.RId == k.Stammraum),
+                    KVorstandNavigation = lehrers.FirstOrDefault(l => l.LNr == k.Kv) ?? throw new SchulDb.SchulDbException($"KV zur Klasse {k.Nr} nicht vorhanden!"),
+                    KAbteilungNavigation = abteilungens.FirstOrDefault(a => a.AbtNr == k.Nr.Substring(2, Math.Min(3, k.Nr.Length - 2)))
+                        ?? throw new SchulDb.SchulDbException($"Abteilung zur Klasse {k.Nr} nicht vorhanden!"),
+                    KDatumbis = k.Abschlussklasse ? new DateTime(current.Year + 1, 5, 1) : null
+                };
+            })
+            .ToList();
+            db.Klassens.AddRange(klassens);
+            db.SaveChanges();
+
+            // Den Stundenplan der eintragen.
+            var stundens = echteStunden.Select(s => new Stunde
+            {
+                StStunde = s.Stunde,
+                StTag = s.Tag,
+                StLehrerNavigation = lehrers.FirstOrDefault(l => l.LNr == s.Lehrer) ?? throw new SchulDb.SchulDbException($"Lehrer zur Stunde {s.UntId} nicht vorhanden!"),
+                StKlasseNavigation = klassens.FirstOrDefault(k => k.KNr == s.Klasse) ?? throw new SchulDb.SchulDbException($"Klasse zur Stunde {s.UntId} nicht vorhanden!"),
+                StGegenstandNavigation = gegenstaendes.FirstOrDefault(g => g.GNr == s.Fach) ?? throw new SchulDb.SchulDbException($"Gegenstand zur Stunde {s.UntId} nicht vorhanden!"),
+                StRaumNavigation = raeumes.FirstOrDefault(r => r.RId == s.Raum)
+            })
+            .ToList();
+            db.Stundens.AddRange(stundens);
             db.SaveChanges();
 
             // *********************************************************************************
             // ERGÄNZUNG MIT ZUFALLSDATEN (Schüler, Prüfungen, ...)
             // *********************************************************************************
-
-            // Den AV zufällig zuordnen. Die AVs haben HG als Chef, HG hat null.
-            var abtLeiter = db.Abteilungens.Select(a => a.AbtLeiterNavigation.LNr).ToHashSet();
-            foreach (var l in db.Lehrers)
-            {
-                if (l.LNr == "HG") { l.LChefNavigation = null; }
-                else if (abtLeiter.Contains(l.LNr))
-                    l.LChefNavigation = db.Lehrers.Find("HG");
-                else
-                    l.LChefNavigation = fkr.Random.ListItem(
-                        db.Abteilungens
-                        .Select(a => a.AbtLeiterNavigation).ToList());
-            }
-            db.SaveChanges();
-
             // Die Schüler in den Klassen generieren, die im Wintersemester vorhanden sind
             int sid = 1000;
             var orte = (data.Adressen.Orte.Where(o => o.Bundesland == "W").Take(23)
                 .Concat(data.Adressen.Orte.Where(o => o.Bundesland == "N").Take(10))
                 .Concat(data.Adressen.Orte.Where(o => o.Bundesland == "B").Take(10))).ToList();
-            var staaten = db.Staatens.OrderBy(s => s.StaNr).ToArray();
-            var religionen = db.Religionens.OrderBy(r => r.RelId).ToArray();
+            var staaten = staatens.OrderBy(s => s.StaNr).ToArray();
+            var religionen = religionens.OrderBy(r => r.RelId).ToArray();
             var schuelerFaker = new Faker<Schueler>()
                 .Rules((f, s) =>
                 {
@@ -245,7 +270,8 @@ namespace SchulDbGenerator
                         new float[] { 0.3f, 0f, 0.2f, 0.4f }).OrDefault(f, 0.2f);
                 });
 
-            foreach (var k in db.Schuljahres.Where(s => s.Wintersemester).SelectMany(s => s.Klassens))
+            var schuelers = new List<Schueler>();
+            foreach (var k in klassens.Where(k => k.KSchuljahrNavigation.Wintersemester))
             {
                 int sAnz = k.KSchulstufe == 9 ? 32 : fkr.Random.GaussianInt(26, 2);
                 float percentFemale = 0.5f;
@@ -271,24 +297,25 @@ namespace SchulDbGenerator
                                 current.AddYears(-30),
                                 current.AddYears(-20)).Date.OrNull(f, 0.2f);
                         s.SGeschlechtNavigation = geschl == Bogus.DataSets.Name.Gender.Male ?
-                            db.Geschlechters.Find(1) :
-                            db.Geschlechters.Find(2);
+                            geschlechters.First(g => g.GesId == 1) :
+                            geschlechters.First(g => g.GesId == 2);
                     })
                     .Generate(sAnz);
 
-                db.Schuelers.AddRange(schueler);
+                schuelers.AddRange(schueler);
             }
+            db.Schuelers.AddRange(schuelers);
             db.SaveChanges();
 
             // Die Klassensprecher und Stellverträter aus der Liste der Schüler der Klasse wählen
-            foreach (var k in db.Klassens.Where(k => k.Schuelers.Any()))
+            foreach (var k in klassens)
             {
-                k.KKlasprNavigation = fkr.Random.ListItem(k.Schuelers.ToList()).OrDefault(fkr, 0.2f);
+                var kandidaten = fkr.Random.Shuffle(schuelers.Where(s => s.SKlasseNavigation == k)).Take(2).ToArray();
+                if (kandidaten.Length < 2) { continue; }
+                k.KKlasprNavigation = kandidaten[0].OrDefault(fkr, 0.2f);
                 if (k.KKlasprNavigation != null)
                 {
-                    k.KKlasprstvNavigation = fkr.Random.ListItem(
-                        k.Schuelers.Where(s => s.SNr != k.KKlasprNavigation.SNr).ToList())
-                        .OrDefault(fkr, 0.2f);
+                    k.KKlasprstvNavigation = kandidaten[1].OrDefault(fkr, 0.2f);
                 }
             }
             db.SaveChanges();
@@ -303,10 +330,11 @@ namespace SchulDbGenerator
                 { "DBI1", "p" }, { "DBI1x", "p" }, { "DBI1y", "p" }, { "DBI2x", "p" }, { "DBI2y", "p" }
             };
             var pruefungen = new List<Pruefung>();
-            foreach (var klasse in db.Klassens.Where(k => k.Schuelers.Any() && k.Stundens.Any()))
+            foreach (var klasse in klassens)
             {
-                var schueler = klasse.Schuelers.ToList();
-                var pruefGegenstaende = klasse.Stundens.GroupBy(s => s.StGegenstand).Select(g => g.FirstOrDefault()).ToList();
+                var schueler = schuelers.Where(s => s.SKlasseNavigation == klasse).ToList();
+                if (!schueler.Any()) { continue; }
+                var pruefGegenstaende = stundens.Where(s => s.StKlasseNavigation == klasse).GroupBy(s => s.StGegenstand).Select(g => g.First()).ToList();
                 var stunden = fkr.Random.ListItems(pruefGegenstaende, Math.Min(5, pruefGegenstaende.Count));
                 foreach (var stunde in stunden)
                 {
