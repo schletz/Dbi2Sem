@@ -1,5 +1,13 @@
 # Installation einer Oracle-Datenbank via Docker
 
+
+## Installationsvoraussetzungen
+
+Um mit Docker-Containern arbeiten zu können braucht man:
+ - ``Docker Desktop``: https://www.docker.com/products/docker-desktop für einen Standard docker Installation
+ - ``Windows Subsystem for Linux``: https://docs.microsoft.com/en-us/windows/wsl/install um eine Linux-Umgebung zu bekommen. Im späteren Verlauf müssen wir ein Shellskript ausführen. Auch ist Docker performanter beim Ausführen von Linux-Containern wenn bereits ein Linux (via WSL) vorhanden ist. 
+
+## Buildprozess für einen Oracle-Container
 Da Oracle für Entwickler keine fertigen Container auf Docker-Hub anbietet müssen wir uns diesen selber bauen. Als grundlage dafür kann ich folgendes Video empfehlen: https://yewtu.be/watch?v=bFy8pmmpSHU Darin gibt es eine Schritt-für-Schritt Anleitung sowie einige Hintergrundinformationen. 
 
 1. Zunächst müssen wir folgendes Repository klonen: https://github.com/oracle/docker-images 
