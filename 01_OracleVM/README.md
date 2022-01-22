@@ -1,5 +1,9 @@
 # Download und Konfiguration der VM
 
+> **Hinweis:** Wenn Sie mit Docker und einem Container mit Oracle 21c Express Edition (XE) arbeiten 
+> wollen, lesen Sie sich statt dessen die Informationen im Dokument
+> [Docker Image als Ersatz für die VM](03_Docker/README.md) durch.
+
 ## Vorbereitung: VPN Client für die Schule
 
 Wer von zu Hause aus die Dateien laden möchte, kann den Cisco VPN Client der Schule installieren.
