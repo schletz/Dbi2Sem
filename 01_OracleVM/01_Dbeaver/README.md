@@ -50,6 +50,17 @@ klicken Sie auf *Execute Script* oder drücken *ALT* + *X*.
 
 ![](dbeaver03.png)
 
+## Erstellen weiterer User
+
+Mit folgenden Statements kann ein weiterer User (*NewUser*) mit dem Passwort *oracle* (wird nach *IDENTIFIED BY*
+geschrieben) erstellt werden.
+
+```sql
+CREATE USER NewUser IDENTIFIED BY oracle;
+GRANT CONNECT, RESOURCE, CREATE VIEW TO NewUser;
+GRANT UNLIMITED TABLESPACE TO NewUser;
+```
+
 ## Diagramme erzeugen
 
 Ein nettes Feature ist das automatische Erzeugen von ER Diagrammen von einem Schema aus. Dies erreicht

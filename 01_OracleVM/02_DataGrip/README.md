@@ -23,3 +23,14 @@ Daten angelegt:
 ![](connection_19.png)
 
 Für die Verbindung zur Oracle 12 VM ist der Service Name XEPDB1 durch ORCL zu ersetzen.
+
+## Erstellen weiterer User
+
+Mit folgenden Statements kann ein weiterer User (*NewUser*) mit dem Passwort *oracle* (wird nach *IDENTIFIED BY*
+geschrieben) erstellt werden.
+
+```sql
+CREATE USER NewUser IDENTIFIED BY oracle;
+GRANT CONNECT, RESOURCE, CREATE VIEW TO NewUser;
+GRANT UNLIMITED TABLESPACE TO NewUser;
+```
