@@ -1,7 +1,7 @@
 # JetBrains DataGrip
 
-Nach der Registrierung mit der Schul Mailadresse können Produkte von https://account.jetbrains.com/licenses/assets
-- unter anderem auch DataGrip - geladen werden:
+Nach der Registrierung mit der Schul Mailadresse können Produkte von
+https://account.jetbrains.com/licenses/assets - unter anderem auch DataGrip - geladen werden:
 
 ![](datagrip_download.png)
 
