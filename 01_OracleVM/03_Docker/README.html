@@ -17,7 +17,8 @@
 }
 
 </style>
-        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
 <style>
@@ -31,7 +32,7 @@
 .task-list-item { list-style-type: none; } .task-list-item-checkbox { margin-left: -20px; vertical-align: middle; }
 </style>
         
-        
+        <script src="https://cdn.jsdelivr.net/npm/katex-copytex@latest/dist/katex-copytex.min.js"></script>
         
     </head>
     <body class="vscode-body vscode-light">
@@ -42,8 +43,11 @@ Docker für dein Betriebssystem von <a href="https://docs.docker.com/get-docker/
 verfügbar: <a href="https://youtu.be/ekmGqHBVNTM">https://youtu.be/ekmGqHBVNTM</a></p>
 <p>Nach der erfolgreichen Installation wird der Container für Oracle 21 XE mittels der folgenden
 Befehle in der Windows Konsole geladen und ausgeführt. Der Container hat rund 3.5 GB.</p>
+<p>Der <em>docker run</em> Befehl verwendet ein Verzeichnis (<em>C:/Temp/oracle-home</em>), um das Homeverzeichnis
+zu mappen. Bei anderen Betriebssystemen (macOS, Linux) muss dieser Pfad angepasst werden, da es
+dort keine Laufwerke gibt.</p>
 <pre><code class="language-text"><div>docker pull gvenzl/oracle-xe:21-full
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/XE21CFULL/oradata --name oracle21c gvenzl/oracle-xe:21-full
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/home --name oracle21c gvenzl/oracle-xe:21-full
 </div></code></pre>
 <p>Die Umgebungsvariable <em>ORACLE_PASSWORD</em> setzt das Systempasswort. Da es keine Produktionsdatenbank
 ist, verwenden wir zur Vereinfachung <em>oracle</em>.</p>
@@ -57,6 +61,11 @@ des Containers wichtig:</p>
 docker stop oracle21c
 </div></code></pre>
 <p>Natürlich kann mit Docker Desktop der Container ebenfalls gestartet und beendet werden.</p>
+<blockquote>
+<p><strong>Hinweis:</strong> Gerade nach dem ersten Start des Containers vergeht etwas Zeit, bis die Datenbank
+hochgefahren ist. Kontrolliere die Ausgaben in Docker Desktop, indem du auf den Containernamen
+klickst. Es muss die Meldung <em>DATABASE IS READY TO USE!</em> im Log Fenster erscheinen.</p>
+</blockquote>
 <h2 id="ausführen-von-programmen-im-container">Ausführen von Programmen im Container</h2>
 <p>Mit <em>docker exec -it oracle21c COMMAND</em> können Befehle direkt im Container ausgeführt werden.
 Die Option <em>-i</em> bedeutet eine interaktive Ausführung. <em>-t</em> öffnet ein Terminal, sodass nicht CR+LF
@@ -74,11 +83,26 @@ des Users sys ist.</p>
 <pre><code class="language-text"><div>docker exec -it oracle21c sqlplus sys/oracle AS SYSDBA
 </div></code></pre>
 <p>Mit dem Befehl <em>quit</em> kann der SQL*Plus Prompt verlassen werden.</p>
-<h3 id="shell-bash">Shell (bash)</h3>
+<h3 id="shell-bash-und-datenaustausch-mit-dem-host">Shell (bash) und Datenaustausch mit dem Host</h3>
 <p>Wir können auch eine Shell öffnen und Befehle in Linux absetzen:</p>
 <pre><code class="language-text"><div>docker exec -it oracle21c /bin/bash
 </div></code></pre>
-<p>Mit <em>exit</em> kann die Shell verlassen und zu Windows zurückgekehrt werden.</p>
+<p>Mit <em>exit</em> kann die Shell verlassen und zu Windows zurückgekehrt werden. Du kannst auch in
+Docker Desktop auf den Button <em>CLI</em>, der beim Container angeboten wird, klicken.</p>
+<p>Beim Anlegen des Containers mit <em>docker run</em> haben wir mit dem Parameter
+<em>-v C:/Temp/oracle-home:/home</em> einen Ordner angegeben, der auch im Container sichtbar ist.
+Nun können wir z. B. in Windows in <em>C:/Temp/oracle-home</em> eine Textdatei anlegen. In der bash
+ist sie im Homeverzeichnis sichtbar:</p>
+<pre><code class="language-text"><div>bash-4.4$ cd /home/
+bash-4.4$ ls
+test.txt
+
+bash-4.4$ cat test.txt
+Das
+ist
+ein
+Test!
+</div></code></pre>
 
     </body>
     </html>

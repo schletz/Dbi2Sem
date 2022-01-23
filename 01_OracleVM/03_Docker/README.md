@@ -9,10 +9,15 @@ verfügbar: https://youtu.be/ekmGqHBVNTM
 Nach der erfolgreichen Installation wird der Container für Oracle 21 XE mittels der folgenden
 Befehle in der Windows Konsole geladen und ausgeführt. Der Container hat rund 3.5 GB.
 
+Der *docker run* Befehl verwendet ein Verzeichnis (*C:/Temp/oracle-home*), um das Homeverzeichnis
+zu mappen. Bei anderen Betriebssystemen (macOS, Linux) muss dieser Pfad angepasst werden, da es
+dort keine Laufwerke gibt.
+
 ```text
 docker pull gvenzl/oracle-xe:21-full
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v oracle-volume:/opt/oracle/XE21CFULL/oradata --name oracle21c gvenzl/oracle-xe:21-full
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/home --name oracle21c gvenzl/oracle-xe:21-full
 ```
+
 Die Umgebungsvariable *ORACLE_PASSWORD* setzt das Systempasswort. Da es keine Produktionsdatenbank
 ist, verwenden wir zur Vereinfachung *oracle*.
 
@@ -30,6 +35,10 @@ docker stop oracle21c
 ```
 
 Natürlich kann mit Docker Desktop der Container ebenfalls gestartet und beendet werden.
+
+> **Hinweis:** Gerade nach dem ersten Start des Containers vergeht etwas Zeit, bis die Datenbank 
+> hochgefahren ist. Kontrolliere die Ausgaben in Docker Desktop, indem du auf den Containernamen
+> klickst. Es muss die Meldung *DATABASE IS READY TO USE!* im Log Fenster erscheinen.
 
 ## Ausführen von Programmen im Container
 
@@ -58,7 +67,7 @@ docker exec -it oracle21c sqlplus sys/oracle AS SYSDBA
 
 Mit dem Befehl *quit* kann der SQL*Plus Prompt verlassen werden.
 
-### Shell (bash)
+### Shell (bash) und Datenaustausch mit dem Host
 
 Wir können auch eine Shell öffnen und Befehle in Linux absetzen:
 
@@ -66,4 +75,23 @@ Wir können auch eine Shell öffnen und Befehle in Linux absetzen:
 docker exec -it oracle21c /bin/bash
 ```
 
-Mit *exit* kann die Shell verlassen und zu Windows zurückgekehrt werden.
+Mit *exit* kann die Shell verlassen und zu Windows zurückgekehrt werden. Du kannst auch in
+Docker Desktop auf den Button *CLI*, der beim Container angeboten wird, klicken.
+
+Beim Anlegen des Containers mit *docker run* haben wir mit dem Parameter
+*-v C:/Temp/oracle-home:/home* einen Ordner angegeben, der auch im Container sichtbar ist.
+Nun können wir z. B. in Windows in *C:/Temp/oracle-home* eine Textdatei anlegen. In der bash
+ist sie im Homeverzeichnis sichtbar:
+
+```text
+bash-4.4$ cd /home/
+bash-4.4$ ls
+test.txt
+
+bash-4.4$ cat test.txt
+Das
+ist
+ein
+Test!
+```
+
