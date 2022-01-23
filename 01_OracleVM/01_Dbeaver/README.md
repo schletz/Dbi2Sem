@@ -13,7 +13,7 @@ Die Oracle Datenbank muss hochgefahren sein und auf Port 1521 Verbindungen anneh
 Durch den Button *New Database Connection* kann der Verbindungsdialog geöffnet werden. In diesem Dialog
 muss Oracle als Datenbanksystem ausgewählt werden:
 
-![](dbeaver01.png)
+![](connection.png)
 
 - **Host:** *localhost*
 - **Database:** *XEPDB1* (Service Name)
