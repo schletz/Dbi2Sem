@@ -6,8 +6,20 @@ heruntergeladen werden.
 
 ## Voraussetzung
 
-Das Portforwarding des Port 1521 muss - wie im Kapitel Installation beschrieben - in Virtual Box
-gesetzt werden.
+Die Oracle Datenbank muss hochgefahren sein und auf Port 1521 Verbindungen annehmen.
+
+## Verbinden zur Oracle Datenbank in der VM (Oracle 19 XE oder 21 XE)
+
+Oracle 19 oder 21 arbeiten mit pluggable databases. Daher ist die Verbindungsinformation anders:
+
+- Host: *localhost*
+- Database: *XEPDB1* (Service Name)
+- Username: *SchulDb* (oder *System*, falls noch kein User existiert)
+- Passwort: *oracle*
+
+Beim ersten Verbinden wird der Treiber aus dem Netz geladen. Die angebotenen pluggable databases
+können herausgefunden werden, indem man sich mit dem User *system* und dem Service Name *XE*
+verbindet. Danach wird das SQL Statement `SELECT name FROM v$pdbs;` abgesetzt.
 
 ## Verbinden zur Oracle Datenbank in der VM (Oracle 11 oder 12)
 
@@ -25,18 +37,9 @@ Zum Verbinden müssen wie in SQL Developer die Verbindungsdaten eingegeben werde
 
 Beim ersten Verbinden wird der Treiber aus dem Netz geladen.
 
-## Verbinden zur Oracle Datenbank in der VM (Oracle 19 XE oder 21 XE)
-
-Oracle 19 oder 21 arbeiten mit pluggable databases. Daher ist die Verbindungsinformation anders:
-
-- Host: *localhost*
-- Database: *XEPDB1* (Service Name)
-- Username: *SchulDb* (oder *System*, falls noch kein User existiert)
-- Passwort: *oracle*
-
-Beim ersten Verbinden wird der Treiber aus dem Netz geladen. Die angebotenen pluggable databases
-können herausgefunden werden, indem man sich mit dem User *system* und dem Service Name *XE*
-verbindet. Danach wird das SQL Statement `SELECT name FROM v$pdbs;` abgesetzt.
+> **Hinweis:** Die Unterlagen über die alte Oracle 12 VM werden in diesem Kurs bald entfernt werden.
+> Bitte verwenden Sie das Docker Image von Oracle21c wie [hier](../03_Docker/README.md)
+> beschrieben.
 
 ## Zugriff auf das Schema
 

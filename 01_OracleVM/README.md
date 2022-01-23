@@ -1,8 +1,9 @@
 # Download und Konfiguration der VM
 
-> **Hinweis:** Wenn Sie mit Docker und einem Container mit Oracle 21c Express Edition (XE) arbeiten 
-> wollen, lesen Sie sich statt dessen die Informationen im Dokument
-> [Docker Image als Ersatz für die VM](03_Docker/README.md) durch.
+> **Hinweis:** Die Unterlagen über die alte Oracle 12 VM werden in diesem Kurs bald entfernt werden.
+> Bitte verwenden Sie das Docker Image von Oracle21c wie auf
+> [Docker Image als Ersatz für die VM](03_Docker/README.md)
+> beschrieben.
 
 ## Vorbereitung: VPN Client für die Schule
 

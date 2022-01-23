@@ -41,8 +41,18 @@
 zu verschiedenen Datenbanken - darunter auch Oracle - verbinden. Das Programm kann auf der <a href="https://dbeaver.io/download/">DBeaver Downloadseite</a>
 heruntergeladen werden.</p>
 <h2 id="voraussetzung">Voraussetzung</h2>
-<p>Das Portforwarding des Port 1521 muss - wie im Kapitel Installation beschrieben - in Virtual Box
-gesetzt werden.</p>
+<p>Die Oracle Datenbank muss hochgefahren sein und auf Port 1521 Verbindungen annehmen.</p>
+<h2 id="verbinden-zur-oracle-datenbank-in-der-vm-oracle-19-xe-oder-21-xe">Verbinden zur Oracle Datenbank in der VM (Oracle 19 XE oder 21 XE)</h2>
+<p>Oracle 19 oder 21 arbeiten mit pluggable databases. Daher ist die Verbindungsinformation anders:</p>
+<ul>
+<li>Host: <em>localhost</em></li>
+<li>Database: <em>XEPDB1</em> (Service Name)</li>
+<li>Username: <em>SchulDb</em> (oder <em>System</em>, falls noch kein User existiert)</li>
+<li>Passwort: <em>oracle</em></li>
+</ul>
+<p>Beim ersten Verbinden wird der Treiber aus dem Netz geladen. Die angebotenen pluggable databases
+können herausgefunden werden, indem man sich mit dem User <em>system</em> und dem Service Name <em>XE</em>
+verbindet. Danach wird das SQL Statement <code>SELECT name FROM v$pdbs;</code> abgesetzt.</p>
 <h2 id="verbinden-zur-oracle-datenbank-in-der-vm-oracle-11-oder-12">Verbinden zur Oracle Datenbank in der VM (Oracle 11 oder 12)</h2>
 <p>Durch den Button <em>New Database Connection</em> kann der Verbindungsdialog geöffnet werden. In diesem Dialog
 muss Oracle als Datenbanksystem ausgewählt werden:</p>
@@ -55,17 +65,11 @@ muss Oracle als Datenbanksystem ausgewählt werden:</p>
 <li>Passwort: <em>oracle</em></li>
 </ul>
 <p>Beim ersten Verbinden wird der Treiber aus dem Netz geladen.</p>
-<h2 id="verbinden-zur-oracle-datenbank-in-der-vm-oracle-19-xe-oder-21-xe">Verbinden zur Oracle Datenbank in der VM (Oracle 19 XE oder 21 XE)</h2>
-<p>Oracle 19 oder 21 arbeiten mit pluggable databases. Daher ist die Verbindungsinformation anders:</p>
-<ul>
-<li>Host: <em>localhost</em></li>
-<li>Database: <em>XEPDB1</em> (Service Name)</li>
-<li>Username: <em>SchulDb</em> (oder <em>System</em>, falls noch kein User existiert)</li>
-<li>Passwort: <em>oracle</em></li>
-</ul>
-<p>Beim ersten Verbinden wird der Treiber aus dem Netz geladen. Die angebotenen pluggable databases
-können herausgefunden werden, indem man sich mit dem User <em>system</em> und dem Service Name <em>XE</em>
-verbindet. Danach wird das SQL Statement <code>SELECT name FROM v$pdbs;</code> abgesetzt.</p>
+<blockquote>
+<p><strong>Hinweis:</strong> Die Unterlagen über die alte Oracle 12 VM werden in diesem Kurs bald entfernt werden.
+Bitte verwenden Sie das Docker Image von Oracle21c wie <a href="../03_Docker/README.html">hier</a>
+beschrieben.</p>
+</blockquote>
 <h2 id="zugriff-auf-das-schema">Zugriff auf das Schema</h2>
 <p>DBeaver listet alle Schemata der Datenbank auf. Um SQL Abfragen im Schema <em>SchulDB</em>
 auszuführen, muss ein SQL Editor geöffnet werden. Am Schnellsten geht das mit <em>STRG</em> + <em>ENTER</em>, es gibt
