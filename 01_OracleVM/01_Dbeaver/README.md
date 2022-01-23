@@ -10,12 +10,15 @@ Die Oracle Datenbank muss hochgefahren sein und auf Port 1521 Verbindungen anneh
 
 ## Verbinden zur Oracle Datenbank in der VM (Oracle 19 XE oder 21 XE)
 
-Oracle 19 oder 21 arbeiten mit pluggable databases. Daher ist die Verbindungsinformation anders:
+Durch den Button *New Database Connection* kann der Verbindungsdialog geöffnet werden. In diesem Dialog
+muss Oracle als Datenbanksystem ausgewählt werden:
 
-- Host: *localhost*
-- Database: *XEPDB1* (Service Name)
-- Username: *SchulDb* (oder *System*, falls noch kein User existiert)
-- Passwort: *oracle*
+![](dbeaver01.png)
+
+- **Host:** *localhost*
+- **Database:** *XEPDB1* (Service Name)
+- **Username:** *System* (oder ein anderer User wie z. B. SchulDb)
+- **Passwort:** *oracle*
 
 Beim ersten Verbinden wird der Treiber aus dem Netz geladen. Die angebotenen pluggable databases
 können herausgefunden werden, indem man sich mit dem User *system* und dem Service Name *XE*
@@ -27,17 +30,12 @@ verbindet. Danach wird das SQL Statement `SELECT name FROM v$pdbs;` abgesetzt.
 > Bitte verwenden Sie das Docker Image von Oracle21c wie [hier](../03_Docker/README.md)
 > beschrieben.
 
-Durch den Button *New Database Connection* kann der Verbindungsdialog geöffnet werden. In diesem Dialog
-muss Oracle als Datenbanksystem ausgewählt werden:
+Zum Verbinden müssen wie in SQL Developer folgende Verbindungsdaten eingegeben werden:
 
-![](dbeaver01.png)
-
-Zum Verbinden müssen wie in SQL Developer die Verbindungsdaten eingegeben werden:
-
-- Host: *localhost*
-- Database: *orcl* (Service Name)
-- Username: *SchulDb* (oder *System*, falls noch kein User existiert)
-- Passwort: *oracle*
+- **Host:** *localhost*
+- **Database:** *orcl* (Service Name)
+- **Username:** *System* (oder ein anderer User wie z. B. SchulDb)
+- **Passwort:** *oracle*
 
 Beim ersten Verbinden wird der Treiber aus dem Netz geladen.
 
