@@ -23,6 +23,10 @@ verbindet. Danach wird das SQL Statement `SELECT name FROM v$pdbs;` abgesetzt.
 
 ## Verbinden zur Oracle Datenbank in der VM (Oracle 11 oder 12)
 
+> **Hinweis:** Die Unterlagen über die alte Oracle 12 VM werden in diesem Kurs bald entfernt werden.
+> Bitte verwenden Sie das Docker Image von Oracle21c wie [hier](../03_Docker/README.md)
+> beschrieben.
+
 Durch den Button *New Database Connection* kann der Verbindungsdialog geöffnet werden. In diesem Dialog
 muss Oracle als Datenbanksystem ausgewählt werden:
 
@@ -36,10 +40,6 @@ Zum Verbinden müssen wie in SQL Developer die Verbindungsdaten eingegeben werde
 - Passwort: *oracle*
 
 Beim ersten Verbinden wird der Treiber aus dem Netz geladen.
-
-> **Hinweis:** Die Unterlagen über die alte Oracle 12 VM werden in diesem Kurs bald entfernt werden.
-> Bitte verwenden Sie das Docker Image von Oracle21c wie [hier](../03_Docker/README.md)
-> beschrieben.
 
 ## Zugriff auf das Schema
 
