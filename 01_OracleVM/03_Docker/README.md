@@ -95,3 +95,37 @@ ein
 Test!
 ```
 
+## Andere Datenbanksysteme als Docker
+
+### MariaDB (MySQL fork)
+
+Über Docker kann auch MariaDb (ein Fork von MySQL) geladen werden. Die nachfolgende Anweisung
+in der Konsole lädt die letzte Version von MariaDb in den Container mit dem Namen *mariadb*
+und prüft die Version. Der root Benutzer hat kein Passwort.
+
+```bash
+docker run -d -p 3306:3306 --name mariadb -e MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true  mariadb:latest
+docker exec -it mariadb mysql
+
+MariaDB [(none)]> SELECT VERSION();
++-------------------------------------+
+| VERSION()                           |
++-------------------------------------+
+| 10.6.5-MariaDB-1:10.6.5+maria~focal |
++-------------------------------------+
+
+MariaDB [(none)]> quit
+```
+
+### Microsoft SQL Server
+
+Natürlich steht auch SQL Server zur Verfügung. Die nachfolgende Anweisung legt einen Container
+mit dem Namen *sqlserver2019* an. Das Passwort wird in *SA_PASSWORD* gesetzt und ist in diesem
+Beispiel *SqlServer2019*. Der Benutzer ist *sa*. Das Passwort muss folgender Richtlinie genügen:
+
+> This password needs to include at least 8 characters of at least three of these four categories:
+> uppercase letters, lowercase letters, numbers and non-alphanumeric symbols.
+
+```text
+docker run -d -p 1433:1433  --name sqlserver2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=SqlServer2019" mcr.microsoft.com/mssql/server:2019-latest      
+```
