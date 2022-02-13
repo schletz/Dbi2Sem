@@ -31,8 +31,8 @@
         <td colspan="2" valign="top">
             <b>2</b> Bereich Datenbankadministration
             <ol>
-                <li><a href="01_OracleVM">Arbeiten mit der Oracle VM</li>
-                <li><a href="21_Null">NULL Values</a></li>
+                <li><a href="01_OracleVM/03_Docker/README.md">Oracle als Docker Image</li>
+                <li><a href="21_Null">Umgang mit NULL</a></li>
                 <li><a href="22_Transactions">Transaktionen</a></li>
                 <li><a href="23_Index">Verwenden von Indizes</a></li>
             </ol>
