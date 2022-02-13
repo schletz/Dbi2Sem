@@ -84,10 +84,7 @@ GO
     ausgeführt werden:
 
 ```text
-git init
-git remote add origin https://github.com/schletz/Dbi2Sem.git
-git fetch --all
-git reset --hard origin/master
+git clone https://github.com/schletz/Dbi2Sem.git
 ```
 
 ### Nachträgliches Synchronisieren
