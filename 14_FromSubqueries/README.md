@@ -219,27 +219,12 @@ die optimale Ausführung herausfinden und so durchführen.
 
 ### Übung
 
-Nutzen Sie die erstellte View *vAbteilungsstatistik* in den folgenden Abfragen. Achtung: Die korrekten
-Lösungen zeigen nur die ersten 10 bzw. 20 Datensätze an.
+Nutzen Sie die erstellte View *vAbteilungsstatistik* in den folgenden Abfragen.
 
 **(1)** Welche Abteilung hat mehr als 200 Schüler? Ordnen Sie nach der Schüleranzahl absteigend.
 
-| #   | AbtNr | AbtName                                                   | SchuelerGesamt |
-| ---:| ----- | --------------------------------------------------------- | --------------:|
-|   1 | HWI   | Höhere Lehranstalt für Wirtschaftsingenieure              | 294            |
-|   2 | HMN   | Höhere Lehranstalt für Medien                             | 262            |
-|   3 | HIF   | Höhere Lehranstalt für Informatik                         | 636            |
-|   4 | HBG   | Höhere Lehranstalt für Biomedizin- und Gesundheitstechnik | 257            |
-
 **(2)** Welche Abteilung hat mehr als 27 Schüler pro Klasse (im Durchschnitt,
 also Schüleranzahl / Klassenanzahl)? Achten Sie auf die Kommastellen in der Berechnung.
-
-| #   | AbtNr | SchuelerProKlasse |
-| ---:| ----- | -----------------:|
-|   1 | FIT   | 27.86             |
-|   2 | HBG   | 28.56             |
-|   3 | HIF   | 27.65             |
-|   4 | VIF   | 27.2              |
 
 Für die folgenden Beispiele erstellen Sie eine View *vPruefungsstatistik* mit folgenden Spalten:
 
@@ -253,81 +238,12 @@ nicht NULL) an. Beantworten Sie mit Hilfe der View *vNotenspiegel* die folgenden
 
 | #   | P_Pruefer | L_Name    | L_Vorname  | P_Gegenstand | Note1 | Note2 | Note3 | Note4 | Note5 | KeineNote | Beurteilt |
 | ---:| --------- | --------- | ---------- | ------------ | -----:| -----:| -----:| -----:| -----:| ---------:| ---------:|
-|   1 | AGU       | Augustin  | Susanne    | AP4          | 0     | 0     | 2     | 1     | 2     | 0         | 5         |
-|   2 | AH        | Auinger   | Harald     | NVS1         | 0     | 1     | 5     | 2     | 0     | 0         | 8         |
-|   3 | AMA       | Amcha     | Alfred     | ITPR         | 0     | 0     | 0     | 0     | 0     | 2         | 0         |
-|   4 | AMA       | Amcha     | Alfred     | NWT1         | 2     | 1     | 1     | 0     | 0     | 0         | 4         |
-|   5 | AT        | Antonescu | Margareth  | D            | 3     | 5     | 1     | 6     | 1     | 4         | 16        |
-|   6 | BAE       | Blaschke  | Waltraude  | KGKP         | 0     | 1     | 0     | 0     | 0     | 0         | 1         |
-|   7 | BAE       | Blaschke  | Waltraude  | MTKG         | 0     | 4     | 0     | 1     | 0     | 0         | 5         |
-|   8 | BAM       | Balluch   | Manfred    | POS1         | 0     | 2     | 3     | 0     | 1     | 0         | 6         |
-|   9 | BAN       | Bankuti   | Judit      | DBI1         | 0     | 0     | 0     | 0     | 0     | 1         | 0         |
-|  10 | BAN       | Bankuti   | Judit      | DBI1y        | 0     | 2     | 0     | 1     | 0     | 0         | 3         |
-|  11 | BAN       | Bankuti   | Judit      | DBI2x        | 1     | 2     | 1     | 0     | 0     | 2         | 4         |
-|  12 | BEC       | Beyer     | Catherine  | SOPK         | 0     | 0     | 1     | 2     | 1     | 1         | 4         |
-|  13 | BES       | Beil      | Sabine     | AM           | 0     | 0     | 0     | 0     | 1     | 1         | 1         |
-|  14 | BES       | Beil      | Sabine     | AMx          | 0     | 2     | 1     | 1     | 1     | 2         | 5         |
-|  15 | BH        | Berger    | Hans-Peter | OPS          | 1     | 1     | 2     | 1     | 2     | 0         | 7         |
-|  16 | BI        | Binder    | Florian    | E1x          | 0     | 0     | 1     | 2     | 0     | 0         | 3         |
-|  17 | BIE       | Bierbamer | Peter      | BWM          | 0     | 1     | 1     | 2     | 0     | 1         | 4         |
-|  18 | BIE       | Bierbamer | Peter      | INF1y        | 0     | 1     | 0     | 0     | 0     | 0         | 1         |
-|  19 | BIG       | Binder    | Georg      | INF1y        | 0     | 0     | 0     | 1     | 0     | 0         | 1         |
-|  20 | BIG       | Binder    | Georg      | WIR3         | 1     | 4     | 3     | 6     | 0     | 2         | 14        |
 
 **(3)** Wie viele Prüfungen gab es pro Prüfer?
-
-| #   | Pruefer | LName        | LVorname  | AnzPruefungen |
-| ---:| ------- | ------------ | --------- | -------------:|
-|   1 | AF      | Akyildiz     | Fatma     | 0             |
-|   2 | AGU     | Augustin     | Susanne   | 5             |
-|   3 | AH      | Auinger      | Harald    | 8             |
-|   4 | AMA     | Amcha        | Alfred    | 6             |
-|   5 | AT      | Antonescu    | Margareth | 20            |
-|   6 | BAB     | Bauer        | Beatrice  | 0             |
-|   7 | BAE     | Blaschke     | Waltraude | 6             |
-|   8 | BAM     | Balluch      | Manfred   | 6             |
-|   9 | BAN     | Bankuti      | Judit     | 10            |
-|  10 | BAR     | Bartl-Binder | Petra     | 0             |
 
 **(4)** Wie viel Prozent negative Prüfungen (Prüfungen mit 5 in Relation zu den beurteilten Prüfungen)
 gab es bei jedem Lehrer pro Gegenstand?
 
-| #   | PPruefer | PGegenstand | ProzentNegativ |
-| ---:| -------- | ----------- | --------------:|
-|   1 | AGU      | AP4         | 40             |
-|   2 | AH       | NVS1        | 0              |
-|   3 | AMA      | ITPR        | 0              |
-|   4 | AMA      | NWT1        | 0              |
-|   5 | AT       | D           | 6.25           |
-|   6 | BAE      | KGKP        | 0              |
-|   7 | BAE      | MTKG        | 0              |
-|   8 | BAM      | POS1        | 16.67          |
-|   9 | BAN      | DBI1        | 0              |
-|  10 | BAN      | DBI1y       | 0              |
-|  11 | BAN      | DBI2x       | 0              |
-|  12 | BEC      | SOPK        | 25             |
-|  13 | BES      | AM          | 100            |
-|  14 | BES      | AMx         | 20             |
-|  15 | BH       | OPS         | 28.57          |
-|  16 | BI       | E1x         | 0              |
-|  17 | BIE      | BWM         | 0              |
-|  18 | BIE      | INF1y       | 0              |
-|  19 | BIG      | INF1y       | 0              |
-|  20 | BIG      | WIR3        | 0              |
-
 **(5)** Wie viel Prozent negative Prüfungen (Prüfungen mit 5 in Relation zu den beurteilten Prüfungen)
 gab es bei jedem Lehrer über alle Gegenstände hinweg? Summieren Sie mit einer Unterabfrage
 in FROM vorher die Prüfungen des Prüfers in *vNotenspiegel* in allen seinen Gegenständen auf.
-
-| #   | PPruefer | ProzentNegativ |
-| ---:| -------- | --------------:|
-|   1 | AGU      | 40             |
-|   2 | AH       | 0              |
-|   3 | AMA      | 0              |
-|   4 | AT       | 6.25           |
-|   5 | BAE      | 0              |
-|   6 | BAM      | 16.67          |
-|   7 | BAN      | 0              |
-|   8 | BEC      | 25             |
-|   9 | BES      | 33.33          |
-|  10 | BH       | 28.57          |
