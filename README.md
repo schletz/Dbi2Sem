@@ -7,7 +7,7 @@
         <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th>
     </tr>
     <tr>
-        <td colspan="3" valign="top">
+        <td colspan="2" rowspan="2" valign="top">
             <b>1</b> Erweitertes SQL
             <ol>
                 <li><a href="11_SingleValueNonCorresponding">Nicht korrelierte Unterabfragen, die einen Wert liefern</a></li>
@@ -16,6 +16,15 @@
                 <li><a href="14_FromSubqueries">Views und Unterabfragen in FROM</a></li>
             </ol>
         </td>    
+        <td valign="top">
+            <b>2</b> Bereich Datenbankadministration
+            <ol>
+                <li><a href="01_OracleVM/03_Docker/README.md">Oracle als Docker Image</li>
+                <li><a href="21_Null">Umgang mit NULL</a></li>
+                <li><a href="22_Transactions">Transaktionen</a></li>
+                <li><a href="23_Index">Verwenden von Indizes</a></li>
+            </ol>
+        </td>              
         <td colspan="2" valign="top">
             <b>3</b> ER Modellierung
             <ol>
@@ -28,15 +37,6 @@
         </td>
     </tr>
     <tr>
-        <td colspan="2" valign="top">
-            <b>2</b> Bereich Datenbankadministration
-            <ol>
-                <li><a href="01_OracleVM/03_Docker/README.md">Oracle als Docker Image</li>
-                <li><a href="21_Null">Umgang mit NULL</a></li>
-                <li><a href="22_Transactions">Transaktionen</a></li>
-                <li><a href="23_Index">Verwenden von Indizes</a></li>
-            </ol>
-        </td>
         <td colspan="3" valign="top">
             <b>4</b> Modellierungsprojekt
             <ol>
