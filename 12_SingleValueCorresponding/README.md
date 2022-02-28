@@ -107,7 +107,7 @@ Stammraum? Für diese Anzahl werden einfach die Anzahl der Datensätze in der St
 |5AKKUI|A2.04|78|48|61.53|
 |6AKKUI|A2.04|60|44|73.33|
 
-**(6)** Welche Lehrer verdienen über 2500 Euro mehr als die Lehrer, die nachher in
+**(6)** Welche Lehrer verdienen über 2000 Euro mehr als die Lehrer, die nachher in
 die Schule eingetreten sind (Eintrittsjahr > Eintrittsjahr des Lehrers)?
 
 |L_NR|L_NAME|L_VORNAME|L_GEHALT|L_EINTRITTSJAHR|AVGGEHALTJUENGERE|
