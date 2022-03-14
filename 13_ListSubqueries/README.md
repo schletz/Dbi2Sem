@@ -105,11 +105,24 @@ SELECT 1 WHERE 'B' NOT IN ('A', NULL); -- Liefert kein Ergebnis, denn B ist viel
 
 Alternativ kann auch mit *COALESCE()* gearbeitet werden, um NULL Werte zu vermeiden:
 
+**SQLite**
+
 ```sql
 SELECT *
 FROM Raum r
 WHERE r.R_ID NOT IN (SELECT COALESCE(s.St_Raum, '?') FROM Stunde s WHERE s.St_Gegenstand = 'DBI1');
 ```
+
+**Oracle**
+
+```sql
+SELECT *
+FROM Raum r
+WHERE r.R_ID NOT IN (SELECT COALESCE(s.St_Raum, N'?') FROM Stunde s WHERE s.St_Gegenstand = 'DBI1');
+```
+
+Hinweis: Das N in der Abfrage für Oracle bedeutet Unicode und ist notwendig, da das Feld *St_Raum*
+vom Typ *NVARCHAR2* ist.
 
 ## Abfragen mit "für alle": ein bisschen Aussagenlogik
 
@@ -183,7 +196,7 @@ verwendet werden. Das folgende Beispiel liefert die Liste aller Räume, in denen
 ```sql
 SELECT *
 FROM Raum r
-WHERE EXISTS (SELECT * FROM Stunde s WHERE s.St_Raum == r.R_ID);
+WHERE EXISTS (SELECT * FROM Stunde s WHERE s.St_Raum = r.R_ID);
 ```
 
 Andere Beispiele sind:
@@ -202,7 +215,7 @@ WHERE NOT EXISTS(SELECT * FROM Schueler s WHERE s.S_Klasse = k.K_Nr);
 -- Die Räume, in denen DBI1 unterrichtet wird, werden durch folgende Abfrage geliefert:
 SELECT *
 FROM Raum r
-WHERE EXISTS (SELECT * FROM Stunde s WHERE s.St_Raum == r.R_ID AND s.St_Gegenstand == 'DBI1');
+WHERE EXISTS (SELECT * FROM Stunde s WHERE s.St_Raum = r.R_ID AND s.St_Gegenstand = 'DBI1');
 ```
 
 ### EXISTS oder IN?
@@ -258,46 +271,48 @@ Arbeiten Sie mit der Menge der Klassen, in denen NW2 unterrichtet wird.
 | 5CHIF | HIF         |
 | 5EHIF | HIF         |
 
-**(2)** Welche Gegenstände werden gar nicht geprüft? Lösen Sie die Aufgabe mit einem LEFT JOIN und danach
+**(2)** Welche Gegenstände, die mit x enden (z. B. DUKx, INFIx) werden gar nicht geprüft? Lösen Sie die Aufgabe mit einem LEFT JOIN und danach
 mit einer Unterabfrage. Hinweis: Arbeiten Sie mit der Menge der Gegenstände, die in der
 Prüfungstabelle eingetragen sind.
 
-60 Gegenstände: AINF, APT1, BETP_2y, BMG2, BMSVx, BMSVy, DAKO, DIWE, DUKx, EW1y, EWD, FCAS, FCC, FEPy, FOEKUE, GUG, INF1y, INFIx, INFIy, INSI_1, INSI_1y, INSY, ITPR, KWI, M2, MEDTx, MEP_3, MET1, MET1x, MET1y, MGINx, MGT, MPANx, MPANy, MPJx-E, MPJy, MT, MTAIx, MTAIy, MTIN, MTx, MTy, NSCS_1, NSCS_1x, NSCS_1y, NWESx-E, NWG2, NWTE, POS1z, POSx-E, SWP1y, SYT, SYTCP_4A, SYTx, SYTy, TE1, UFW_2, WMC_1y, WPT_3, WPT_4
+| G_NR    | G_BEZ                                                            |
+| ------- | ---------------------------------------------------------------- |
+| BMSVx   | Biomedizinische Signalverarbeitung, x-Gruppe                     |
+| DUKx    | Deutsch u. Komm.                                                 |
+| INFIx   | Informatik und Informationssysteme X-Gruppe                      |
+| MEDTx   | Medientechnik x-Gruppe                                           |
+| MET1x   | Maschinen- und Elektrotechnik                                    |
+| MGINx   | Medizin- und Gesundheitsinformatik x-Gruppe                      |
+| MPANx   | Medienproduktion - Animation x-Gruppe                            |
+| MTAIx   | Medientechnologie - Animation und Angewandte Informatik x-Gruppe |
+| MTx     | Mechanische Technologie X-Gruppe                                 |
+| NSCS_1x | Netzwerksysteme und Cyber Security x-Gruppe                      |
+| SYTx    | Systemtechnik x-Gruppe                                           |
+
 
 **(3)** Welche Gegenstände werden nur praktisch geprüft (*P_Art* ist p)? Können Sie die Aufgabe auch mit
 LEFT JOIN lösen? Begründen Sie wenn nicht. Hinweis: Arbeiten Sie mit der Menge der Gegenstände,
 die NICHT praktisch geprüft werden. Betrachten Sie außerdem nur Gegenstände, die überhaupt geprüft
 werden. Würden Gegenstände, die gar nicht geprüft werden, sonst aufscheinen? Macht das einen
-(aussagenlogischen) Sinn? Vorsicht, denn es gibt auch Prüfungen mit Prüfungsart NULL.
+(aussagenlogischen) Sinn? Vorsicht, denn es gibt auch Prüfungen mit Prüfungsart NULL. Falls ein
+Gegenstand die Prüfungsart NULL bei einer Prüfung besitzt, ist er nicht aufzulisten.
 
-| G_NR    | G_BEZ                                          |
-| ------- | ---------------------------------------------- |
-| BMSV    | Biomedizinische Signalverarbeitung             |
-| BWM3    | Betriebswirtschaft und Management              |
-| CABS_4a | Computerarchitektur und Betriebssysteme        |
-| DAT     | Darstellungstechniken                          |
-| DBI1    | Datenbank- und Informationssysteme             |
-| DBI1x   | Datenbank- und Informationssysteme x-Gruppe    |
-| DBI1y   | Datenbank- und Informationssysteme y-Gruppe    |
-| DBI2x   | Datenbank- und Informationssysteme x-Gruppe    |
-| DBI2y   | Datenbank- und Informationssysteme y-Gruppe    |
-| DEST    | DESIGNTHEORIE                                  |
-| FEPx    | Freifach English Perfectionist                 |
-| FWD     | Freigegenstand Web Development                 |
-| GAD     | Wahlpflichtgegenstand Game Development         |
-| INSYx   | Informationssysteme x-Gruppe                   |
-| IOT     | Wahlpflichtgegenstand Internet of Things       |
-| KOM1    | Kommunikation                                  |
-| MISx    | Medizinische Informationssysteme, x-Gruppe     |
-| MISy    | Medizinische Informationssysteme, y-Gruppe     |
-| MWI2    | Medienwirtschaft                               |
-| NWES    | Netzwerke und Embedded Systems                 |
-| NWESy   | Netzwerke und Embedded Systems                 |
-| NWT_1y  | Netzwerktechnik y-Gruppe                       |
-| NWT_4A  | Netzwerktechnik - Computerpraktikum            |
-| POS1    | Programmieren und Softwareengineering          |
-| POS1x   | Programmieren und Softwareengineering x-Gruppe |
-| POS1y   | Programmieren und Softwareengineering y-Gruppe |
+| G_NR   | G_BEZ                                          |
+| ------ | ---------------------------------------------- |
+| DBI1   | Datenbank- und Informationssysteme             |
+| DBI1x  | Datenbank- und Informationssysteme x-Gruppe    |
+| DBI1y  | Datenbank- und Informationssysteme y-Gruppe    |
+| DBI2x  | Datenbank- und Informationssysteme x-Gruppe    |
+| DBI2y  | Datenbank- und Informationssysteme y-Gruppe    |
+| GAD    | Wahlpflichtgegenstand Game Development         |
+| INSYx  | Informationssysteme x-Gruppe                   |
+| KOM1   | Kommunikation                                  |
+| NWES   | Netzwerke und Embedded Systems                 |
+| NWESy  | Netzwerke und Embedded Systems                 |
+| NWT_1y | Netzwerktechnik y-Gruppe                       |
+| POS1   | Programmieren und Softwareengineering          |
+| POS1x  | Programmieren und Softwareengineering x-Gruppe |
+| POS1y  | Programmieren und Softwareengineering y-Gruppe |
 
 
 **(4)** Gibt es Prüfungen im Fach BWM, die von Lehrern abgenommen wurden, die die Klasse gar nicht
