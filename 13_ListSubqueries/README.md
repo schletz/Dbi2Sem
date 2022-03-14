@@ -251,9 +251,18 @@ Bearbeiten Sie die folgenden Abfragen.
 **(1)** In welchen Klassen der Abteilung HIF kommt das Fach NW2 nicht im Stundenplan vor? Hinweis:
 Arbeiten Sie mit der Menge der Klassen, in denen NW2 unterrichtet wird.
 
+| K_NR  | K_ABTEILUNG |
+| ----- | ----------- |
+| 5AHIF | HIF         |
+| 5BHIF | HIF         |
+| 5CHIF | HIF         |
+| 5EHIF | HIF         |
+
 **(2)** Welche Gegenstände werden gar nicht geprüft? Lösen Sie die Aufgabe mit einem LEFT JOIN und danach
 mit einer Unterabfrage. Hinweis: Arbeiten Sie mit der Menge der Gegenstände, die in der
 Prüfungstabelle eingetragen sind.
+
+60 Gegenstände: AINF, APT1, BETP_2y, BMG2, BMSVx, BMSVy, DAKO, DIWE, DUKx, EW1y, EWD, FCAS, FCC, FEPy, FOEKUE, GUG, INF1y, INFIx, INFIy, INSI_1, INSI_1y, INSY, ITPR, KWI, M2, MEDTx, MEP_3, MET1, MET1x, MET1y, MGINx, MGT, MPANx, MPANy, MPJx-E, MPJy, MT, MTAIx, MTAIy, MTIN, MTx, MTy, NSCS_1, NSCS_1x, NSCS_1y, NWESx-E, NWG2, NWTE, POS1z, POSx-E, SWP1y, SYT, SYTCP_4A, SYTx, SYTy, TE1, UFW_2, WMC_1y, WPT_3, WPT_4
 
 **(3)** Welche Gegenstände werden nur praktisch geprüft (*P_Art* ist p)? Können Sie die Aufgabe auch mit
 LEFT JOIN lösen? Begründen Sie wenn nicht. Hinweis: Arbeiten Sie mit der Menge der Gegenstände,
@@ -261,38 +270,122 @@ die NICHT praktisch geprüft werden. Betrachten Sie außerdem nur Gegenstände, 
 werden. Würden Gegenstände, die gar nicht geprüft werden, sonst aufscheinen? Macht das einen
 (aussagenlogischen) Sinn? Vorsicht, denn es gibt auch Prüfungen mit Prüfungsart NULL.
 
+| G_NR    | G_BEZ                                          |
+| ------- | ---------------------------------------------- |
+| BMSV    | Biomedizinische Signalverarbeitung             |
+| BWM3    | Betriebswirtschaft und Management              |
+| CABS_4a | Computerarchitektur und Betriebssysteme        |
+| DAT     | Darstellungstechniken                          |
+| DBI1    | Datenbank- und Informationssysteme             |
+| DBI1x   | Datenbank- und Informationssysteme x-Gruppe    |
+| DBI1y   | Datenbank- und Informationssysteme y-Gruppe    |
+| DBI2x   | Datenbank- und Informationssysteme x-Gruppe    |
+| DBI2y   | Datenbank- und Informationssysteme y-Gruppe    |
+| DEST    | DESIGNTHEORIE                                  |
+| FEPx    | Freifach English Perfectionist                 |
+| FWD     | Freigegenstand Web Development                 |
+| GAD     | Wahlpflichtgegenstand Game Development         |
+| INSYx   | Informationssysteme x-Gruppe                   |
+| IOT     | Wahlpflichtgegenstand Internet of Things       |
+| KOM1    | Kommunikation                                  |
+| MISx    | Medizinische Informationssysteme, x-Gruppe     |
+| MISy    | Medizinische Informationssysteme, y-Gruppe     |
+| MWI2    | Medienwirtschaft                               |
+| NWES    | Netzwerke und Embedded Systems                 |
+| NWESy   | Netzwerke und Embedded Systems                 |
+| NWT_1y  | Netzwerktechnik y-Gruppe                       |
+| NWT_4A  | Netzwerktechnik - Computerpraktikum            |
+| POS1    | Programmieren und Softwareengineering          |
+| POS1x   | Programmieren und Softwareengineering x-Gruppe |
+| POS1y   | Programmieren und Softwareengineering y-Gruppe |
+
+
 **(4)** Gibt es Prüfungen im Fach BWM, die von Lehrern abgenommen wurden, die die Klasse gar nicht
 unterrichten? Hinweis: Arbeiten Sie über die Menge der Lehrer, die den angezeigten Schüler unterrichten.
 
+| P_DATUMZEIT             | P_PRUEFER | P_GEGENSTAND | P_KANDIDAT | S_ZUNAME    | S_VORNAME | S_KLASSE |
+| ----------------------- | --------- | ------------ | ---------- | ----------- | --------- | -------- |
+| 2022-03-04 10:00:00.000 | ENU       | BWM          | 1889       | Greenfelder | Gayle     | 5BKIF    |
+| 2022-05-28 18:50:00.000 | BEP       | BWM          | 1775       | Ledner      | Lester    | 3BKIF    |
+| 2022-05-28 08:05:00.000 | HAU       | BWM          | 1782       | Muller      | Jo        | 3BKIF    |
+| 2022-01-18 19:00:00.000 | HAU       | BWM          | 1947       | Brown       | Gwen      | 5BAIF    |
+| 2022-05-06 10:05:00.000 | ENU       | BWM          | 3428       | Tremblay    | Angelina  | 7BBIF    |
+
 **(5)** Für die Maturaaufsicht in POS werden Lehrer benötigt, die zwar in POS (Filtern nach POS%) unterrichten,
 aber in keiner 5. HIF Klasse (*K_Schulstufe* ist 13 und *K_Abteilung* ist HIF) sind.
+
+| L_NR | L_NAME       | L_VORNAME |
+| ---- | ------------ | --------- |
+| BAM  | Balluch      | Manfred   |
+| BOM  | Boltz        | Michael   |
+| CHA  | Chwatal      | Andreas   |
+| FZ   | Fanzott      | Leo       |
+| GRG  | Graf         | Georg     |
+| HAV  | Havranek     | Ivo       |
+| HOV  | Hofbauer     | Volker    |
+| LC   | Lackinger    | Doris     |
+| MOH  | Moritsch     | Hans      |
+| PUW  | Puchhammer   | Wolfgang  |
+| PUZ  | Puljic       | Zeljko    |
+| RX   | Renkin       | Max       |
+| SCG  | Schildberger | Gerald    |
+| SLM  | Schlag       | Martin    |
+| TOF  | Tonti        | Fabio     |
+| TT   | Tschernko    | Thomas    |
+| WES  | Weselsky     | Rainer    |
+| WW   | Wögerer      | Wolfgang  |
+| WZR  | Wenz         | Renè      |
+
 
 **(6)** Lösen Sie das vorige Beispiel mit anderen Bedingungen: Geben Sie die Lehrer aus, die weder
 in einer 1. Klasse (*K_Schulstufe* ist 13) noch in einer HIF Klasse (*K_Abteilung* ist HIF) unterrichten.
 Wie ändert sich Ihre Abfrage?
 
+| L_NR | L_NAME   | L_VORNAME |
+| ---- | -------- | --------- |
+| BAM  | Balluch  | Manfred   |
+| CHA  | Chwatal  | Andreas   |
+| GRG  | Graf     | Georg     |
+| SLM  | Schlag   | Martin    |
+| TOF  | Tonti    | Fabio     |
+| WES  | Weselsky | Rainer    |
+| WZR  | Wenz     | Renè      |
+
+
 **(7)** Welche Klassen der HIF Abteilung haben auch in den Abendstunden (*Stundenraster.Str_IstAbend* = 1)
 Unterricht?
 
-**(8)** Welche Lehrer haben Montag und Freitag frei, also keinen Unterricht an diesen Tagen in der
-Stundentabelle? Anmerkung, die nichts mit der Lösung zu tun hat: Religion und die Freifächer
-wurden - in Abweichung zu den Realdaten - nicht importiert.
+| K_NR  | ABT_NR |
+| ----- | ------ |
+| 4AHIF | HIF    |
+| 4BHIF | HIF    |
+| 4CHIF | HIF    |
+| 4EHIF | HIF    |
+| 5AHIF | HIF    |
+| 5CHIF | HIF    |
 
-**(9)** Wie das vorherige Beispiel, allerdings sollen nur Lehrer, die auch Stunden haben (also in der
-Tabelle Stunden überhaupt vorkommen), berücksichtigt werden? Anmerkung, die nichts mit der Lösung
-zu tun hat: Religion und die Freifächer wurden  - in Abweichung zu den Realdaten - nicht importiert.
 
-**(10)** Schwer, sozusagen ein SQL Hyperstar Problem: Welche Klassenvorstände unterrichten nur
-in Abteilungen, die auch der Klasse
-entsprechen, von der sie Klassenvorstand sind? Diese Abfrage hat eine besondere Schwierigkeit: Da
-Lehrer auch von mehreren Klassen Klassenvorstand sein können, die in verschiedenen Abteilungen sein
-können (z. B. Tag und Abend) brauchen Sie hier geschachtelte Unterabfragen.
+**(8)** Welche Lehrer haben Montag (ST_TAG = 1) und Freitag (ST_TAG = 5) frei, also keinen Unterricht an diesen Tagen in der
+Stundentabelle? Die angeführten Lehrer müssen an allen anderen Tagen (DI, MI, DO) Unterricht haben.
 
-1. Das Problem ist durch eine Negierung zu lösen, da IN den Existenzquantor darstellt, und wir hier
-   einen Allquantor brauchen.
-2. Finden Sie zuerst heraus, in welchen Abteilungen der Lehrer KV ist.
-3. Finden Sie die Lehrer heraus, die nicht in der Liste der Abteilungen aus (2) unterrichten.
-4. Der Lehrer darf nicht in der Liste von (3) vorkommen.
-5. Betrachten Sie zum Schluss nur die Lehrer, die auch KV sind. Lehrer, die kein KV sind, würden
-   nämlich aussagenlogisch auch nur in Abteilungen unterrichten, von denen sie KV sind.
-   
+| L_NR | L_NAME   | L_VORNAME   |
+| ---- | -------- | ----------- |
+| DM   | Danek    | Manuela     |
+| JUB  | Juvancz  | Balint Mate |
+| POL  | Popl     | Louise      |
+| SAK  | Sazma    | Katja       |
+| STA  | Stach    | Andreas     |
+| STS  | Steiner  | Sigmund     |
+| UMI  | Umile    | Doris       |
+| WES  | Weselsky | Rainer      |
+
+
+**(9)** Welche Lehrer haben am MI (ST_TAG = 3) in der 2. Stunde frei, also keinen Unterricht? Beachten Sie,
+dass die Lehrer davor (1. Stunde) und danach (nach der 2. Stunde) am MI auch Unterricht haben
+müssen. Sonst ist es nämlich keine Freistunde wenn der Lehrer z. B. erst zur 6. Stunde beginnt.
+
+| L_NR | L_NAME        | L_VORNAME |
+| ---- | ------------- | --------- |
+| AF   | Akyildiz      | Fatma     |
+| POL  | Popl          | Louise    |
+| POP  | Pötscher-Prem | Karin     |
