@@ -51,19 +51,20 @@ in der Supervisions Tabelle?
 **(4)** Gibt es Kollisionen in der Aufsichtsplanung, d. h. ein Lehrer hat zur gleichen Zeit im selben
 Fach mehrere Aufsichten eingeteilt? Hinweis: Lösen Sie mit einer Gruppierung und mit HAVING.
 
-| LessonNumber | TeacherShortname | RoomShortname | SubjectShortname |
-| ------------ | ---------------- | ------------- | ---------------- |
-| 1            | CLE              | B3.11         | FT               |
-| 1            | KLE              | B4.07         | D                |
-| 1            | KRO              | B3.06         | D                |
-| 1            | ROG              | B3.11         | E                |
-| 3            | ROG              | B4.08         | FT               |
-| 5            | CLE              | B3.06         | D                |
-| 5            | DAI              | B3.07         | D                |
-| 5            | KON              | B3.11         | FT               |
-| 7            | DAI              | B3.06         | FT               |
-| 7            | GOL              | B3.07         | AM               |
-| 7            | RAN              | B3.07         | FT               |
+| TeacherShortname | LessonNumber | SubjectShortname |
+| ---------------- | ------------ | ---------------- |
+| CLE              | 1            | FT               |
+| CLE              | 5            | D                |
+| DAI              | 5            | D                |
+| DAI              | 7            | FT               |
+| GOL              | 7            | AM               |
+| KLE              | 1            | D                |
+| KON              | 5            | FT               |
+| KRO              | 1            | D                |
+| RAN              | 7            | FT               |
+| ROG              | 1            | E                |
+| ROG              | 3            | FT               |
+
 
 **(5)** Welche Lehrer haben in allen Gegenständen (Shortname ist D, E, FT und AM) mindestens eine Stunde Aufsicht?
 
