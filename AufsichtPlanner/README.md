@@ -4,7 +4,7 @@ Klasse: 4CAIF
 Datum: 4. Mai 2022  
 Thema: Unterabfragen in SQL
 
-Aktuell findet an unserer Schule die Klausurprüfungen in Deutsch, Englisch, Mathematik und
+Aktuell finden an unserer Schule die Klausurprüfungen in Deutsch, Englisch, Mathematik und
 Fachtheorie statt. Die Prüfungen finden in mehreren Räumen statt. Pro Tag wird 1 Gegenstand
 geprüft. Natürlich muss auch eine Aufsicht (Supervision) dafür eingeplant werden. Diese Aufsicht ist eine
 Lehrkraft, die im Raum anwesend ist.
