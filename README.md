@@ -8,14 +8,14 @@
     </tr>
     <tr>
         <td colspan="2" rowspan="2" valign="top">
-            <b>1</b> Erweitertes SQL
+            <b>1 Erweitertes SQL</b>
             <ol>
                 <li><a href="11_SingleValueNonCorresponding">Nicht korrelierte Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="12_SingleValueCorresponding">Korrelierte Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
                 <li><a href="14_FromSubqueries">Views und Unterabfragen in FROM</a></li>
             </ol>
-            <b> Übungen</b>
+            <b>Übungen</b>
             <ol>
                 <li><a href="AufsichtPlanner">Matura Aufsichtsplanung</a></li>
                 <li><a href="Lieferservice">Lieferservice</a></li>
@@ -24,7 +24,7 @@
             </ol>            
         </td>    
         <td valign="top">
-            <b>2</b> Bereich Datenbankadministration
+            <b>2 Bereich Datenbankadministration</b>
             <ol>
                 <li><a href="01_OracleVM/03_Docker/README.md">Oracle als Docker Image</li>
                 <li><a href="21_Null">Umgang mit NULL</a></li>
@@ -33,7 +33,7 @@
             </ol>
         </td>              
         <td colspan="2" valign="top">
-            <b>3</b> ER Modellierung
+            <b>3 ER Modellierung</b>
             <ol>
                 <li><a href="31_Normalisierung">Normalformen</a></li>
                 <li><a href="32_Generalisierung">Generalisierung</a></li>
