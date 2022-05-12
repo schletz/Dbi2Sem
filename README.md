@@ -15,6 +15,13 @@
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
                 <li><a href="14_FromSubqueries">Views und Unterabfragen in FROM</a></li>
             </ol>
+            <b> Übungen</b>
+            <ol>
+                <li><a href="AufsichtPlanner">Matura Aufsichtsplanung</a></li>
+                <li><a href="Lieferservice">Lieferservice</a></li>
+                <li><a href="Onlineshop">Onlineshop</a></li>
+                <li><a href="WienerlinienDb">WienerlinienDb</a></li>
+            </ol>            
         </td>    
         <td valign="top">
             <b>2</b> Bereich Datenbankadministration
