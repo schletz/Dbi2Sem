@@ -1,4 +1,4 @@
-# DBI im 2. Semester bzw. im III. und IV. Jahrgang
+# DBI im 4. Semester bzw. im III. und IV. Jahrgang
 
 ## Lehrinhalte
 
