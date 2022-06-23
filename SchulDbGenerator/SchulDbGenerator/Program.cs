@@ -12,7 +12,7 @@ namespace SchulDbGenerator
         static DbContextOptions<SchuleContext> GetOptions()
         {
             var builder = new DbContextOptionsBuilder<SchuleContext>();
-            Console.WriteLine("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE");
+            Console.WriteLine("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE   [5] SQL Server Docker Image");
             string dbType = Console.ReadLine();
             dbType = string.IsNullOrEmpty(dbType) ? "1" : dbType;
 
@@ -32,6 +32,16 @@ namespace SchulDbGenerator
                                 $"AttachDBFilename={System.Environment.CurrentDirectory}\\{dbName}.mdf;" +
                                 $"Database={dbName};" +
                                 $"Trusted_Connection=True;MultipleActiveResultSets=true");
+            }
+            else if (dbType == "5")
+            {
+                Console.WriteLine("Gib das sa Passwort ein, das beim Erstellen des Containers verwendet wurde (Default: SqlServer2019).");
+                string password = Console.ReadLine();
+                password = string.IsNullOrEmpty(password) ? "SqlServer2019" : password;
+                Console.Write("Wie soll die Datenbank heißen? Default: SchulDb ");
+                string dbName = Console.ReadLine();
+                dbName = string.IsNullOrEmpty(dbName) ? "SchulDb" : dbName;
+                builder.UseSqlServer($"Server=127.0.0.1,1433;Initial Catalog={dbName};User Id=sa;Password={password}");
             }
             else if (dbType == "3" || dbType == "4")
             {

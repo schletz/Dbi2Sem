@@ -28,17 +28,9 @@ dotnet run -c Release
 ```
 
 Das Programm fragt ab, welche Datenbank Sie anlegen möchten. Es kann eine SQLite Datei, eine SQL
-Server Datenbank (LocalDb) oder eine Oracle Datenbank angelegt werden.
+Server Datenbank (LocalDb oder Docker Image) oder eine Oracle Datenbank angelegt werden.
 
 ```text
-Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE  
+Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE   [5] SQL Server Docker Image
 ```
 
-- Um sich zur SQLite Datenbank zu verbinden, öffnen Sie DBeaver oder DataGrip und wählen eine SQLite
-  Verbindung.
-- Für den Zugriff auf die SQL Server Datenbank benötigen Sie das
-  [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver15).
-  Dort können Sie sich zum Server *(LocalDb)\MSSQLLocalDB* (Windows Authentication) verbinden.
-- Für die Verwendung der Oracle Datenbank muss die Virtuelle Maschine vor der Generierung natürlich
-  gestartet werden. Nachdem die Datenbank erzeugt wurde, können Sie sich mit dem angezeigten
-  Benutzerdaten verbinden.

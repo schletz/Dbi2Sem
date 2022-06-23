@@ -55,30 +55,25 @@
 
 ## Informationen zum Start
 
-- [Download und Konfiguration der VM](01_OracleVM/README.md) **oder** [Oracle 21 XE als Docker Image](01_OracleVM/03_Docker/README.md)
+### Auf Basis von Oracle (Kollegs)
+
+- [Oracle 21 XE als Docker Image](01_OracleVM/03_Docker/README.md)
 - [Installation von DBeaver](01_OracleVM/01_Dbeaver/README.md)
-- [Optional: Installation von JetBrains DataGrip](01_OracleVM/02_DataGrip/README.md)
-- [Installation von erwin Data Modeler](02_ErWin/README.md)
+- [Anlegen der Musterdatenbank (SchulDb) in Oracle](SchulDbGenerator/README.md)
+
+### Auf Basis von SQL Server
+- [SQL Server als Docker Image](01_SQLServer/README.md)
+- [Anlegen der Musterdatenbank (SchulDb) in SQL Server](SchulDbGenerator/README.md)
+
+
+### Optionale Punkte
+- [Installation von JetBrains DataGrip](01_OracleVM/02_DataGrip/README.md)
 - [Installation von PlantUML in VS Code](03_PlantUml/README.md)
-- [Anlegen der Musterdatenbank (SchulDb)](SchulDbGenerator/README.md)
 
-## Die verwendete Schuldatenbank
 
-- [Download als SQLite Datenbank](Schule.db)
-- [Download als Sql Server (LocalDB) Datenbank](Schule.mdf)
+Optional kann die Schuldatenbank auch als [SQLite Datenbank](Schule.db) geladen werden. Dies ist
+nur eine Notmaßnahme.
 
-Um die SQL Server Datenbank zu verwenden, müssen Sie sich im SQL Server Management Studio (SSMS)
-zur LocalDB mit dem Servernamen *(LocalDb)\MSSQLLocalDB* (Windows Authentifizierung) verbinden.
-Danach hängen Sie die Datei mit folgender Abfrage ein:
-
-```sql
-USE [master]
-GO
-CREATE DATABASE [Schule] ON (FILENAME = N'C:\PATH\Schule.mdf') FOR ATTACH
-GO
-```
-
-![](schuldb20200209.png)
 
 ## Synchronisieren des Repositories in einen Ordner
 
