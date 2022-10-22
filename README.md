@@ -74,6 +74,9 @@
 Optional kann die Schuldatenbank auch als [SQLite Datenbank](Schule.db) geladen werden. Dies ist
 nur eine Notmaßnahme.
 
+## Die Schuldatenbank
+
+![](schuldb20200209.png)
 
 ## Synchronisieren des Repositories in einen Ordner
 
