@@ -12,10 +12,14 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        var (success, options) = args.Length > 0 && args[0].ToLower() == "sqlserver" 
-            ? OracleSqlserverContext.GetSqlServerConnection("Aufsicht")
-            : OracleSqlserverContext.GetOracleConnection("Aufsicht", "oracle");
-        if (!success) { return; }
+        if (args.Length < 1)
+        {
+            Console.Error.WriteLine("Missing args.");
+            Console.Error.WriteLine("Usage: dotnet run -- (sqlserver|oracle|sqlite)");
+            return;
+        }
+        var options = MultiDbContext.GetConnectionInteractive(dbms: args[0].ToLower(), database: "Aufsicht");
+        if (options is null) { return; }
         using var db = new AufsichtContext(options);
         db.Database.EnsureDeleted();
         db.Database.EnsureCreated();
@@ -70,7 +74,7 @@ public class Supervision
 }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-public class AufsichtContext : OracleSqlserverContext
+public class AufsichtContext : MultiDbContext
 {
     public AufsichtContext(DbContextOptions opt) : base(opt)
     { }

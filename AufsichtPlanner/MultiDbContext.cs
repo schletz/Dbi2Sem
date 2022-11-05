@@ -9,22 +9,55 @@ using System.Threading.Tasks;
 
 namespace AufsichtPlanner
 {
-    public class OracleSqlserverContext : DbContext
+    public class MultiDbContext : DbContext
     {
-        public static (bool success, DbContextOptions options) GetSqlServerConnection(string database, string saPassword = "SqlServer2019")
+        /// <summary>
+        /// Liest das Adminpasswort von der Konsole und gibt je nach übergebenem DBMS die
+        /// DbContextOptions zurück.
+        /// </summary>
+        public static DbContextOptions? GetConnectionInteractive(string dbms, string database)
+        {
+            string adminPassword = dbms switch { "sqlserver" => "SqlServer2019", "oracle" => "oracle", _ => string.Empty };
+            if (!string.IsNullOrEmpty(adminPassword))
+            {
+                Console.Write($"Admin Password for {dbms} database (default: {adminPassword}): ");
+                var line = Console.ReadLine();
+                adminPassword = string.IsNullOrEmpty(line) ? adminPassword : line;
+            }
+            return dbms switch
+            {
+                "sqlserver" => GetSqlServerConnection(database, adminPassword),
+                "oracle" => GetOracleConnection(database, "oracle", adminPassword),
+                _ => GetSqliteConnection(database),
+            };
+
+        }
+        private static DbContextOptions GetSqliteConnection(string database)
         {
             Console.WriteLine("*********************************************************");
             Console.WriteLine("Du kannst dich nun mit folgenden Daten verbinden:");
+            Console.WriteLine($"Dateiname der SQLIte Datenbank: {database}.db");
+            Console.WriteLine("*********************************************************");
+
+            return new DbContextOptionsBuilder()
+                .UseSqlite($"Data Source={database}.db")
+                .Options;
+        }
+
+        private static DbContextOptions GetSqlServerConnection(string database, string saPassword = "SqlServer2019")
+        {
+            Console.WriteLine("**************************************************************************");
+            Console.WriteLine("Du kannst dich nun mit folgenden Daten zur SQL Server Datenbank verbinden:");
             Console.WriteLine($"   Username:      sa");
             Console.WriteLine($"   Passwort:      {saPassword}");
             Console.WriteLine($"   Database Name: {database}");
-            Console.WriteLine("*********************************************************");
+            Console.WriteLine("**************************************************************************");
 
-            return (true, new DbContextOptionsBuilder()
+            return new DbContextOptionsBuilder()
                 .UseSqlServer($"Server=127.0.0.1,1433;Initial Catalog={database};User Id=sa;Password={saPassword}")
-                .Options);
+                .Options;
         }
-        public static (bool success, DbContextOptions options) GetOracleConnection(string username, string password, string systemPassword = "oracle")
+        private static DbContextOptions? GetOracleConnection(string username, string password, string systemPassword = "oracle")
         {
             try
             {
@@ -32,7 +65,7 @@ namespace AufsichtPlanner
                     .UseOracle($"User Id=System;Password={systemPassword};Data Source=localhost:1521/XEPDB1")
                     .Options;
 
-                using (var sysDb = new OracleSqlserverContext(sysOpt))
+                using (var sysDb = new MultiDbContext(sysOpt))
                 {
                     try { sysDb.Database.ExecuteSqlRaw("DROP USER " + username + " CASCADE"); }
                     catch (Exception e)
@@ -43,25 +76,25 @@ namespace AufsichtPlanner
                     sysDb.Database.ExecuteSqlRaw("GRANT CONNECT, RESOURCE, CREATE VIEW TO " + username);
                     sysDb.Database.ExecuteSqlRaw("GRANT UNLIMITED TABLESPACE TO " + username);
                 }
-                Console.WriteLine("*********************************************************");
-                Console.WriteLine("Du kannst dich nun mit folgenden Daten verbinden:");
+                Console.WriteLine("**********************************************************************");
+                Console.WriteLine("Du kannst dich nun mit folgenden Daten zur Oracle Datenbank verbinden:");
                 Console.WriteLine($"   Username:     {username}");
                 Console.WriteLine($"   Passwort:     {password}");
                 Console.WriteLine($"   Service Name: XEPDB1");
-                Console.WriteLine("*********************************************************");
-                return (true, new DbContextOptionsBuilder()
+                Console.WriteLine("**********************************************************************");
+                return new DbContextOptionsBuilder()
                     .UseOracle($"User Id={username};Password={password};Data Source=localhost:1521/XEPDB1")
-                    .Options);
+                    .Options;
             }
             catch (Exception e)
             {
                 Console.Error.WriteLine("Fehler beim Löschen und neu Anlegen des Oracle Benutzers.");
                 Console.Error.WriteLine("Fehlermeldung: " + e.Message);
-                return (false, new DbContextOptionsBuilder().Options);
+                return null;
             }
         }
 
-        public OracleSqlserverContext(DbContextOptions opt) : base(opt)
+        public MultiDbContext(DbContextOptions opt) : base(opt)
         {
 
         }

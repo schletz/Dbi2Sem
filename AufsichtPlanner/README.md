@@ -35,7 +35,7 @@ chmod a+x dotnet_install.sh
 
 mkdir $HOME/aufsichtPlanner
 cd $HOME/aufsichtPlanner
-for srcfile in AufsichtPlanner.csproj OracleSqlServerDbContext.cs Program.cs
+for srcfile in AufsichtPlanner.csproj MultiDbContext.cs Program.cs
 do
     $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/$srcfile > $srcfile
 done
