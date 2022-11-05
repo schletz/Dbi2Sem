@@ -17,6 +17,7 @@ namespace AufsichtPlanner
         /// </summary>
         public static DbContextOptions? GetConnectionInteractive(string dbms, string database)
         {
+            Console.Clear();
             string adminPassword = dbms switch { "sqlserver" => "SqlServer2019", "oracle" => "oracle", _ => string.Empty };
             if (!string.IsNullOrEmpty(adminPassword))
             {
