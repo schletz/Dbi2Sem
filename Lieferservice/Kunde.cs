@@ -10,14 +10,14 @@ namespace Lieferservice
         public int KundeId { get; set; }
         [Required]
         [MaxLength(255)]
-        public string Vorname { get; set; }
+        public string Vorname { get; set; } = default!;
         [Required]
         [MaxLength(255)]
-        public string Zuname { get; set; }
+        public string Zuname { get; set; } = default!;
         [Required]
         [MaxLength(255)]
-        public string Email { get; set; }
-        public List<Bestellung> Bestellungen { get; set; }
+        public string Email { get; set; } = default!;
+        public List<Bestellung> Bestellungen { get; set; } = default!;
     }
 
 }

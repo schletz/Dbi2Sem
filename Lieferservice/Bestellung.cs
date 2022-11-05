@@ -11,14 +11,14 @@ namespace Lieferservice
         public int BestellungId { get; set; }
         [Required]
         [MaxLength(255)]
-        public string Adresse { get; set; }
+        public string Adresse { get; set; } = default!;
         [Required]
-        public Liefergebiet Liefergebiet { get; set; }
+        public Liefergebiet Liefergebiet { get; set; } = default!;
         [Required]
-        public Kunde Kunde { get; set; }
+        public Kunde Kunde { get; set; } = default!;
         public DateTime Bestellzeit { get; set; }
         [Required]
-        public List<ProduktBestellung> ProduktBestellungen { get; set; }
+        public List<ProduktBestellung> ProduktBestellungen { get; set; } = default!;
     }
         
 }

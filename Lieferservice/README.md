@@ -2,9 +2,8 @@
 
 ## Datenbank und Schema
 
-In der Datei [Lieferservice.db](Lieferservice.db) befindet sich eine SQLite Datenbank,
-die das Backend einer kleinen Pizzaria mit Lieferservice simuliert. Diese Datenbank hat folgendes
-Schema:
+Eine Datenbank soll das Backend einer kleinen Pizzaria mit Lieferservice simulieren.
+Diese Datenbank hat folgendes Schema:
 
 ![](datenmodell.png)
 
@@ -20,6 +19,38 @@ Schema:
 - Zwischen Bestellung und Produkt stellt die Tabelle *ProduktBestellung* die Auflösung der n:m
   Beziehung dar, da eine Bestellung natürlich mehrere Produkte umfassen kann.
 
+## Generieren der Datenbank
+
+Öffne in Docker Desktop eine Shell des Oracle oder SQL Server Containers. Kopiere danach die
+folgenden Befehle aus. Sie laden die .NET 6 SDK und den Generator der Datenbank. Drücke
+*Enter*, um die Befehle auszuführen. Am Ende wirst du nach dem Admin Passwort der Datenbank
+gefragt. Hast du den Container mit den Standardpasswörtern (*oracle* für Oracle bzw. *SqlServer2019*
+für Sql Server 2019) erstellt, musst du nur *Enter* drücken.
+
+```bash
+if [ -d "/opt/oracle" ]; then 
+    DOWNLOADER="curl -s"
+    RUNCMD="export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && dotnet run -- oracle"
+else 
+    HOME=/tmp
+    DOWNLOADER="wget -q -O /dev/stdout"
+    RUNCMD="export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0 && dotnet run -- sqlserver"
+fi
+
+cd $HOME
+$DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh > dotnet_install.sh
+chmod a+x dotnet_install.sh
+. ./dotnet_install.sh
+
+mkdir -p $HOME/lieferservice
+cd $HOME/lieferservice
+for srcfile in Lieferservice.csproj Bestellung.cs Kategorie.cs Kunde.cs Liefergebiet.cs LieferserviceContext.cs MultiDbContext.cs Produkt.cs ProduktBestellung.cs Program.cs 
+do
+    $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/lieferservice/$srcfile > $srcfile
+done
+eval $RUNCMD
+```
+
 ## Bewertung und Abgabe
 
 Jede korrekt gelöste Aufgabe bekommt 1 Punkt. Eine Aufgabe gilt als korrekt gelöst, wenn
@@ -30,9 +61,6 @@ Jede korrekt gelöste Aufgabe bekommt 1 Punkt. Eine Aufgabe gilt als korrekt gel
   in der letzten Kommastelle kommen (statt 0.1 wird 0.099999999 ausgegeben). Das ist in Ordnung.  
 - Die Abfrage allgemeingültig ist, also keine fix eingetragenen Werte hat oder Sonderfälle, die
   nur in diesem Datenbestand zutreffen, verwendet.
-
-Falls Sie den Eindruck haben, dass die Musterausgabe nicht korrekt ist, vermerken Sie bitte
-Ihre Argumentation in der Abgabedatei. Dies wird dann berücksichtigt.
 
 Verwenden Sie das untenstehende Muster für Ihre SQL Datei und schreiben Sie Ihren Namen
 hinein. Schreiben Sie Ihre Lösung unter den entsprechenden Kommentar mit der Aufgabennummer.

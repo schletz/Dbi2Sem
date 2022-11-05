@@ -9,8 +9,8 @@ namespace Lieferservice
     {
         public int Plz { get; set; }
         [MaxLength(255)]
-        public string Ort { get; set; }
-        public List<Bestellung> Bestellungen { get; set; }
+        public string Ort { get; set; } = default!;
+        public List<Bestellung> Bestellungen { get; set; } = default!;
         [DataType("DECIMAL(4,2)")]
         public decimal Lieferzuschlag { get; set; }
     }

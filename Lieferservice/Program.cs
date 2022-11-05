@@ -6,7 +6,15 @@ namespace Lieferservice
     {
         static void Main(string[] args)
         {
-            using(LieferserviceContext db = new LieferserviceContext())
+            if (args.Length < 1)
+            {
+                Console.Error.WriteLine("Missing args.");
+                Console.Error.WriteLine("Usage: dotnet run -- (sqlserver|oracle|sqlite)");
+                return;
+            }
+            var options = MultiDbContext.GetConnectionInteractive(dbms: args[0].ToLower(), database: "Lieferservice");
+            if (options is null) { return; }
+            using (LieferserviceContext db = new LieferserviceContext(options))
             {
                 db.Database.EnsureDeleted();
                 db.Database.EnsureCreated();

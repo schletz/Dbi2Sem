@@ -10,10 +10,10 @@ namespace Lieferservice
         public int ProduktId { get; set; }
         [Required]
         [MaxLength(255)]
-        public string Name { get; set; }
-        public List<ProduktBestellung> ProduktBestellungen { get; set; }
+        public string Name { get; set; } = default!;
+        public List<ProduktBestellung> ProduktBestellungen { get; set; } = default!;
         [Required]
-        public Kategorie Kategorie { get; set; }
+        public Kategorie Kategorie { get; set; } = default!;
         public decimal Preis { get; internal set; }
     }
 

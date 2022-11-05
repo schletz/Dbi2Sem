@@ -8,19 +8,17 @@ using System.Linq;
 namespace Lieferservice
 {
 
-    public class LieferserviceContext : DbContext
+    public class LieferserviceContext : MultiDbContext
     {
-        public DbSet<Bestellung> Bestellungen { get; set; }
-        public DbSet<Kategorie> Kategorien { get; set; }
-        public DbSet<Kunde> Kunden { get; set; }
-        public DbSet<Liefergebiet> Liefergebiete { get; set; }
-        public DbSet<Produkt> Produkte { get; set; }
+        public DbSet<Bestellung> Bestellungen => Set<Bestellung>();
+        public DbSet<Kategorie> Kategorien => Set<Kategorie>();
+        public DbSet<Kunde> Kunden => Set<Kunde>();
+        public DbSet<Liefergebiet> Liefergebiete => Set<Liefergebiet>();
+        public DbSet<Produkt> Produkte => Set<Produkt>();
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public LieferserviceContext(DbContextOptions opt) : base(opt)
         {
-            //optionsBuilder.UseSqlServer(
-            //    @"Server=(localdb)\mssqllocaldb;Database=Lieferservice;Integrated Security=True");
-            optionsBuilder.UseSqlite("Data Source=Lieferservice.db");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -101,7 +99,7 @@ namespace Lieferservice
                     b.ProduktBestellungen = produktBestellungen
                         .GroupBy(pb => new { pb.Bestellung, pb.Produkt })
                         .Select(g => g.FirstOrDefault())
-                        .ToList();
+                        .ToList()!;
                 }
                 k.Bestellungen = bestellungen;
             }

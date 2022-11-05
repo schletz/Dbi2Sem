@@ -10,8 +10,8 @@ namespace Lieferservice
         public int KategorieId { get; set; }
         [Required]
         [MaxLength(255)]
-        public string Name { get; set; }
-        public List<Produkt> Produkte { get; set; }
+        public string Name { get; set; } = default!;
+        public List<Produkt> Produkte { get; set; } = default!;
     }
 
 }
