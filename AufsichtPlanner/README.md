@@ -21,13 +21,13 @@ Sie laden die .NET 6 SDK und den Generator der Datenbank. Danach wird der Genera
 ```bash
 curl -s https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh > dotnet_install.sh
 chmod a+x dotnet_install.sh
-./dotnet_install.sh
+. ./dotnet_install.sh
 
 mkdir $HOME/aufsichtPlanner
 cd $HOME/aufsichtPlanner
 curl -s https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.csproj > AufsichtPlanner.csproj
 curl -s https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/Program.cs > Program.cs
-export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && $HOME/dotnet/dotnet run
+dotnet run
 cd $HOME
 
 ```
