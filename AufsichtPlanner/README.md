@@ -24,11 +24,11 @@ if [ -d "/opt/oracle" ]; then
     DOWNLOADER=curl -s
     RUNCMD="dotnet run"
 else 
-    DOWNLOADER=wget
+    DOWNLOADER=wget -q -O /dev/stdout
     RUNCMD="dotnet run -- sqlserver"
 fi
 
-$DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh -O dotnet_install.sh
+$DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh > dotnet_install.sh
 chmod a+x dotnet_install.sh
 . ./dotnet_install.sh
 
@@ -36,7 +36,7 @@ mkdir /tmp/aufsichtPlanner
 cd /tmp/aufsichtPlanner
 for srcfile in AufsichtPlanner.csproj OracleSqlServerDbContext.cs Program.cs
 do
-    $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/$srcfile -O $srcfile
+    $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/$srcfile > $srcfile
 done
 $RUNCMD
 
