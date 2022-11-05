@@ -21,11 +21,11 @@ Sie laden die .NET 6 SDK und den Generator der Datenbank. Danach wird der Genera
 ```bash
 if [ -d "/opt/oracle" ]; then 
     DOWNLOADER="curl -s"
-    RUNCMD="DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1; dotnet run"
+    RUNCMD="export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && dotnet run"
 else 
     HOME=/tmp
     DOWNLOADER="wget -q -O /dev/stdout"
-    RUNCMD="DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0; dotnet run -- sqlserver"
+    RUNCMD="export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0 && dotnet run -- sqlserver"
 fi
 
 cd $HOME
@@ -33,13 +33,13 @@ $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_inst
 chmod a+x dotnet_install.sh
 . ./dotnet_install.sh
 
-mkdir /tmp/aufsichtPlanner
-cd /tmp/aufsichtPlanner
+mkdir $HOME/aufsichtPlanner
+cd $HOME/aufsichtPlanner
 for srcfile in AufsichtPlanner.csproj OracleSqlServerDbContext.cs Program.cs
 do
     $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/$srcfile > $srcfile
 done
-$RUNCMD
+eval $RUNCMD
 
 
 ```
