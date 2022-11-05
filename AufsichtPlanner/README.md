@@ -15,7 +15,8 @@ Das Datenmodell besteht aus den folgenden Tabellen:
 
 ## Generieren der Datenbank
 
-Öffne in Docker Desktop eine Shell des Oracle Containers. Führe danach die folgenden Befehle aus:
+Öffne in Docker Desktop eine Shell des Oracle Containers. Führe danach die folgenden Befehle aus.
+Sie laden die .NET 6 SDK und den Generator der Datenbank. Danach wird der Generator ausgeführt.
 
 ```bash
 cd $HOME
@@ -38,10 +39,8 @@ dotnet run
 ## Arbeitsauftrag
 
 Kopieren Sie die Vorlage unter den Beispielen in eine neue Datei. Benennen Sie diese Datei nach
-ihrem Accountnamen (z. B. *MUS123456.sql*). Öffnen Sie die Datei [Aufsicht.db](Aufsicht.db)
-in DBeaver oder einem anderen Datenbankeditor und bearbeiten die nachfolgenden Aufgaben.
-Geben Sie die gelöste Datei unkomprimiert in Microsoft Teams ab. Syntaktisch fehlerhafte
-Statements können nicht gewertet werden.
+ihrem Accountnamen (z. B. *MUS123456.sql*). Geben Sie die gelöste Datei unkomprimiert in Microsoft
+Teams ab. Syntaktisch fehlerhafte Statements können nicht gewertet werden.
 
 **(1)** In welchen Räumen gibt es keinerlei Prüfungen, d. h. es gibt keinen Datensatz
 in der Supervisions Tabelle?
