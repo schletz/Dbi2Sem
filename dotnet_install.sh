@@ -15,4 +15,4 @@ echo Installiere .NET $VERSION
 mkdir -p $HOME/dotnet && tar zxf $INSTALLFILE -C $HOME/dotnet
 export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$HOME/dotnet
-export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0
