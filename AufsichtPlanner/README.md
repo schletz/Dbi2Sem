@@ -33,7 +33,7 @@ $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_inst
 chmod a+x dotnet_install.sh
 . ./dotnet_install.sh
 
-mkdir $HOME/aufsichtPlanner
+mkdir -p $HOME/aufsichtPlanner
 cd $HOME/aufsichtPlanner
 for srcfile in AufsichtPlanner.csproj MultiDbContext.cs Program.cs
 do
