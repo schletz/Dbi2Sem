@@ -19,16 +19,27 @@ Das Datenmodell besteht aus den folgenden Tabellen:
 Sie laden die .NET 6 SDK und den Generator der Datenbank. Danach wird der Generator ausgeführt.
 
 ```bash
-curl -s https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh > dotnet_install.sh
+cd /home
+if [ -d "/opt/oracle" ]; then 
+    DOWNLOADER=curl -s
+    RUNCMD="dotnet run"
+else 
+    DOWNLOADER=wget
+    RUNCMD="dotnet run -- sqlserver"
+fi
+
+$DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh -O dotnet_install.sh
 chmod a+x dotnet_install.sh
 source ./dotnet_install.sh
 
-mkdir $HOME/aufsichtPlanner
+mkdir /home/aufsichtPlanner
 cd $HOME/aufsichtPlanner
-curl -s https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.csproj > AufsichtPlanner.csproj
-curl -s https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/Program.cs > Program.cs
-dotnet run
-cd $HOME
+for srcfile in AufsichtPlanner.csproj OracleSqlServerDbContext.cs Program.cs
+do
+    $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/$srcfile -O $srcfile
+done
+$RUNCMD
+
 
 ```
 ## Arbeitsauftrag

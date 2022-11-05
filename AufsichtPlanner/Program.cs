@@ -1,4 +1,5 @@
-﻿using Bogus;
+﻿using AufsichtPlanner;
+using Bogus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using System;
@@ -7,48 +8,20 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
-//var opt = new DbContextOptionsBuilder()
-//    .UseSqlite("Data Source=Aufsicht.db")
-//    .Options;
-var dbName = "Aufsicht";
-var opt = new DbContextOptionsBuilder()
-    .UseOracle($"User Id={dbName};Password=oracle;Data Source=localhost:1521/XEPDB1")
-    .Options;
-
-var sysOpt = new DbContextOptionsBuilder()
-    .UseOracle($"User Id=System;Password=oracle;Data Source=localhost:1521/XEPDB1")
-    .Options;
-try
+internal class Program
 {
-    using (var sysDb = new AufsichtContext(sysOpt))
+    private static void Main(string[] args)
     {
-        try { sysDb.Database.ExecuteSqlRaw("DROP USER " + dbName + " CASCADE"); }
-        catch (Exception e)
-        {
-            Console.Error.WriteLine(e.Message);
-        }
-        sysDb.Database.ExecuteSqlRaw("CREATE USER " + dbName + " IDENTIFIED BY oracle");
-        sysDb.Database.ExecuteSqlRaw("GRANT CONNECT, RESOURCE, CREATE VIEW TO " + dbName);
-        sysDb.Database.ExecuteSqlRaw("GRANT UNLIMITED TABLESPACE TO " + dbName);
+        var (success, options) = args.Length > 0 && args[0].ToLower() == "sqlserver" 
+            ? OracleSqlserverContext.GetSqlServerConnection("Aufsicht")
+            : OracleSqlserverContext.GetOracleConnection("Aufsicht", "oracle");
+        if (!success) { return; }
+        using var db = new AufsichtContext(options);
+        db.Database.EnsureDeleted();
+        db.Database.EnsureCreated();
+        db.Seed();
     }
-    Console.WriteLine("*********************************************************");
-    Console.WriteLine("Du kannst dich nun mit folgenden Daten verbinden:");
-    Console.WriteLine($"   Username:     {dbName}");
-    Console.WriteLine($"   Passwort:     oracle");
-    Console.WriteLine($"   Service Name: XEPDB1");
-    Console.WriteLine("*********************************************************");
 }
-catch (Exception e)
-{
-    Console.Error.WriteLine("Fehler beim Löschen und neu Anlegen des Oracle Benutzers.");
-    Console.Error.WriteLine("Fehlermeldung: " + e.Message);
-    return;
-}
-
-using var db = new AufsichtContext(opt);
-db.Database.EnsureDeleted();
-db.Database.EnsureCreated();
-db.Seed();
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 public class Teacher
@@ -97,7 +70,7 @@ public class Supervision
 }
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-public class AufsichtContext : DbContext
+public class AufsichtContext : OracleSqlserverContext
 {
     public AufsichtContext(DbContextOptions opt) : base(opt)
     { }
@@ -109,26 +82,10 @@ public class AufsichtContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<Supervision>()
             .HasIndex(s => new { s.LessonNumber, s.RoomShortname, s.SubjectShortname })
             .IsUnique();
-        // Für Oracle alle Namen großschreiben, sonst sind sie Case Sensitive und brauchen
-        // ein " bei den Abfragen.
-        if (Database.IsOracle())
-        {
-            foreach (var entity in modelBuilder.Model.GetEntityTypes())
-            {
-                var schema = entity.GetSchema();
-                var tableName = entity.GetTableName();
-                if (tableName is null) { continue; }
-                var storeObjectIdentifier = StoreObjectIdentifier.Table(tableName, schema);
-                foreach (var property in entity.GetProperties())
-                {
-                    property.SetColumnName(property.GetColumnName(storeObjectIdentifier)?.ToUpper());
-                }
-                entity.SetTableName(tableName.ToUpper());
-            }
-        }
     }
 
     public void Seed()
