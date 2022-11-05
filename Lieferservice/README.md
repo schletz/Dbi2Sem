@@ -46,7 +46,7 @@ mkdir -p $HOME/lieferservice
 cd $HOME/lieferservice
 for srcfile in Lieferservice.csproj Bestellung.cs Kategorie.cs Kunde.cs Liefergebiet.cs LieferserviceContext.cs MultiDbContext.cs Produkt.cs ProduktBestellung.cs Program.cs 
 do
-    $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/lieferservice/$srcfile > $srcfile
+    $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/Lieferservice/$srcfile > $srcfile
 done
 eval $RUNCMD
 ```
