@@ -21,11 +21,11 @@ Sie laden die .NET 6 SDK und den Generator der Datenbank. Danach wird der Genera
 ```bash
 if [ -d "/opt/oracle" ]; then 
     DOWNLOADER="curl -s"
-    RUNCMD="dotnet run"
+    RUNCMD="DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1; dotnet run"
 else 
     HOME=/tmp
     DOWNLOADER="wget -q -O /dev/stdout"
-    RUNCMD="dotnet run -- sqlserver"
+    RUNCMD="DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0; dotnet run -- sqlserver"
 fi
 
 cd $HOME
