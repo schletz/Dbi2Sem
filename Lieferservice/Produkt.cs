@@ -7,6 +7,7 @@ namespace Lieferservice
     [Table("Produkt")]
     public class Produkt
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ProduktId { get; set; }
         [Required]
         [MaxLength(255)]

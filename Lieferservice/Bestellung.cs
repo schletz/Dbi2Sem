@@ -8,6 +8,7 @@ namespace Lieferservice
     [Table("Bestellung")]
     public class Bestellung
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int BestellungId { get; set; }
         [Required]
         [MaxLength(255)]

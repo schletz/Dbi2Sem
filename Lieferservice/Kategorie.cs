@@ -7,6 +7,7 @@ namespace Lieferservice
     [Table("Kategorie")]
     public class Kategorie
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int KategorieId { get; set; }
         [Required]
         [MaxLength(255)]

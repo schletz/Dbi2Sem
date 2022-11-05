@@ -34,25 +34,27 @@ namespace Lieferservice
             Randomizer.Seed = new Random(8675309);
             Faker f = new Faker();
 
+            int rownr = 1;
             var kategorien = new List<Kategorie>
             {
-                new Kategorie {Name = "Pizza"},
-                new Kategorie {Name = "Pasti"},
-                new Kategorie {Name = "Pesce"},
+                new Kategorie {KategorieId = rownr++, Name = "Pizza"},
+                new Kategorie {KategorieId = rownr++,Name = "Pasti"},
+                new Kategorie {KategorieId = rownr++,Name = "Pesce"},
             };
             Kategorien.AddRange(kategorien); SaveChanges();
 
+            rownr = 1;
             var produkte = new List<Produkt>
             {
-                new Produkt {Name = "Marinara", Kategorie = kategorien[0], Preis = 5.00M},
-                new Produkt {Name = "Margherita", Kategorie = kategorien[0], Preis = 6.00M},
-                new Produkt {Name = "Cipolla", Kategorie = kategorien[0], Preis = 7.00M},
-                new Produkt {Name = "Alla Napoletana", Kategorie = kategorien[1], Preis = 6.50M},
-                new Produkt {Name = "All Arabiata", Kategorie = kategorien[1], Preis = 7.50M},
-                new Produkt {Name = "Alla Bolognese", Kategorie = kategorien[1], Preis = 7.50M},
-                new Produkt {Name = "Schollenfilet gebacken", Kategorie = kategorien[2], Preis = 9.50M},
-                new Produkt {Name = "Natur gebratenes Schollenfilet", Kategorie = kategorien[2], Preis = 9.50M},
-                new Produkt {Name = "Miesmuscheln", Kategorie = kategorien[2], Preis = 11.50M},
+                new Produkt {ProduktId = rownr++, Name = "Marinara", Kategorie = kategorien[0], Preis = 5.00M},
+                new Produkt {ProduktId = rownr++, Name = "Margherita", Kategorie = kategorien[0], Preis = 6.00M},
+                new Produkt {ProduktId = rownr++, Name = "Cipolla", Kategorie = kategorien[0], Preis = 7.00M},
+                new Produkt {ProduktId = rownr++, Name = "Alla Napoletana", Kategorie = kategorien[1], Preis = 6.50M},
+                new Produkt {ProduktId = rownr++, Name = "All Arabiata", Kategorie = kategorien[1], Preis = 7.50M},
+                new Produkt {ProduktId = rownr++, Name = "Alla Bolognese", Kategorie = kategorien[1], Preis = 7.50M},
+                new Produkt {ProduktId = rownr++, Name = "Schollenfilet gebacken", Kategorie = kategorien[2], Preis = 9.50M},
+                new Produkt {ProduktId = rownr++, Name = "Natur gebratenes Schollenfilet", Kategorie = kategorien[2], Preis = 9.50M},
+                new Produkt {ProduktId = rownr++, Name = "Miesmuscheln", Kategorie = kategorien[2], Preis = 11.50M},
             };
             Produkte.AddRange(produkte); SaveChanges();
 
@@ -67,23 +69,26 @@ namespace Lieferservice
             };
             Liefergebiete.AddRange(liefergebiete); SaveChanges();
 
+            rownr = 1;
             var kunden = new List<Kunde>
             {
-                new Kunde {Vorname = "Lukas", Zuname = "Müller", Email = "lukas@mail.at"},
-                new Kunde {Vorname = "Konstantin", Zuname = "Schmidt", Email = "konstantin@mail.at"},
-                new Kunde {Vorname = "Ben", Zuname = "Schneider", Email = "ben@mail.at"},
-                new Kunde {Vorname = "Jonas", Zuname = "Fischer", Email = "jonas@mail.at"},
-                new Kunde {Vorname = "Elias", Zuname = "Weber", Email = "elias@mail.at"},
-                new Kunde {Vorname = "Niklas", Zuname = "Meyer", Email = "niklas@mail.at"},
-                new Kunde {Vorname = "David", Zuname = "Wagner", Email = "david@mail.at"},
-                new Kunde {Vorname = "Oskar", Zuname = "Becker", Email = "oskar@mail.at"},
-                new Kunde {Vorname = "Philipp", Zuname = "Schulz", Email = "philipp@mail.at"}
+                new Kunde {KundeId = rownr++, Vorname = "Lukas", Zuname = "Müller", Email = "lukas@mail.at"},
+                new Kunde {KundeId = rownr++, Vorname = "Konstantin", Zuname = "Schmidt", Email = "konstantin@mail.at"},
+                new Kunde {KundeId = rownr++, Vorname = "Ben", Zuname = "Schneider", Email = "ben@mail.at"},
+                new Kunde {KundeId = rownr++, Vorname = "Jonas", Zuname = "Fischer", Email = "jonas@mail.at"},
+                new Kunde {KundeId = rownr++, Vorname = "Elias", Zuname = "Weber", Email = "elias@mail.at"},
+                new Kunde {KundeId = rownr++, Vorname = "Niklas", Zuname = "Meyer", Email = "niklas@mail.at"},
+                new Kunde {KundeId = rownr++, Vorname = "David", Zuname = "Wagner", Email = "david@mail.at"},
+                new Kunde {KundeId = rownr++, Vorname = "Oskar", Zuname = "Becker", Email = "oskar@mail.at"},
+                new Kunde {KundeId = rownr++, Vorname = "Philipp", Zuname = "Schulz", Email = "philipp@mail.at"}
             };
 
+            rownr = 1;
             foreach (var k in f.Random.ListItems(kunden, (int)(0.8 * kunden.Count)))
             {
                 var bestellungen = new Faker<Bestellung>().Rules((f, b) =>
                 {
+                    b.BestellungId = rownr++;
                     b.Adresse = f.Address.StreetAddress();
                     b.Liefergebiet = f.Random.ListItem(liefergebiete);
                     b.Kunde = f.Random.ListItem(kunden);

@@ -7,6 +7,7 @@ namespace Lieferservice
     [Table("Kunde")]
     public class Kunde
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int KundeId { get; set; }
         [Required]
         [MaxLength(255)]
