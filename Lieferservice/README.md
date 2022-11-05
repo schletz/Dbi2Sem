@@ -22,7 +22,7 @@ Diese Datenbank hat folgendes Schema:
 ## Generieren der Datenbank
 
 Öffne in Docker Desktop eine Shell des Oracle oder SQL Server Containers. Kopiere danach die
-folgenden Befehle aus. Sie laden die .NET 6 SDK und den Generator der Datenbank. Drücke
+folgenden Befehle in das Fenster. Sie laden die .NET 6 SDK und den Generator der Datenbank. Drücke
 *Enter*, um die Befehle auszuführen. Am Ende wirst du nach dem Admin Passwort der Datenbank
 gefragt. Hast du den Container mit den Standardpasswörtern (*oracle* für Oracle bzw. *SqlServer2019*
 für Sql Server 2019) erstellt, musst du nur *Enter* drücken.
