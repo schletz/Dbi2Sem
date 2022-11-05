@@ -9,11 +9,28 @@ Fachtheorie statt. Die Prüfungen finden in mehreren Räumen statt. Pro Tag wird
 geprüft. Natürlich muss auch eine Aufsicht (Supervision) dafür eingeplant werden. Diese Aufsicht ist eine
 Lehrkraft, die im Raum anwesend ist.
 
-In der Datei [Aufsicht.db](Aufsicht.db) befindet sich eine SQLite Datenbank, die diesen Sachverhalt
-speichert. Das Datenmodell besteht aus den folgenden Tabellen:
+Das Datenmodell besteht aus den folgenden Tabellen:
 
 ![](er_model.png)
 
+## Generieren der Datenbank
+
+Öffne in Docker Desktop eine Shell des Oracle Containers. Führe danach die folgenden Befehle aus:
+
+```bash
+cd $HOME
+curl https://download.visualstudio.microsoft.com/download/pr/d3e46476-4494-41b7-a628-c517794c5a6a/6066215f6c0a18b070e8e6e8b715de0b/dotnet-sdk-6.0.402-linux-x64.tar.gz > dotnet-sdk-6.0.402-linux-x64.tar.gz
+mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-6.0.402-linux-x64.tar.gz -C $HOME/dotnet
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:$HOME/dotnet
+export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
+md $HOME/aufsichtPlanner
+cd $HOME/aufsichtPlanner
+curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.csproj > AufsichtPlanner.csproj
+curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/Program.cs > Program.cs
+dotnet run
+
+```
 ## Arbeitsauftrag
 
 Kopieren Sie die Vorlage unter den Beispielen in eine neue Datei. Benennen Sie diese Datei nach

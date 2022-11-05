@@ -1,14 +1,50 @@
 ﻿using Bogus;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 
+//var opt = new DbContextOptionsBuilder()
+//    .UseSqlite("Data Source=Aufsicht.db")
+//    .Options;
+var dbName = "Aufsicht";
 var opt = new DbContextOptionsBuilder()
-    .UseSqlite("Data Source=Aufsicht.db")
+    .UseOracle($"User Id={dbName};Password=oracle;Data Source=localhost:1521/XEPDB1")
     .Options;
+
+var sysOpt = new DbContextOptionsBuilder()
+    .UseOracle($"User Id=System;Password=oracle;Data Source=localhost:1521/XEPDB1")
+    .Options;
+try
+{
+    using (var sysDb = new AufsichtContext(sysOpt))
+    {
+        try { sysDb.Database.ExecuteSqlRaw("DROP USER " + dbName + " CASCADE"); }
+        catch (Exception e)
+        {
+            Console.Error.WriteLine(e.Message);
+        }
+        sysDb.Database.ExecuteSqlRaw("CREATE USER " + dbName + " IDENTIFIED BY oracle");
+        sysDb.Database.ExecuteSqlRaw("GRANT CONNECT, RESOURCE, CREATE VIEW TO " + dbName);
+        sysDb.Database.ExecuteSqlRaw("GRANT UNLIMITED TABLESPACE TO " + dbName);
+    }
+    Console.WriteLine("*********************************************************");
+    Console.WriteLine("Du kannst dich nun mit folgenden Daten verbinden:");
+    Console.WriteLine($"   Username:     {dbName}");
+    Console.WriteLine($"   Passwort:     oracle");
+    Console.WriteLine($"   Service Name: XEPDB1");
+    Console.WriteLine("*********************************************************");
+}
+catch (Exception e)
+{
+    Console.Error.WriteLine("Fehler beim Löschen und neu Anlegen des Oracle Benutzers.");
+    Console.Error.WriteLine("Fehlermeldung: " + e.Message);
+    return;
+}
+
 using var db = new AufsichtContext(opt);
 db.Database.EnsureDeleted();
 db.Database.EnsureCreated();
@@ -40,7 +76,7 @@ public class Lesson
     [Key]
     [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int Number { get; set; }
-    public TimeOnly Begin { get; set; }
+    public TimeSpan Begin { get; set; }
 }
 public class Supervision
 {
@@ -70,6 +106,23 @@ public class AufsichtContext : DbContext
         modelBuilder.Entity<Supervision>()
             .HasIndex(s => new { s.LessonNumber, s.RoomShortname, s.SubjectShortname })
             .IsUnique();
+        // Für Oracle alle Namen großschreiben, sonst sind sie Case Sensitive und brauchen
+        // ein " bei den Abfragen.
+        if (Database.IsOracle())
+        {
+            foreach (var entity in modelBuilder.Model.GetEntityTypes())
+            {
+                var schema = entity.GetSchema();
+                var tableName = entity.GetTableName();
+                if (tableName is null) { continue; }
+                var storeObjectIdentifier = StoreObjectIdentifier.Table(tableName, schema);
+                foreach (var property in entity.GetProperties())
+                {
+                    property.SetColumnName(property.GetColumnName(storeObjectIdentifier)?.ToUpper());
+                }
+                entity.SetTableName(tableName.ToUpper());
+            }
+        }
     }
 
     public void Seed()
@@ -102,14 +155,14 @@ public class AufsichtContext : DbContext
         };
 
         var lessons = new Lesson[] {
-            new Lesson() {Number = 1, Begin = new TimeOnly(8,0,0) },
-            new Lesson() {Number = 2, Begin = new TimeOnly(8,50,0) },
-            new Lesson() {Number = 3, Begin = new TimeOnly(9,55,0) },
-            new Lesson() {Number = 4, Begin = new TimeOnly(10,45,0) },
-            new Lesson() {Number = 5, Begin = new TimeOnly(11,35,0) },
-            new Lesson() {Number = 6, Begin = new TimeOnly(12,35,0) },
-            new Lesson() {Number = 7, Begin = new TimeOnly(13,25,0) },
-            new Lesson() {Number = 8, Begin = new TimeOnly(14,25,0) }
+            new Lesson() {Number = 1, Begin = new TimeSpan(8,0,0) },
+            new Lesson() {Number = 2, Begin = new TimeSpan(8,50,0) },
+            new Lesson() {Number = 3, Begin = new TimeSpan(9,55,0) },
+            new Lesson() {Number = 4, Begin = new TimeSpan(10,45,0) },
+            new Lesson() {Number = 5, Begin = new TimeSpan(11,35,0) },
+            new Lesson() {Number = 6, Begin = new TimeSpan(12,35,0) },
+            new Lesson() {Number = 7, Begin = new TimeSpan(13,25,0) },
+            new Lesson() {Number = 8, Begin = new TimeSpan(14,25,0) }
         };
         Lessons.AddRange(lessons);
         SaveChanges();
