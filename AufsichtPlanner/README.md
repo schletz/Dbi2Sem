@@ -40,8 +40,6 @@ do
     $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/$srcfile > $srcfile
 done
 eval $RUNCMD
-
-
 ```
 ## Arbeitsauftrag
 
