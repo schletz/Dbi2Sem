@@ -1,8 +1,10 @@
 cd $HOME
 if [ -d "/opt/oracle" ]; then 
     DOWNLOADER="curl -s"
+    export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 else 
     DOWNLOADER="wget -q -O /dev/stdout"
+    export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0
 fi
 
 VERSION=$($DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/6.0/latest.version)
@@ -15,4 +17,3 @@ echo Installiere .NET $VERSION
 mkdir -p $HOME/dotnet && tar zxf $INSTALLFILE -C $HOME/dotnet
 export DOTNET_ROOT=$HOME/dotnet
 export PATH=$PATH:$HOME/dotnet
-export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0
