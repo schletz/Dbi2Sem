@@ -19,7 +19,7 @@ Das Datenmodell besteht aus den folgenden Tabellen:
 Sie laden die .NET 6 SDK und den Generator der Datenbank. Danach wird der Generator ausgeführt.
 
 ```bash
-curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh > dotnet_install.sh
+curl -s https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh > dotnet_install.sh
 chmod a+x dotnet_install.sh
 ./dotnet_install.sh
 
