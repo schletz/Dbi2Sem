@@ -1,5 +1,6 @@
 ﻿using Bogus;
 using Bogus.Distributions.Gaussian;
+using Lieferservice;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Text;
 
 namespace Onlineshop.Model
 {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public class Kunde
     {
         public int KundeId { get; set; }
@@ -47,22 +49,24 @@ namespace Onlineshop.Model
         public Artikel Artikel { get; set; }
         public int Menge { get; set; }
     }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
-    public class OnlineshopContext : DbContext
+    public class OnlineshopContext : MultiDbContext
     {
-        DbSet<Kunde> Kunden { get; set; }
-        DbSet<Kategorie> Kategorien { get; set; }
-        DbSet<Artikel> Artikel { get; set; }
-        DbSet<Bestellung> Bestellungen { get; set; }
-        DbSet<Position> Positionen { get; set; }
+        DbSet<Kunde> Kunden => Set<Kunde>();
+        DbSet<Kategorie> Kategorien => Set<Kategorie>();
+        DbSet<Artikel> Artikel => Set<Artikel>();
+        DbSet<Bestellung> Bestellungen => Set<Bestellung>();
+        DbSet<Position> Positionen => Set<Position>();
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public OnlineshopContext(DbContextOptions db) : base(db)
         {
-            optionsBuilder.UseSqlite("Data Source=Shop.db");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Artikel>().Property(a => a.Preis).HasColumnType("DECIMAL(9,4)");
         }
 

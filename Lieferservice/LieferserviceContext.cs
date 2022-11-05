@@ -23,6 +23,7 @@ namespace Lieferservice
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Liefergebiet>().HasKey(l => new { l.Plz, l.Ort });
             modelBuilder.Entity<ProduktBestellung>().HasKey("BestellungId", "ProduktId");
             modelBuilder.Entity<Kunde>().HasIndex(k => k.Email).IsUnique();
