@@ -27,7 +27,7 @@ mkdir $HOME/aufsichtPlanner
 cd $HOME/aufsichtPlanner
 curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.csproj > AufsichtPlanner.csproj
 curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/Program.cs > Program.cs
-$HOME/dotnet/dotnet run
+DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && $HOME/dotnet/dotnet run
 cd $HOME
 
 ```
