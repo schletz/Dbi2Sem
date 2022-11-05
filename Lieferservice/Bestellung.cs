@@ -13,6 +13,8 @@ namespace Lieferservice
         [Required]
         [MaxLength(255)]
         public string Adresse { get; set; } = default!;
+        public int LiefergebietPlz { get; set; }
+        public string LiefergebietOrt { get; set; } = default!;
         [Required]
         public Liefergebiet Liefergebiet { get; set; } = default!;
         [Required]

@@ -25,7 +25,7 @@ namespace Lieferservice
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Liefergebiet>().HasKey(l => new { l.Plz, l.Ort });
-            modelBuilder.Entity<ProduktBestellung>().HasKey("BestellungId", "ProduktId");
+            modelBuilder.Entity<ProduktBestellung>().HasKey(p => new { p.ProduktId, p.BestellungId });
             modelBuilder.Entity<Kunde>().HasIndex(k => k.Email).IsUnique();
         }
 
