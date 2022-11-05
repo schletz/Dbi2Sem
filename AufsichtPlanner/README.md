@@ -34,6 +34,7 @@ cd $HOME/aufsichtPlanner
 curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.csproj > AufsichtPlanner.csproj
 curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/Program.cs > Program.cs
 dotnet run
+cd $HOME
 
 ```
 ## Arbeitsauftrag
