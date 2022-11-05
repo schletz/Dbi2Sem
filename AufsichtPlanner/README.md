@@ -11,7 +11,7 @@ Lehrkraft, die im Raum anwesend ist.
 
 Das Datenmodell besteht aus den folgenden Tabellen:
 
-![](er_model.png)
+![](er_model_2122.png)
 
 ## Generieren der Datenbank
 
@@ -79,19 +79,19 @@ in der Supervisions Tabelle?
 **(4)** Gibt es Kollisionen in der Aufsichtsplanung, d. h. ein Lehrer hat zur gleichen Zeit im selben
 Fach mehrere Aufsichten eingeteilt? Hinweis: Lösen Sie mit einer Gruppierung und mit HAVING.
 
-| TeacherShortname | LessonNumber | SubjectShortname |
-| ---------------- | ------------ | ---------------- |
-| CLE              | 1            | FT               |
-| CLE              | 5            | D                |
-| DAI              | 5            | D                |
-| DAI              | 7            | FT               |
-| GOL              | 7            | AM               |
-| KLE              | 1            | D                |
-| KON              | 5            | FT               |
-| KRO              | 1            | D                |
-| RAN              | 7            | FT               |
-| ROG              | 1            | E                |
-| ROG              | 3            | FT               |
+| Teacher_Shortname | Lesson_Number | Subject_Shortname |
+| ----------------- | ------------- | ----------------- |
+| CLE               | 1             | FT                |
+| CLE               | 5             | D                 |
+| DAI               | 5             | D                 |
+| DAI               | 7             | FT                |
+| GOL               | 7             | AM                |
+| KLE               | 1             | D                 |
+| KON               | 5             | FT                |
+| KRO               | 1             | D                 |
+| RAN               | 7             | FT                |
+| ROG               | 1             | E                 |
+| ROG               | 3             | FT                |
 
 
 **(5)** Welche Lehrer haben in allen Gegenständen (Shortname ist D, E, FT und AM) mindestens eine Stunde Aufsicht?
@@ -119,35 +119,37 @@ Fragen Sie die Tabelle Lessons ab und prüfen für jede Lesson die Aufsichtstabe
 des Faches aus der Aufsichtstabelle, indem sie die höchste Stunde für das entsprechende Fach ermitteln.
 Grund: Die Prüfungsgegenstände dauern nicht immer 8 Stunden.
 
-| Id  | LessonNumber | TeacherShortname | RoomShortname | SubjectShortname |
-| --- | ------------ | ---------------- | ------------- | ---------------- |
-| 10  | 7            | HIL              | B4.07         | D                |
-| 15  | 7            | KRA              | B4.08         | D                |
-| 22  | 7            | ASC              | B3.11         | D                |
-| 33  | 7            | KNE              | B3.08         | E                |
-| 55  | 7            | ROG              | B4.11         | E                |
-| 66  | 8            | KRO              | B3.09         | AM               |
-| 81  | 8            | COT              | B3.06         | AM               |
-| 85  | 8            | LAC              | B3.11         | AM               |
-| 94  | 8            | BIE              | B4.09         | FT               |
+| Id  | Lesson_Number | Teacher_Shortname | Room_Shortname | Subject_Shortname |
+| --- | ------------- | ----------------- | -------------- | ----------------- |
+| 20  | 7             | HIL               | B4.07          | D                 |
+| 32  | 7             | KRA               | B4.08          | D                 |
+| 45  | 7             | ASC               | B3.11          | D                 |
+| 62  | 7             | KNE               | B3.08          | E                 |
+| 103 | 7             | ROG               | B4.11          | E                 |
+| 125 | 8             | KRO               | B3.09          | AM                |
+| 154 | 8             | COT               | B3.06          | AM                |
+| 162 | 8             | LAC               | B3.11          | AM                |
+| 175 | 8             | BIE               | B4.09          | FT                |
+
 
 **(8)** Welche Lehrer haben in der Stunde danach (LessonNumber + 1) auch noch in diesem Fach Aufsicht,
 haben also eine Doppelstunde in diesem Fach Aufsicht? Geben Sie den Datensatz aus Supervisions
 der ersten Stunde dieses Blockes aus.
 
-| Id  | LessonNumber | TeacherShortname | RoomShortname | SubjectShortname |
-| --- | ------------ | ---------------- | ------------- | ---------------- |
-| 6   | 5            | DAI              | B3.07         | D                |
-| 11  | 3            | COT              | B3.09         | D                |
-| 14  | 4            | CLE              | B4.08         | D                |
-| 25  | 5            | DAI              | B4.06         | D                |
-| 28  | 5            | ASC              | B3.11         | E                |
-| 37  | 5            | HIL              | B4.06         | E                |
-| 41  | 6            | KNE              | B4.09         | E                |
-| 62  | 4            | RAN              | B3.09         | AM               |
-| 67  | 1            | LOS              | B4.11         | AM               |
-| 68  | 3            | KNE              | B4.11         | AM               |
-| 86  | 1            | BEG              | B3.07         | FT               |
+| Id  | Lesson_Number | Teacher_Shortname | Room_Shortname | Subject_Shortname |
+| --- | ------------- | ----------------- | -------------- | ----------------- |
+| 11  | 5             | DAI               | B3.07          | D                 |
+| 23  | 3             | COT               | B3.09          | D                 |
+| 29  | 4             | CLE               | B4.08          | D                 |
+| 51  | 5             | DAI               | B4.06          | D                 |
+| 56  | 5             | ASC               | B3.11          | E                 |
+| 68  | 5             | HIL               | B4.06          | E                 |
+| 75  | 6             | KNE               | B4.09          | E                 |
+| 121 | 4             | RAN               | B3.09          | AM                |
+| 127 | 1             | LOS               | B4.11          | AM                |
+| 129 | 3             | KNE               | B4.11          | AM                |
+| 163 | 1             | BEG               | B3.07          | FT                |
+
 
 
 **(9)** Erstellen Sie eine View *vTeacherSupervisions* mit der Anzahl der Stunden, die jeder Lehrer

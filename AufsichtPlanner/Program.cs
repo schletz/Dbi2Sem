@@ -58,6 +58,7 @@ public class Lesson
 }
 public class Supervision
 {
+    [DatabaseGenerated(DatabaseGeneratedOption.None)]
     public int Id { get; set; }
     [Column("Lesson_Number")]
     public int LessonNumber { get; set; }
@@ -154,6 +155,7 @@ public class AufsichtContext : MultiDbContext
         var roomsWithSupervision = faker.Random.ListItems(rooms, rooms.Count - 2);
         var teachersWithSupervision = faker.Random.ListItems(teachers, teachers.Count - 5);
         var supervisions = new List<Supervision>();
+        int rownr = 1;
         foreach (var s in subjects)
         {
             var duration = durations[s.Shortname];
@@ -171,6 +173,7 @@ public class AufsichtContext : MultiDbContext
                         var teacher = faker.Random.ListItem(teachersWithSupervision);
                         supervisions.Add(new Supervision
                         {
+                            Id = rownr++,
                             Subject = s,
                             SubjectShortname = s.Shortname,
                             LessonNumber = lesson.Number,
