@@ -1,13 +1,13 @@
 cd /tmp
-VERSION=$(curl -s https://dotnetcli.azureedge.net/dotnet/Sdk/6.0/latest.version)
-INSTALLFILE=dotnet-sdk-$VERSION-linux-x64.tar.gz
 if [ -d "/opt/oracle" ]; then 
     DOWNLOADER=curl -s
-    RUNCMD="dotnet run"
 else 
     DOWNLOADER=wget
-    RUNCMD="dotnet run -- sqlserver"
 fi
+
+VERSION=$($DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/6.0/latest.version)
+INSTALLFILE=dotnet-sdk-$VERSION-linux-x64.tar.gz
+
 
 if [ ! -f "$INSTALLFILE" ]; then
     $DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/$VERSION/$INSTALLFILE -O $INSTALLFILE
