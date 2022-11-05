@@ -1,4 +1,4 @@
-cd /tmp
+cd $HOME
 if [ -d "/opt/oracle" ]; then 
     DOWNLOADER="curl -s"
 else 
@@ -12,7 +12,7 @@ if [ ! -f "$INSTALLFILE" ]; then
     $DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/$VERSION/$INSTALLFILE > $INSTALLFILE
 fi
 echo Installiere .NET $VERSION
-mkdir -p /tmp/dotnet && tar zxf $INSTALLFILE -C /tmp/dotnet
-export DOTNET_ROOT=/tmp/dotnet
-export PATH=$PATH:/tmp/dotnet
+mkdir -p $HOME/dotnet && tar zxf $INSTALLFILE -C $HOME/dotnet
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:$HOME/dotnet
 export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1

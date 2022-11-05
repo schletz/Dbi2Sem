@@ -19,15 +19,16 @@ Das Datenmodell besteht aus den folgenden Tabellen:
 Sie laden die .NET 6 SDK und den Generator der Datenbank. Danach wird der Generator ausgeführt.
 
 ```bash
-cd /tmp
 if [ -d "/opt/oracle" ]; then 
     DOWNLOADER="curl -s"
     RUNCMD="dotnet run"
+    HOME=/tmp
 else 
     DOWNLOADER="wget -q -O /dev/stdout"
     RUNCMD="dotnet run -- sqlserver"
 fi
 
+cd $HOME
 $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh > dotnet_install.sh
 chmod a+x dotnet_install.sh
 . ./dotnet_install.sh
