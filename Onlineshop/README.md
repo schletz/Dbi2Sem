@@ -39,7 +39,7 @@ chmod a+x dotnet_install.sh
 
 mkdir -p $HOME/onlineshop
 cd $HOME/onlineshop
-for srcfile in Onlineshop.csproj MultiDbContext.cs Program.cs
+for srcfile in Onlineshop.csproj MultiDbContext.cs Program.cs OnlineshopContext.cs
 do
     $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/Onlineshop/$srcfile > $srcfile
 done

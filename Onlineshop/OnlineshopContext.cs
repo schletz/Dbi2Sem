@@ -8,7 +8,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 
-namespace Onlineshop.Model
+namespace Onlineshop
 {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
     public class Kunde
@@ -77,7 +77,7 @@ namespace Onlineshop.Model
 
             var bundeslaender = new string[] { "N", "W", "B" };
             var kunden = new Faker<Kunde>()
-                .RuleFor(k => k.Vorname, f=>f.Name.FirstName())
+                .RuleFor(k => k.Vorname, f => f.Name.FirstName())
                 .RuleFor(k => k.Zuname, f => f.Name.LastName())
                 .RuleFor(k => k.Bundesland, f => f.Random.ListItem(bundeslaender))
                 .Generate(16)
@@ -95,7 +95,7 @@ namespace Onlineshop.Model
             var artikel = new Faker<Artikel>()
                 .RuleFor(a => a.EAN, f => f.Commerce.Ean13())
                 .RuleFor(a => a.Name, f => f.Commerce.ProductName())
-                .RuleFor(a=>a.Preis, f=>Math.Round(Math.Min(226, f.Random.GaussianDecimal(200, 30)), 2))
+                .RuleFor(a => a.Preis, f => Math.Round(Math.Min(226, f.Random.GaussianDecimal(200, 30)), 2))
                 .RuleFor(a => a.Kategorie, f => f.Random.ListItem(kategorien))
                 .Generate(16)
                 .ToList();
@@ -103,7 +103,7 @@ namespace Onlineshop.Model
             SaveChanges();
 
             var bestellungen = new Faker<Bestellung>()
-                .RuleFor(b => b.Datum, f=> new DateTime(2020, 1, 1).AddSeconds(f.Random.Double(0, 20 * 86400)))
+                .RuleFor(b => b.Datum, f => new DateTime(2020, 1, 1).AddSeconds(f.Random.Double(0, 20 * 86400)))
                 .RuleFor(b => b.Kunde, f => f.Random.ListItem(kunden))
                 .Generate(64);
             Bestellungen.AddRange(bestellungen);
