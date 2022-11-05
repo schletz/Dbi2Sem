@@ -82,12 +82,16 @@ public class Lesson
 public class Supervision
 {
     public int Id { get; set; }
+    [Column("Lesson_Number")]
     public int LessonNumber { get; set; }
     public Lesson Lesson { get; set; }
+    [Column("Teacher_Shortname")]
     public string TeacherShortname { get; set; }
     public Teacher Teacher { get; set; }
+    [Column("Room_Shortname")]
     public string RoomShortname { get; set; }
     public Room Room { get; set; }
+    [Column("Subject_Shortname")]
     public string SubjectShortname { get; set; }
     public Subject Subject { get; set; }
 }
