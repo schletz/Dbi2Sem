@@ -1,8 +1,8 @@
 cd /tmp
 if [ -d "/opt/oracle" ]; then 
-    DOWNLOADER=curl -s
+    DOWNLOADER="curl -s"
 else 
-    DOWNLOADER=wget -q -O /dev/stdout
+    DOWNLOADER="wget -q -O /dev/stdout"
 fi
 
 VERSION=$($DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/6.0/latest.version)
