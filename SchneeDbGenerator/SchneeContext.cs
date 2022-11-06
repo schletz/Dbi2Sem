@@ -6,7 +6,6 @@ using CsvHelper;
 using System.Globalization;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using System.Linq;
 
 namespace SchneeDbGenerator
@@ -20,7 +19,7 @@ namespace SchneeDbGenerator
         public virtual DbSet<Bundesland> Bundesland { get; set; } = default!;
         public virtual DbSet<Messstelle> Messstellen { get; set; } = default!;
         public virtual DbSet<Schneemessung> Schneemessung { get; set; } = default!;
-        public virtual DbSet<Skigebiete> Skigebiete { get; set; } = default!;
+        public virtual DbSet<Skigebiet> Skigebiete { get; set; } = default!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,7 +32,7 @@ namespace SchneeDbGenerator
             var bundeslaender = ReadCsv<Bundesland>("Bundesland.csv");
             Bundesland.AddRange(bundeslaender);
             SaveChanges();
-            var skigebiete = ReadCsv<Skigebiete>("Skigebiete.csv");
+            var skigebiete = ReadCsv<Skigebiet>("Skigebiete.csv");
             Skigebiete.AddRange(skigebiete);
             SaveChanges();
             var messtellen = ReadCsv<Messstelle>("Messstellen.csv");

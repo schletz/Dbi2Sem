@@ -1,5 +1,7 @@
 # Musterdatenbank "Schneehöhen"
 
+![](er_model_2008.png)
+
 ## Generieren der Datenbank
 
 Öffne in Docker Desktop eine Shell des Oracle oder SQL Server Containers. Kopiere danach die

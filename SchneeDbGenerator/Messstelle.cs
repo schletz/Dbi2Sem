@@ -20,7 +20,7 @@ namespace SchneeDbGenerator
         [ForeignKey("M_Skigebiet")]
         [InverseProperty("Messstellen")]
         [CsvHelper.Configuration.Attributes.Ignore]
-        public virtual Skigebiete M_SkigebietNavigation { get; set; } = default!;
+        public virtual Skigebiet M_SkigebietNavigation { get; set; } = default!;
         [InverseProperty("Sm_MessstelleNavigation")]
         public virtual ICollection<Schneemessung> Schneemessung { get; set; } = default!;
     }

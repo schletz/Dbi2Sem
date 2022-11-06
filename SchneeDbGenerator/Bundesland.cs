@@ -14,6 +14,6 @@ namespace SchneeDbGenerator
         public string B_Name { get; set; } = default!;
 
         [InverseProperty("S_BundeslandNavigation")]
-        public virtual ICollection<Skigebiete> Skigebiete { get; set; }
+        public virtual ICollection<Skigebiet> Skigebiete { get; set; }
     }
 }

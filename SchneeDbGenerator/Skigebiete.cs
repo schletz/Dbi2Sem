@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace SchneeDbGenerator
 {
     [Index("S_Bundesland", Name = "Bundeslandskigebiete")]
-    public class Skigebiete
+    public class Skigebiet
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
