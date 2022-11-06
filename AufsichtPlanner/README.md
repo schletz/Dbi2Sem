@@ -22,12 +22,10 @@ Standardpasswörtern (*oracle* für Oracle bzw. *SqlServer2019* für Sql Server 
 musst du nur *Enter* drücken.
 
 ```bash
-APP_URL=https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.tar
-
 if [ -d "/opt/oracle" ]; then DOWNLOADER="curl -s"; else DOWNLOADER="wget -q -O /dev/stdout"; fi
 $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/start_dotnet.sh > /tmp/start_dotnet.sh
 chmod a+x /tmp/start_dotnet.sh
-. /tmp/start_dotnet.sh
+/tmp/start_dotnet.sh https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.tar
 
 ```
 
