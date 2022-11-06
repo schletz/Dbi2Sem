@@ -1,0 +1,255 @@
+"S_ID","S_Bundesland","S_Name","OrteimGebiet","Tourismusregion","Schiverbund","seehoehevon","seehoehebis","Pistenkm","S_gondeln","S_sessel","S_schlepp"
+1,"Ktn","Ankogel-Mallnitz","Mallnitz","","",1287,2636,30,2,0,4
+2,"Ktn","Bad Kleinkirchheim","Bad Kleinkirchheim","","",1350,2043,95,4,4,18
+3,"Ktn","Dreiländereck Bergbahnen","Arnoldstein","","",680,1600,17,0,1,8
+4,"Ktn","Emberger Alm","Berg im Drautal","","",1600,2250,10,0,0,5
+5,"Ktn","Falkert","Falkert","","",1870,2308,9,0,0,5
+6,"Ktn","Flattnitz","Metnitz","","",750,1400,10,0,1,2
+7,"Ktn","Gerlitzen","Sattendorf","","",504,1911,26,1,6,7
+8,"Ktn","Gitschtal","Weißbriach","","",820,1150,4,0,0,3
+9,"Ktn","Goldeck","Spittal an der Drau","","",556,2142,22,2,1,5
+10,"Ktn","Innerkrems-Schönfeld-Karneralm","Kremsbrücke, Ramingstein","","",1500,2266,60,0,2,12
+11,"Ktn","Katschberg-Aineck","Rennweg, St. Margarethen im Lungau","","",1100,2220,60,0,6,9
+12,"Ktn","Klippitztörl","Klippitztörl","","",1530,1818,28,0,2,4
+13,"Ktn","Koralpe-Schiregion Süd","St. Stefan im Lavanttal, Wolfsberg","","",1600,2100,26,0,1,5
+14,"Ktn","Kötschach-Mauthen","Kötschach-Mauthen","","",700,1400,6,0,1,3
+15,"Ktn","Mölltaler Gletscher","Flattach","","",2250,3122,50,2,4,3
+16,"Ktn","Nassfeld","Hermagor","","",1300,2000,101,5,7,18
+17,"Ktn","Petzen","Feistritz ob Bleiburg","","",600,1700,26,1,0,4
+18,"Ktn","[Simonhöhe]","St. Urban","","",750,1340,15,0,1,8
+19,"Ktn","Sirnitz-Hochrindl","Sirnitz","","",1400,1800,15,0,1,5
+20,"Ktn","Heiligenblut","Heiligenblut","","",1301,2902,55,3,1,10
+21,"Ktn","Turracher Höhe","Reichenau, Turrach","","",1400,2200,33,0,4,8
+22,"Ktn","Verditz-Gerlitzen","Afritz","","",700,2000,16,0,3,1
+23,"Ktn","Weinebene","St. Gertraud, Deutschlandsberg","","",1580,1886,22,0,0,6
+24,"Ktn","Weissensee","Weissensee","","",930,1324,6,0,1,4
+25,"Noe","Annaberg","Annaberg","","",800,1400,15,0,3,6
+26,"Noe","Arabichl","Kirchberg am Wechsel","","",1350,1593,4,0,0,1
+27,"Noe","Arralifte","Harmanschlag","","",740,850,4,0,0,3
+28,"Noe","Eibllifte*","Türnitz","","",560,1007,12,0,1,3
+29,"Noe","Furtnerlifte","Rohr im Gebirge","","",800,927,,0,0,3
+30,"Noe","Gemeindealpe","Mitterbach","","",800,1626,,0,2,1
+31,"Noe","Hochkar","Göstling an der Ybbs","","",1480,1808,18.6,0,6,3
+32,"Noe","Jauerling","Oberndorf am Jauerling","","",855,959,1,0,0,1
+33,"Noe","Königsberg","Hollenstein an der Ybbs","","",715,1078,12,0,0,6
+34,"Noe","Lackenhof-Ötscher","Lackenhof","","",810,1510,19,0,3,5
+35,"Noe","Losenheim","Puchberg am Schneeberg","","",577,1222,8,0,1,1
+36,"Noe","Maiszinken","Lunz am See","","",790,1030,5,0,0,2
+37,"Noe","Mönichkirchen-Mariensee","Mönichkirchen","","",870,1450,13,0,3,1
+38,"Noe","Steinberglift","Neusiedl an der Zaya","","",175,200,0.6,0,0,1
+39,"Noe","Raxalpe","Reichenau an der Rax","","",528,1600,3,1,0,1
+40,"Noe","Hirschenkogel","Semmering","","",1000,1340,14,1,1,1
+41,"Noe","Sonnwendstein-Maria Schutz**","Schottwien","","",700,1523,7,0,1,3
+42,"Noe","Unterberg","Pernitz","","",710,1342,15,0,0,4
+43,"Noe","Wechsel","St. Corona am Wechsel","","",840,1420,17,0,2,2
+44,"Ooe","Feuerkogel","Ebensee","","",443,1625,12,1,1,5
+45,"Ooe","Freistadt","Freistadt","","",595,685,0.5,0,0,1
+46,"Ooe","Forsteralm","Gaflenz","","",720,1100,16,0,1,6
+47,"Ooe","Glasenberg","Maria Neustift","","",850,971,4,0,0,1
+48,"Ooe","Gosau","Gosau","","",750,2000,7,0,1,5
+49,"Ooe","Hansberg","Sankt Johann am Wimberg","","",850,930,1.5,0,0,3
+50,"Ooe","Hinterstoder","Hinterstoder","","",600,1860,22,1,3,8
+51,"Ooe","Hochficht-Böhmerwald","Klaffer am Hochficht","","",930,1337,20,0,2,7
+52,"Ooe","Hochlecken","Neukirchen","","",870,1150,4,0,0,4
+53,"Ooe","Hohe Dirn","Losenstein","","",800,1200,5,0,0,5
+54,"Ooe","Kasberg","Grünau im Almtal","","",620,1600,33,2,1,8
+55,"Ooe","Katrinalm","Bad Ischl","","",470,1415,6,1,1,0
+56,"Ooe","Kirchschlag","Kirchschlag bei Linz","","",750,900,3,0,0,3
+57,"Ooe","Königswiesen","Königswiesen","","",614,800,1,0,0,2
+58,"Ooe","Krippenstein-Obertraun","Obertraun","","",609,2100,13,3,1,4
+59,"Ooe","Pyhrn-Priel","Spital am Pyhrn","","",650,1870,40,0,0,8
+60,"Ooe","Sandl-Viehberg","Sandl","","",950,1111,3,0,0,3
+61,"Ooe","Sternsteinlifte","Bad Leonfelden","","",800,1122,4,0,1,1
+62,"Ooe","Wurzeralm","Spital am Pyhrn","","",800,1870,13,1,2,5
+63,"Ooe","Zwieselalm","Gosau","","",900,1436,9,1,2,4
+64,"Sbg","Abtenau im Lammertal","Abtenau","Lammertal–Dachstein West","Salzkammergut-Lammertal Skipass",712,1200,10,0,1,5
+65,"Sbg","Buchberg","Goldegg im Pongau","Salzburger Sportwelt","Ski amadé",850,1200,4,0,0,4
+66,"Sbg","Dachstein West","Annaberg-Lungötz, Rußbach am Paß Gschütt (mit Gosau OÖ)","Lammertal–Dachstein West","Salzkammergut-Lammertal Skipass",777,1618,152,8,14,30
+67,"Sbg","Dorfgastein-Großarl","Dorfgastein, Großarl","Nationalpark Hohe Tauern / Gasteinertal/Großarltal","Ski amadé",865,2027,44,2,4,2
+68,"Sbg","Dürnberg","Hallein","Tennengau Salzachtal","~",800,1600,8,0,1,3
+69,"Sbg","Fageralm","Forstau, Radstadt","Salzburger Sportwelt, Schladming–Dachstein","Ski amadé",930,1885,12,0,2,6
+70,"Sbg","Fanningberg","Mariapfarr","Lungau","~",1501,2020,15,0,1,5
+71,"Sbg","Filzmoos Roßbrand/Großberg","Filzmoos","Salzburger Sportwelt","Ski amadé",1057,1597,12,1,2,5
+72,"Sbg","Gaißau–Hintersee","Krispl","Salzkammergut – Fuschlsee","~",750,1567,40,0,3,6
+73,"Sbg","Graukogel","Bad Gastein","Nationalpark Hohe Tauern / Gasteinertal","Ski amadé",1000,2246,14,0,2,1
+74,"Sbg","Großeck–Speiereck","Mauterndorf, St. Michael im Lungau","Lungau","~",1100,2400,41,1,5,3
+75,"Sbg","Hahnbaumlifte St. Johann","St. Johann im Pongau","Salzburger Sportwelt","Ski amadé",650,1200,32,2,6,6
+76,"Sbg","Hochkönigs Winterreich","Mühlbach am Hochkönig, Dienten, Maria Alm (mit Hintermoos und Hinterthal)","Hochkönigs Bergreich","Ski amadé",860,1921,150,3,7,29
+77,"Sbg","Flachau snow space","Flachau","Salzburger Sportwelt","Ski amadé",827,2000,111,7,17,18
+78,"Sbg","Flachauwinkl–Kleinarl Shuttleberg","Kleinarl, Flachauwinkl","Salzburger Sportwelt","Ski amadé",1000,1980,16,0,5,5
+79,"Sbg","Kitzsteinhorn-Kaprun","Kaprun","Zell am See-Kaprun","Zell am See-Kaprun Schipaß",800,3029,40,4,4,10
+80,"Sbg","Loferer Alm","Lofer","Salzburger Saalachtal","~",640,1750,46,2,2,9
+81,"Sbg","Maiskogel","Kaprun","Zell am See-Kaprun","Zell am See-Kaprun Schipaß",765,1730,20,1,2,1
+82,"Sbg","Monte Populo","Eben im Pongau","Salzburger Sportwelt","Ski amadé",862,1612,6,0,2,2
+83,"Sbg","Obertauern","Obertauern","Obertauern","~",1665,2501,95,1,18,7
+84,"Sbg","Postalm Arena am Wolfgangsee","Strobl","Salzkammergut – Wolfgangsee","~",1200,1900,20,0,1,7
+85,"Sbg","Radstadt–Altenmarkt Schischaukel","Radstadt, Altenmarkt","Salzburger Sportwelt","Ski amadé",855,1677,20,1,3,3
+86,"Sbg","Rauriser Hochalmbahnen","Rauris","Nationalpark Hohe Tauern","~",950,2200,25,2,1,7
+87,"Sbg","Saalbach-Hinterglemm/Leogang","Saalbach-Hinterglemm, Leogang","Saalbach-Hinterglemm","Skicircus Saalbach-Hinterglemm/Leogang",800,2100,200,11,17,28
+88,"Sbg","Schloßalm–Angertal–Stubnerkogel","Bad Gastein, Bad Hofgastein","Nationalpark Hohe Tauern / Gasteinertal","Ski amadé",859,2300,80,7,8,5
+89,"Sbg","St. Johann-Alpendorf","St. Johann im Pongau","Salzburger Sportwelt","Ski amadé",600,1850,26,1,7,5
+90,"Sbg","St. Martin im Lammertal","St. Martin am Tennengebirge","Lammertal–Dachstein West","Salzkammergut-Lammertal Skipass",1000,1350,5,0,0,4
+91,"Sbg","Schmittenhöhe","Zell am See","Zell am See-Kaprun","Zell am See-Kaprun Schipaß",750,2000,75,6,9,13
+92,"Sbg","Sportgastein","Sportgastein","Nationalpark Hohe Tauern / Gasteinertal","Ski amadé",1584,2650,22,0,1,1
+93,"Sbg","Werfenweng","Werfenweng","Tennengebirge","~",1000,1900,25,1,2,7
+94,"Sbg","Weißsee–Gletscherwelt","Uttendorf","Nationalpark Hohe Tauern","~",804,2600,21,1,1,5
+95,"Sbg","Wagrain","Wagrain","Salzburger Sportwelt","Ski amadé",850,2000,35,6,5,8
+96,"Sbg","Wildkogel","Neukirchen am Großvenediger","Nationalpark Hohe Tauern","~",856,2225,54,2,3,8
+97,"Sbg","Zauchensee–Flachauwinkel Skiparadies","Altenmarkt-Zauchensee, Flachauwinkl","Salzburger Sportwelt","Ski amadé",1350,2188,41,3,6,6
+98,"Sbg","Zillertal Arena","Krimml, Wald im Pinzgau, Gerlos (mit dem Zillertal)","Nationalpark Hohe Tauern","Zillertal Arena",1250,2505,165,6,26,19
+99,"Sbg","Zwölferhorn","St. Gilgen am Wolfgangsee","Salzkammergut – Wolfgangsee","~",560,1522,7,1,0,1
+100,"Stm","Aflenzer Bürgeralm","Aflenz Kurort","","",810,1810,16,0,2,4
+101,"Stm","Alpl","Krieglach","","",1000,1280,8,0,0,7
+102,"Stm","Brunnalm-Hohe Veitsch","Veitsch","","",1100,1500,9,0,0,3
+103,"Stm","Dockneralm","Krakau","","",1220,1450,3,0,0,1
+104,"Stm","Elfenberg","Mautern in Steiermark","","",704,1020,4,0,1,0
+105,"Stm","Feichteck-Brandlucken","St. Kathrein am Offenegg","","",1050,1220,3,0,0,1
+106,"Stm","Gaaler Lifte","Gaal, Knittelfeld","","",860,1230,5,0,1,2
+107,"Stm","Gaberl-Stubalpe","Salla","","",800,1550,18,0,0,6
+108,"Stm","Galsterbergalm","Pruggern","Schladming–Dachstein / Ski amadé","",700,1649,20,1,1,4
+109,"Stm","Grebenzen","Sankt Lambrecht","","",1000,1900,23,0,1,5
+110,"Stm","Gruber Lifte","Steinhaus am Semmering","","",938,1160,4.5,0,0,2
+111,"Stm","Hauereck","St. Kathrein am Hauenstein","","",1000,1305,5,0,1,1
+112,"Stm","Hauser Kaibling","Haus im Ennstal","Schladming–Dachstein / Ski amadé","",728,2015,37,2,5,4
+113,"Stm","Hebalm","Pack","","",1050,1400,11,0,1,5
+114,"Stm","Hebalm-Kluglifte","Deutschlandsberg","","",1350,1450,3,0,0,2
+115,"Stm","Hirschegg","Hirschegg","","",950,1300,5,0,1,5
+116,"Stm","Hohentauern","Hohentauern","","",1250,1800,12,0,0,5
+117,"Stm","Kaiserau","Rottenmann, Admont","","",1127,1500,3,0,0,3
+118,"Stm","Kleinlobming","Knittelfeld","","",764,1000,2,0,0,2
+119,"Stm","Kreischberg","St. Georgen ob Murau","","",870,2118,29,1,3,5
+120,"Stm","Lachtal","Schönberg-Lachtal, Judenburg","","",1600,2222,29,0,1,7
+121,"Stm","Lammeralm","Langenwang","","",900,1450,8,0,1,3
+122,"Stm","Loser-Altaussee","Altaussee","Salzkammergut-Ausseerland / Schneebärenland","",800,1800,15,0,3,5
+123,"Stm","Mariazeller Land","Mariazell","","",800,1623,26,1,4,3
+124,"Stm","Modriach-Winkel","Modriach","","",1000,1230,5,0,0,4
+125,"Stm","Mönichwald-Hochwechsel","Mönichwald","","",1000,1300,4,0,0,3
+126,"Stm","Murauer Frauenalpe","Murau","","",1500,2000,10,0,0,5
+127,"Stm","Niederalpl","Mürzsteg","","",783,1460,8,0,1,3
+128,"Stm","Oberes Murtal-Spitzerlift","St. Lorenzen bei Knittelfeld","","",990,1000,3,0,0,2
+129,"Stm","Parfußwirt","Trahütten, Deutschlandsberg","","",700,1100,4,0,0,1
+130,"Stm","Planai–Hochwurzen","Schladming","Schladming–Dachstein / Ski amadé","",745,1894,132,4,13,17
+131,"Stm","Planneralm Snowvally","Donnersbach, Irdning","Schladming–Dachstein / Schneebärenland","",1600,2200,15,0,2,3
+132,"Stm","Präbichl","Vordernberg","","",1116,1911,17,0,3,3
+133,"Stm","Ramsau-Dachsteingletscher","Ramsau am Dachstein","Schladming–Dachstein / Ski amadé","",1100,2700,23,1,3,20
+134,"Stm","Reiteralm","Pichl-Gleiming","Schladming–Dachstein / Ski amadé","",782,1860,30,1,3,7
+135,"Stm","Rieseralm","Obdach","","",1310,1520,10,0,0,4
+136,"Stm","Riesneralm","Donnersbachwald","Salzkammergut-Ausseerland / Schneebärenland","",980,1990,25,0,2,1
+137,"Stm","Salzstiegl","Hirschegg","","",1310,1710,12,0,0,6
+138,"Stm","Schöckel","Sankt Radegund bei Graz","","",1045,1445,2,1,0,1
+139,"Stm","Seewiesen-Seeberg","Seewiesen","","",1000,1300,7,0,0,3
+140,"Stm","Sommeralm-Holzmeister","Breitenau am Hochlantsch","","",1240,1400,3,0,0,2
+141,"Stm","Sommeralm-Pirstingerkogel","Fladnitz an der Teichalm","","",1320,1400,3,0,0,1
+142,"Stm","Sonnberglifte","Wald am Schoberpass","","",850,1200,12,0,0,3
+143,"Stm","St. Jakob im Walde","St. Jakob im Walde","","",1000,1200,4,0,0,3
+144,"Stm","Stoderzinken","Gröbming","Schladming–Dachstein / Ski amadé","",1700,2048,8,0,0,4
+145,"Stm","Strallegg","Strallegg","","",900,900,3,0,0,2
+146,"Stm","Stuhleck","Spital am Semmering","","",782,1640,20,0,2,6
+147,"Stm","Tauplitzalm","Tauplitz, Bad Mitterndorf","Salzkammergut-Ausseerland / Schneebärenland","",900,2000,40,0,4,15
+148,"Stm","Teichalm","Fladnitz an der Teichalm","","",1200,1450,3,0,0,3
+149,"Stm","Tonnerhütte","Mühlen","","",1650,1820,4,0,0,1
+150,"Stm","Turnau-Schwabenberarena","Turnau","","",780,1150,4,0,0,3
+151,"Stm","Wenigzell","Wenigzell","","",940,1140,2,0,0,2
+152,"Stm","Wimmerlift","Eggersdorf bei Graz, Gleisdorf","","",450,500,1,0,0,2
+153,"Tir","Achensee-Maurach","Maurach","","",980,1848,14,1,2,1
+154,"Tir","Achensee-Pertisau","Pertisau","","",950,1496,16,1,0,7
+155,"Tir","Alpbachtal","Alpbach, Reith im Alpbachtal, Inneralpbach","","",670,2025,45,2,7,10
+156,"Tir","Axamer Lizum","Axams, Innsbruck","","",1583,2304,41,1,5,4
+157,"Tir","Bergeralm","Steinach am Brenner","","",1048,2231,13,1,1,4
+158,"Tir","Berwang","Berwang","","",1336,1740,36,1,4,8
+159,"Tir","Biberwier-Marienberg","Lermoos","","",1000,1840,12,0,2,3
+160,"Tir","Brunnalm","St. Jakob in Defereggen","","",1400,2525,27,1,1,7
+161,"Tir","Christlum","Achenkirch am Achensee","","",950,1800,15,0,3,7
+162,"Tir","Ehrwalder Alm","Ehrwald","","",1000,1922,19,1,2,4
+163,"Tir","Fendels-Ried im Oberinntal-Prutz-Faggen","Ried im Oberinntal","","",880,2300,14,1,1,4
+164,"Tir","Fieberbrunn","Fieberbrunn","","",840,2020,35,3,3,4
+165,"Tir","Serfaus-Fiss-Ladis","Serfaus, Fiss in Tirol","","",1200,2700,180,9,11,23
+166,"Tir","Fügen-Spieljoch","Fügen","","",650,2100,21,2,3,3
+167,"Tir","Füssener Jöchle-Grän","Grän-Haldensee","","",1206,1823,9,1,1,3
+168,"Tir","Galtür","Galtür","","",1600,2300,40,0,3,7
+169,"Tir","Glungezer","Tulfes","","",950,2304,17,0,2,5
+170,"Tir","Grubigstein","Lermoos","","",1000,2120,30,1,3,3
+171,"Tir","Hintertuxer Gletscher","Hintertux","","",1500,3250,86,5,6,10
+172,"Tir","Hochfügen-Hochzillertal","Hochfügen, Kaltenbach","","",558,2500,155,5,10,20
+173,"Tir","Hochimst","Imst","","",1000,2100,8,0,2,2
+174,"Tir","Hochoetz","Oetz in Tirol","","",820,2200,26,2,5,3
+175,"Tir","Hochpustertal","Sillian","","",1087,2407,45,1,2,3
+176,"Tir","Hochstubai","Neustift im Stubaital","","",1000,2100,,0,2,4
+177,"Tir","Hochzeiger","Jerzens im Pitztal","","",1450,2450,40,1,3,5
+178,"Tir","Höfener Alm-Hahnenkamm","Höfen bei Reutte","","",875,1900,13,1,2,3
+179,"Tir","Ischgl-Samnaun","Ischgl, Samnaun (Schweiz)","","",1360,2870,205,5,23,16
+180,"Tir","Kals am Großglockner","Kals am Großglockner","","",1365,2300,28,0,3,3
+181,"Tir","Dias Alpe","Kappl","","",1180,2700,40,1,3,4
+182,"Tir","Kaunertaler Gletscher","Feichten","","",2150,3200,36,0,2,6
+183,"Tir","Kellerjoch","Schwaz","","",545,2030,10,0,3,4
+184,"Tir","Kitzbühel","Kitzbühel","","",800,2000,168,9,28,18
+185,"Tir","Kössen","Kössen","","",600,1700,30,1,3,5
+186,"Tir","Kramsach","Kramsach","","",520,1800,1,0,0,2
+187,"Tir","Kühtai","Kühtai in Tirol","","",2020,2820,32,0,4,8
+188,"Tir","Leutasch","Weidach","","",1130,1650,15,0,1,5
+189,"Tir","Matreier Goldried","Matrei in Osttirol","","",1000,2405,35,1,3,5
+190,"Tir","Mutterer Alm","Mutters","","",830,830,,2,1,1
+191,"Tir","Nauders, Schöneben(I) & Haideralm(I)","Nauders am Reschenpass","","",1394,2850,111,3,10,12
+192,"Tir","Nesselwängle","Nesselwängle","","",1127,1560,5,0,1,4
+193,"Tir","Neunerköpfle","Tannheim","","",1100,1820,,1,1,4
+194,"Tir","Nordpark","Innsbruck","","",860,2260,14,2,2,0
+195,"Tir","Obergurgl-Hochgurgl","Obergurgl","","",1800,3080,110,4,12,7
+196,"Tir","Oberperfuss-Rangger Köpfl","Oberperfuss","","",820,2000,17,0,1,4
+197,"Tir","Obertilliach-Golzentipp","Obertilliach","","",1450,2250,16,0,1,4
+198,"Tir","Patscherkofel","Igls","","",900,2247,14,1,2,4
+199,"Tir","Pettneu","Pettneu am Arlberg","","",1250,2020,15,0,2,2
+200,"Tir","Pillersee","St. Ulrich am Pillersee","","",885,1550,22,0,1,6
+201,"Tir","Pitztaler Gletscher","St. Leonhard im Pitztal-Mittelberg","","",1640,3440,35,2,2,5
+202,"Tir","Rohnenlifte","Zöblen","","",1100,1500,17,0,0,3
+203,"Tir","St. Anton am Arlberg","St. Anton am Arlberg, St. Christoph am Arlberg, Stuben","","",1300,2811,260,10,38,34
+204,"Tir","St. Johann in Tirol","St. Johann in Tirol","","",685,1700,60,3,5,10
+205,"Tir","Sattelberg","Gries am Brenner","","",1200,2050,9,0,1,3
+206,"Tir","Schattwald-Zöblen","Schattwald","","",1095,1570,15,0,1,4
+207,"Tir","Schlick 2000","Fulpmes","","",1000,2300,18,2,1,6
+208,"Tir","See","See","","",1000,2450,30,1,2,4
+209,"Tir","Seefeld-Gschwandtkopf","Seefeld","","",1200,1500,12,0,2,9
+210,"Tir","Seefeld-Rosshütte","Seefeld","","",1240,2100,21,3,3,4
+211,"Tir","Serleslifte","Mieders","","",982,1750,7,0,1,3
+212,"Tir","Sölden-Hochsölden","Sölden","","",1350,3255,141,7,19,8
+213,"Tir","Steinplatte","Waidring","","",1100,1900,32,1,7,0
+214,"Tir","Stubaier Gletscher","Neustift im Stubaital","","",1750,3200,110,5,7,9
+215,"Tir","Tiroler Zugspitzbahn","Ehrwald","","",1225,2962,23,2,1,8
+216,"Tir","Venetregion","Landeck, Zams, Fließ","","",780,2212,22,1,3,3
+217,"Tir","Vent","Vent","","",1900,2650,15,0,1,3
+218,"Tir","SkiWelt Wilder Kaiser Brixental","Brixen im Thale, Ellmau, Going, Hopfgarten im Brixental, Itter, Kelchsau, Scheffau am Wilden Kaiser, Söll, Westendorf","","",620,1956,279,15,36,40
+219,"Tir","Wildschönau","Wildschönau","","",830,1900,55,2,2,22
+220,"Tir","Zahmer Kaiser","Walchsee","","",660,1060,20,0,1,7
+221,"Tir","Zettersfeld-Hochstein","Lienz","","",686,2278,40,1,4,7
+222,"Tir","Ski Zillertal 3000","Mayrhofen, Finkenberg, Lanersbach, Vorderlanersbach","","",630,2500,146,7,17,22
+223,"Tir","Zillertal-Rastkogel-Eggalm","Tux","","",1300,2300,147,8,16,22
+224,"Tir","Zillertal Arena","Zell am Ziller, Gerlos, Krimml, Wald im Pinzgau","","",1300,2500,155,4,28,23
+225,"Vbg","Alberschwende","Alberschwende","","",720,1200,,0,1,7
+226,"Vbg","Andelsbuch","Andelsbuch, Bezau","","",655,1715,20,2,2,5
+227,"Vbg","Bödele-Hochälpele","Schwarzenberg, Dornbirn","","",710,1467,23,0,1,8
+228,"Vbg","Brandnertal","Brand","","",904,2000,55,2,7,5
+229,"Vbg","Damüls-Mellau","Au, Damüls, Mellau","","",700,2007,90,2,11,4
+230,"Vbg","Diedamskopf","Schoppernau","","",850,2060,39,2,2,4
+231,"Vbg","Fontanella-Faschina","Fontanella","","",1485,2000,15,0,2,2
+232,"Vbg","Gapfohl-Laterns","Laterns, Innerlaterns","","",900,1785,27,0,2,4
+233,"Vbg","Gargellen","Gargellen","","",1423,2300,47,1,2,5
+234,"Vbg","Golm","Tschagguns, Vandans, Matschwitz","","",650,2110,26,3,3,3
+235,"Vbg","Grabs-Tschagguns","Tschagguns","","",700,1600,4,0,1,1
+236,"Vbg","Hirschberg-Bizau","Bizau","","",800,1700,30,0,1,5
+237,"Vbg","Hochjoch","Schruns, Silbertal","","",700,2380,47,3,7,2
+238,"Vbg","Hochhäderich","Hittisau","","",1300,1600,,0,0,5
+239,"Vbg","Hochlitten Riefensberg","Riefensberg","","",1000,1200,,0,0,3
+240,"Vbg","Kleinwalsertal","Riezlern, Hirschegg, Mittelberg","","",920,2030,56,4,13,15
+241,"Vbg","Kristberg-Silbertal","Silbertal im Montafon","","",890,1600,4,1,0,2
+242,"Vbg","Lech-Zürs am Arlberg","Lech, Oberlech, Zürs","","",1300,2444,110,5,18,11
+243,"Vbg","Muttersberg","Bludenz","","",600,1400,,1,0,0
+244,"Vbg","Pfänder","Bregenz","","",421,1064,6,1,0,2
+245,"Vbg","Schetteregg","Egg im Bregenzerwald","","",1100,1400,,0,5,1
+246,"Vbg","Schnepfau","Schnepfau, Bizau","","",800,1600,,0,0,4
+247,"Vbg","Silvretta Nova","St. Gallenkirch, Gaschurn","","",1000,2300,110,4,8,16
+248,"Vbg","Sonnenkopf","Klösterle","","",1000,2300,39,1,4,5
+249,"Vbg","Sonntag","Sonntag","","",900,1750,8,1,1,1
+250,"Vbg","Stuben-Langen","Stuben am Arlberg, Langen am Arlberg","","",1409,2529,25,0,4,3
+251,"Vbg","Wald am Arlberg","Wald am Arlberg, Innerwald","","",1030,2280,,0,0,0
+252,"Vbg","Warth-Schröcken","Schröcken, Warth","","",1500,2050,66,0,11,4
+253,"Wie","Dollwiese","1130 Wien","","",290,330,0.12,0,0,1
+254,"Wie","Hohe-Wand-Wiese","1140 Wien","","",258,370,0.4,0,0,1
