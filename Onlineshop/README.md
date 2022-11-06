@@ -55,132 +55,130 @@ folgende Skala: 12 Punkte: 1, 11 - 10 Punkte: 2, 9 - 8 Punkte: 3, 7 Punkte: 4
 
 **(1)** Geben Sie die teuersten Artikel aus, die in der Tabelle Artikel gespeichert sind.
 
-|ArtikelId|EAN|Name|Preis|KategorieId|
-|---------|---|----|-----|-----------|
-|5|4070396806834|Refined Soft Fish|226|3|
-|8|3948358760443|Awesome Concrete Sausages|226|4|
-|10|3971100666748|Unbranded Steel Fish|226|4|
+| ArtikelId | EAN           | Name                      | Preis    | KategorieId |
+| --------- | ------------- | ------------------------- | -------- | ----------- |
+| 7         | 3971100666748 | Unbranded Steel Fish      | 226.0000 | 1           |
+| 9         | 3948358760443 | Awesome Concrete Sausages | 226.0000 | 1           |
+| 12        | 4070396806834 | Refined Soft Fish         | 226.0000 | 2           |
 
 **(2)** Geben Sie die teuersten Artikel der Kategorie 4 (KategorieId) aus.
 
-|ArtikelId|EAN|Name|Preis|KategorieId|
-|---------|---|----|-----|-----------|
-|8|3948358760443|Awesome Concrete Sausages|226|4|
-|10|3971100666748|Unbranded Steel Fish|226|4|
+| ArtikelId | EAN           | Name                    | Preis    | KategorieId |
+| --------- | ------------- | ----------------------- | -------- | ----------- |
+| 8         | 7161398081910 | Unbranded Plastic Chips | 225.3000 | 4           |
 
-**(3)** Welche Artikel in der Kategorie 4 sind teurer als der teuerste Artikel in Kategorie 1?
 
-|ArtikelId|EAN|Name|Preis|KategorieId|
-|---------|---|----|-----|-----------|
-|8|3948358760443|Awesome Concrete Sausages|226|4|
-|10|3971100666748|Unbranded Steel Fish|226|4|
-|14|2208113939738|Practical Steel Hat|225.6|4|
+**(3)** Welche Artikel in der Kategorie 1 sind teurer als der teuerste Artikel in Kategorie 4?
 
-**(4)** Fehler bei der Numerierung, dieser Punkt bleibt leer (ist also einfach zu lösen ;).
+| ArtikelId | EAN           | Name                      | Preis    | KategorieId |
+| --------- | ------------- | ------------------------- | -------- | ----------- |
+| 3         | 2208113939738 | Practical Steel Hat       | 225.6000 | 1           |
+| 7         | 3971100666748 | Unbranded Steel Fish      | 226.0000 | 1           |
+| 9         | 3948358760443 | Awesome Concrete Sausages | 226.0000 | 1           |
 
-**(5)** Gibt es "leere" Bestellungen, also Bestellungen ohne Positionen? Hinweis: Am Einfachsten
+**(4)** Gibt es "leere" Bestellungen, also Bestellungen ohne Positionen? Hinweis: Am Einfachsten
         funktioniert dies mit *NOT EXISTS*.
 
-|BestellungId|Datum|KundeId|
-|------------|-----|-------|
-|4|2020-01-01 06:32:01.87|4|
-|11|2020-01-19 03:49:56.68|14|
-|23|2020-01-12 12:48:02.591|9|
-|26|2020-01-04 18:32:28.25|8|
-|44|2020-01-05 22:26:16.437|2|
-|46|2020-01-17 07:00:51.574|14|
-|61|2020-01-15 23:59:09.545|10|
+| BestellungId | Datum                   | KundeId |
+| ------------ | ----------------------- | ------- |
+| 3            | 2020-01-17 07:00:51.574 | 14      |
+| 5            | 2020-01-05 22:26:16.437 | 2       |
+| 29           | 2020-01-15 23:59:09.545 | 10      |
+| 37           | 2020-01-01 06:32:01.870 | 4       |
+| 44           | 2020-01-19 03:49:56.680 | 14      |
+| 56           | 2020-01-12 12:48:02.591 | 9       |
+| 59           | 2020-01-04 18:32:28.250 | 8       |
 
-**(6)** Welche Artikel aus der Kategorie 4 (*KategorieId*) wurden von Kunden aus Niederösterreich
+**(5)** Welche Artikel aus der Kategorie 4 (*KategorieId*) wurden von Kunden aus Niederösterreich
         (*Kunde.Bundesland* ist *N*) gekauft? Gehen Sie dafür von den Positionen zu den Bestellungen
         und dann zum Kunden.
 
-|ArtikelId|EAN|Name|Preis|KategorieId|
-|---------|---|----|-----|-----------|
-|1|9193237222237|Sleek Steel Pizza|214.49|4|
-|7|8907008028048|Licensed Concrete Fish|210.45|4|
-|10|3971100666748|Unbranded Steel Fish|226|4|
-|14|2208113939738|Practical Steel Hat|225.6|4|
+| ArtikelId | EAN           | Name                    | Preis    | KategorieId |
+| --------- | ------------- | ----------------------- | -------- | ----------- |
+| 1         | 4468862113713 | Practical Frozen Cheese | 162.8600 | 4           |
+| 2         | 5609588818509 | Small Steel Car         | 202.1300 | 4           |
+| 5         | 6509346919051 | Handmade Soft Chips     | 176.0200 | 4           |
+| 6         | 5593362843682 | Gorgeous Rubber Car     | 220.5100 | 4           |
+| 8         | 7161398081910 | Unbranded Plastic Chips | 225.3000 | 4           |
+| 11        | 6733367368356 | Incredible Frozen Chair | 178.1300 | 4           |
+| 13        | 5157522431449 | Tasty Frozen Car        | 174.3700 | 4           |
+| 14        | 7691287529907 | Licensed Wooden Tuna    | 222.0500 | 4           |
+| 15        | 3861984507131 | Ergonomic Soft Cheese   | 165.2900 | 4           |
 
-**(7)** Welche Produkte wurden niemals von Kunden aus Niederösterreich gekauft?
+**(6)** Welche Produkte wurden niemals von Kunden aus Niederösterreich gekauft?
 
-|ArtikelId|EAN|Name|Preis|KategorieId|
-|---------|---|----|-----|-----------|
-|8|3948358760443|Awesome Concrete Sausages|226|4|
+| ArtikelId | EAN           | Name                      | Preis    | KategorieId |
+| --------- | ------------- | ------------------------- | -------- | ----------- |
+| 9         | 3948358760443 | Awesome Concrete Sausages | 226.0000 | 1           |
 
-**(8)** Listen Sie alle Bestellungen auf, die Artikel mit der KategorieId 3, aber nicht mit der
+
+**(7)** Listen Sie alle Bestellungen auf, die Artikel mit der KategorieId 2, aber nicht mit der
          KategorieId 4 enthalten.
 
-|BestellungId|Datum|KundeId|
-|------------|-----|-------|
-|1|2020-01-15 08:42:30.368|5|
-|9|2020-01-02 15:33:18.882|14|
-|12|2020-01-10 10:30:38.446|9|
-|19|2020-01-19 08:58:03.801|7|
-|21|2020-01-17 19:18:07.329|2|
-|29|2020-01-15 00:12:39.008|10|
-|30|2020-01-10 15:37:28.249|6|
-|31|2020-01-08 12:49:00.842|7|
-|41|2020-01-05 06:54:04.25|16|
-|45|2020-01-09 17:49:39.51|9|
-|50|2020-01-03 08:32:28.515|9|
-|57|2020-01-02 16:10:33.496|7|
+| BestellungId | Datum                   | KundeId |
+| ------------ | ----------------------- | ------- |
+| 8            | 2020-01-05 06:54:04.250 | 16      |
+| 25           | 2020-01-02 16:10:33.496 | 7       |
+| 26           | 2020-01-14 11:04:45.547 | 14      |
+| 42           | 2020-01-02 15:33:18.882 | 14      |
+| 52           | 2020-01-19 08:58:03.801 | 7       |
 
-**(9)** Welche Bestellungen umfassen nur Artikel der KategorieId 3? Achtung:
+
+**(8)** Welche Bestellungen umfassen nur Artikel der KategorieId 2? Achtung:
         Bestellungen ohne Positionen sollen hierfür ausgeschlossen werden.
 
-|BestellungId|Datum|KundeId|
-|------------|-----|-------|
-|9|2020-01-02 15:33:18.882|14|
-|19|2020-01-19 08:58:03.801|7|
-|41|2020-01-05 06:54:04.25|16|
-|57|2020-01-02 16:10:33.496|7|
+| BestellungId | Datum                   | KundeId |
+| ------------ | ----------------------- | ------- |
+| 8            | 2020-01-05 06:54:04.250 | 16      |
+| 25           | 2020-01-02 16:10:33.496 | 7       |
+| 42           | 2020-01-02 15:33:18.882 | 14      |
+| 52           | 2020-01-19 08:58:03.801 | 7       |
 
-**(10)** Erstellen Sie eine View *vUmsatzstatistik*, die pro Kunde den Umsatz aufsummiert. Sie
-         berechnen den Umsatz einer Position mit Menge x Artikelpreis. Die nachfolgenden Daten
-         entstehen bei der Abfrage `SELECT * FROM vUmsatzstatistik`.
+**(9)** Erstellen Sie eine View *vUmsatzstatistik*, die pro Kunde den Umsatz aufsummiert. Sie
+        berechnen den Umsatz einer Position mit Menge x Artikelpreis. Die nachfolgenden Daten
+        entstehen bei der Abfrage `SELECT * FROM vUmsatzstatistik`.
 
-|KundeId|Vorname|Zuname|Bundesland|Kundenumsatz|
-|-------|-------|------|----------|------------|
-|1|Dedric|Shanahan|W|19330.809999999998|
-|2|Alaina|Bashirian|N|11156.380000000001|
-|3|Johan|Weimann|N|11886.899999999998|
-|4|Taylor|Metz|W|13368.13|
-|5|Rebekah|Morar|W|6035.71|
-|6|Holden|Mohr|B|3303.9|
-|7|Bethel|Corwin|W|5360.05|
-|9|Rachael|Walter|B|17451.41|
-|10|Brianne|Dare|N|3687.8199999999997|
-|11|Jaron|Pagac|B|4563|
-|12|Merl|Ryan|B|15122.74|
-|13|Prince|Mitchell|N|7890.17|
-|14|Kara|Gorczany|W|9996.85|
-|15|Jailyn|Stokes|B|5754.11|
-|16|Elliot|Vandervort|B|4330.45|
+| KundeId | Vorname | Zuname     | Bundesland | Kundenumsatz |
+| ------- | ------- | ---------- | ---------- | ------------ |
+| 1       | Dedric  | Shanahan   | W          | 19330.8100   |
+| 2       | Alaina  | Bashirian  | N          | 11156.3800   |
+| 3       | Johan   | Weimann    | N          | 11886.9000   |
+| 4       | Taylor  | Metz       | W          | 13368.1300   |
+| 5       | Rebekah | Morar      | W          | 6035.7100    |
+| 6       | Holden  | Mohr       | B          | 3303.9000    |
+| 7       | Bethel  | Corwin     | W          | 5360.0500    |
+| 9       | Rachael | Walter     | B          | 17451.4100   |
+| 10      | Brianne | Dare       | N          | 3687.8200    |
+| 11      | Jaron   | Pagac      | B          | 4563.0000    |
+| 12      | Merl    | Ryan       | B          | 15122.7400   |
+| 13      | Prince  | Mitchell   | N          | 7890.1700    |
+| 14      | Kara    | Gorczany   | W          | 9996.8500    |
+| 15      | Jailyn  | Stokes     | B          | 5754.1100    |
+| 16      | Elliot  | Vandervort | B          | 4330.4500    |
 
-**(11)** Geben Sie mit Hilfe dieser View den umsatzstärksten Kunden pro Bundesland aus. Beachten
+**(10)** Geben Sie mit Hilfe dieser View den umsatzstärksten Kunden pro Bundesland aus. Beachten
          Sie, dass es auch mehrere Kunden pro Bundesland geben kann, die diesen Umsatz generieren.
 
-|Bundesland|Vorname|Zuname|KundeId|Kundenumsatz|
-|----------|-------|------|-------|------------|
-|W|Dedric|Shanahan|1|19330.81|
-|N|Johan|Weimann|3|11886.9|
-|B|Rachael|Walter|9|17451.41|
+| KundeId | Vorname | Zuname   | Bundesland | Kundenumsatz |
+| ------- | ------- | -------- | ---------- | ------------ |
+| 9       | Rachael | Walter   | B          | 17451.4100   |
+| 3       | Johan   | Weimann  | N          | 11886.9000   |
+| 1       | Dedric  | Shanahan | W          | 19330.8100   |
 
-**(12)** Erstellen Sie mit Hilfe dieser View die Umsatzstatistik pro Bundesland.
 
-|Bundesland|Umsatz|
-|----------|------|
-|B|50525.61|
-|N|34621.27|
-|W|54091.549999999996|
+**(11)** Erstellen Sie mit Hilfe dieser View die Umsatzstatistik pro Bundesland.
+
+| Bundesland | Umsatz     |
+| ---------- | ---------- |
+| B          | 50525.6100 |
+| N          | 34621.2700 |
+| W          | 54091.5500 |
 
 ## Vorlage für die SQL Datei
 
 ```sql
 -- ÜBUNG ZU SQL UNTERABFRAGEN
 -- ZUNAME VORNAME
--- 4CAIF, 21. und 22. Apr 2020
 
 -- Aufgabe 1
 
@@ -204,5 +202,4 @@ folgende Skala: 12 Punkte: 1, 11 - 10 Punkte: 2, 9 - 8 Punkte: 3, 7 Punkte: 4
 
 -- Aufgabe 11
 
--- Aufgabe 12
 ```
