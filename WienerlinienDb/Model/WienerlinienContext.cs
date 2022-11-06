@@ -21,10 +21,6 @@ namespace WienerlinienDb.Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Haltestelle>().ToTable("Haltestelle");
-            modelBuilder.Entity<Linie>().ToTable("Linie");
-            modelBuilder.Entity<Steig>().ToTable("Steig");
-
 
             modelBuilder.Entity<Haltestelle>().Property(h => h.HaltestelleId).ValueGeneratedNever();
             modelBuilder.Entity<Haltestelle>().Property(h => h.Name).IsRequired().HasMaxLength(255);
