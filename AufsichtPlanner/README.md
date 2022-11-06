@@ -22,7 +22,6 @@ gefragt. Hast du den Container mit den Standardpasswörtern (*oracle* für Oracl
 für Sql Server 2019) erstellt, musst du nur *Enter* drücken.
 
 ```bash
-HOME=/tmp
 if [ -d "/opt/oracle" ]; then DOWNLOADER="curl -s"; else DOWNLOADER="wget -q -O /dev/stdout"; fi
 
 $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/start_dotnet.sh > /tmp/start_dotnet.sh
