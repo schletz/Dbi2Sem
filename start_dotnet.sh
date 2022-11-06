@@ -1,3 +1,10 @@
+# Date: November 2022
+# Author: Michael Schletz
+# Description: Installiert die .NET SDK in /tmp/dotnetx.xx.xx und lädt ein tar Archiv
+# von der URL, die in $APP_URL definiert wurde, in /tmp/dotnetapp/(timestamp). Danach wird
+# der Befehl mit dotnet run ausgeführt. Bei einem oracle Container wird der Parameter oracle
+# übergeben, sonst sqlserver
+
 if [ -d "/opt/oracle" ]; then DOWNLOADER="curl -s"; else DOWNLOADER="wget -q -O /dev/stdout"; fi
 
 VERSION=$($DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/6.0/latest.version)

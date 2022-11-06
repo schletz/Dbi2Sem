@@ -22,11 +22,13 @@ gefragt. Hast du den Container mit den Standardpasswörtern (*oracle* für Oracl
 für Sql Server 2019) erstellt, musst du nur *Enter* drücken.
 
 ```bash
-if [ -d "/opt/oracle" ]; then DOWNLOADER="curl -s"; else DOWNLOADER="wget -q -O /dev/stdout"; fi
+APP_URL = https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.tar
 
+if [ -d "/opt/oracle" ]; then DOWNLOADER="curl -s"; else DOWNLOADER="wget -q -O /dev/stdout"; fi
 $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/start_dotnet.sh > /tmp/start_dotnet.sh
 chmod a+x /tmp/start_dotnet.sh
-. /tmp/start_dotnet.sh https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.tar
+. /tmp/start_dotnet.sh
+
 ```
 
 ## Arbeitsauftrag
