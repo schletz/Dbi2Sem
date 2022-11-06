@@ -11,8 +11,9 @@ DOTNET_HOME=/tmp/dotnet$VERSION
 APP_DIR=/tmp/dotnetapp/$(date +'%s')
 
 if [ ! -d "$DOTNET_HOME" ]; then
-    echo Installiere .NET $VERSION
+    echo Lade .NET $VERSION
     $DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/$VERSION/$INSTALLFILE > /tmp/$INSTALLFILE
+    echo Entpacke .NET $VERSION
     mkdir -p $DOTNET_HOME && tar zxf /tmp/$INSTALLFILE -C $DOTNET_HOME
 fi
 
