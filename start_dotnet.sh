@@ -19,7 +19,7 @@ if [ -d "/opt/oracle" ]; then
     export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && $DOTNET_HOME/dotnet run -- oracle
 else 
     HOME_OLD=$HOME
-    $HOME=/tmp
+    HOME=/tmp
     export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0 && $DOTNET_HOME/dotnet run -- sqlserver
     HOME=$HOME_OLD
 fi
