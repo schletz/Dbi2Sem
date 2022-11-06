@@ -280,6 +280,7 @@ aus. Zeigen Sie dabei nur die Lehrer an, die weniger als 800 Euro unter dem Durc
 | 2022-05-31 19:45:00.000 | AT        | 2      | D'Amore     | Nicholas  |
 | 2022-05-31 21:40:00.000 | BH        | 2      | Conn        | Mitchell  |
 
+
 **(6)** Geben Sie die Räume mit der meisten Kapazität (Spalte *R_Plaetze*) aus. Hinweis: Das können auch
 mehrere Räume sein.
 

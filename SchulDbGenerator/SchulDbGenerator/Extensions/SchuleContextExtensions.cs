@@ -360,7 +360,7 @@ namespace SchulDbGenerator
                             // In 10% der Fälle nehmen wir irgeneinen Prüfer, der das Fach unterrichtet,
                             // aber nicht notwendigerweise in der Klasse steht.
                             p.PPrueferNavigation = f.Random.Bool(0.1f) ?
-                                p.PPrueferNavigation = f.Random.ListItem(db.Stundens
+                                p.PPrueferNavigation = f.Random.ListItem(stundens
                                     .Where(s => s.StGegenstand == stunde.StGegenstand)
                                     .Select(s => s.StLehrerNavigation)
                                     .ToList()) :

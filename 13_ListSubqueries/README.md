@@ -320,11 +320,11 @@ unterrichten? Hinweis: Arbeiten Sie über die Menge der Lehrer, die den angezeig
 
 | P_DATUMZEIT             | P_PRUEFER | P_GEGENSTAND | P_KANDIDAT | S_ZUNAME    | S_VORNAME | S_KLASSE |
 | ----------------------- | --------- | ------------ | ---------- | ----------- | --------- | -------- |
-| 2022-03-04 10:00:00.000 | ENU       | BWM          | 1889       | Greenfelder | Gayle     | 5BKIF    |
-| 2022-05-28 18:50:00.000 | BEP       | BWM          | 1775       | Ledner      | Lester    | 3BKIF    |
-| 2022-05-28 08:05:00.000 | HAU       | BWM          | 1782       | Muller      | Jo        | 3BKIF    |
-| 2022-01-18 19:00:00.000 | HAU       | BWM          | 1947       | Brown       | Gwen      | 5BAIF    |
+| 2022-01-18 19:00:00.000 | BIM       | BWM          | 1947       | Brown       | Gwen      | 5BAIF    |
+| 2022-03-04 10:00:00.000 | SAK       | BWM          | 1889       | Greenfelder | Gayle     | 5BKIF    |
 | 2022-05-06 10:05:00.000 | ENU       | BWM          | 3428       | Tremblay    | Angelina  | 7BBIF    |
+| 2022-05-28 08:05:00.000 | BIM       | BWM          | 1782       | Muller      | Jo        | 3BKIF    |
+| 2022-05-28 18:50:00.000 | ENU       | BWM          | 1775       | Ledner      | Lester    | 3BKIF    |
 
 **(5)** Für die Maturaaufsicht in POS werden Lehrer benötigt, die zwar in POS (Filtern nach POS%) unterrichten,
 aber in keiner 5. HIF Klasse (*K_Schulstufe* ist 13 und *K_Abteilung* ist HIF) sind.
