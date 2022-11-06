@@ -1,5 +1,7 @@
 # Musterdatenbank "Schneehöhen"
 
+Diese Datenbank ist für freie Übungen im Unterricht gedacht.
+
 ![](er_model_2008.png)
 
 ## Generieren der Datenbank
@@ -14,6 +16,6 @@ musst du nur *Enter* drücken.
 if [ -d "/opt/oracle" ]; then DOWNLOADER="curl -s"; else DOWNLOADER="wget -q -O /dev/stdout"; fi
 $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/start_dotnet.sh > /tmp/start_dotnet.sh
 chmod a+x /tmp/start_dotnet.sh
-/tmp/start_dotnet.sh https://raw.githubusercontent.com/schletz/Dbi2Sem/master/SchneeDbGenerator/SchneeDbGenerator.tar
+/tmp/start_dotnet.sh https://raw.githubusercontent.com/schletz/Dbi2Sem/master/SchneeDb/SchneeDbGenerator.tar
 
 ```

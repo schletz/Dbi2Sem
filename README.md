@@ -21,6 +21,7 @@
                 <li><a href="Lieferservice">Lieferservice</a></li>
                 <li><a href="Onlineshop">Onlineshop</a></li>
                 <li><a href="WienerlinienDb">WienerlinienDb</a></li>
+                <li><a href="SchneeDbGenerator">Schneedatenbank (nur Datenbank)</a></li>
             </ol>            
         </td>    
         <td valign="top">
