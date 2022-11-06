@@ -44,7 +44,7 @@ namespace SchneeDbGenerator
         }
         private IList<T> ReadCsv<T>(string filename)
         {
-            using var reader = new StreamReader(Path.Combine("csv", filename));
+            using var reader = new StreamReader(path: Path.Combine("csv", filename), encoding: new System.Text.UTF8Encoding(false));
             using var csv = new CsvReader(reader, CultureInfo.InvariantCulture);
             return csv.GetRecords<T>().ToList();
         }
