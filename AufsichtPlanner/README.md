@@ -22,28 +22,14 @@ gefragt. Hast du den Container mit den Standardpasswörtern (*oracle* für Oracl
 für Sql Server 2019) erstellt, musst du nur *Enter* drücken.
 
 ```bash
-if [ -d "/opt/oracle" ]; then 
-    DOWNLOADER="curl -s"
-    RUNCMD="export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && dotnet run -- oracle"
-else 
-    HOME=/tmp
-    DOWNLOADER="wget -q -O /dev/stdout"
-    RUNCMD="export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0 && dotnet run -- sqlserver"
-fi
+HOME=/tmp
+if [ -d "/opt/oracle" ]; then DOWNLOADER="curl -s"; else DOWNLOADER="wget -q -O /dev/stdout"; fi
 
-cd $HOME
-$DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh > dotnet_install.sh
-chmod a+x dotnet_install.sh
-. ./dotnet_install.sh
-
-mkdir -p $HOME/aufsichtPlanner
-cd $HOME/aufsichtPlanner
-for srcfile in AufsichtPlanner.csproj MultiDbContext.cs Program.cs
-do
-    $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/$srcfile > $srcfile
-done
-eval $RUNCMD
+$DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/start_dotnet.sh > /tmp/start_dotnet.sh
+chmod a+x /tmp/start_dotnet.sh
+. /tmp/start_dotnet.sh https://raw.githubusercontent.com/schletz/Dbi2Sem/master/AufsichtPlanner/AufsichtPlanner.tar
 ```
+
 ## Arbeitsauftrag
 
 Kopieren Sie die Vorlage unter den Beispielen in eine neue Datei. Benennen Sie diese Datei nach
