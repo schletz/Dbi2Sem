@@ -17,33 +17,17 @@ Eine kleine Datenbank speichert Verkäufe aus einem Onlineshop. Sie Datenbank ha
 ## Generieren der Datenbank
 
 Öffne in Docker Desktop eine Shell des Oracle oder SQL Server Containers. Kopiere danach die
-folgenden Befehle in das Fenster. Sie laden die .NET 6 SDK und den Generator der Datenbank. Drücke
-*Enter*, um die Befehle auszuführen. Am Ende wirst du nach dem Admin Passwort der Datenbank
-gefragt. Hast du den Container mit den Standardpasswörtern (*oracle* für Oracle bzw. *SqlServer2019*
-für Sql Server 2019) erstellt, musst du nur *Enter* drücken.
+folgenden Befehle in das Fenster. Sie laden die .NET 6 SDK und den Generator der Datenbank.
+Am Ende wirst du nach dem Admin Passwort der Datenbank gefragt. Hast du den Container mit den
+Standardpasswörtern (*oracle* für Oracle bzw. *SqlServer2019* für Sql Server 2019) erstellt,
+musst du nur *Enter* drücken.
 
 ```bash
-if [ -d "/opt/oracle" ]; then 
-    DOWNLOADER="curl -s"
-    RUNCMD="export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && dotnet run -- oracle"
-else 
-    HOME=/tmp
-    DOWNLOADER="wget -q -O /dev/stdout"
-    RUNCMD="export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=0 && dotnet run -- sqlserver"
-fi
+if [ -d "/opt/oracle" ]; then DOWNLOADER="curl -s"; else DOWNLOADER="wget -q -O /dev/stdout"; fi
+$DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/start_dotnet.sh > /tmp/start_dotnet.sh
+chmod a+x /tmp/start_dotnet.sh
+/tmp/start_dotnet.sh https://raw.githubusercontent.com/schletz/Dbi2Sem/master/Onlineshop/Onlineshop.tar
 
-cd $HOME
-$DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/dotnet_install.sh > dotnet_install.sh
-chmod a+x dotnet_install.sh
-. ./dotnet_install.sh
-
-mkdir -p $HOME/onlineshop
-cd $HOME/onlineshop
-for srcfile in Onlineshop.csproj MultiDbContext.cs Program.cs OnlineshopContext.cs
-do
-    $DOWNLOADER https://raw.githubusercontent.com/schletz/Dbi2Sem/master/Onlineshop/$srcfile > $srcfile
-done
-eval $RUNCMD
 ```
 
 ## Bewertung und Abgabe
