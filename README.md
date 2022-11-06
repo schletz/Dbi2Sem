@@ -61,7 +61,7 @@
 - [Installation von DBeaver](01_OracleVM/01_Dbeaver/README.md)
 - [Anlegen der Musterdatenbank (SchulDb) in Oracle](SchulDbGenerator/README.md)
 
-### Auf Basis von SQL Server
+### Auf Basis von SQL Server (HIF)
 - [SQL Server als Docker Image](01_SQLServer/README.md)
 - [Anlegen der Musterdatenbank (SchulDb) in SQL Server](SchulDbGenerator/README.md)
 
