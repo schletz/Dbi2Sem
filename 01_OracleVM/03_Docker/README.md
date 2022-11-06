@@ -14,7 +14,6 @@ zu mappen. Bei anderen Betriebssystemen (macOS, Linux) muss dieser Pfad angepass
 dort keine Laufwerke gibt.
 
 ```text
-docker pull gvenzl/oracle-xe:21-full
 docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/home --name oracle21c gvenzl/oracle-xe:21-full
 ```
 
