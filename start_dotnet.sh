@@ -12,8 +12,8 @@ if [ ! -d "$DOTNET_HOME" ]; then
     mkdir -p $DOTNET_HOME && tar zxf /tmp/$INSTALLFILE -C $DOTNET_HOME
 fi
 
-echo Lade $1 und führe das Projekt aus...
-$DOWNLOADER $1 > /tmp/app.tar
+echo Lade $APP_URL und führe das Projekt aus...
+$DOWNLOADER $APP_URL > /tmp/app.tar
 mkdir -p $APP_DIR && tar xf /tmp/app.tar -C $APP_DIR
 
 cd $APP_DIR
