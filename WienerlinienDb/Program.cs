@@ -7,7 +7,16 @@ namespace WienerlinienDb
     {
         static void Main(string[] args)
         {
-            using (WienerlinienContext db = new WienerlinienContext())
+            if (args.Length < 1)
+            {
+                Console.Error.WriteLine("Missing args.");
+                Console.Error.WriteLine("Usage: dotnet run -- (sqlserver|oracle|sqlite)");
+                return;
+            }
+            var options = MultiDbContext.GetConnectionInteractive(dbms: args[0].ToLower(), database: "Wienerlinien");
+            if (options is null) { return; }
+
+            using (WienerlinienContext db = new WienerlinienContext(options))
             {
                 db.Database.EnsureDeleted();
                 if (db.Database.EnsureCreated())

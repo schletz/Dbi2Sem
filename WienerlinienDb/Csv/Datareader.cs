@@ -11,6 +11,7 @@ namespace WienerlinienDb.Csv
 {
     public class Datareader
     {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
         public class Haltestelle
         {
             public int Haltestellen_Id { get; set; }
@@ -41,6 +42,7 @@ namespace WienerlinienDb.Csv
             public decimal Steig_Wgs84_Lat { get; set; }
             public decimal Steig_Wgs84_Lon { get; set; }
         }
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
 
         public static List<T> ReadFile<T>(string filename)
         {

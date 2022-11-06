@@ -8,21 +8,19 @@ using WienerlinienDb.Csv;
 
 namespace WienerlinienDb.Model
 {
-    public class WienerlinienContext : DbContext
+    public class WienerlinienContext : MultiDbContext
     {
-        public DbSet<Haltestelle> Haltestellen { get; set; }
-        public DbSet<Linie> Linien { get; set; }
-        public DbSet<Steig> Steige { get; set; }
-        public DbSet<Fahrt> Fahrten { get; set; }
+        public DbSet<Haltestelle> Haltestellen => Set<Haltestelle>();
+        public DbSet<Linie> Linien => Set<Linie>();
+        public DbSet<Steig> Steige => Set<Steig>();
+        public DbSet<Fahrt> Fahrten => Set<Fahrt>();
 
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=Wienerlinien.db");
-        }
+        public WienerlinienContext(DbContextOptions opt) : base(opt)
+        { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Haltestelle>().ToTable("Haltestelle");
             modelBuilder.Entity<Linie>().ToTable("Linie");
             modelBuilder.Entity<Steig>().ToTable("Steig");
@@ -46,6 +44,9 @@ namespace WienerlinienDb.Model
             modelBuilder.Entity<Steig>().Property(s => s.Richtung).IsRequired().HasMaxLength(1);
             modelBuilder.Entity<Steig>().Property(s => s.Wgs84_Lat).HasColumnType("DECIMAL(18, 15)");
             modelBuilder.Entity<Steig>().Property(s => s.Wgs84_Lon).HasColumnType("DECIMAL(18, 15)");
+
+            modelBuilder.Entity<Fahrt>().HasOne(f => f.Einstieg).WithMany().OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Fahrt>().HasOne(f => f.Ausstieg).WithMany().OnDelete(DeleteBehavior.Restrict);
         }
 
         public void Seed()
@@ -89,8 +90,8 @@ namespace WienerlinienDb.Model
             Steige.AddRange(steigeCsv.Select(s => new Steig
             {
                 SteigId = s.Steig_Id,
-                Linie = Linien.Find(s.Fk_Linien_Id),
-                Haltestelle = Haltestellen.Find(s.Fk_Haltestellen_Id),
+                Linie = Linien.Find(s.Fk_Linien_Id)!,
+                Haltestelle = Haltestellen.Find(s.Fk_Haltestellen_Id)!,
                 Name = s.Name,
                 Richtung = s.Richtung,
                 Reihenfolge = s.Reihenfolge,

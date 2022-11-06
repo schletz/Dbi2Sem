@@ -8,7 +8,7 @@ namespace WienerlinienDb.Model
     {
         public int FahrtId { get; set; }
         public DateTime Fahrtantritt { get; set; }
-        public Haltestelle Einstieg { get; set; }
-        public Haltestelle Ausstieg { get; set; }
+        public Haltestelle Einstieg { get; set; } = default!;
+        public Haltestelle Ausstieg { get; set; } = default!;
     }
 }
