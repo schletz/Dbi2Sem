@@ -23,7 +23,7 @@ fi
 
 echo Lade $1 und führe das Projekt aus...
 $DOWNLOADER $1 > /tmp/app.tar
-rm -rf APP_DIR && mkdir -p $APP_DIR && tar xf /tmp/app.tar -C $APP_DIR
+rm -rf $APP_DIR && mkdir -p $APP_DIR && tar xf /tmp/app.tar -C $APP_DIR
 
 cd $APP_DIR
 if [ -d "/opt/oracle" ]; then 
