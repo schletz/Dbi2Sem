@@ -34,15 +34,15 @@ eingesetzt, wo normalerweise Spalten stehen. Unser Beispiel sieht dann so aus:
 ```sql
 SELECT
     s.S_Nr, s.S_Zuname, s.S_Vorname,
-    (SELECT MAX(s.S_Gebdatum) FROM Schueler s) AS Juengster
+    (SELECT MAX(s2.S_Gebdatum) FROM Schueler s2) AS Juengster
 FROM Schueler s;
 ```
 
 | S_Nr | S_Zuname   | S_Vorname | Juengster  |
 | ---- | ---------- | --------- | ---------- |
-| 1000 | Cartwright | Jaime     | 2005-08-31 |
-| 1001 | Bogan      | Stanley   | 2005-08-31 |
-| 1002 | Mertz      | Andy      | 2005-08-31 |
+| 1000 | Hodkiewicz | Rosa      | 2007-08-31 |
+| 1001 | Hirthe     | Wilson    | 2007-08-31 |
+| 1002 | Roob       | Woodrow   | 2007-08-31 |
 | ...  | ...        | ...       | ...        |
 
 > **Hinweis:** Die Unterabfrage muss immer eingeklammert sein!
@@ -68,80 +68,95 @@ des ältesten und jüngsten Schülers ermittelt werden:
 ```sql
 SELECT
     s.S_Nr, s.S_Zuname, s.S_Vorname,
-    (SELECT MAX(s.S_Gebdatum) FROM Schueler s) AS Juengster,
-    (SELECT MIN(s.S_Gebdatum) FROM Schueler s) AS Aelterster
+    (SELECT MAX(s2.S_Gebdatum) FROM Schueler s2) AS Juengster,
+    (SELECT MIN(s2.S_Gebdatum) FROM Schueler s2) AS Aelterster
 FROM Schueler s;
 ```
 
-| S_Nr | S_Zuname   | S_Vorname | Juengster  | Aeltester  |
+| S_Nr | S_Zuname   | S_Vorname | Juengster  | Aelterster |
 | ---- | ---------- | --------- | ---------- | ---------- |
-| 1000 | Cartwright | Jaime     | 2005-08-31 | 1973-10-30 |
-| 1001 | Bogan      | Stanley   | 2005-08-31 | 1973-10-30 |
-| 1002 | Mertz      | Andy      | 2005-08-31 | 1973-10-30 |
+| 1000 | Hodkiewicz | Rosa      | 2007-08-31 | 1975-10-02 |
+| 1001 | Hirthe     | Wilson    | 2007-08-31 | 1975-10-02 |
+| 1002 | Roob       | Woodrow   | 2007-08-31 | 1975-10-02 |
 | ...  | ...        | ...       | ...        | ...        |
 
 ## Unterabfragen in Ausdrücken
 
 Da die angegebenen Unterabfragen nur 1 Wert zurückliefern, können sie auch in Ausdrücken verwendet
-werden. Hier wird die Altersdifferenz in Tagen zum ältesten Schüler berechnet. Die Funktion *JULIANDAY()*
-ist speziell für SQLite, denn sonst würde die Differenz in Jahren berechnet werden.
+werden. Hier wird die Altersdifferenz in Tagen zum ältesten Schüler berechnet. Die Differenz
+zwischen 2 Datumswerten in Tagen wird in SQL Server und in Oracle unterschiedlich ermittelt:
 
-**SQLite**
+**SQL Server**
 ```sql
 SELECT
     s.S_Nr, s.S_Zuname, s.S_Vorname,
-    JULIANDAY(s.S_Gebdatum) - JULIANDAY((SELECT MIN(s.S_Gebdatum) FROM Schueler s)) AS DiffZuAeltester
-FROM Schueler s;
+    DATEDIFF(day, (SELECT MIN(s2.S_Gebdatum) FROM Schueler s2), s.S_Gebdatum) AS DiffZuAeltester
+FROM Schueler s
+ORDER BY s.S_Nr;
 ```
 
 **Oracle**
 ```sql
 SELECT
     s.S_Nr, s.S_Zuname, s.S_Vorname,
-    EXTRACT(DAY FROM (s.S_Gebdatum - (SELECT MIN(s.S_Gebdatum) FROM Schueler s))) AS DiffZuAeltester
+    EXTRACT(DAY FROM (s.S_Gebdatum - (SELECT MIN(s2.S_Gebdatum) FROM Schueler s2))) AS DiffZuAeltester
 FROM Schueler s;
 ```
 
 | S_Nr | S_Zuname   | S_Vorname | DiffZuAeltester |
 | ---- | ---------- | --------- | --------------- |
-| 1000 | Cartwright | Jaime     | 6642            |
-| 1001 | Bogan      | Stanley   | 6829            |
-| 1002 | Mertz      | Andy      | 6387            |
+| 1000 | Hodkiewicz | Rosa      | 11384           |
+| 1001 | Hirthe     | Wilson    |                 |
+| 1002 | Roob       | Woodrow   | 11448           |
 | ...  | ...        | ...       | ...             |
 
 
 ## Unterabfragen in Filterkriterien (WHERE und HAVING)
 
 Möchten wir alle Schüler ausgeben, die im selben Jahr wie der älteste Schüler geboren sind, so
-verwenden wir unsere Unterabfrage einfach in *WHERE*. Die Funktion *STRFTIME()* ist speziell für
-SQLite und gibt Teile (hier das Jahr) des Datumswertes zurück. Beachte die Klammerung der
-Unterabfrage im Argument von *STRFTIME*!
+verwenden wir unsere Unterabfrage einfach in *WHERE*. In SQL Server können wir mit *DATEPART()*
+einen Datumsteil extrahieren. In Oracle wird mit *EXTRACT()* diese Funktion bereitgestellt.
+
+**SQL Server**
+```sql
+SELECT   s.S_Nr, s.S_Zuname, s.S_Vorname, s.S_Klasse, s.S_Gebdatum
+FROM     Schueler s
+WHERE    DATEPART(year, s.S_Gebdatum) = DATEPART(year, (SELECT MIN(s2.S_Gebdatum) FROM Schueler s2))
+ORDER BY s.S_Klasse, s.S_Nr;
+```
 
 **Oracle**
 ```sql
 SELECT   s.S_Nr, s.S_Zuname, s.S_Vorname, s.S_Klasse, s.S_Gebdatum
 FROM     Schueler s
-WHERE    EXTRACT(YEAR FROM s.S_Gebdatum) = EXTRACT(YEAR FROM (SELECT MIN(s.S_Gebdatum) FROM Schueler s))
+WHERE    EXTRACT(YEAR FROM s.S_Gebdatum) = EXTRACT(YEAR FROM (SELECT MIN(s2.S_Gebdatum) FROM Schueler s2))
 ORDER BY s.S_Klasse, s.S_Nr;
 ```
 
-**SQLite**
-```sql
-SELECT   s.S_Nr, s.S_Zuname, s.S_Vorname, s.S_Klasse, s.S_Gebdatum
-FROM     Schueler s
-WHERE    STRFTIME('%Y', s.S_Gebdatum) = STRFTIME('%Y', (SELECT MIN(s.S_Gebdatum) FROM Schueler s))
-ORDER BY s.S_Klasse, s.S_Nr;
-```
+| S_Nr | S_Zuname   | S_Vorname | S_Klasse | S_Gebdatum |
+| ---- | ---------- | --------- | -------- | ---------- |
+| 1472 | Donnelly   | Vera      | 1AO      | 1975-10-19 |
+| 1476 | Considine  | Natasha   | 1AO      | 1975-10-23 |
+| 1477 | Berge      | Dominic   | 1AO      | 1975-11-27 |
+| 1480 | Konopelski | Debra     | 1AO      | 1975-11-15 |
+| 1486 | Wolff      | Ronald    | 1AO      | 1975-10-02 |
+| 1487 | Dietrich   | Richard   | 1AO      | 1975-10-26 |
 
-| S_Nr | S_Zuname | S_Vorname | S_Klasse | S_Gebdatum |
-| ---- | -------- | --------- | -------- | ---------- |
-| 1935 | Kuhic    | Natalie   | 1AO      | 1973-11-19 |
-| 1937 | West     | Courtney  | 1AO      | 1973-10-30 |
-| 1942 | Towne    | Kevin     | 1AO      | 1973-11-11 |
 
 Nun wollen wir die Klassen herausfinden, wo der älteste Schüler der Klasse im selben Jahr wie der
-älteste Schüler der 3BAIF geboren wurde. Im Gegensatz zur vorigen Abfrage wird jetzt jede Klasse
+älteste Schüler der 4AHIF geboren wurde. Im Gegensatz zur vorigen Abfrage wird jetzt jede Klasse
 nur 1x ausgegeben.
+
+**SQL Server**
+```sql
+SELECT   s.S_Klasse, MIN(s.S_Gebdatum) AS Aelterster
+FROM     Schueler s
+GROUP BY s.S_Klasse
+HAVING   DATEPART(year, MIN(s.S_Gebdatum)) =
+         DATEPART(YEAR, (SELECT MIN(s2.S_Gebdatum)
+                            FROM Schueler s2
+                            WHERE s2.S_Klasse = '4AHIF'));
+```
 
 **Oracle**
 ```sql
@@ -149,33 +164,27 @@ SELECT   s.S_Klasse, MIN(s.S_Gebdatum) AS Aelterster
 FROM     Schueler s
 GROUP BY s.S_Klasse
 HAVING   EXTRACT(YEAR FROM MIN(s.S_Gebdatum)) =
-         EXTRACT(YEAR FROM (SELECT MIN(s.S_Gebdatum)
-                            FROM Schueler s
-                            WHERE s.S_Klasse = '3BAIF'));
-```
-
-**SQLite**
-```sql
-SELECT   s.S_Klasse, MIN(s.S_Gebdatum) AS Aelterster
-FROM     Schueler s
-GROUP BY s.S_Klasse
-HAVING   STRFTIME('%Y', MIN(s.S_Gebdatum)) =
-         STRFTIME('%Y', (SELECT MIN(s.S_Gebdatum)
-                            FROM Schueler s
-                            WHERE s.S_Klasse = '3BAIF'));
+         EXTRACT(YEAR FROM (SELECT MIN(s2.S_Gebdatum)
+                            FROM Schueler s2
+                            WHERE s2.S_Klasse = '4AHIF'));
 ```
 
 | S_Klasse | Aelterster |
 | -------- | ---------- |
-| 1BVIF    | 1989-10-21 |
-| 1DVIF    | 1989-11-17 |
-| 3AKIF    | 1989-10-13 |
-| 3AKKUI   | 1989-10-01 |
-| 3BAIF    | 1989-09-10 |
-| 5ABKUF   | 1989-11-15 |
-| 5ACMNA   | 1989-12-04 |
-| 5AKKUI   | 1989-12-11 |
-| 5CAIF    | 1989-12-18 |
+| 4AFITM   | 2003-10-31 |
+| 4AFITN   | 2003-09-04 |
+| 4AHBGM   | 2003-09-01 |
+| 4AHIF    | 2003-09-02 |
+| 4AHKUI   | 2003-09-06 |
+| 4AHMNA   | 2003-10-11 |
+| 4AHMNG   | 2003-09-18 |
+| 4AHWIT   | 2003-09-29 |
+| 4BHBGM   | 2003-09-15 |
+| 4BHIF    | 2003-09-03 |
+| 4BHWIT   | 2003-10-22 |
+| 4CHIF    | 2003-09-26 |
+| 4EHIF    | 2003-09-01 |
+
 
 > **Zusammenfassung:** Unterabfragen, die einen Wert liefern, lassen sich wie Variablen behandeln.
 > Sie können überall dort eingesetzt werden, wo Spalten oder fixe Werte stehen können.
@@ -260,6 +269,8 @@ aus. Zeigen Sie dabei nur die Lehrer an, die weniger als 800 Euro unter dem Durc
 | TOF  | Tonti  | Fabio     | 2018            | 2166     | 3099.2    | -933.16    |
 
 **(5)** Geben Sie die Prüfungen aus, die maximal 3 Tage (72 Stunden) vor der letzten Prüfung stattfanden.
+Hinweis für SQL Server: *DATEPART()* liefert ein ganzzahliges Ergebnis, wenn die Differenz
+in Tagen ermittelt wird. Prüfe daher die Differenz in Sekunden, 1 Tag hat 86400 Sekunden.
 
 | P_DATUMZEIT             | P_PRUEFER | P_NOTE | S_ZUNAME    | S_VORNAME |
 | ----------------------- | --------- | ------ | ----------- | --------- |
