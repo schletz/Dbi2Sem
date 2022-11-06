@@ -1,4 +1,3 @@
-#!/bin/bash
 # Date: November 2022
 # Author: Michael Schletz
 # Description: Installiert die .NET SDK in /tmp/dotnetx.xx.xx und lädt ein tar Archiv
