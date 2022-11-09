@@ -1,40 +1,39 @@
-# DBI im 4. Semester bzw. im III. und IV. Jahrgang
+# DBI im 4. Semester bzw. im III. Jahrgang
 
 ## Lehrinhalte
 
 <table>
     <tr>
-        <th>1</th> <th>2</th> <th>3</th> <th>4</th> <th>5</th>
+        <th>Erweitertes SQL (4. Semester / III. Jahrgang)</th>
+        <th>Erweiterte Modellierung (4. Semester / III. Jahrgang)</th>
     </tr>
     <tr>
-        <td colspan="2" rowspan="2" valign="top">
-            <b>1 Erweitertes SQL</b>
+        <td valign="top">
+            <b>Erweitertes SQL</b>
             <ol>
-                <li><a href="11_SingleValueNonCorresponding">Nicht korrelierte Unterabfragen, die einen Wert liefern</a></li>
+                <li><a href="11_SingleValueNonCorresponding">Nicht korrelierte Unterabfragen, die einen Wert liefern</a>
+                </li>
                 <li><a href="12_SingleValueCorresponding">Korrelierte Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
                 <li><a href="14_FromSubqueries">Views und Unterabfragen in FROM</a></li>
+                <li><a href="21_Null">Umgang mit NULL</a></li>
             </ol>
-            <b>Übungen</b>
+            <b>Übungen zu SQL</b>
             <ol>
                 <li><a href="AufsichtPlanner">Matura Aufsichtsplanung</a></li>
                 <li><a href="Lieferservice">Lieferservice</a></li>
                 <li><a href="Onlineshop">Onlineshop</a></li>
                 <li><a href="WienerlinienDb">WienerlinienDb</a></li>
                 <li><a href="SchneeDb">Schneedatenbank (nur Datenbank)</a></li>
-            </ol>            
-        </td>    
-        <td valign="top">
-            <b>2 Bereich Datenbankadministration</b>
+            </ol>
+            <b>Einstieg Datenbankadministration</b>
             <ol>
-                <li><a href="01_OracleVM/03_Docker/README.md">Oracle als Docker Image</li>
-                <li><a href="21_Null">Umgang mit NULL</a></li>
                 <li><a href="22_Transactions">Transaktionen</a></li>
                 <li><a href="23_Index">Verwenden von Indizes</a></li>
             </ol>
-        </td>              
-        <td colspan="2" valign="top">
-            <b>3 ER Modellierung</b>
+        </td>
+        <td valign="top">
+            <b>ER Modellierung</b>
             <ol>
                 <li><a href="31_Normalisierung">Normalformen</a></li>
                 <li><a href="32_Generalisierung">Generalisierung</a></li>
@@ -42,11 +41,7 @@
                 <li><a href="34_EntityAttribute">Entity Attribute Model</a></li>
                 <li><a href="35_RekursiveBeziehungen">Rekursive Beziehungen</a></li>
             </ol>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="3" valign="top">
-            <b>4 Modellierungsprojekt</b>
+            <b>Modellierungsprojekt</b>
             <ol>
                 <li><a href="VorlageDbiModellierungsprojekt.docx">Wordvorlage</li>
             </ol>
@@ -82,12 +77,12 @@ nur eine Notmaßnahme.
 ## Synchronisieren des Repositories in einen Ordner
 
 1. Laden Sie von https://git-scm.com/downloads die Git Tools (Button *Download 2.xx for Windows*)
-    herunter. Es können alle Standardeinstellungen belassen werden, bei *Adjusting your PATH environment*
-    muss aber der mittlere Punkt (*Git from the command line [...]*) ausgewählt sein.
+herunter. Es können alle Standardeinstellungen belassen werden, bei *Adjusting your PATH environment*
+muss aber der mittlere Punkt (*Git from the command line [...]*) ausgewählt sein.
 2. Legen Sie einen Ordner auf der Festplatte an, wo die Daten gespeichert werden sollen
-    (z. B. *C:\Schule\DBI\Repo*).
+(z. B. *C:\Schule\DBI\Repo*).
 3. Initialisieren Sie den Ordner mit folgenden Befehlen, die in der Windows Konsole in diesem Verzeichnis
-    ausgeführt werden:
+ausgeführt werden:
 
 ```text
 git clone https://github.com/schletz/Dbi2Sem.git
