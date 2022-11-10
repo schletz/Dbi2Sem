@@ -6,7 +6,7 @@
 # der Befehl mit dotnet run ausgeführt. Bei einem oracle Container wird der Parameter oracle
 # übergeben, sonst sqlserver
 
-if [ -d "/opt/oracle" ]; then DOWNLOADER="curl -s"; else DOWNLOADER="wget -q -O /dev/stdout"; fi
+if [ -d "/opt/oracle" ]; then DOWNLOADER="curl"; else DOWNLOADER="wget -O /dev/stdout"; fi
 
 VERSION=$($DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/6.0/latest.version)
 INSTALLFILE=dotnet-sdk-$VERSION-linux-x64.tar.gz
