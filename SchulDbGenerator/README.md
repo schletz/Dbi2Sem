@@ -19,14 +19,6 @@ chmod a+x /tmp/start_dotnet.sh
 
 ```
 
-Das Programm fragt ab, welche Datenbank Sie anlegen möchten. Wählen Sie **(4)**, um die
-Datenbank in einem Oracle Container anzulegen oder **(5)**, um die Datenbank in einem SQL Server
-Container anzulegen.
-
-```text
-Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE   [5] SQL Server Docker Image
-```
-
 ## Alternative: Generieren der Datenbank im Host Betriebssystem
 
 Dieses Programm verwendet .NET 6. Es kann daher unter Windows, Linux (64bit) und unter macOS

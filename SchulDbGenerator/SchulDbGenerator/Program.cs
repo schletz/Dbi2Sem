@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -9,21 +10,18 @@ namespace SchulDbGenerator
 {
     class Program
     {
-        static DbContextOptions<SchuleContext> GetOptions()
+        static DbContextOptions<SchuleContext> GetOptions(int dbType)
         {
             var builder = new DbContextOptionsBuilder<SchuleContext>();
-            Console.WriteLine("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE   [5] SQL Server Docker Image");
-            string dbType = Console.ReadLine();
-            dbType = string.IsNullOrEmpty(dbType) ? "1" : dbType;
 
-            if (dbType == "1")
+            if (dbType == 1)
             {
                 Console.Write("Dateiname? Hinweis: Relative Pfade (..) sind möglich. Default: Schule.db ");
                 string dbName = Console.ReadLine();
                 dbName = string.IsNullOrEmpty(dbName) ? "Schule.db" : dbName;
                 builder.UseSqlite($"DataSource={dbName}");
             }
-            else if (dbType == "2")
+            else if (dbType == 2)
             {
                 Console.Write("Wie soll die Datenbank heißen? Default: Schule ");
                 string dbName = Console.ReadLine();
@@ -33,9 +31,9 @@ namespace SchulDbGenerator
                                 $"Database={dbName};" +
                                 $"Trusted_Connection=True;MultipleActiveResultSets=true");
             }
-            else if (dbType == "5")
+            else if (dbType == 5)
             {
-                Console.WriteLine("Gib das sa Passwort ein, das beim Erstellen des Containers verwendet wurde (Default: SqlServer2019).");
+                Console.Write("Gib das sa Passwort ein, das beim Erstellen des Containers verwendet wurde (Default: SqlServer2019). ");
                 string password = Console.ReadLine();
                 password = string.IsNullOrEmpty(password) ? "SqlServer2019" : password;
                 Console.Write("Wie soll die Datenbank heißen? Default: SchulDb ");
@@ -43,7 +41,7 @@ namespace SchulDbGenerator
                 dbName = string.IsNullOrEmpty(dbName) ? "SchulDb" : dbName;
                 builder.UseSqlServer($"Server=127.0.0.1,1433;Initial Catalog={dbName};User Id=sa;Password={password}");
             }
-            else if (dbType == "3" || dbType == "4")
+            else if (dbType == 3 || dbType == 4)
             {
                 Console.Write("Wie soll der Benutzer heißen? Default: Schule ");
                 string dbName = Console.ReadLine();
@@ -51,7 +49,7 @@ namespace SchulDbGenerator
                 // Oracle 19 und 21 arbeiten mit pluggable Databases. Diese können mit
                 // nach einem Login als system mit derm Service Name XE und folgendem Statement herausgefunden werden:
                 // SELECT name FROM v$pdbs;
-                var serviceName = dbType == "3" ? "orcl" : "XEPDB1";
+                var serviceName = dbType == 3 ? "orcl" : "XEPDB1";
                 builder.UseOracle($"User Id={dbName};Password=oracle;Data Source=localhost:1521/{serviceName}");
 
                 var oracleSystemOptions = new DbContextOptionsBuilder<SchuleContext>()
@@ -97,7 +95,18 @@ namespace SchulDbGenerator
         {
             try
             {
-                var options = GetOptions();
+                int dbType = args.Length > 0 && args[0] == "sqlserver" ? 5
+                    : args.Length > 0 && args[0] == "oracle" ? 4
+                    : 0;
+                while (dbType == 0)
+                {
+                    Console.Write("Welche Datenbank soll erstellt werden? [1]: SQLite (Default)   [2]: LocalDb   [3]: Oracle 12 (VM)   [4]: Oracle 19 XE oder 21 XE   [5] SQL Server Docker Image   ");
+                    if (int.TryParse(Console.ReadLine(), out var val) && val <= 5 && val >= 1)
+                    {
+                        dbType = val;
+                    }
+                }
+                var options = GetOptions(dbType);
                 Untisdata data = await Untisdata.Load("Data");
                 using (SchuleContext db = new SchuleContext(options))
                 {
