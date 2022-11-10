@@ -21,7 +21,7 @@ namespace Lieferservice
             string adminPassword = dbms switch { "sqlserver" => "SqlServer2019", "oracle" => "oracle", _ => string.Empty };
             if (!string.IsNullOrEmpty(adminPassword))
             {
-                Console.Write($"Admin Password for {dbms} database (default: {adminPassword}): ");
+                Console.Write($"Admin Password for {dbms} database (ENTER bedeutet: verwende {adminPassword}): ");
                 var line = Console.ReadLine();
                 adminPassword = string.IsNullOrEmpty(line) ? adminPassword : line;
             }

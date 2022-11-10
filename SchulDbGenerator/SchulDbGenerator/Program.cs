@@ -33,17 +33,22 @@ namespace SchulDbGenerator
             }
             else if (dbType == 5)
             {
-                Console.Write("Gib das sa Passwort ein, das beim Erstellen des Containers verwendet wurde (Default: SqlServer2019). ");
+                Console.Write("Gib das sa Passwort ein, das beim Erstellen des Containers verwendet wurde (ENTER bedeutet: verwende SqlServer2019). ");
                 string password = Console.ReadLine();
                 password = string.IsNullOrEmpty(password) ? "SqlServer2019" : password;
-                Console.Write("Wie soll die Datenbank heißen? Default: SchulDb ");
+                
+                Console.Write("Wie soll die Datenbank heißen (ENTER bedeutet: verwende SchulDb)? ");
                 string dbName = Console.ReadLine();
                 dbName = string.IsNullOrEmpty(dbName) ? "SchulDb" : dbName;
                 builder.UseSqlServer($"Server=127.0.0.1,1433;Initial Catalog={dbName};User Id=sa;Password={password}");
             }
             else if (dbType == 3 || dbType == 4)
             {
-                Console.Write("Wie soll der Benutzer heißen? Default: Schule ");
+                Console.Write("Gib das system Passwort ein, das beim Erstellen des Containers verwendet wurde (ENTER bedeutet: verwende oracle). ");
+                string password = Console.ReadLine();   
+                password = string.IsNullOrEmpty(password) ? "oracle" : password;
+
+                Console.Write("Wie soll der Benutzer heißen (ENTER bedeutet: verwende Schule)? ");
                 string dbName = Console.ReadLine();
                 dbName = string.IsNullOrEmpty(dbName) ? "Schule" : dbName;
                 // Oracle 19 und 21 arbeiten mit pluggable Databases. Diese können mit
@@ -53,7 +58,7 @@ namespace SchulDbGenerator
                 builder.UseOracle($"User Id={dbName};Password=oracle;Data Source=localhost:1521/{serviceName}");
 
                 var oracleSystemOptions = new DbContextOptionsBuilder<SchuleContext>()
-                    .UseOracle($"User Id=System;Password=oracle;Data Source=localhost:1521/{serviceName}")
+                    .UseOracle($"User Id=System;Password={password};Data Source=localhost:1521/{serviceName}")
                     .Options;
 
                 Console.WriteLine($"Lege Benutzer {dbName} mit Passwort oracle an...");
