@@ -15,9 +15,9 @@ APP_DIR=/tmp/dotnetapp
 HOME=/tmp
 
 if [ ! -d "$DOTNET_HOME" ]; then
-    echo Lade .NET $VERSION...
+    echo Lade .NET $VERSION. Bitte warten und Pfoten weg von der Konsole...
     $DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/$VERSION/$INSTALLFILE > /tmp/$INSTALLFILE
-    echo Entpacke .NET $VERSION...
+    echo Entpacke .NET $VERSION. Bitte warten und Pfoten weg von der Konsole...
     mkdir -p $DOTNET_HOME && tar zxf /tmp/$INSTALLFILE -C $DOTNET_HOME
 fi
 
@@ -26,7 +26,7 @@ $DOWNLOADER $1 > /tmp/app.tar
 rm -rf $APP_DIR && mkdir -p $APP_DIR && tar xf /tmp/app.tar -C $APP_DIR
 
 cd $APP_DIR
-echo Kompiliere und starte das Programm. Bitte warten...
+echo Kompiliere und starte das Programm. Bitte warten und Pfoten weg von der Konsole...
 if [ -d "/opt/oracle" ]; then 
     export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && $DOTNET_HOME/dotnet run -- oracle
 else 
