@@ -16,7 +16,6 @@
                 <li><a href="12_SingleValueCorresponding">Korrelierte Unterabfragen, die einen Wert liefern</a></li>
                 <li><a href="13_ListSubqueries">Unterabfragen, die Listen liefern (IN, NOT IN, EXISTS)</a></li>
                 <li><a href="14_FromSubqueries">Views und Unterabfragen in FROM</a></li>
-                <li><a href="21_Null">Umgang mit NULL</a></li>
             </ol>
             <b>Übungen zu SQL</b>
             <ol>
