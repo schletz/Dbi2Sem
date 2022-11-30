@@ -15,8 +15,14 @@ Beispiel *SqlServer2019*. Der Benutzer ist *sa*. Das Passwort muss folgender Ric
 > uppercase letters, lowercase letters, numbers and non-alphanumeric symbols.
 
 ```text
-docker run -d -p 1433:1433  --name sqlserver2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=SqlServer2019" mcr.microsoft.com/mssql/server:2019-latest      
+docker run -d -p 1433:1433  --name sqlserver2019 -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=SqlServer2019" mcr.microsoft.com/azure-sql-edge
 ```
+
+Das Dockerimage beinhaltet *Azure SQL Edge*, eine Engine die auf SQL Server basiert und für
+IoT Anwendungen gemacht wurde. Die Limitierungen sind für die Ausbildung nicht relevant und
+betreffen nur Bereiche für große Serverinstallationen (siehe https://learn.microsoft.com/en-us/azure/azure-sql-edge/features#unsupported-features).
+**Das Dockerimage läuft auf allen Plattformen, also auch auf Apple M1 oder M2 Prozessoren mit
+ARM Architektur.** Danke an Herrn Pompe aus der 5AAIF für den Hinweis auf dieses Image.
 
 ### Starten und Stoppen des Containers
 
