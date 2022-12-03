@@ -45,7 +45,7 @@ Mit *docker exec -it oracle21c COMMAND* können Befehle direkt im Container ausg
 Die Option *-i* bedeutet eine interaktive Ausführung. *-t* öffnet ein Terminal, sodass nicht CR+LF
 von Windows gesendet wird (Linux verwendet nur CR).
 
-### Alternative: Oracle Docker Image selbst erzeugen mit docker build
+## Alternative: Oracle Docker Image selbst erzeugen mit docker build
 
 Oracle stellt selbst ein Dockerfile bereit, mit dem du das Image selbst erzeugen kannst. Du
 brauchst eine gestartete Installation von Docker Desktop und eine Installation von git.
