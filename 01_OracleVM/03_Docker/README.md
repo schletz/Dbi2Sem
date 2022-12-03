@@ -45,6 +45,28 @@ Mit *docker exec -it oracle21c COMMAND* können Befehle direkt im Container ausg
 Die Option *-i* bedeutet eine interaktive Ausführung. *-t* öffnet ein Terminal, sodass nicht CR+LF
 von Windows gesendet wird (Linux verwendet nur CR).
 
+### Alternative: Oracle Docker Image selbst erzeugen mit docker build
+
+Oracle stellt selbst ein Dockerfile bereit, mit dem du das Image selbst erzeugen kannst. Du
+brauchst eine gestartete Installation von Docker Desktop und eine Installation von git.
+Gehe danach in die Konsole und wechsle z. B. in dein Download Verzeichnis. Gibt danach die folgenden
+Befehle ein:
+
+```
+git clone https://github.com/oracle/docker-images.git
+cd docker-images\OracleDatabase\SingleInstance\dockerfiles\21.3.0
+docker build -t oracle/database:21.3.0-xe -f Dockerfile.xe .
+docker create -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/home --name oracle21c oracle/database:21.3.0-xe
+```
+
+Das erzeugte Image ist ca. 6.5 GB groß, beim Buildvorgang werden daher recht viele Daten aus dem
+Netz geladen.
+
+Klicke beim ersten Start in Docker Desktop auf den Namen des Containers, um die Ausgaben zu sehen.
+Beim ersten Start werden noch Arbeiten verrichtet, deswegen müssen diese noch abgewartet werden
+bis du dich verbinden kannst. Das kann einige Minuten dauern, Fehlermeldungen wie *can't read...*
+bewirken keinen Abbruch, es muss nur bis 100% gewartet werden.
+
 ### SQL*Plus 
 
 SQL*Plus ist ein Kommandozeilentool, welches direkt SQL Befehle absetzen kann. Wollen wir als
@@ -181,3 +203,21 @@ ob die Distribution auch so heißt (mit *wsl --list*).
 wsl --list --verbose
 wsl --set-default Ubuntu-20.04
 ```
+
+## Oracle Docker Image selbst erzeugen mit docker build
+
+Oracle stellt selbst ein Dockerfile bereit, mit dem du das Image selbst erzeugen kannst. Du
+brauchst eine gestartete Installation von Docker Desktop und eine Installation von git.
+Gehe danach in die Konsole und wechsle z. B. in dein Download Verzeichnis. Gibt danach die folgenden
+Befehle ein:
+
+```
+git clone https://github.com/oracle/docker-images.git
+cd docker-images\OracleDatabase\SingleInstance\dockerfiles\21.3.0
+docker build -t oracle/database:21.3.0-xe -f Dockerfile.xe .
+docker create -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/home --name oracle21c oracle/database:21.3.0-xe
+```
+
+Klicke beim ersten Start in Docker Desktop auf den Namen des Containers, um die Ausgaben zu sehen.
+Beim ersten Start werden noch Arbeiten verrichtet, deswegen müssen diese noch abgewartet werden
+bis du dich verbinden kannst.
