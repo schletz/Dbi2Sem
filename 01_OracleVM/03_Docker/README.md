@@ -50,11 +50,15 @@ von Windows gesendet wird (Linux verwendet nur CR).
 Oracle stellt selbst ein Dockerfile bereit, mit dem du das Image selbst erzeugen kannst. Du
 brauchst eine gestartete Installation von Docker Desktop und eine Installation von git.
 Gehe danach in die Konsole und wechsle z. B. in dein Download Verzeichnis. Gibt danach die folgenden
-Befehle ein:
+Befehle ein. Ersetze *C:/Temp/oracle-home* durch das Verzeichnis, wo das Homeverzeichnis gemappt
+werden soll. Unter macOS/Linux muss es natürlich eine Unix Pfadangabe (Schrägstrich) sein.
+
+> Hinweis: Das Dockerfile unterstützt nur x86/x64 Plattformen, nicht ARM basierende Plattformen wie
+> M1 oder M2.
 
 ```
 git clone https://github.com/oracle/docker-images.git
-cd docker-images\OracleDatabase\SingleInstance\dockerfiles\21.3.0
+cd docker-images/OracleDatabase/SingleInstance/dockerfiles/21.3.0
 docker build -t oracle/database:21.3.0-xe -f Dockerfile.xe .
 docker create -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/home --name oracle21c oracle/database:21.3.0-xe
 ```
