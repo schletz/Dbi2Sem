@@ -5,13 +5,10 @@ https://account.jetbrains.com/licenses/assets - unter anderem auch DataGrip - ge
 
 ![](datagrip_download.png)
 
-## Voraussetzung für die Verbindung
-
-Die Oracle Datenbank muss hochgefahren sein und auf Port 1521 Verbindungen annehmen.
-
 ## Zugriff auf Oracle
 
-Für den Zugriff auf den Docker Container von Oracle 19 oder 21 wird eine neue Verbindung mit folgenden
+Der Oracle Container muss natürlich für eine Verbindung gestartet sein. Für den Zugriff auf den
+Docker Container von Oracle 19 oder 21 wird eine neue Verbindung mit folgenden
 Daten angelegt:
 
 - **Connection type:** Service Name
@@ -21,8 +18,6 @@ Daten angelegt:
 - **Password:** oracle
 
 ![](connection_19.png)
-
-Für die Verbindung zur Oracle 12 VM ist der Service Name XEPDB1 durch ORCL zu ersetzen.
 
 ## Erstellen weiterer User
 

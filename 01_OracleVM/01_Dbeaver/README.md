@@ -1,15 +1,12 @@
 # Arbeiten mit DBeaver Community
 
 Als SQL Editor kann auch DBeaver verwendet werden. Er kann sich über die JDBC Treiberarchitektur
-zu verschiedenen Datenbanken - darunter auch Oracle - verbinden. Das Programm kann auf der [DBeaver Downloadseite](https://dbeaver.io/download/)
-heruntergeladen werden.
-
-## Voraussetzung
-
-Die Oracle Datenbank muss hochgefahren sein und auf Port 1521 Verbindungen annehmen.
+zu verschiedenen Datenbanken - darunter auch Oracle - verbinden. Das Programm kann auf der
+[DBeaver Downloadseite](https://dbeaver.io/download/) heruntergeladen werden.
 
 ## Verbinden zur Oracle Datenbank in der VM (Oracle 19 XE oder 21 XE)
 
+Der Oracle Container muss natürlich für eine Verbindung gestartet sein.
 Durch den Button *New Database Connection* kann der Verbindungsdialog geöffnet werden. In diesem Dialog
 muss Oracle als Datenbanksystem ausgewählt werden:
 
@@ -23,21 +20,6 @@ muss Oracle als Datenbanksystem ausgewählt werden:
 Beim ersten Verbinden wird der Treiber aus dem Netz geladen. Die angebotenen pluggable databases
 können herausgefunden werden, indem man sich mit dem User *system* und dem Service Name *XE*
 verbindet. Danach wird das SQL Statement `SELECT name FROM v$pdbs;` abgesetzt.
-
-## Verbinden zur Oracle Datenbank in der VM (Oracle 11 oder 12)
-
-> **Hinweis:** Die Unterlagen über die alte Oracle 12 VM werden in diesem Kurs bald entfernt werden.
-> Bitte verwenden Sie das Docker Image von Oracle21c wie [hier](../03_Docker/README.md)
-> beschrieben.
-
-Zum Verbinden müssen wie in SQL Developer folgende Verbindungsdaten eingegeben werden:
-
-- **Host:** *localhost*
-- **Database:** *orcl* (Service Name)
-- **Username:** *System* (oder ein anderer User wie z. B. SchulDb)
-- **Passwort:** *oracle*
-
-Beim ersten Verbinden wird der Treiber aus dem Netz geladen.
 
 ## Zugriff auf das Schema
 

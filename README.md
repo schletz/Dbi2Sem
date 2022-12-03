@@ -60,7 +60,6 @@
 - [SQL Server als Docker Image](01_SQLServer/README.md)
 - [Anlegen der Musterdatenbank (SchulDb) in SQL Server](SchulDbGenerator/README.md)
 
-
 ### Optionale Punkte
 - [Installation von JetBrains DataGrip](01_OracleVM/02_DataGrip/README.md)
 - [Installation von PlantUML in VS Code](03_PlantUml/README.md)
