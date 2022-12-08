@@ -45,6 +45,33 @@ Mit *docker exec -it oracle21c COMMAND* können Befehle direkt im Container ausg
 Die Option *-i* bedeutet eine interaktive Ausführung. *-t* öffnet ein Terminal, sodass nicht CR+LF
 von Windows gesendet wird (Linux verwendet nur CR).
 
+## Anlegen der HR Datenbank für PL/SQL
+
+In den PL/SQL Übungen wird eine HR Datenbank verwendet. Um sie anzulegen, führe folgende Schritte
+durch:
+
+- Starte den Container (wenn nicht schon geschehen).
+- Öffne in Docker Desktop ein Terminal des oracle21 Containers
+- Füge die folgenden Befehle in die Shell ein (mit Enter bestätigen):
+
+```bash
+sqlplus system/oracle@//localhost/XEPDB1 <<< "
+    DROP USER hr CASCADE;
+    CREATE USER hr IDENTIFIED BY oracle;
+    GRANT CONNECT, RESOURCE, CREATE VIEW TO hr;
+    GRANT UNLIMITED TABLESPACE TO hr;
+"
+
+curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/01_OracleVM/03_Docker/1_hr_cre.sql | sqlplus hr/oracle@//localhost/XEPDB1
+curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/01_OracleVM/03_Docker/2_hr_popul.sql | sqlplus hr/oracle@//localhost/XEPDB1
+```
+
+Du kannst dich dann in SQL Developer, DBeaver, ... mit folgenden Daten verbinden:
+
+- Username: hr
+- Passwort: oracle
+- Service Name: XEPDB1
+  
 ## Alternative: Oracle Docker Image selbst erzeugen mit docker build
 
 Oracle stellt selbst ein Dockerfile bereit, mit dem du das Image selbst erzeugen kannst. Du
