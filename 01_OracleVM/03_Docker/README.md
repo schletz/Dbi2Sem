@@ -73,13 +73,14 @@ Du kannst dich dann in SQL Developer, DBeaver, ... mit folgenden Daten verbinden
 - Service Name: XEPDB1
   
 Das Schema kommt aus den offiziellen Musterschemata von Oracle. Nähere Infos sind auf
-<sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/installing-sample-schemas.html#GUID-1E645D09-F91F-4BA6-A286-57C5EC66321D</sup>
+<sub><sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/installing-sample-schemas.html#GUID-1E645D09-F91F-4BA6-A286-57C5EC66321D</sup></sub>
 und auf
-<sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/HR-sample-schema-scripts-and-objects.html#GUID-E275273F-4D1A-4096-A593-0884CA5C961C</sup>
+<sub><sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/HR-sample-schema-scripts-and-objects.html#GUID-E275273F-4D1A-4096-A593-0884CA5C961C</sup></sub>
 aufrufbar.
 
 Glöste PL/SQL Beispiele dazu [sind in diesem Übungsblatt](hr-schema-queries-and-plsql-programs-pdf-free.pdf)
-(Quelle: <sup>https://pdfcoffee.com/hr-schema-queries-and-plsql-programs-pdf-free.html</sup>).
+unter *PL/SQL Programs* ab Seite 6
+(Quelle: <sub><sup>https://pdfcoffee.com/hr-schema-queries-and-plsql-programs-pdf-free.html</sup></sub>).
 
 ## Alternative: Oracle Docker Image selbst erzeugen mit docker build
 
