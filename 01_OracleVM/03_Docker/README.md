@@ -73,9 +73,9 @@ Du kannst dich dann in SQL Developer, DBeaver, ... mit folgenden Daten verbinden
 - Service Name: XEPDB1
   
 Das Schema kommt aus den offiziellen Musterschemata von Oracle. Nähere Infos sind auf
-https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/installing-sample-schemas.html#GUID-1E645D09-F91F-4BA6-A286-57C5EC66321D
+<sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/installing-sample-schemas.html#GUID-1E645D09-F91F-4BA6-A286-57C5EC66321D</sup>
 und auf
-https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/HR-sample-schema-scripts-and-objects.html#GUID-E275273F-4D1A-4096-A593-0884CA5C961C
+<sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/HR-sample-schema-scripts-and-objects.html#GUID-E275273F-4D1A-4096-A593-0884CA5C961C</sup>
 aufrufbar.
 
 ## Alternative: Oracle Docker Image selbst erzeugen mit docker build
