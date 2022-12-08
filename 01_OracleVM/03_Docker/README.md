@@ -39,12 +39,6 @@ Natürlich kann mit Docker Desktop der Container ebenfalls gestartet und beendet
 > hochgefahren ist. Kontrolliere die Ausgaben in Docker Desktop, indem du auf den Containernamen
 > klickst. Es muss die Meldung *DATABASE IS READY TO USE!* im Log Fenster erscheinen.
 
-## Ausführen von Programmen im Container
-
-Mit *docker exec -it oracle21c COMMAND* können Befehle direkt im Container ausgeführt werden.
-Die Option *-i* bedeutet eine interaktive Ausführung. *-t* öffnet ein Terminal, sodass nicht CR+LF
-von Windows gesendet wird (Linux verwendet nur CR).
-
 ## Anlegen der HR Datenbank für PL/SQL
 
 In den PL/SQL Übungen wird eine HR Datenbank verwendet. Um sie anzulegen, führe folgende Schritte
@@ -78,9 +72,8 @@ und auf
 <sub><sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/HR-sample-schema-scripts-and-objects.html#GUID-E275273F-4D1A-4096-A593-0884CA5C961C</sup></sub>
 aufrufbar.
 
-Glöste PL/SQL Beispiele dazu [sind in diesem Übungsblatt](hr-schema-queries-and-plsql-programs-pdf-free.pdf)
-unter *PL/SQL Programs* ab Seite 6
-(Quelle: <sub><sup>https://pdfcoffee.com/hr-schema-queries-and-plsql-programs-pdf-free.html</sup></sub>).
+Du kannst die verlinkten SQL Skripts auch direkt in SQL Developer oder einem anderen SQL Editor
+ausführen. Erstelle aber vorher den User *hr*. Erstelle die Tabellen nicht im User *System*!
 
 ## Alternative: Oracle Docker Image selbst erzeugen mit docker build
 
