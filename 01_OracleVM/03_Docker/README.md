@@ -78,6 +78,9 @@ und auf
 <sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/HR-sample-schema-scripts-and-objects.html#GUID-E275273F-4D1A-4096-A593-0884CA5C961C</sup>
 aufrufbar.
 
+Glöste PL/SQL Beispiele dazu [sind in diesem Übungsblatt](hr-schema-queries-and-plsql-programs-pdf-free.pdf)
+(Quelle: <sup>https://pdfcoffee.com/hr-schema-queries-and-plsql-programs-pdf-free.html</sup>).
+
 ## Alternative: Oracle Docker Image selbst erzeugen mit docker build
 
 Oracle stellt selbst ein Dockerfile bereit, mit dem du das Image selbst erzeugen kannst. Du
