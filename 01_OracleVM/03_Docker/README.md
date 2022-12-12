@@ -3,6 +3,19 @@
 Die neuste Express Edition (XE) von Oracle gibt es auch als Docker Container. Lade dafür
 Docker für dein Betriebssystem von [docs.docker.com](https://docs.docker.com/get-docker/).
 
+## Vor der Installation zu prüfen
+
+Prüfe vor der Installation, ob **genügend Speicher auf der Systemplatte** (C) frei ist. Die virtuelle
+Harddisk wird im Userprofile angelegt und hat - je nach Nutzung - **20 bis 50 GB**.
+
+![](disk_space_1925.png)
+
+Achte auch darauf, dass du **keine zusätzliche Virenscanner** wie Avira, ... neben dem Windows Defender
+laufen hast. Sie können den Schreibzugriff auf die virtuelle Harddisk sperren und dann wird Docker
+einfach stehenbleiben.
+
+## Installation von Docker
+
 Die Installation von Docker Desktop und das Laden des Containers ist als Video
 verfügbar: https://youtu.be/ekmGqHBVNTM
 
