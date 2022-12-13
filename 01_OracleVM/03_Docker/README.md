@@ -17,7 +17,11 @@ einfach stehenbleiben.
 ## Installation von Docker
 
 Die Installation von Docker Desktop und das Laden des Containers ist als Video
-verfügbar: https://youtu.be/ekmGqHBVNTM
+verfügbar: https://youtu.be/ekmGqHBVNTM. Es sind folgende Schritte erforderlich:
+
+- Laden des Linux kernel update packages über den Punkt
+  [WSL2 Linux kernel update package for x64 machines](https://learn.microsoft.com/en-us/windows/wsl/install-manual#step-4---download-the-linux-kernel-update-package)
+- Laden und Installieren von [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 
 Nach der erfolgreichen Installation wird der Container für Oracle 21 XE mittels der folgenden
 Befehle in der Windows Konsole geladen und ausgeführt. Der Container hat rund 3.5 GB.
