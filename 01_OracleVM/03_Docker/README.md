@@ -52,41 +52,7 @@ Natürlich kann mit Docker Desktop der Container ebenfalls gestartet und beendet
 > hochgefahren ist. Kontrolliere die Ausgaben in Docker Desktop, indem du auf den Containernamen
 > klickst. Es muss die Meldung *DATABASE IS READY TO USE!* im Log Fenster erscheinen.
 
-## Anlegen der HR Datenbank für PL/SQL
-
-In den PL/SQL Übungen wird eine HR Datenbank verwendet. Um sie anzulegen, führe folgende Schritte
-durch:
-
-- Starte den Container (wenn nicht schon geschehen).
-- Öffne in Docker Desktop ein Terminal des oracle21 Containers
-- Füge die folgenden Befehle in die Shell ein (mit Enter bestätigen):
-
-```bash
-sqlplus system/oracle@//localhost/XEPDB1 <<< "
-    DROP USER hr CASCADE;
-    CREATE USER hr IDENTIFIED BY oracle;
-    GRANT CONNECT, RESOURCE, CREATE VIEW TO hr;
-    GRANT UNLIMITED TABLESPACE TO hr;
-"
-
-curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/01_OracleVM/03_Docker/1_hr_cre.sql | sqlplus hr/oracle@//localhost/XEPDB1
-curl https://raw.githubusercontent.com/schletz/Dbi2Sem/master/01_OracleVM/03_Docker/2_hr_popul.sql | sqlplus hr/oracle@//localhost/XEPDB1
-```
-
-Du kannst dich dann in SQL Developer, DBeaver, ... mit folgenden Daten verbinden:
-
-- Username: hr
-- Passwort: oracle
-- Service Name: XEPDB1
-  
-Das Schema kommt aus den offiziellen Musterschemata von Oracle. Nähere Infos sind auf
-<sub><sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/installing-sample-schemas.html#GUID-1E645D09-F91F-4BA6-A286-57C5EC66321D</sup></sub>
-und auf
-<sub><sup>https://docs.oracle.com/en/database/oracle/oracle-database/21/comsc/HR-sample-schema-scripts-and-objects.html#GUID-E275273F-4D1A-4096-A593-0884CA5C961C</sup></sub>
-aufrufbar.
-
-Du kannst die verlinkten SQL Skripts auch direkt in SQL Developer oder einem anderen SQL Editor
-ausführen. Erstelle aber vorher den User *hr*. Erstelle die Tabellen nicht im User *System*!
+![](docker_logs_1908.png)
 
 ## Alternative: Oracle Docker Image selbst erzeugen mit docker build
 
