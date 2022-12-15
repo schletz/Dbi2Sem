@@ -1,6 +1,6 @@
 # Docker Container für Oracle 21 XE
 
-Die neuste Express Edition (XE) von Oracle gibt es auch als Docker Container. Lade dafür
+Die neueste Express Edition (XE) von Oracle gibt es auch als Docker Container. Lade dafür
 Docker für dein Betriebssystem von [docs.docker.com](https://docs.docker.com/get-docker/).
 
 ## Vor der Installation zu prüfen
@@ -16,6 +16,8 @@ einfach stehenbleiben.
 
 ## Installation von Docker
 
+### Windows
+
 Die Installation von Docker Desktop und das Laden des Containers ist als Video
 verfügbar: https://youtu.be/ekmGqHBVNTM. Es sind folgende Schritte erforderlich:
 
@@ -28,7 +30,8 @@ Befehle in der Windows Konsole geladen und ausgeführt. Der Container hat rund 3
 
 Der *docker run* Befehl verwendet ein Verzeichnis (*C:/Temp/oracle-home*), um das Homeverzeichnis
 zu mappen. Bei anderen Betriebssystemen (macOS, Linux) muss dieser Pfad angepasst werden, da es
-dort keine Laufwerke gibt.
+dort keine Laufwerke gibt. **Achte darauf, dass vor dem Schließen der Konsole der Befehl auch
+abgeschlossen wurde. Das ist daran zu erkennen, dass der Prompt wieder erscheint.**
 
 ```text
 docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/home --name oracle21c gvenzl/oracle-xe:21-full
@@ -36,6 +39,51 @@ docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/hom
 
 Die Umgebungsvariable *ORACLE_PASSWORD* setzt das Systempasswort. Da es keine Produktionsdatenbank
 ist, verwenden wir zur Vereinfachung *oracle*.
+
+### MacOS (x86 Geräte)
+
+Installiere Docker Desktop von [www.docker.com](https://www.docker.com/products/docker-desktop/).
+Achte auf die *Intel Chip* Version. Führe nach der Installation im Terminal den folgenden Befehl aus:
+
+```text
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v /tmp/oracle-home:/home --name oracle21c gvenzl/oracle-xe:21-full
+```
+
+**Achte darauf, dass vor dem Schließen des Terminals der Befehl auch
+abgeschlossen wurde. Das ist daran zu erkennen, dass der Prompt wieder erscheint.** Klicke danach
+auf den Namen des Containers in Docker Desktop, um das Log anzusehen. Am Anfang wird die Datenbank
+initialisiert. Sie ist erst betriebsbereit, wenn die Meldung *DATABASE IS READY TO USE* erscheint.
+
+### MacOS (M1, M2 Geräte)
+
+Installiere Docker Desktop von [www.docker.com](https://www.docker.com/products/docker-desktop/).
+Achte auf die *Apple Chip* Version. Danach installiere - wenn nicht schon
+geschehen - [Homebrew](https://brew.sh/), einen Packagemanager für macOS. Schließe nun Docker
+Desktop mit Command+Q (⌘ + Q) und führe danach im Terminal die folgenden Befehle aus.
+
+```bash
+brew install colima
+colima start --memory 4 --arch x86_64
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v /tmp/oracle-home:/home --name oracle21c gvenzl/oracle-xe:21-full
+docker logs -f oracle21c
+```
+
+Der letzte Befehl zeigt das Log des Containers an. Da beim ersten Starten des Containers die Datenbank
+noch initialisiert wird, ist es wichtig, diese Initialisierung abzuwarten. Warte, bis
+*DATABASE IS READY TO USE* erscheint. Danach kannst du mit CtrL+C (⌃ + C) das Log verlassen.
+
+*Colima* kann x86 Container auf der Apple ARM Plattform emulieren. Daher muss zum Starten des
+Containers der Oracle Container mit folgenden Befehlen im Terminal gestartet werden:
+
+```bash
+colima start && docker start oracle21c
+```
+
+Um die Ressourcen wieder freizugeben, solltest du nach der Arbeit colima mit `colima stop` beenden.
+
+Der Container *oracle21c* erscheint **nicht in Docker Desktop**, da er von colima verwaltet wird.
+Um Befehle in der Shell des Containers auszuführen, gib `docker exec -it oracle21c bash` bei
+gestartetem Oracle Container im Terminal ein.
 
 ## Starten und Stoppen des Containers
 
