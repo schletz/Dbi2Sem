@@ -9,7 +9,12 @@
 if [ -d "/opt/oracle" ]; then DOWNLOADER="curl"; else DOWNLOADER="wget -O /dev/stdout"; fi
 
 VERSION=$($DOWNLOADER https://dotnetcli.azureedge.net/dotnet/Sdk/6.0/latest.version)
-INSTALLFILE=dotnet-sdk-$VERSION-linux-x64.tar.gz
+ARCH=$(uname -m)
+if [ $ARCH = "aarch64" ] || [ $ARCH = "arm64" ]; then
+    INSTALLFILE=dotnet-sdk-$VERSION-linux-arm64.tar.gz
+else
+    INSTALLFILE=dotnet-sdk-$VERSION-linux-x64.tar.gz
+fi
 DOTNET_HOME=/tmp/dotnet$VERSION
 APP_DIR=/tmp/dotnetapp
 HOME=/tmp
