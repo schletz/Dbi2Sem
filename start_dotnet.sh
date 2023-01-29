@@ -31,6 +31,7 @@ $DOWNLOADER $1 > /tmp/app.tar
 rm -rf $APP_DIR && mkdir -p $APP_DIR && tar xf /tmp/app.tar -C $APP_DIR
 
 cd $APP_DIR
+export DOTNET_NOLOGO=true
 echo Kompiliere und starte das Programm. Bitte warten und Pfoten weg von der Konsole...
 if [ -d "/opt/oracle" ]; then 
     export DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 && $DOTNET_HOME/dotnet run -- oracle
