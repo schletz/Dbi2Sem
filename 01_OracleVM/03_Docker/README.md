@@ -34,7 +34,7 @@ dort keine Laufwerke gibt. **Achte darauf, dass vor dem Schließen der Konsole d
 abgeschlossen wurde. Das ist daran zu erkennen, dass der Prompt wieder erscheint.**
 
 ```text
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/home --name oracle21c gvenzl/oracle-xe:21-full
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/tmp --name oracle21c gvenzl/oracle-xe:21-full
 ```
 
 Die Umgebungsvariable *ORACLE_PASSWORD* setzt das Systempasswort. Da es keine Produktionsdatenbank
@@ -46,7 +46,7 @@ Installiere Docker Desktop von [www.docker.com](https://www.docker.com/products/
 Achte auf die *Intel Chip* Version. Führe nach der Installation im Terminal den folgenden Befehl aus:
 
 ```text
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v /tmp/oracle-home:/home --name oracle21c gvenzl/oracle-xe:21-full
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v /tmp/oracle-home:/tmp --name oracle21c gvenzl/oracle-xe:21-full
 ```
 
 **Achte darauf, dass vor dem Schließen des Terminals der Befehl auch
@@ -64,7 +64,7 @@ Desktop mit Command+Q (⌘ + Q) und führe danach im Terminal die folgenden Befe
 ```bash
 brew install colima
 colima start --memory 4 --arch x86_64
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v /tmp/oracle-home:/home --name oracle21c gvenzl/oracle-xe:21-full
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v /tmp/oracle-home:/tmp --name oracle21c gvenzl/oracle-xe:21-full
 docker logs -f oracle21c
 ```
 
@@ -139,12 +139,12 @@ Mit *exit* kann die Shell verlassen und zu Windows zurückgekehrt werden. Du kan
 Docker Desktop auf den Button *CLI*, der beim Container angeboten wird, klicken.
 
 Beim Anlegen des Containers mit *docker run* haben wir mit dem Parameter
-*-v C:/Temp/oracle-home:/home* einen Ordner angegeben, der auch im Container sichtbar ist.
+*-v C:/Temp/oracle-home:/tmp* einen Ordner angegeben, der auch im Container sichtbar ist.
 Nun können wir z. B. in Windows in *C:/Temp/oracle-home* eine Textdatei anlegen. In der bash
 ist sie im Homeverzeichnis sichtbar:
 
 ```text
-bash-4.4$ cd /home/
+bash-4.4$ cd /tmp/
 bash-4.4$ ls
 test.txt
 
@@ -170,7 +170,7 @@ werden soll. Unter macOS/Linux muss es natürlich eine Unix Pfadangabe (Schrägs
 git clone https://github.com/oracle/docker-images.git
 cd docker-images/OracleDatabase/SingleInstance/dockerfiles/21.3.0
 docker build -t oracle/database:21.3.0-xe -f Dockerfile.xe .
-docker create -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/home --name oracle21c oracle/database:21.3.0-xe
+docker create -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/tmp --name oracle21c oracle/database:21.3.0-xe
 ```
 
 Das erzeugte Image ist ca. 6.5 GB groß, beim Buildvorgang werden daher recht viele Daten aus dem
