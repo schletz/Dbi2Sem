@@ -34,7 +34,7 @@ dort keine Laufwerke gibt. **Achte darauf, dass vor dem Schließen der Konsole d
 abgeschlossen wurde. Das ist daran zu erkennen, dass der Prompt wieder erscheint.**
 
 ```text
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/tmp --name oracle21c gvenzl/oracle-xe:21-full
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v C:/Temp/oracle-home:/host --name oracle21c gvenzl/oracle-xe:21-full
 ```
 
 Die Umgebungsvariable *ORACLE_PASSWORD* setzt das Systempasswort. Da es keine Produktionsdatenbank
@@ -45,8 +45,11 @@ ist, verwenden wir zur Vereinfachung *oracle*.
 Installiere Docker Desktop von [www.docker.com](https://www.docker.com/products/docker-desktop/).
 Achte auf die *Intel Chip* Version. Führe nach der Installation im Terminal den folgenden Befehl aus:
 
-```text
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v /tmp/oracle-home:/tmp --name oracle21c gvenzl/oracle-xe:21-full
+```bash
+mkdir $HOME/oracle-home
+chmod 777 $HOME/oracle-home
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v $HOME/oracle-home:/host --name oracle21c gvenzl/oracle-xe:21-full
+docker logs -f oracle21c
 ```
 
 **Achte darauf, dass vor dem Schließen des Terminals der Befehl auch
@@ -58,13 +61,15 @@ initialisiert. Sie ist erst betriebsbereit, wenn die Meldung *DATABASE IS READY 
 
 Installiere Docker Desktop von [www.docker.com](https://www.docker.com/products/docker-desktop/).
 Achte auf die *Apple Chip* Version. Danach installiere - wenn nicht schon
-geschehen - [Homebrew](https://brew.sh/), einen Packagemanager für macOS. Schließe nun Docker
-Desktop mit Command+Q (⌘ + Q) und führe danach im Terminal die folgenden Befehle aus.
+geschehen - [Homebrew](https://brew.sh/), einen Packagemanager für macOS.
+Führe danach im Terminal die folgenden Befehle aus.
 
 ```bash
 brew install colima
 colima start --memory 4 --arch x86_64
-docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v /tmp/oracle-home:/tmp --name oracle21c gvenzl/oracle-xe:21-full
+mkdir $HOME/oracle-home
+chmod 777 $HOME/oracle-home
+docker run -d -p 1521:1521 -e ORACLE_PASSWORD=oracle -v $HOME/oracle-home:/host --name oracle21c gvenzl/oracle-xe:21-full
 docker logs -f oracle21c
 ```
 
@@ -80,10 +85,6 @@ colima start && docker start oracle21c
 ```
 
 Um die Ressourcen wieder freizugeben, solltest du nach der Arbeit colima mit `colima stop` beenden.
-
-Der Container *oracle21c* erscheint **nicht in Docker Desktop**, da er von colima verwaltet wird.
-Um Befehle in der Shell des Containers auszuführen, gib `docker exec -it oracle21c bash` bei
-gestartetem Oracle Container im Terminal ein.
 
 ## Starten und Stoppen des Containers
 
@@ -132,19 +133,19 @@ Mit dem Befehl *quit* kann der SQL*Plus Prompt verlassen werden.
 Wir können auch eine Shell öffnen und Befehle in Linux absetzen:
 
 ```text
-docker exec -it oracle21c /bin/bash
+docker exec -it -u root oracle21c bash
 ```
 
 Mit *exit* kann die Shell verlassen und zu Windows zurückgekehrt werden. Du kannst auch in
 Docker Desktop auf den Button *CLI*, der beim Container angeboten wird, klicken.
 
 Beim Anlegen des Containers mit *docker run* haben wir mit dem Parameter
-*-v C:/Temp/oracle-home:/tmp* einen Ordner angegeben, der auch im Container sichtbar ist.
+*-v C:/Temp/oracle-home:/host* einen Ordner angegeben, der auch im Container sichtbar ist.
 Nun können wir z. B. in Windows in *C:/Temp/oracle-home* eine Textdatei anlegen. In der bash
 ist sie im Homeverzeichnis sichtbar:
 
 ```text
-bash-4.4$ cd /tmp/
+bash-4.4$ cd /host
 bash-4.4$ ls
 test.txt
 
