@@ -190,7 +190,7 @@ Filtern nach der Tankstelle im WHERE Ausdruck Ihre Ergebnisse am Anfang des Jahr
 (Bezeichnung und Stammraum) zugeordnet. Erstellen Sie ein kleines Modell, bei dem Sie herausfinden
 können, welche Klasse jeder Schüler in jedem Schuljahr besucht hat.
 
-**(5)** Verbinden Sie mit der Schülertabelle aus Übung (3) eine Tabelle Zeugnisnoten. Diese
+**(5)** Verbinden Sie mit der Schülertabelle aus Übung (4) eine Tabelle Zeugnisnoten. Diese
 Zeugnisnoten werden von einem Lehrer (Vor- und Zuname) in einem Fach (Bezeichnung und Langname)
 für eine bestimmtes Schuljahr eingetragen. Anstatt die Note einfach zu überschreiben, wollen
 Sie ein Protokoll haben, wer die Note geändert hat. Wie finden Sie die aktuelle Note heraus? Geben
