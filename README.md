@@ -42,7 +42,7 @@
             </ol>
             <b>Modellierungsprojekt</b>
             <ol>
-                <li><a href="VorlageDbiModellierungsprojekt.docx">Wordvorlage</li>
+                <li><a href="projekt_sommersemester.md">Anforderungen (3. JG HIF)</li>
             </ol>
         </td>
     </tr>
