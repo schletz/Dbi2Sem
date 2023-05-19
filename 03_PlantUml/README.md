@@ -140,3 +140,27 @@ Lesson ||--o{ LessonPlanned
 @enduml
 ```
 ````
+
+Auf https://raphael-leger.medium.com/automatically-generating-up-to-date-database-diagrams-with-typeorm-d1279a20545e
+wird eine Variante beschrieben, die optisch ein wenig schöner Aussieht:
+
+```
+@startuml
+!define primary_key(x) <b><color:#b8861b><&key></color> x</b>
+!define foreign_key(x) <color:#aaaaaa><&key></color> x
+!define column(x) <color:#efefef><&media-record></color> x
+!define table(x) entity x << (T, white) >>
+table( user ) {
+  primary_key( id ): UUID 
+  column( isActive ): BOOLEAN 
+  foreign_key( cityId ): INTEGER <<FK>>
+}
+table( city ) {
+  primary_key( id ): UUID 
+  column( name ): CHARACTER VARYING 
+  column( country ): CHARACTER VARYING
+  column( postCode ): INTEGER
+}
+user }|--|| city
+@enduml
+```
