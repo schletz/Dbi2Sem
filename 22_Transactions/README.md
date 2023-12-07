@@ -178,7 +178,7 @@ Sie bekommen folgende Ausgabe:
 | 261 | Not Blocking | Row-X (SX) | None         |
 | 261 | Not Blocking | Row-X (SX) | None         |
 
-Nach dem *COMMIT* unter *User1* verschwindet zwar der Busy Wait, der Datenstz mit der Account ID 1 ist jedoch
+Nach dem *COMMIT* unter *User1* verschwindet zwar der Busy Wait, der Datensatz mit der Account ID 1 ist jedoch
 durch User2 weiterhin gesperrt:
 
 | SID | STATUS       | MODE_HELD  | MODE_REQUEST |
@@ -189,22 +189,24 @@ Erst nach einem *COMMIT* unter *User2* verschwindet der Lock.
 
 ## Weitere Beispiele
 
-| User1                                                                 | User2                                                                           |
-| --------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| *UPDATE CUSTOMER SET BALANCE = BALANCE + 100 WHERE  CUSTOMER_ID = 6;* | Was sieht User2?                                                                |
-| Was sieht User1?                                                      | *UPDATE GRIESMAYER.CUSTOMER SET BALANCE = BALANCE - 500 WHERE CUSTOMER_ID = 1;* |
-| COMMIT;                                                               | Was sieht User2                                                                 |
-| Was sieht User1?                                                      | COMMIT;                                                                         |
+| User1                                                                        | User2                                                                              |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| *UPDATE GRIESMAYER_ACCOUNTS SET AMOUNT = AMOUNT + 100 WHERE ACCOUNT_ID = 1;* | Was sieht User2?                                                                   |
+| Was sieht User1?                                                             | *UPDATE User1.GRIESMAYER_ACCOUNTS SET AMOUNT = AMOUNT - 500 WHERE ACCOUNT_ID = 4;* |
+| COMMIT;                                                                      | Was sieht User2                                                                    |
+| Was sieht User1?                                                             | COMMIT;                                                                            |
+
+Angenommen *User1* verringert den Betrag (Amount) eines Kunden, *User2* verringert ebenfalls den Betrag des selben Kunden. Kann es sein, dass der Saldo negativ wird?
 
 ## Deadlock
 
 Führen Sie in SQLDeveloper folgende Anweisungen unter den entsprechenden Usern aus:
 
-| User1                                                                                                                                                      | User2                                                                                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| *UPDATE GRIESMAYER_ACCOUNTS SET FIRST_NAME = 'Klaus' WHERE ACCOUNT_ID = 1;*<br>*UPDATE GRIESMAYER_ACCOUNTS SET FIRST_NAME = 'Klaus' WHERE ACCOUNT_ID = 3;* |                                                                                                                                                                            |
-|                                                                                                                                                            | *UPDATE User1.GRIESMAYER_ACCOUNTS SET FIRST_NAME = 'Michael' WHERE ACCOUNT_ID = 2;*<br>*UPDATE User1.GRIESMAYER_ACCOUNTS SET FIRST_NAME = 'Michael' WHERE ACCOUNT_ID = 1;* |
-| *UPDATE GRIESMAYER_ACCOUNTS SET FIRST_NAME = 'Klaus' WHERE ACCOUNT_ID = 2;*                                                                                |                                                                                                                                                                            |
+| User1                                                                       | User2                                                                                                                                                                      |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| *UPDATE GRIESMAYER_ACCOUNTS SET FIRST_NAME = 'Klaus' WHERE ACCOUNT_ID = 1;* |                                                                                                                                                                            |
+|                                                                             | *UPDATE User1.GRIESMAYER_ACCOUNTS SET FIRST_NAME = 'Michael' WHERE ACCOUNT_ID = 2;*<br>*UPDATE User1.GRIESMAYER_ACCOUNTS SET FIRST_NAME = 'Michael' WHERE ACCOUNT_ID = 1;* |
+| *UPDATE GRIESMAYER_ACCOUNTS SET FIRST_NAME = 'Klaus' WHERE ACCOUNT_ID = 2;* |                                                                                                                                                                            |
 
 Nachdem Sie die Anweisungen unter User2 ausgeführt haben, ist dieser im Zustand *Busy wait*. Führen Sie nun 
 unter User1 das *UPDATE* Statement aus, bekommt einer der beiden User eine Fehlermeldung:
