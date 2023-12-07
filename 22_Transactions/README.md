@@ -1,7 +1,7 @@
 # Transaktionen
 
 Folien zur Theorie dazu sind auf
-http://www.griesmayer.com/content/Oracle/Semester_5/02_Transaction/Folie_Transaction.pdf
+https://www.griesmayer.com/?menu=Oracle&semester=DatabaseArchitecture&topic=01_Transaction
 abrufbar.
 
 In SQL Developer muss unter *Preferences* - *Advanced* der Punkt *Autocommit* für diese Übung deaktiviert.
